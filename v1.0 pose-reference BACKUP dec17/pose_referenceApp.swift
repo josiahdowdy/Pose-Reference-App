@@ -14,22 +14,15 @@ struct pose_referenceApp: App {
     @ObservedObject var timeObject = TimerObject()
     @ObservedObject var userObject = UserObject()
     
-    let persistenceController = PersistenceController.shared
-    
     
     var body: some Scene {
         WindowGroup {
-            
-            
            HomeView()
                 .environmentObject(prefs)
                 .environmentObject(timeObject)
                 .environmentObject(userObject)
-                //.environmentObject(persistenceController.container.viewContext)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+ 
            // ContentView()
         }
     }
-    
-    
 }
