@@ -151,9 +151,8 @@ struct NavigationView: View {
         prefs.darkPortrait = false
         prefs.collection = false
         
-        if (prefs.unsplashPhotosView) {
-            prefs.arrayOfURLStrings.removeAll()
-        }
+        prefs.arrayOfURLStrings.removeAll()
+        
         
     }
 }

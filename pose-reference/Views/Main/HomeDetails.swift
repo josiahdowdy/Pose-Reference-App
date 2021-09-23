@@ -30,6 +30,7 @@ struct HomeDetails: View {
     
     @State var tag = ""
     @State var urlArray = [String]()
+    @State var isRandom: Bool = true
     
     @State var name = ""
     @State var error = ""
@@ -83,6 +84,9 @@ struct HomeDetails: View {
                         //Text("\(Image(systemName: "wifi.exclamationmark")) \(wifiError)").font(.footnote).padding(20) //xmark.octagon.fill
                         Text(wifiError)
                     }
+                    
+                   Text(error)
+                    
                 }
                 
                 /// Import local photos
@@ -133,6 +137,7 @@ struct HomeDetails: View {
                         saveFile(url: selectedFiles[i])
                         //prefs.arrayOfURLStrings
                     }
+                    self.error = ""
                 } catch {
                     // Handle failure.
                     print("failed")
@@ -144,15 +149,20 @@ struct HomeDetails: View {
         //}
         //} //End HStack1 poo
         
-        
         Spacer().frame(maxWidth: .infinity) //Attach bar to bottom
         
         
-        if (prefs.localPhotosView) {
-            HStack {
-                Text("Random:").padding(10)
-            }
-        }
+        VStack {
+            Text("Random")
+                .foregroundColor(isRandom ? .green : .gray)
+            Toggle("Random", isOn: $isRandom)
+                .labelsHidden()
+        }.padding()
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(lineWidth: 2)
+                    .foregroundColor(isRandom ? .green : .gray)
+            )
         
         if (prefs.unsplashPhotosView) {
             HStack {
@@ -166,7 +176,6 @@ struct HomeDetails: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
         }//End if
-        
         
         HStack {
             Text("Length:").padding(10)
@@ -198,12 +207,8 @@ struct HomeDetails: View {
 
         }
         
-        
-        Button("\(Image(systemName: "play.rectangle.fill")) Start") {
-            passInfo()
-            prefs.startBoolean.toggle()
-            self.presentationMode.wrappedValue.dismiss() //Hide sheet.
-            
+        //Button("\(Image(systemName: "play.rectangle.fill")) Start") {
+        Button("Start") {
             if (prefs.unsplashPhotosView) {
                 loadUnsplashPhotos() { (urlData) in
                     //print("\nurlData: \(urlData.count)\n")
@@ -214,15 +219,10 @@ struct HomeDetails: View {
                 prefs.localPhotos = true
                 prefs.disableSkip = false
             }
-            
-        }//.padding()
-        //
-        .buttonStyle(ButtonOnOffStyle())
-        .padding(10)
-        
+        }.padding(20)
+        .padding(.bottom, 20)
+        //.buttonStyle(ButtonOnOffStyle())
     }//End of View
-    
-    
     
     ///Start of functions.
     func getDocumentsDirectory() -> URL {
@@ -282,9 +282,17 @@ struct HomeDetails: View {
     }
     
     func loadLocalPhotos(){
+        if (isRandom) {
+            prefs.arrayOfURLStrings.shuffle()
+        }
+        
         if (prefs.arrayOfURLStrings.isEmpty) {
             self.error = "Error loading images..."
         } else {
+            passInfo()
+            prefs.startBoolean.toggle()
+            //self.presentationMode.wrappedValue.dismiss() //Hide sheet.
+            
             prefs.sURL = prefs.arrayOfURLStrings[0]
             self.presentationMode.wrappedValue.dismiss() //Hide sheet.
             startTimer() //Do not start timer if there is no wifi.
