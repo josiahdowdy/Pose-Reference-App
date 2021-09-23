@@ -11,7 +11,7 @@ SwiftUI and Kingfisher photo reference app for artsists with timer.
 - [ ] Remove Unsplash
 - [ ] iCloud sync
 - [ ] User can add photos to their own folder structure in app
-- [ ] 
+- [ ] Create LOGO for icon
 
 ## Future Updates
 - Photo count tracker
