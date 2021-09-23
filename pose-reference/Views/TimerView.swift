@@ -26,11 +26,21 @@ struct TimerView: View {
     var body: some View {
         VStack {
             ProgressBar(value: $timeObject.progressValue)
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                    print("Moving to the background!")
+                    TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
+                    Timer().invalidate() //stop the timer,
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                    print("Moving back to the foreground!")
+                    TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+                }
                 .frame(height: 10)
                 .onReceive(self.timeObject.timer) { _ in
                     
                     //If the boolean is set to true.
                     if self.timeObject.isTimerRunning {
+                        
                         //print("\n*** timer is running")
                         timeObject.timeDouble = ((Date().timeIntervalSince(self.timeObject.startTime)))
                         timeObject.totalSessionDrawTimeDone += timeObject.timeDouble 
