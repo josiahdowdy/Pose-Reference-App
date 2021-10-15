@@ -103,7 +103,7 @@ struct HomeDetails: View {
                             Image(systemName: "photo")
                                 .font(.system(size: 20))
                             
-                            Text("Files \(prefs.sPoseCount)")
+                            Text("Files: \(prefs.sPoseCount)")
                                 .font(.headline)
                         }.padding(6)
                         
@@ -348,8 +348,6 @@ struct HomeDetails: View {
         TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
     }
 }
-
-
 
 /*
  struct HomeDetails_Previews: PreviewProvider {

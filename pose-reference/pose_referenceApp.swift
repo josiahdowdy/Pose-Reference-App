@@ -21,7 +21,8 @@ struct pose_referenceApp: App {
         WindowGroup {
             
             
-           HomeView()
+           //HomeView() //this is the first view loaded
+            HomeDetails()
                 .environmentObject(prefs)
                 .environmentObject(timeObject)
                 .environmentObject(userObject)

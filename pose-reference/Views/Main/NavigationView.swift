@@ -14,6 +14,7 @@ struct NavigationView: View {
     @EnvironmentObject var prefs: Settings
 
     @State private var showingSheet = false
+
     
     //@Binding var localPhotos: Bool
     //@Binding var unsplashPhotos = false
@@ -21,9 +22,10 @@ struct NavigationView: View {
     @State var skip = false
     @State var pause = false
     @State var blur = false
-    @State var download = false
+    //@State var changeTimer = false
     @State var quit = false
     @State var rotation = 0.0
+    @State var timeLeft = 0.0
 
 
     var body: some View {
@@ -34,7 +36,7 @@ struct NavigationView: View {
                 
                 //SKIP
                 Button(action: {
-                    download = false
+                    //changeTimer = false
                     
                     print("\n jo: \(prefs.currentIndex + 1) = \(prefs.sPoseCount) ")
                     
@@ -97,14 +99,17 @@ struct NavigationView: View {
                     Image(systemName: "camera.filters") //Text("Grayscale")
                 }.buttonStyle(BorderlessButtonStyle())
             
-            //DOWNLOAD
+            //Change Timer Style
+            /*
             Button(action: {
-                print("\nDownload\n")
-                download = true
+                print("\nTimer Style\n")
+                //changeTimer.toggle()
+                prefs.changeTimer.toggle()
             }) {
-                Image(systemName: download ? "square.and.arrow.down.fill" : "square.and.arrow.down" ) //Text("Grayscale")
+                Image(systemName: prefs.changeTimer ? "clock.fill" : "clock" ) //Text("Grayscale")
             }.buttonStyle(BorderlessButtonStyle())
             .buttonStyle(bounceButtonStyle())
+            */
             
             //QUIT
                 Button(action: {
@@ -126,15 +131,29 @@ struct NavigationView: View {
                 Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
             }.buttonStyle(BorderlessButtonStyle())
             */
-            Spacer()
+            
+            
+            
+            if (!prefs.changeTimer) {
+                //do nothing
+            } else if (prefs.changeTimer) {
+                Text("\(timeLeft, specifier: "%.0f")")
+                //Text("\(timeLeft)")
+                    .onReceive(timeObject.$timeDouble) { input in
+                        timeLeft = timeObject.timeLength - timeObject.timeDouble
+                    }
             }
+        
+            Spacer()
+            
+        }
     }
     
     func endSession(){
         //self.showingSheet.toggle()
         prefs.showMainMenu.toggle()
         pause = false
-        download = false
+        //changeTimer = false
 
         print("showingSheet bool: \(self.showingSheet)")
         self.timeObject.endSessionBool.toggle()

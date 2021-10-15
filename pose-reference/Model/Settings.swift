@@ -9,8 +9,9 @@ import Kingfisher
 
 class Settings: ObservableObject {
     @Published var sPose = ""
-    @Published var sPoseCount = 30
+    @Published var sPoseCount = 0
     @Published var imageQuality = "regular"
+    @Published var changeTimer = false
     
     @Published var localPhotosView = true
     @Published var unsplashPhotosView = false
@@ -61,19 +62,4 @@ class Settings: ObservableObject {
             return darkPortrait
         }
     }
-    
-    ///Tags
-    
-    //Generate random images.
-    /*
-    func randomImagesCollection(){
-        let randomImageIndex = Int.random(in: 0...IDportraitsDarkMAX)
-        let imageWidth = 480
-        let imageHeight = 480
-        
-        let url = "https://source.unsplash.com/collection/\(IDPortraitsDark)/\(imageWidth)x\(imageHeight)/?sig=\(randomImageIndex)"
-        
-        
-    }
- */
 }

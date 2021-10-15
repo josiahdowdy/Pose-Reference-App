@@ -82,8 +82,13 @@ struct HomeView: View {
                         .background(Color.black)
                         .foregroundColor(.white)
                     HStack {
+                        
+                        if (prefs.changeTimer) {
+                            //print(timeObject.progressValue)
+                        } else if (!prefs.changeTimer) {
                             TimerView(prefs: _prefs).padding(.bottom, 5)
                         }
+                    }
                 }
             }
         }
