@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct NavigationView: View {
-    @Environment(\.presentationMode) var presentationMode
+    //@Environment(\.presentationMode) var presentationMode //Oct17
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: Settings
 
@@ -26,11 +26,11 @@ struct NavigationView: View {
     @State var quit = false
     @State var rotation = 0.0
     @State var timeLeft = 0.0
-
-
+    
+    //@State private var startSession = false
+    @Binding var startSession: Bool
+    
     var body: some View {
-        
-        
         HStack(alignment: .bottom, spacing: 50) { //alignment: .bottom,
             Spacer()
                 
@@ -65,7 +65,7 @@ struct NavigationView: View {
                     //Image(systemName: skip ? "arrowshape.turn.up.right.fill" : "arrowshape.turn.up.right")//Text("Skip")
                 }.disabled(prefs.disableSkip)
                 .sheet(isPresented: $showingSheet) {  //$showingSheet
-                    HomeDetails(prefs: _prefs, name: "Artist!", isPresented: $showingSheet)
+                    HomeDetails(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah OCT16
                 }.keyboardShortcut(.rightArrow)
                 .buttonStyle(BorderlessButtonStyle())
                 .buttonStyle(bounceButtonStyle())
@@ -115,11 +115,13 @@ struct NavigationView: View {
                 Button(action: {
                     print("quit")
                     endSession()
+                    self.startSession = false
+                    //ContentView()
                 }) {
                     Image(systemName: "multiply.circle.fill") //Text("Grayscale")
                 }.buttonStyle(BorderlessButtonStyle())
                 .sheet(isPresented: $showingSheet) {
-                    HomeDetails(prefs: _prefs, name: "Artist!", isPresented: $showingSheet)
+                    HomeDetails(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
                 }.buttonStyle(BorderlessButtonStyle())
                 .buttonStyle(bounceButtonStyle())
                  //.keyboardShortcut(.escape)
@@ -131,8 +133,6 @@ struct NavigationView: View {
                 Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
             }.buttonStyle(BorderlessButtonStyle())
             */
-            
-            
             
             if (!prefs.changeTimer) {
                 //do nothing
@@ -171,7 +171,5 @@ struct NavigationView: View {
         prefs.collection = false
         
         prefs.arrayOfURLStrings.removeAll()
-        
-        
     }
 }

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C02D881253A2C5700D5F960"
-               BuildableName = "pose-reference.app"
-               BlueprintName = "pose-reference"
+               BuildableName = "ArtAthlete (iOS).app"
+               BlueprintName = "ArtAthlete (iOS)"
                ReferencedContainer = "container:pose-reference.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C02D881253A2C5700D5F960"
-            BuildableName = "pose-reference.app"
-            BlueprintName = "pose-reference"
+            BuildableName = "ArtAthlete (iOS).app"
+            BlueprintName = "ArtAthlete (iOS)"
             ReferencedContainer = "container:pose-reference.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -82,8 +82,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C02D881253A2C5700D5F960"
-            BuildableName = "pose-reference.app"
-            BlueprintName = "pose-reference"
+            BuildableName = "ArtAthlete (iOS).app"
+            BlueprintName = "ArtAthlete (iOS)"
             ReferencedContainer = "container:pose-reference.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

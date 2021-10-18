@@ -7,6 +7,7 @@
 import Foundation
 
 class TimerObject: ObservableObject {
+    
     @Published var isTimerRunning = false
     @Published var startTime =  Date()
     //@Published var timerString = "0.00"

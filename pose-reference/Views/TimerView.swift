@@ -19,6 +19,9 @@ struct TimerView: View {
 
     var userData: FetchedResults<UserData>
     
+    @State private var startSession = false
+    //@Binding var startSession: Bool
+    
     
     @State var userPoseCount = 0
     ///End UserData saving
@@ -86,7 +89,7 @@ struct TimerView: View {
         timeObject.endSessionBool.toggle()
         timeObject.progressValue = 0.0
         prefs.disableSkip.toggle()
-        NavigationView(timeObject: _timeObject, prefs: _prefs).endSession()
+        NavigationView(timeObject: _timeObject, prefs: _prefs, startSession: $startSession).endSession()
     }
         
     func stopTimer() {

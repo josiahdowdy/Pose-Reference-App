@@ -1,19 +1,16 @@
-//
 import SwiftUI
 
-struct MenuView: View {
-    
+struct DotMenuView: View {
     @Binding var unsplashPhotos: Bool
     @Binding var localPhotos: Bool
     @Binding var showStats: Bool
     @Binding var showSettings: Bool
     
-
-    
     var body: some View {
         Group {
             HStack{
                 Menu {
+                    /*
                     Button("Unsplash Photos") {
                         unsplashPhotos.toggle()
                         localPhotos.toggle()
@@ -21,7 +18,7 @@ struct MenuView: View {
                     Button("Local Photos") {
                         localPhotos.toggle()
                         unsplashPhotos.toggle()
-                    }
+                    } */
                     Button("Memorize") {
                         //self.error = "Memorize on: photo interval of 2 seconds on and 3 seconds off."
                     }

@@ -8,6 +8,9 @@ import Foundation
 import Kingfisher
 
 class Settings: ObservableObject {
+    @Published var showMainScreen = true
+    @Published var showHomeView = false
+    
     @Published var sPose = ""
     @Published var sPoseCount = 0
     @Published var imageQuality = "regular"
