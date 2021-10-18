@@ -37,12 +37,13 @@
 		2C663A46271DB9DE0097AEFE /* Art_AthleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A45271DB9DE0097AEFE /* Art_AthleteTests.swift */; };
 		2C663A50271DB9DE0097AEFE /* Art_AthleteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A4F271DB9DE0097AEFE /* Art_AthleteUITests.swift */; };
 		2C663A52271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A51271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift */; };
+		2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */; };
 		2C704F69254BA86200C5805B /* TimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F68254BA86200C5805B /* TimerObject.swift */; };
 		2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F6C254BA93D00C5805B /* UserObject.swift */; };
 		2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C83DE255B888B00CC4096 /* MessageDocument.swift */; };
 		2C943ED025B77FBB0010FA24 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943ECF25B77FBB0010FA24 /* SettingsView.swift */; };
 		2C943ED425B78F460010FA24 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943ED325B78F460010FA24 /* SignIn.swift */; };
-		2C943ED825B7910C0010FA24 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943ED725B7910C0010FA24 /* MenuView.swift */; };
+		2C943ED825B7910C0010FA24 /* DotMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943ED725B7910C0010FA24 /* DotMenuView.swift */; };
 		2C943EE025B797BB0010FA24 /* MenuPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943EDF25B797BB0010FA24 /* MenuPicker.swift */; };
 		2C943EE425B8F9130010FA24 /* TagSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943EE325B8F9130010FA24 /* TagSearchModel.swift */; };
 		2C943EEA25B9F4790010FA24 /* CollectionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943EE925B9F4790010FA24 /* CollectionButtons.swift */; };
@@ -148,7 +149,7 @@
 		2C8C83DE255B888B00CC4096 /* MessageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
 		2C943ECF25B77FBB0010FA24 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2C943ED325B78F460010FA24 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
-		2C943ED725B7910C0010FA24 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		2C943ED725B7910C0010FA24 /* DotMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotMenuView.swift; sourceTree = "<group>"; };
 		2C943EDF25B797BB0010FA24 /* MenuPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPicker.swift; sourceTree = "<group>"; };
 		2C943EE325B8F9130010FA24 /* TagSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchModel.swift; sourceTree = "<group>"; };
 		2C943EE925B9F4790010FA24 /* CollectionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionButtons.swift; sourceTree = "<group>"; };
@@ -213,6 +214,7 @@
 		2C02D879253A2C5700D5F960 = {
 			isa = PBXGroup;
 			children = (
+				2C663A5C271DC98E0097AEFE /* Shared */,
 				2C142B952593E19500A7DC54 /* UserData+CoreDataClass.swift */,
 				2C142B962593E19500A7DC54 /* UserData+CoreDataProperties.swift */,
 				2C142B902593D71A00A7DC54 /* Data.xcdatamodeld */,
@@ -360,6 +362,29 @@
 			path = "Art AthleteUITests";
 			sourceTree = "<group>";
 		};
+		2C663A5C271DC98E0097AEFE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2C663A5E271DC9AD0097AEFE /* iOS */,
+				2C663A5D271DC9A50097AEFE /* macOS */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		2C663A5D271DC9A50097AEFE /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		2C663A5E271DC9AD0097AEFE /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		2CAA8BD52593833600B39793 /* Stats */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,7 +403,7 @@
 				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
 				2C2EA837253CEC6500D9A8C7 /* HomeDetails.swift */,
 				2C55F914253FC86E000B6AFC /* NavigationView.swift */,
-				2C943ED725B7910C0010FA24 /* MenuView.swift */,
+				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
 				2C943EDF25B797BB0010FA24 /* MenuPicker.swift */,
 				2C214148271B5DCC00493E4E /* HomeView.swift */,
 				2CAC6638271CA552005066B5 /* HomeViewBACKUP.swift */,
@@ -507,7 +532,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					2C02D881253A2C5700D5F960 = {
 						CreatedOnToolsVersion = 12.0.1;
@@ -641,7 +666,7 @@
 				2C663A22271CC9410097AEFE /* AdvancedSettingsView.swift in Sources */,
 				2CEB2EF9253F86DD0087D696 /* Settings.swift in Sources */,
 				2CC05E8A25406DE8007C733D /* Cache.swift in Sources */,
-				2C943ED825B7910C0010FA24 /* MenuView.swift in Sources */,
+				2C943ED825B7910C0010FA24 /* DotMenuView.swift in Sources */,
 				2C142B922593D71A00A7DC54 /* Data.xcdatamodeld in Sources */,
 				2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */,
 				2C943EE025B797BB0010FA24 /* MenuPicker.swift in Sources */,
@@ -673,6 +698,7 @@
 				2C663A38271DB9DE0097AEFE /* Persistence.swift in Sources */,
 				2C663A3B271DB9DE0097AEFE /* Art_Athlete.xcdatamodeld in Sources */,
 				2C663A31271DB9DC0097AEFE /* ContentView.swift in Sources */,
+				2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */,
 				2C663A2F271DB9DC0097AEFE /* Art_AthleteApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -987,6 +1013,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = "Art Athlete/Art_Athlete.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1018,6 +1045,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = "Art Athlete/Art_Athlete.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

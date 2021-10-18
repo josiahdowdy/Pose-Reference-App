@@ -103,7 +103,7 @@ struct HomeDetails: View {
                 loadLocalPhotos()
                 prefs.localPhotos = true
                 prefs.disableSkip = false
-                self.startSession = true
+                self.startSession = true //Tells the view to switch and start.
                 
                 //Navigate from this view to NavigationView.
                 
@@ -121,82 +121,25 @@ struct HomeDetails: View {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
-    func passInfo() {
-        if (prefs.collection) {
-            prefs.sPose = ""
-        } else {
-            prefs.sPose = pose[selectorPoseType]
-        }
-        
-        //IF user choose their own photos, they can play as many as they select.
-        if (prefs.unsplashPhotosView == true) {
-            print("\n poop")
-            prefs.sPoseCount = Int(poseAmount[selectorPoseAmount])!
-        } else {
-        }
-        
-        prefs.tag = tag
-        timeObject.timeLength = Double(time[selectorIndexTime])!
-    }
-    
     func loadLocalPhotos(){
         if (isRandom) {
             prefs.arrayOfURLStrings.shuffle()
         }
         
         if (prefs.arrayOfURLStrings.isEmpty) {
-            //error = "Error loading images..." //Error Oct16
+            HomeView().error = "Error loading images..." //Error Oct16
         } else {
-            passInfo()
+            //passInfo()
             prefs.startBoolean.toggle()
-            //self.presentationMode.wrappedValue.dismiss() //Hide sheet.
-            //HomeView()
             prefs.sURL = prefs.arrayOfURLStrings[0]
             //self.presentationMode.wrappedValue.dismiss() //Josiah Oct15 //Hide sheet.
-            
+            timeObject.timeLength = Double(time[selectorIndexTime])!
             startTimer() //Do not start timer if there is no wifi.
+            
             
         }
     }  //End of load local photos
-    
-    //load Unsplash Photos
-    func loadUnsplashPhotos(completion: @escaping([Photo]) -> Void){
-        var apiData :[Photo] = []
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()) {//DispatchQueue.global(qos: .background).async {
-            apiData = prefs.randomImages.loadData(pose: prefs.sPose, count: prefs.sPoseCount, collection: prefs.collectionID) //?? nil
-            
-            //This loads before JSON finishes in Model.swift
-            DispatchQueue.main.async {
-                print("\n* apiData: \(apiData.count) *")
-                completion(apiData)
-            }
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            if (prefs.randomImages.photoArray.isEmpty) {
-                //self.wifiError = "Error loading images, check wifi connection."
-                //self.error = "Unsplash photo loading limits reached this hour, they are reset at the top of every hour."
-            } else {
-                prefs.sURL = (prefs.randomImages.photoArray[0].urls["\(prefs.imageQuality)"]!)
-                
-                prefs.sPhotographer = (prefs.randomImages.photoArray[0].user?.name)! // ?? "nil"
-                print("\ncount: \(prefs.randomImages.photoArray.count)\n")
-                prefs.portfolioURL.append(prefs.randomImages.photoArray[0].user?.username ?? "davidprspctive")
-                prefs.portfolioURL.append("?utm_source=Drawing_Reference_Timer&utm_medium=referral")
-                //print("\n** \(String(describing: prefs.portfolioURL)) **\n")
-                //self.presentationMode.wrappedValue.dismiss() //Josiah Oct15 //Hide sheet.
-                startTimer() //Do not start timer if there is no wifi.
-            }
-            
-            //prefetchPhotos()
-            prefs.disableSkip = false//prefs.disableSkip.toggle()
-            print("\n * This is loaded after JSON is loaded. *\n")
-            //prefs.myURL = URL(string: prefs.sURL)!
-        }
-    } ///End of load Unsplash photos
-    
-    
+
     //Don't confuse with start timer in Timer.swift
     private func startTimer() {
         timeObject.isTimerRunning = true
@@ -208,7 +151,6 @@ struct HomeDetails: View {
     
     //End of stack view.
 }
-
 
 struct HomeDetails_Previews: PreviewProvider {
     @EnvironmentObject var prefs: Settings
@@ -226,6 +168,14 @@ struct HomeDetails_Previews: PreviewProvider {
         }
     }
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -334,5 +284,70 @@ struct HomeDetails_Previews: PreviewProvider {
  }.padding(20)
  .padding(.bottom, 20)
  //.buttonStyle(ButtonOnOffStyle())
+ 
+ */
+
+
+
+/*  IMPORTANT DO NOT DELETE
+ //load Unsplash Photos
+ func loadUnsplashPhotos(completion: @escaping([Photo]) -> Void){
+ var apiData :[Photo] = []
+ 
+ DispatchQueue.main.asyncAfter(deadline: .now()) {//DispatchQueue.global(qos: .background).async {
+ apiData = prefs.randomImages.loadData(pose: prefs.sPose, count: prefs.sPoseCount, collection: prefs.collectionID) //?? nil
+ 
+ //This loads before JSON finishes in Model.swift
+ DispatchQueue.main.async {
+ print("\n* apiData: \(apiData.count) *")
+ completion(apiData)
+ }
+ }
+ 
+ DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+ if (prefs.randomImages.photoArray.isEmpty) {
+ //self.wifiError = "Error loading images, check wifi connection."
+ //self.error = "Unsplash photo loading limits reached this hour, they are reset at the top of every hour."
+ } else {
+ prefs.sURL = (prefs.randomImages.photoArray[0].urls["\(prefs.imageQuality)"]!)
+ 
+ prefs.sPhotographer = (prefs.randomImages.photoArray[0].user?.name)! // ?? "nil"
+ print("\ncount: \(prefs.randomImages.photoArray.count)\n")
+ prefs.portfolioURL.append(prefs.randomImages.photoArray[0].user?.username ?? "davidprspctive")
+ prefs.portfolioURL.append("?utm_source=Drawing_Reference_Timer&utm_medium=referral")
+ //print("\n** \(String(describing: prefs.portfolioURL)) **\n")
+ //self.presentationMode.wrappedValue.dismiss() //Josiah Oct15 //Hide sheet.
+ startTimer() //Do not start timer if there is no wifi.
+ }
+ 
+ //prefetchPhotos()
+ prefs.disableSkip = false//prefs.disableSkip.toggle()
+ print("\n * This is loaded after JSON is loaded. *\n")
+ //prefs.myURL = URL(string: prefs.sURL)!
+ }
+ } ///End of load Unsplash photos
+ */
+
+
+/*
+ 
+ func passInfo() {
+ /*
+  if (prefs.collection) {
+  prefs.sPose = ""
+  } else {
+  prefs.sPose = pose[selectorPoseType]
+  }
+  
+  //IF user choose their own photos, they can play as many as they select.
+  if (prefs.unsplashPhotosView == true) {
+  print("\n poop")
+  prefs.sPoseCount = Int(poseAmount[selectorPoseAmount])!
+  } else {
+  } */
+ 
+ //prefs.tag = tag
+ //timeObject.timeLength = Double(time[selectorIndexTime])!
+ }
  
  */

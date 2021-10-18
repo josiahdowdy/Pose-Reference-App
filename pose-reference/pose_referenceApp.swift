@@ -16,7 +16,8 @@ struct pose_referenceApp: App {
     let persistenceController = PersistenceController.shared
     
     // Connecting App Delegate...
-    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    //@NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     
     var body: some Scene {
         WindowGroup {
@@ -39,7 +40,8 @@ struct pose_referenceApp: App {
 
 
 // Going to BUild Menu Button and Pop Over Menu.....
-class AppDelegate: NSObject,NSApplicationDelegate{
+/*
+class AppDelegate: NSObject, NSApplicationDelegate{
     
     // Status Bar Item...
     var statusItem: NSStatusItem?
@@ -91,3 +93,4 @@ class AppDelegate: NSObject,NSApplicationDelegate{
         }
     }
 }
+*/

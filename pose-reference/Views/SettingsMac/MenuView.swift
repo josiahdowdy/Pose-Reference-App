@@ -90,11 +90,7 @@ struct MenuView_Previews: PreviewProvider {
     }
 }
 
-struct ToolBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        ToolBarView()
-    }
-}
+
 
 struct TabButton: View {
     
