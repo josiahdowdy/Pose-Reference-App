@@ -8,34 +8,32 @@ import Foundation
 import Kingfisher
 
 class Settings: ObservableObject {
-
+    //----------STRINGS---------------------------------------------------------------
     @Published var sPose = ""
     @Published var sPoseCount = 0
-    //@Published var imageQuality = "regular"
     @Published var tag = ""
     @Published var sURL = ""
     @Published var error = ""
+    @Published var portfolioURL :String = ""  //"https://www.unsplash.com/@"
 
-    @Published var portfolioURL :String = "https://www.unsplash.com/@" //?utm_source=Drawing_Reference_Timer&utm_medium=referral"
-    
+    //----------ARRAYS---------------------------
     @Published var arrayOfURLStrings = [String]()
-    @Published var prefetchedURLS: [URL] = []
-    //@Published var prefetchedURLone :URL = URL?
-    @Published var startBoolean = false
-    @Published var localPhotos = false
-    @Published var currentIndex = 0
+    @Published var randomImages = UnsplashData() //Still needed till I update...
     
-    @Published var randomImages = UnsplashData() //Required to be in Settings to save the array (otherwise it got deleted.)
-    @Published var disableSkip = true
-    @Published var togglePhotoDisplay = true
+
+    @Published var currentIndex = 0
     
     //----------BOOLS----------------------------------------------------------------
     @Published var showMainScreen = true
     @Published var showHomeView = false
-    //@Published var showMainMenu: Bool = true
     @Published var changeTimer = false
     @Published var localPhotosView = true
-    //@Published var unsplashPhotosView = false
+    @Published var disableSkip = true
+    @Published var togglePhotoDisplay = true
+    @Published var startBoolean = false
+    @Published var localPhotos = false
+    @Published var showNavBar = true
+
     
     //----------IMAGE EFFECTS-------------------------------------------------
     @Published var processorDefault = true//DefaultImageProcessor.default
@@ -84,4 +82,11 @@ class Settings: ObservableObject {
     //@Published var sPhotographer = ""
     // @Published var sPoseCount = 30
     // @Published var localURL :URL = URL(string: "")
+    //@Published var imageQuality = "regular"
+    // //?utm_source=Drawing_Reference_Timer&utm_medium=referral"
+    //@Published var randomImages = UnsplashData() //Required to be in Settings to save the array (otherwise it got deleted.)
+    //@Published var prefetchedURLone :URL = URL?
+    //@Published var unsplashPhotosView = false
+    //@Published var showMainMenu: Bool = true
+    //@Published var prefetchedURLS: [URL] = []
 }

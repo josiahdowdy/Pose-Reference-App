@@ -1,9 +1,4 @@
-/*
- Josiah
- Oct 29, 2020
- 
- HomeView is main.
- 
+/* Josiah Oct 29, 2020
  Project flow:
  HomeView has
  PhotoView (photo)
@@ -62,6 +57,7 @@ struct PhotoButtonsView: View {
     //@State private var startSession = false
     
     @Binding var startSession: Bool
+    @Binding var showNavBar: Bool
     
     //Access the apps document directory.
     func getDocumentsDirectory() -> URL {
@@ -74,7 +70,7 @@ struct PhotoButtonsView: View {
         Group {
             ZStack {
                 if prefs.startBoolean {
-                    PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL)
+                    PhotoView() //prefs: _prefs //, userLink: $prefs.portfolioURL
                 }
                 VStack {
                     Spacer().frame(maxWidth: .infinity)
@@ -130,7 +126,7 @@ struct PhotoButtonsView_Previews: PreviewProvider {
     static var previews: some View {
         Text("home view")
         //HomeView(prefs: _prefs, timeObject: _timeObject)
-        PhotoButtonsView(startSession: $start)
+        PhotoButtonsView(startSession: $start, showNavBar: $start)
             .environmentObject(Settings())
             .environmentObject(TimerObject())
             .environmentObject(UserObject())

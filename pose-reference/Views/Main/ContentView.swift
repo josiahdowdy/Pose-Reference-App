@@ -15,6 +15,7 @@ struct ContentView: View {
     //@Environment(\.presentationMode) var presentationMode
     
     @State private var startSession = false
+    @State private var showNavBar = true
     
     var body: some View {
         VStack{
@@ -26,7 +27,7 @@ struct ContentView: View {
                  
             }
             if startSession {
-                PhotoButtonsView(startSession: $startSession)
+                PhotoButtonsView(startSession: $startSession, showNavBar: $showNavBar)
                    // .frame(maxWidth: .infinity, maxHeight: .infinity)
                     //.background(Color.green)
                  //   .transition(AnyTransition.move(edge: .trailing)).animation(.default)

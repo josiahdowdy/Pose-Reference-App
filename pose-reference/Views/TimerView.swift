@@ -21,6 +21,7 @@ struct TimerView: View {
     //var userData: FetchedResults<UserData>
     
     @State private var startSession = false
+    @State private var showNavBar = true
     //@Binding var startSession: Bool
     
     
@@ -63,7 +64,7 @@ struct TimerView: View {
                                 //Save user data pose count.
                                 //userData.count += 1
                                 //updateUserInfo()
-                                PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
+                               // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
                                 
                             } else { //else if done with last photo, end session.
                                 endSession()

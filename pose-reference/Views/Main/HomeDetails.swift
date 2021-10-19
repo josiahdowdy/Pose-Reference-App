@@ -1,10 +1,5 @@
-/*
- Josiah - Oct 29, 2020
- HomeDetails:
- 1st screen shown
- User enters search data here.
- Calls Model.swift to load photo JSON from Unsplash, when user presses Start.
- */
+/* Josiah - Oct 29, 2020
+ HomeDetails: 1st screen shown, called from ContentView   */
 
 import SwiftUI
 import UniformTypeIdentifiers
@@ -12,8 +7,6 @@ import Kingfisher
 import struct Kingfisher.LocalFileImageDataProvider
 //import MobileCoreServices
 //import AuthenticationServices
-
-
 
 struct HomeDetails: View {
     //@Environment(\.presentationMode) var presentationMode //This was on in 1st draft.
@@ -32,7 +25,6 @@ struct HomeDetails: View {
     @State var tag = ""
     @State var urlArray = [String]()
     @State var isRandom: Bool = true
-    
     @State var name = ""
     @State var error = ""
     //@State var wifiError = ""
@@ -46,20 +38,15 @@ struct HomeDetails: View {
     
     @State var isImporting: Bool = false
     @State var fileName = "" //To save file URL in.
-    
-    
-    
-    ///Binding means value comes from outside the view scope.
+
     //@Binding var isPresented: Bool //Josiah Oct16
     
-    ///Import photo files.
+    //Import photo files.
     @State var importFiles = false
     @State var files = [URL]()
     
     @State var openSessionStats = false
     @State var currentMemory: Memory?
-
-    
 
     @Binding var startSession: Bool
 
@@ -164,6 +151,12 @@ struct HomeDetails_Previews: PreviewProvider {
         }
     }
 }
+
+
+
+
+
+
 
 
 

@@ -4,6 +4,8 @@
  It shows the user drawing records.
 */
 
+
+
 import SwiftUI
 import Kingfisher
 
@@ -33,11 +35,13 @@ struct SettingsView: View {
                 Text("Set Unsplash Photo quality: thumb, small, regular, full, raw")
                 //Menu("Unsplash Photo Quality") {}
                 Menu("Unsplash Photo Quality") {
+                    /*
                     Button("Thumbnail") { prefs.imageQuality = "thumb"}
                     Button("Small") { prefs.imageQuality = "small" }
                     Button("Regular") { prefs.imageQuality = "regular" }
                     Button("Full") { prefs.imageQuality = "full" }
                     Button("Raw") { prefs.imageQuality = "raw" }
+                     */
                 }
 
                 Button("DELETE DATA"){

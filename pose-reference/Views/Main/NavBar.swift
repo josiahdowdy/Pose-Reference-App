@@ -12,9 +12,9 @@ struct NavBar: View {
     //@Environment(\.presentationMode) var presentationMode //Oct17
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: Settings
-
+    
     @State private var showingSheet = false
-
+    
     
     //@Binding var localPhotos: Bool
     //@Binding var unsplashPhotos = false
@@ -22,18 +22,28 @@ struct NavBar: View {
     @State var skip = false
     @State var pause = false
     @State var blur = false
-    //@State var changeTimer = false
     @State var quit = false
     @State var rotation = 0.0
     @State var timeLeft = 0.0
     
-    //@State private var startSession = false
+    //@State var changeTimer = false
     @Binding var startSession: Bool
+    @State var showNavBar = true
     
     var body: some View {
+        if (showNavBar) {
         HStack(alignment: .bottom, spacing: 50) { //alignment: .bottom,
             Spacer()
-                
+            
+            //Show/Hide NavBar
+            Button {
+                showNavBar.toggle()
+                print("\n\(showNavBar)\n")
+            } label: {
+                Image(systemName: showNavBar ? "menubar.rectangle" : "menubar.dock.rectangle.badge.record")
+            }
+
+            
                 //SKIP
                 Button(action: {
                     //changeTimer = false
@@ -44,6 +54,7 @@ struct NavBar: View {
                         timeObject.timeDouble = 0.0
                         timeObject.progressValue = 0.0
                         timeObject.isTimerRunning.toggle()
+                        self.startSession = false
                         
                         endSession()
                     } else { ///Skip photo.
@@ -52,7 +63,7 @@ struct NavBar: View {
                             prefs.currentIndex += 1 //self.
                             prefs.sURL = (prefs.arrayOfURLStrings[prefs.currentIndex]) //self.prefs.currentIndex
                         } else { ///Only use if using Unsplash photos.
-                            PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
+                            // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
                         }
                         
                         timeObject.timeDouble = 0.0
@@ -64,12 +75,12 @@ struct NavBar: View {
                     Image(systemName: "arrowshape.turn.up.right")
                     //Image(systemName: skip ? "arrowshape.turn.up.right.fill" : "arrowshape.turn.up.right")//Text("Skip")
                 }.disabled(prefs.disableSkip)
-                .sheet(isPresented: $showingSheet) {  //$showingSheet
-                    HomeDetails(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah OCT16
-                }.keyboardShortcut(.rightArrow)
-                .buttonStyle(BorderlessButtonStyle())
+                    .sheet(isPresented: $showingSheet) {  //$showingSheet
+                        HomeDetails(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah OCT16
+                    }.keyboardShortcut(.rightArrow)
+                    .buttonStyle(BorderlessButtonStyle())
                 //.buttonStyle(bounceButtonStyle())
-     
+                
                 //PAUSE TIMER
                 Button(action: {
                     print("Pause")
@@ -87,10 +98,10 @@ struct NavBar: View {
                 }) {
                     Image(systemName: pause ? "playpause.fill" : "playpause") //Text("Pause")
                 }.keyboardShortcut(.space)
-                .buttonStyle(BorderlessButtonStyle())
+                    .buttonStyle(BorderlessButtonStyle())
                 //.buttonStyle(bounceButtonStyle())
-            
-            //BLACK AND WHITE
+                
+                //BLACK AND WHITE
                 Button(action: {
                     print("\nBlack and White processor filter.\n")
                     prefs.processorDefault.toggle()
@@ -99,41 +110,39 @@ struct NavBar: View {
                 }) {
                     Image(systemName: "camera.filters") //Text("Grayscale")
                 }.buttonStyle(BorderlessButtonStyle())
-            
-            //Upside Down
-            Button(action: {
-                print("\nUpside down.\n")
-                prefs.processorDefault.toggle()
-                prefs.processorBlack.toggle()
-            }) {
-                Image(systemName: "camera.filters") //Text("Grayscale")
-            }.buttonStyle(BorderlessButtonStyle())
-            
-            //Flip.
-            Button(action: {
-                print("\nFlip.\n")
-                prefs.processorDefault.toggle()
-                prefs.processorBlack.toggle()
-            }) {
-                Image(systemName: "camera.filters") //Text("Grayscale")
-            }.buttonStyle(BorderlessButtonStyle())
-            
-            
-            
-            //Change Timer Style
-            //Put this in settings.
-            /*
-            Button(action: {
-                print("\nTimer Style\n")
-                //changeTimer.toggle()
-                prefs.changeTimer.toggle()
-            }) {
-                Image(systemName: prefs.changeTimer ? "clock.fill" : "clock" ) //Text("Grayscale")
-            }.buttonStyle(BorderlessButtonStyle())
-            .buttonStyle(bounceButtonStyle())
-            */
-            
-            //QUIT
+                
+                //Upside Down
+                Button(action: {
+                    print("\nUpside down.\n")
+                    prefs.flippedVertically.toggle()
+                }) {
+                    Image(systemName: prefs.flippedVertically ? "rotate.left.fill" : "rotate.left") //Text("Grayscale")
+                }.buttonStyle(BorderlessButtonStyle())
+                
+                //Flip.
+                Button(action: {
+                    print("\nFlip.\n")
+                    prefs.flippedHorizontally.toggle()
+                }) {
+                    Image(systemName: prefs.flippedHorizontally ? "arrow.left.and.right.righttriangle.left.righttriangle.right.fill" : "arrow.left.and.right.righttriangle.left.righttriangle.right") //Text("Grayscale")
+                }.buttonStyle(BorderlessButtonStyle())
+                
+                
+                
+                //Change Timer Style
+                //Put this in settings.
+                /*
+                 Button(action: {
+                 print("\nTimer Style\n")
+                 //changeTimer.toggle()
+                 prefs.changeTimer.toggle()
+                 }) {
+                 Image(systemName: prefs.changeTimer ? "clock.fill" : "clock" ) //Text("Grayscale")
+                 }.buttonStyle(BorderlessButtonStyle())
+                 .buttonStyle(bounceButtonStyle())
+                 */
+                
+                //QUIT
                 Button(action: {
                     print("quit")
                     endSession()
@@ -142,19 +151,23 @@ struct NavBar: View {
                 }) {
                     Image(systemName: "multiply.circle.fill") //Text("Grayscale")
                 }.buttonStyle(BorderlessButtonStyle())
+            
+            
+            /*
                 .sheet(isPresented: $showingSheet) {
                     HomeDetails(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
                 }.buttonStyle(BorderlessButtonStyle())
-                //.buttonStyle(bounceButtonStyle())
-                 //.keyboardShortcut(.escape)
+            */
+            //.buttonStyle(bounceButtonStyle())
+            //.keyboardShortcut(.escape)
             //Photo counter x /30
             /*
-            Button(action: {
-                //action open all photos
-            }) {
-                Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
-            }.buttonStyle(BorderlessButtonStyle())
-            */
+             Button(action: {
+             //action open all photos
+             }) {
+             Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
+             }.buttonStyle(BorderlessButtonStyle())
+             */
             
             if (!prefs.changeTimer) {
                 //do nothing
@@ -165,28 +178,27 @@ struct NavBar: View {
                         timeLeft = timeObject.timeLength - timeObject.timeDouble
                     }
             }
-        
+            
             Spacer()
             
+        } //End HStack.
         }
-    }
+    } //End View.
     
     func endSession(){
         //self.showingSheet.toggle()
         //prefs.showMainMenu.toggle()
-        pause = false
+        
         //changeTimer = false
-
-        print("showingSheet bool: \(self.showingSheet)")
+        
+        pause = false
         self.timeObject.endSessionBool.toggle()
         prefs.disableSkip.toggle()
         TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
         prefs.startBoolean.toggle()
         prefs.randomImages.photoArray.removeAll()
         prefs.currentIndex = 0
-        
-        print("\n prefs.currentIndex: \(prefs.currentIndex)")
-        
+
         prefs.localPhotos = false
         //prefs.collectionID = ""
         //prefs.darkPortrait = false
