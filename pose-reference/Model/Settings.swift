@@ -24,6 +24,8 @@ class Settings: ObservableObject {
     @Published var sURL = ""
     @Published var sPhotographer = ""
     
+    @Published var error = ""
+    
     //@Published var updatePhotographer: String = "" { didSet { sPhotographer = updatePhotographer } }
     @Published var textsMatch: Bool = false
     

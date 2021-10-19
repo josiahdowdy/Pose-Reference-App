@@ -4,14 +4,14 @@ import UniformTypeIdentifiers
 struct HomeView: View {
     @EnvironmentObject var prefs: Settings
     @EnvironmentObject var timeObject: TimerObject
-    @EnvironmentObject var userObject: UserObject
+    //@EnvironmentObject var userObject: UserObject
     
     @State private var showStats = false
     @State private var showSettings = false
     
     @State var name = ""
     @State var error = ""
-    @State var wifiError = ""
+    //@State var wifiError = ""
     @State var isImporting: Bool = false
     @State var fileName = "" //To save file URL in.
     
@@ -22,13 +22,13 @@ struct HomeView: View {
             
                 .sheet(isPresented: $showStats) {
                     return StatsView()
-                        .environmentObject(self.userObject)
+                        //.environmentObject(self.userObject)
                         .environmentObject(self.prefs)
                         .environmentObject(self.timeObject)
                 }
                 .sheet(isPresented: $showSettings) {
                     return SettingsView()
-                        .environmentObject(self.userObject)
+                      //  .environmentObject(self.userObject)
                         .environmentObject(self.prefs)
                         .environmentObject(self.timeObject)
                 }
@@ -38,15 +38,8 @@ struct HomeView: View {
             // Button("\(Image(systemName: "gearshape.fill"))")
             //Text("Poses drawn today: \(userObject.totalPosesDrawnToday)").padding(.top, 10)
             
-            ///Wifi message
-            if !(error.isEmpty) {
-                if !(prefs.localPhotosView) { //|| !(unsplashPhotos))
-                    //Text("\(Image(systemName: "wifi.exclamationmark")) \(wifiError)").font(.footnote).padding(20) //xmark.octagon.fill
-                    Text(wifiError)
-                }
-                Text(error)
-            }
-            
+            Text(prefs.error)
+
             /// Import local photos
             if (prefs.localPhotosView) {
                 Button(action: {
@@ -142,3 +135,17 @@ struct HomeView_Previews: PreviewProvider {
         //.environmentObject(UserObject())
     }
 }
+
+
+/*
+ 
+ ///Wifi message
+ if !(error.isEmpty) {
+ //Text(error)
+ if !(prefs.localPhotosView) { //|| !(unsplashPhotos))
+ // Text("\(Image(systemName: "wifi.exclamationmark")) \(wifiError)").font(.footnote).padding(20) //xmark.octagon.fill
+ //Text(wifiError)
+ }
+ }
+ 
+ */

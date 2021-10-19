@@ -11,7 +11,7 @@ import SwiftUI
 struct pose_referenceApp: App {
     @ObservedObject var prefs = Settings()
     @ObservedObject var timeObject = TimerObject()
-    @ObservedObject var userObject = UserObject()
+    //@ObservedObject var userObject = UserObject()
     
     let persistenceController = PersistenceController.shared
     
@@ -24,8 +24,8 @@ struct pose_referenceApp: App {
             ContentView() //isPresented: $prefs.showMainScreen
                 .environmentObject(prefs)
                 .environmentObject(timeObject)
-                .environmentObject(userObject)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+               // .environmentObject(userObject)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext) //Storing data.
             
                 //.environmentObject(persistenceController.container.viewContext)
         }

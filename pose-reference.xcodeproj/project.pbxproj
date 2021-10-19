@@ -38,6 +38,9 @@
 		2C663A50271DB9DE0097AEFE /* Art_AthleteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A4F271DB9DE0097AEFE /* Art_AthleteUITests.swift */; };
 		2C663A52271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A51271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift */; };
 		2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */; };
+		2C663A62271E1D720097AEFE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C663A61271E1D720097AEFE /* CloudKit.framework */; };
+		2C663A64271E20130097AEFE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C663A63271E20130097AEFE /* CloudKit.framework */; };
+		2C663A65271E21730097AEFE /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* Data.xcdatamodeld */; };
 		2C704F69254BA86200C5805B /* TimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F68254BA86200C5805B /* TimerObject.swift */; };
 		2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F6C254BA93D00C5805B /* UserObject.swift */; };
 		2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C83DE255B888B00CC4096 /* MessageDocument.swift */; };
@@ -144,6 +147,8 @@
 		2C663A4B271DB9DE0097AEFE /* Art AthleteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Art AthleteUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C663A4F271DB9DE0097AEFE /* Art_AthleteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Art_AthleteUITests.swift; sourceTree = "<group>"; };
 		2C663A51271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Art_AthleteUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2C663A61271E1D720097AEFE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		2C663A63271E20130097AEFE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2C704F68254BA86200C5805B /* TimerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerObject.swift; sourceTree = "<group>"; };
 		2C704F6C254BA93D00C5805B /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		2C8C83DE255B888B00CC4096 /* MessageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C9A4EC626FC186B00DA0455 /* Kingfisher in Frameworks */,
+				2C663A64271E20130097AEFE /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C663A62271E1D720097AEFE /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +232,7 @@
 				2C663A44271DB9DE0097AEFE /* Art AthleteTests */,
 				2C663A4E271DB9DE0097AEFE /* Art AthleteUITests */,
 				2C02D883253A2C5700D5F960 /* Products */,
+				2C663A60271E1D720097AEFE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -383,6 +391,15 @@
 			children = (
 			);
 			path = iOS;
+			sourceTree = "<group>";
+		};
+		2C663A60271E1D720097AEFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C663A63271E20130097AEFE /* CloudKit.framework */,
+				2C663A61271E1D720097AEFE /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2CAA8BD52593833600B39793 /* Stats */ = {
@@ -696,6 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C663A38271DB9DE0097AEFE /* Persistence.swift in Sources */,
+				2C663A65271E21730097AEFE /* Data.xcdatamodeld in Sources */,
 				2C663A3B271DB9DE0097AEFE /* Art_Athlete.xcdatamodeld in Sources */,
 				2C663A31271DB9DC0097AEFE /* ContentView.swift in Sources */,
 				2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */,

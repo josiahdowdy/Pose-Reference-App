@@ -34,7 +34,7 @@ struct HomeDetails: View {
     @State var isRandom: Bool = true
     
     @State var name = ""
-    //@State var error = ""
+    @State var error = ""
     //@State var wifiError = ""
     
     //@State private var showingSheet = false
@@ -46,6 +46,8 @@ struct HomeDetails: View {
     
     @State var isImporting: Bool = false
     @State var fileName = "" //To save file URL in.
+    
+    
     
     ///Binding means value comes from outside the view scope.
     //@Binding var isPresented: Bool //Josiah Oct16
@@ -99,14 +101,7 @@ struct HomeDetails: View {
             
             
             Button("Start") {
-                
                 loadLocalPhotos()
-                prefs.localPhotos = true
-                prefs.disableSkip = false
-                self.startSession = true //Tells the view to switch and start.
-                
-                //Navigate from this view to NavigationView.
-                
             }
             .padding(20)
             .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
@@ -127,16 +122,18 @@ struct HomeDetails: View {
         }
         
         if (prefs.arrayOfURLStrings.isEmpty) {
-            HomeView().error = "Error loading images..." //Error Oct16
+            prefs.error = "Error loading images..." //Error Oct16 HomeView().error
         } else {
             //passInfo()
-            prefs.startBoolean.toggle()
+            prefs.error = ""
             prefs.sURL = prefs.arrayOfURLStrings[0]
+            prefs.localPhotos = true
+            prefs.startBoolean.toggle()
+            prefs.disableSkip = false
             //self.presentationMode.wrappedValue.dismiss() //Josiah Oct15 //Hide sheet.
             timeObject.timeLength = Double(time[selectorIndexTime])!
             startTimer() //Do not start timer if there is no wifi.
-            
-            
+            self.startSession = true //Tells the view to switch and start.
         }
     }  //End of load local photos
 

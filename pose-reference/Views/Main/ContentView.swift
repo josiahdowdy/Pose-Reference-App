@@ -36,9 +36,6 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    //@EnvironmentObject var prefs: Settings
-   // @EnvironmentObject var timeObject: TimerObject
-    
     static var previews: some View {
         ContentView()
             .environmentObject(Settings())
