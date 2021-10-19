@@ -1,4 +1,5 @@
 //Jan 21, 2021
+/*
 import SwiftUI
 
 struct CollectionButtons: View {
@@ -178,3 +179,4 @@ struct bounceButtonStyle: ButtonStyle {
 }
 
 
+*/

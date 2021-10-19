@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-struct NavigationView: View {
+struct NavBar: View {
     //@Environment(\.presentationMode) var presentationMode //Oct17
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: Settings
@@ -68,7 +68,7 @@ struct NavigationView: View {
                     HomeDetails(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah OCT16
                 }.keyboardShortcut(.rightArrow)
                 .buttonStyle(BorderlessButtonStyle())
-                .buttonStyle(bounceButtonStyle())
+                //.buttonStyle(bounceButtonStyle())
      
                 //PAUSE TIMER
                 Button(action: {
@@ -88,18 +88,40 @@ struct NavigationView: View {
                     Image(systemName: pause ? "playpause.fill" : "playpause") //Text("Pause")
                 }.keyboardShortcut(.space)
                 .buttonStyle(BorderlessButtonStyle())
-                .buttonStyle(bounceButtonStyle())
+                //.buttonStyle(bounceButtonStyle())
             
             //BLACK AND WHITE
                 Button(action: {
                     print("\nBlack and White processor filter.\n")
                     prefs.processorDefault.toggle()
                     prefs.processorBlack.toggle()
+                    
                 }) {
                     Image(systemName: "camera.filters") //Text("Grayscale")
                 }.buttonStyle(BorderlessButtonStyle())
             
+            //Upside Down
+            Button(action: {
+                print("\nUpside down.\n")
+                prefs.processorDefault.toggle()
+                prefs.processorBlack.toggle()
+            }) {
+                Image(systemName: "camera.filters") //Text("Grayscale")
+            }.buttonStyle(BorderlessButtonStyle())
+            
+            //Flip.
+            Button(action: {
+                print("\nFlip.\n")
+                prefs.processorDefault.toggle()
+                prefs.processorBlack.toggle()
+            }) {
+                Image(systemName: "camera.filters") //Text("Grayscale")
+            }.buttonStyle(BorderlessButtonStyle())
+            
+            
+            
             //Change Timer Style
+            //Put this in settings.
             /*
             Button(action: {
                 print("\nTimer Style\n")
@@ -123,7 +145,7 @@ struct NavigationView: View {
                 .sheet(isPresented: $showingSheet) {
                     HomeDetails(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
                 }.buttonStyle(BorderlessButtonStyle())
-                .buttonStyle(bounceButtonStyle())
+                //.buttonStyle(bounceButtonStyle())
                  //.keyboardShortcut(.escape)
             //Photo counter x /30
             /*
@@ -151,7 +173,7 @@ struct NavigationView: View {
     
     func endSession(){
         //self.showingSheet.toggle()
-        prefs.showMainMenu.toggle()
+        //prefs.showMainMenu.toggle()
         pause = false
         //changeTimer = false
 
@@ -166,9 +188,9 @@ struct NavigationView: View {
         print("\n prefs.currentIndex: \(prefs.currentIndex)")
         
         prefs.localPhotos = false
-        prefs.collectionID = ""
-        prefs.darkPortrait = false
-        prefs.collection = false
+        //prefs.collectionID = ""
+        //prefs.darkPortrait = false
+        //prefs.collection = false
         
         prefs.arrayOfURLStrings.removeAll()
     }

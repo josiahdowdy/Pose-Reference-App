@@ -14,7 +14,7 @@
 		2C02D8B5253A2CA100D5F960 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D8B4253A2CA100D5F960 /* Model.swift */; };
 		2C02D8C4253A50E300D5F960 /* PhotoButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D8C3253A50E300D5F960 /* PhotoButtonsView.swift */; };
 		2C02D8DE253ABB7100D5F960 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D8DD253ABB7100D5F960 /* ProgressBarView.swift */; };
-		2C142B922593D71A00A7DC54 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* Data.xcdatamodeld */; };
+		2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */; };
 		2C142B972593E19500A7DC54 /* UserData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B952593E19500A7DC54 /* UserData+CoreDataClass.swift */; };
 		2C142B982593E19500A7DC54 /* UserData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B962593E19500A7DC54 /* UserData+CoreDataProperties.swift */; };
 		2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */; };
@@ -23,7 +23,7 @@
 		2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF4625432AC000D2434E /* CertificateView.swift */; };
 		2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */; };
 		2C2EA838253CEC6500D9A8C7 /* HomeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA837253CEC6500D9A8C7 /* HomeDetails.swift */; };
-		2C55F915253FC86E000B6AFC /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F914253FC86E000B6AFC /* NavigationView.swift */; };
+		2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F914253FC86E000B6AFC /* NavBar.swift */; };
 		2C663A1D271CC7A80097AEFE /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A1C271CC7A80097AEFE /* GeneralSettingsView.swift */; };
 		2C663A1F271CC7DC0097AEFE /* SettingsMacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A1E271CC7DC0097AEFE /* SettingsMacView.swift */; };
 		2C663A22271CC9410097AEFE /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A21271CC9410097AEFE /* AdvancedSettingsView.swift */; };
@@ -40,7 +40,9 @@
 		2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */; };
 		2C663A62271E1D720097AEFE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C663A61271E1D720097AEFE /* CloudKit.framework */; };
 		2C663A64271E20130097AEFE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C663A63271E20130097AEFE /* CloudKit.framework */; };
-		2C663A65271E21730097AEFE /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* Data.xcdatamodeld */; };
+		2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */; };
+		2C663A67271F00370097AEFE /* SessionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A66271F00370097AEFE /* SessionStats.swift */; };
+		2C663A68271F00370097AEFE /* SessionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A66271F00370097AEFE /* SessionStats.swift */; };
 		2C704F69254BA86200C5805B /* TimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F68254BA86200C5805B /* TimerObject.swift */; };
 		2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F6C254BA93D00C5805B /* UserObject.swift */; };
 		2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C83DE255B888B00CC4096 /* MessageDocument.swift */; };
@@ -129,7 +131,7 @@
 		2C2BDF4625432AC000D2434E /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
 		2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		2C2EA837253CEC6500D9A8C7 /* HomeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetails.swift; sourceTree = "<group>"; };
-		2C55F914253FC86E000B6AFC /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		2C55F914253FC86E000B6AFC /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		2C663A1C271CC7A80097AEFE /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		2C663A1E271CC7DC0097AEFE /* SettingsMacView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMacView.swift; sourceTree = "<group>"; };
 		2C663A21271CC9410097AEFE /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		2C663A51271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Art_AthleteUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2C663A61271E1D720097AEFE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		2C663A63271E20130097AEFE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		2C663A66271F00370097AEFE /* SessionStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStats.swift; sourceTree = "<group>"; };
 		2C704F68254BA86200C5805B /* TimerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerObject.swift; sourceTree = "<group>"; };
 		2C704F6C254BA93D00C5805B /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		2C8C83DE255B888B00CC4096 /* MessageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
@@ -224,11 +227,11 @@
 				2C663A5C271DC98E0097AEFE /* Shared */,
 				2C142B952593E19500A7DC54 /* UserData+CoreDataClass.swift */,
 				2C142B962593E19500A7DC54 /* UserData+CoreDataProperties.swift */,
-				2C142B902593D71A00A7DC54 /* Data.xcdatamodeld */,
+				2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */,
 				2C02D884253A2C5700D5F960 /* pose-reference */,
 				2C02D896253A2C5A00D5F960 /* pose-referenceTests */,
 				2C02D8A1253A2C5A00D5F960 /* pose-referenceUITests */,
-				2C663A2D271DB9DC0097AEFE /* Art Athlete */,
+				2C663A2D271DB9DC0097AEFE /* Art Athlete (delete) */,
 				2C663A44271DB9DE0097AEFE /* Art AthleteTests */,
 				2C663A4E271DB9DE0097AEFE /* Art AthleteUITests */,
 				2C02D883253A2C5700D5F960 /* Products */,
@@ -252,6 +255,7 @@
 		2C02D884253A2C5700D5F960 /* pose-reference */ = {
 			isa = PBXGroup;
 			children = (
+				2C663A69271F22150097AEFE /* OLD */,
 				2C16EDA02575E9EB00ABF18D /* pose-reference.entitlements */,
 				2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */,
 				2C02D8C2253A50D200D5F960 /* Views */,
@@ -331,7 +335,7 @@
 			path = SettingsMac;
 			sourceTree = "<group>";
 		};
-		2C663A2D271DB9DC0097AEFE /* Art Athlete */ = {
+		2C663A2D271DB9DC0097AEFE /* Art Athlete (delete) */ = {
 			isa = PBXGroup;
 			children = (
 				2C663A2E271DB9DC0097AEFE /* Art_AthleteApp.swift */,
@@ -342,7 +346,7 @@
 				2C663A39271DB9DE0097AEFE /* Art_Athlete.xcdatamodeld */,
 				2C663A34271DB9DE0097AEFE /* Preview Content */,
 			);
-			path = "Art Athlete";
+			path = "Art Athlete (delete)";
 			sourceTree = "<group>";
 		};
 		2C663A34271DB9DE0097AEFE /* Preview Content */ = {
@@ -402,6 +406,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2C663A69271F22150097AEFE /* OLD */ = {
+			isa = PBXGroup;
+			children = (
+				2CAC6638271CA552005066B5 /* HomeViewBACKUP.swift */,
+			);
+			path = OLD;
+			sourceTree = "<group>";
+		};
 		2CAA8BD52593833600B39793 /* Stats */ = {
 			isa = PBXGroup;
 			children = (
@@ -419,12 +431,12 @@
 			children = (
 				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
 				2C2EA837253CEC6500D9A8C7 /* HomeDetails.swift */,
-				2C55F914253FC86E000B6AFC /* NavigationView.swift */,
+				2C55F914253FC86E000B6AFC /* NavBar.swift */,
 				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
 				2C943EDF25B797BB0010FA24 /* MenuPicker.swift */,
 				2C214148271B5DCC00493E4E /* HomeView.swift */,
-				2CAC6638271CA552005066B5 /* HomeViewBACKUP.swift */,
 				2CAC6636271CA435005066B5 /* ContentView.swift */,
+				2C663A66271F00370097AEFE /* SessionStats.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -664,7 +676,7 @@
 				2C98427F258C04E40008AD1C /* ImagePicker.swift in Sources */,
 				2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */,
 				2C943ED425B78F460010FA24 /* SignIn.swift in Sources */,
-				2C55F915253FC86E000B6AFC /* NavigationView.swift in Sources */,
+				2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */,
 				2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */,
 				2C943ED025B77FBB0010FA24 /* SettingsView.swift in Sources */,
 				2C2EA838253CEC6500D9A8C7 /* HomeDetails.swift in Sources */,
@@ -684,8 +696,9 @@
 				2CEB2EF9253F86DD0087D696 /* Settings.swift in Sources */,
 				2CC05E8A25406DE8007C733D /* Cache.swift in Sources */,
 				2C943ED825B7910C0010FA24 /* DotMenuView.swift in Sources */,
-				2C142B922593D71A00A7DC54 /* Data.xcdatamodeld in Sources */,
+				2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */,
 				2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */,
+				2C663A67271F00370097AEFE /* SessionStats.swift in Sources */,
 				2C943EE025B797BB0010FA24 /* MenuPicker.swift in Sources */,
 				2C663A1D271CC7A80097AEFE /* GeneralSettingsView.swift in Sources */,
 				2C142B982593E19500A7DC54 /* UserData+CoreDataProperties.swift in Sources */,
@@ -712,8 +725,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C663A68271F00370097AEFE /* SessionStats.swift in Sources */,
 				2C663A38271DB9DE0097AEFE /* Persistence.swift in Sources */,
-				2C663A65271E21730097AEFE /* Data.xcdatamodeld in Sources */,
+				2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */,
 				2C663A3B271DB9DE0097AEFE /* Art_Athlete.xcdatamodeld in Sources */,
 				2C663A31271DB9DC0097AEFE /* ContentView.swift in Sources */,
 				2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */,
@@ -1282,14 +1296,14 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		2C142B902593D71A00A7DC54 /* Data.xcdatamodeld */ = {
+		2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				2C142B912593D71A00A7DC54 /* Data.xcdatamodel */,
 			);
 			currentVersion = 2C142B912593D71A00A7DC54 /* Data.xcdatamodel */;
-			name = Data.xcdatamodeld;
-			path = "pose-reference/Data.xcdatamodeld";
+			name = ArtAthlete.xcdatamodeld;
+			path = "pose-reference/ArtAthlete.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

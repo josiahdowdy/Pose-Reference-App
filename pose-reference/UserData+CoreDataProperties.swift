@@ -6,7 +6,7 @@ Josiah
 import Foundation
 import CoreData
 
-
+/*
 extension UserData {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<UserData> {
@@ -16,6 +16,7 @@ extension UserData {
     @NSManaged public var userPoseCount: Int16
     @NSManaged public var userName: String?
     @NSManaged public var id: UUID?
+ */
     //@NSManaged public var status: String
     
     /*
@@ -29,11 +30,11 @@ extension UserData {
      }
      */
 
-}
+//}
 
-extension UserData : Identifiable {
+//extension UserData : Identifiable {
 
-}
+//}
 
 /*
  enum Status: String {

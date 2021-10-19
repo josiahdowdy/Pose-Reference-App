@@ -114,12 +114,12 @@ struct PhotoView: View {
                         //let portfolioURL = prefs.portfolioURL
                         
                        
-                        Link("\(prefs.sPhotographer)", destination: URL(string: userLink)!).font(.caption)
+                        //Link("\(prefs.sPhotographer)", destination: URL(string: userLink)!).font(.caption)
                             .background(Color.black)
                             .foregroundColor(.white)
                         //?utm_source=Drawing_Reference_Timer&utm_medium=referral
-                        Text ("on").font(.caption)
-                        Link("Unsplash", destination: URL(string: "https://www.unsplash.com/?utm_source=Drawing_Reference_Timer&utm_medium=referral")!)
+                        //Text ("on").font(.caption)
+                       // Link("Unsplash", destination: URL(string: "https://www.unsplash.com/?utm_source=Drawing_Reference_Timer&utm_medium=referral")!)
                             .font(.caption).background(Color.black)
                             .foregroundColor(.white)
                             .padding(4)           }
@@ -164,7 +164,7 @@ struct PhotoView: View {
         if !(prefs.randomImages.photoArray.isEmpty) {
             prefs.sURL = (prefs.randomImages.photoArray[self.prefs.currentIndex].urls[self.prefs.imageQuality]!)
              
-            prefs.sPhotographer = (prefs.randomImages.photoArray[self.prefs.currentIndex].user?.name ?? "nil")
+            //prefs.sPhotographer = (prefs.randomImages.photoArray[self.prefs.currentIndex].user?.name ?? "nil")
             prefs.portfolioURL = "https://www.unsplash.com/@"
             prefs.portfolioURL.append(prefs.randomImages.photoArray[self.prefs.currentIndex].user?.username ?? "davidprspctive")
             prefs.portfolioURL.append("?utm_source=Drawing_Reference_Timer&utm_medium=referral")

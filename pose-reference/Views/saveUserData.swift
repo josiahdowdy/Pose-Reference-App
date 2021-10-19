@@ -15,7 +15,7 @@ struct saveUserData: View {
     @State var tableNumber = ""
     
     var body: some View {
-        NavigationView {
+        NavBar {
             Form {
                 Section(header: Text("Pizza Details")) {
                     Picker(selection: $selectedPizzaIndex, label: Text("Pizza Type")) {

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DotMenuView: View {
-    @Binding var unsplashPhotos: Bool
+    //@Binding var unsplashPhotos: Bool
     @Binding var localPhotos: Bool
     @Binding var showStats: Bool
     @Binding var showSettings: Bool

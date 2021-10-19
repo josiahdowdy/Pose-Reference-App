@@ -56,22 +56,26 @@ struct HomeDetails: View {
     @State var importFiles = false
     @State var files = [URL]()
     
-    //@State private var show = false
+    @State var openSessionStats = false
+    @State var currentMemory: Memory?
+
     
+
     @Binding var startSession: Bool
-    
+
+    //-------------START VIEW------------------------------------------------------------
     var body: some View {
        
         //Popup main sheet: Has all display info for text and buttons for start sheet.
         VStack {
             HStack {
                 Spacer()
-                
-                
                 if (prefs.showMainScreen) {
                     HomeView()
                 }
             }
+            
+            SessionStats(close: $openSessionStats, memory: $currentMemory)
             
             Spacer().frame(maxWidth: .infinity) //Attach bar to bottom
             
@@ -95,10 +99,8 @@ struct HomeDetails: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
-             
-            
+                         
             //Button("\(Image(systemName: "play.rectangle.fill")) Start") {
-            
             
             Button("Start") {
                 loadLocalPhotos()
@@ -107,8 +109,6 @@ struct HomeDetails: View {
             .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
              
         }.padding()                                                              //End Vstack
-            
-    
     }//End of View
     
     //Start of functions.
@@ -145,7 +145,6 @@ struct HomeDetails: View {
         timeObject.timeDouble = 0.0
         TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
     }
-    
     //End of stack view.
 }
 

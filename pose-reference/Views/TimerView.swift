@@ -1,7 +1,7 @@
 /*
  Josiah - Oct 29, 2020
  Handles timer UI and stop and start.
- Called by NavigationView.
+ Called by NavBar.
  */
 
 import SwiftUI
@@ -88,7 +88,7 @@ struct TimerView: View {
         timeObject.isTimerRunning = false
         timeObject.endSessionBool.toggle()
         prefs.disableSkip.toggle()
-        NavigationView(timeObject: _timeObject, prefs: _prefs, startSession: $startSession).endSession()
+        NavBar(timeObject: _timeObject, prefs: _prefs, startSession: $startSession).endSession()
     }
     
     func stopTimer() {

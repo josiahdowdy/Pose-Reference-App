@@ -18,7 +18,7 @@ struct HomeView: View {
     var body: some View {
         VStack(alignment: .center) {
             //This is the top right settings menu.
-            DotMenuView(unsplashPhotos: $prefs.unsplashPhotosView,localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings)
+            DotMenuView(localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings) //unsplashPhotos: $prefs.unsplashPhotosView,
             
                 .sheet(isPresented: $showStats) {
                     return StatsView()
@@ -33,7 +33,7 @@ struct HomeView: View {
                         .environmentObject(self.timeObject)
                 }
             
-            Text("Art Athlete").font(.largeTitle).padding(.top, 20)
+            //Text("Art Athlete").font(.largeTitle).padding(.top, 20)
             Text("\(prefs.userName)").padding(.top, 10) //the artist
             // Button("\(Image(systemName: "gearshape.fill"))")
             //Text("Poses drawn today: \(userObject.totalPosesDrawnToday)").padding(.top, 10)

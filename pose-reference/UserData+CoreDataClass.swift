@@ -5,7 +5,7 @@
 //  Created by jo on 2020-12-23.
 //
 //
-
+/*
 import Foundation
 import CoreData
 
@@ -13,3 +13,4 @@ import CoreData
 public class UserData: NSManagedObject {
 
 }
+*/

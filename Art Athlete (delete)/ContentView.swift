@@ -17,7 +17,7 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
 
     var body: some View {
-        NavigationView {
+        NavBar {
             List {
                 ForEach(items) { item in
                     NavigationLink(destination: Text("Item at \(item.timestamp!, formatter: itemFormatter)")) {

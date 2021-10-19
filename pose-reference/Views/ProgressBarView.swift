@@ -1,6 +1,6 @@
 /*
  Josiah - Oct 29, 2020
- Loaded into NavigationView.
+ Loaded into NavBar.
  Handles UI for progress bar time.
 */
 

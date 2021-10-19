@@ -7,7 +7,7 @@
  Project flow:
  HomeView has
  PhotoView (photo)
- + NavigationView (buttons at bottom)
+ + NavBar (buttons at bottom)
  + TimerView: which has (ProgressBarView)
  
  HomeDetails pops up as a sheet,
@@ -97,7 +97,7 @@ struct PhotoButtonsView: View {
         
         Group {
             HStack(){
-                NavigationView(prefs: _prefs, startSession: $startSession).padding(.bottom, 5)
+                NavBar(prefs: _prefs, startSession: $startSession).padding(.bottom, 5)
             }
             .padding(.bottom, 30)
         }
