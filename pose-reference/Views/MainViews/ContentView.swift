@@ -9,13 +9,13 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
+    @EnvironmentObject var memory: Memory
     
     //@Environment(\.presentationMode) var presentationMode
     
     @State private var startSession = false
-    @State private var showNavBar = true
     
     var body: some View {
         VStack{
@@ -27,7 +27,7 @@ struct ContentView: View {
                  
             }
             if startSession {
-                PhotoButtonsView(startSession: $startSession, showNavBar: $showNavBar)
+                PhotoButtonsView(startSession: $startSession)
                    // .frame(maxWidth: .infinity, maxHeight: .infinity)
                     //.background(Color.green)
                  //   .transition(AnyTransition.move(edge: .trailing)).animation(.default)
@@ -36,9 +36,11 @@ struct ContentView: View {
     }
 }
 
+/*
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(Settings())
+            .environmentObject(GlobalVariables())
     }
 }
+ */

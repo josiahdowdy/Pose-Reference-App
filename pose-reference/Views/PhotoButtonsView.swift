@@ -40,7 +40,7 @@ import CoreData
 
 struct PhotoButtonsView: View {
     //@Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var userObject: UserObject
     
@@ -57,8 +57,7 @@ struct PhotoButtonsView: View {
     //@State private var startSession = false
     
     @Binding var startSession: Bool
-    @Binding var showNavBar: Bool
-    
+
     //Access the apps document directory.
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for:.documentDirectory, in : .userDomainMask)
@@ -81,11 +80,14 @@ struct PhotoButtonsView: View {
                         .foregroundColor(.white)
                     HStack {
                         
-                        if (prefs.changeTimer) {
-                            //print(timeObject.progressValue)
-                        } else if (!prefs.changeTimer) {
-                            TimerView(prefs: _prefs).padding(.bottom, 5)
+                        if !(prefs.hideTimer) {
+                            if (prefs.numberTimer) {
+                                //print(timeObject.progressValue)
+                            } else {
+                                TimerView(prefs: _prefs).padding(.bottom, 5)
+                            }
                         }
+                        
                     } //End HStack
                 } //End VStack.
             } //End ZStack
@@ -126,8 +128,8 @@ struct PhotoButtonsView_Previews: PreviewProvider {
     static var previews: some View {
         Text("home view")
         //HomeView(prefs: _prefs, timeObject: _timeObject)
-        PhotoButtonsView(startSession: $start, showNavBar: $start)
-            .environmentObject(Settings())
+        PhotoButtonsView(startSession: $start)
+            .environmentObject(GlobalVariables())
             .environmentObject(TimerObject())
             .environmentObject(UserObject())
     }

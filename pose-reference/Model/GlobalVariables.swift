@@ -7,7 +7,7 @@
 import Foundation
 import Kingfisher
 
-class Settings: ObservableObject {
+class GlobalVariables: ObservableObject {
     //----------STRINGS---------------------------------------------------------------
     @Published var sPose = ""
     @Published var sPoseCount = 0
@@ -19,20 +19,24 @@ class Settings: ObservableObject {
     //----------ARRAYS---------------------------
     @Published var arrayOfURLStrings = [String]()
     @Published var randomImages = UnsplashData() //Still needed till I update...
+    @Published var time = ["30", "60", "120", "300"]
     
 
     @Published var currentIndex = 0
+    @Published var selectorIndexTime = 2
     
     //----------BOOLS----------------------------------------------------------------
     @Published var showMainScreen = true
     @Published var showHomeView = false
-    @Published var changeTimer = false
     @Published var localPhotosView = true
     @Published var disableSkip = true
     @Published var togglePhotoDisplay = true
     @Published var startBoolean = false
     @Published var localPhotos = false
-    @Published var showNavBar = true
+    @Published var hideTimer = false
+    @Published var numberTimer = false
+    @Published var isRandom = true
+    
 
     
     //----------IMAGE EFFECTS-------------------------------------------------

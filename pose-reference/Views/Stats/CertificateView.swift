@@ -12,7 +12,7 @@ import Kingfisher
 struct CertificateView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var timeObject: TimerObject
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var userObject: UserObject
  
     @State private var showingSheet = false

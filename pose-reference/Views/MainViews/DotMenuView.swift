@@ -1,10 +1,14 @@
 import SwiftUI
 
 struct DotMenuView: View {
+    @EnvironmentObject var prefs: GlobalVariables
+    
     //@Binding var unsplashPhotos: Bool
     @Binding var localPhotos: Bool
     @Binding var showStats: Bool
     @Binding var showSettings: Bool
+    
+    @State private var checked = false
     
     var body: some View {
         Group {
@@ -28,6 +32,21 @@ struct DotMenuView: View {
                     Button("Settings") {
                         showSettings.toggle()
                     }
+                    Button("Hide Timer") {
+                        prefs.hideTimer.toggle()
+                    }
+                    NavigationView {
+                        NavigationLink(destination: Text("SecretTunnel")) {
+                            Text("Hello, World!")
+                        }
+                        .navigationTitle("Navigation")
+                    }
+                    HStack {
+                        CheckBoxView(checked: $checked)
+                        //Spacer()
+                        Text("Show Timer")
+                    }
+                    
                 } label: {
                     Label("", systemImage: "line.horizontal.3.circle")
                 }

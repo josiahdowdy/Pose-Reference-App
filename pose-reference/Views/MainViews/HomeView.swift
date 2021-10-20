@@ -2,7 +2,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct HomeView: View {
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     //@EnvironmentObject var userObject: UserObject
     
@@ -15,9 +15,20 @@ struct HomeView: View {
     @State var isImporting: Bool = false
     @State var fileName = "" //To save file URL in.
     
+    //---------------START VIEW-----------------------------------------------------------------
     var body: some View {
         VStack(alignment: .center) {
             //This is the top right settings menu.
+            //.sheet(popover(isPresented: $showSettings, content: DotMenuView(localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings)))
+            /*
+            Button("Settings") {
+                //self.error = "Memorize on: photo interval of 2 seconds on and 3 seconds off."
+                showSettings = true
+            }
+            .sheet(isPresented: $showSettings) {
+                return DotMenuView(localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings)
+            } */
+            
             DotMenuView(localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings) //unsplashPhotos: $prefs.unsplashPhotosView,
             
                 .sheet(isPresented: $showStats) {
@@ -40,7 +51,7 @@ struct HomeView: View {
             
             Text(prefs.error)
 
-            /// Import local photos
+            // Import local photos
             if (prefs.localPhotosView) {
                 Button(action: {
                     isImporting = false
@@ -87,9 +98,9 @@ struct HomeView: View {
         }
         
         Spacer() //Space in Vstack to the button for files
-    } //End of HStack
+    } //---------------------------End of HStack------------------------------------------------------------------------------------------------
     
-    
+    //---------------------------FUNCTIONS----------------------------------------------------------------
     func saveFile (url: URL) {
         var actualPath: URL
         
@@ -130,7 +141,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environmentObject(Settings())
+            .environmentObject(GlobalVariables())
             .environmentObject(TimerObject())
         //.environmentObject(UserObject())
     }

@@ -14,7 +14,7 @@ import SwiftUI
 import Kingfisher
 
 struct PhotoView: View {
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     
     private var processorBlack = BlackWhiteProcessor()
     //private var processorDefault = DefaultImageProcessor.default()
@@ -28,8 +28,6 @@ struct PhotoView: View {
         Group(){
             ZStack(alignment: .bottomTrailing) {
                 let testURL = URL(string: prefs.sURL)
-
-                //let processorBlack = BlackWhiteProcessor()
                 let processorDefault =  DefaultImageProcessor.default
                             
                 if(prefs.processorDefault == true){

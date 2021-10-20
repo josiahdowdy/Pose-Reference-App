@@ -5,20 +5,36 @@ import SwiftUI
 import UniformTypeIdentifiers
 import Kingfisher
 import struct Kingfisher.LocalFileImageDataProvider
+import CoreData
+import PhotosUI
+import LocalAuthentication
+
 //import MobileCoreServices
 //import AuthenticationServices
 
 struct HomeDetails: View {
     //@Environment(\.presentationMode) var presentationMode //This was on in 1st draft.
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
-    @EnvironmentObject var userObject: UserObject
+    //@EnvironmentObject var userObject: UserObject
+    //@EnvironmentObject var memory: Memory
+    
+    // Memories.....
+    @State var currentMemory: Memory?
+    
+    @FetchRequest(entity: Memory.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memory.timestamp, ascending: false)], animation: .easeInOut) var results : FetchedResults<Memory>
+    
+    //@FetchRequest(fetchRequest: UserObject.getListItemFetchRequest()) var userObjects: FetchedResults<UserObject>
+    
+    
+    //@Environment(\.managedObjectContext) var context
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var selectorPoseAmount = 3
     @State var poseAmount = ["5", "10", "20", "30"] //Image(systemName: "infinity")
     @State var localPhotoAmount = ["All", "10", "20", "30"]
-    @State private var selectorIndexTime = 1
-    @State var time = ["30", "60", "120", "300"]
+    //@State private var selectorIndexTime = 1
+    //@State var time = ["30", "60", "120", "300"]
     @State private var selectorPoseType = 4
     @State var pose = ["Nature","People","Wallpapers", "Interiors", "Animals"]
     
@@ -46,13 +62,16 @@ struct HomeDetails: View {
     @State var files = [URL]()
     
     @State var openSessionStats = false
-    @State var currentMemory: Memory?
 
     @Binding var startSession: Bool
+    
+    @State private var checked = false
+    //-------------END VARIABLES------------------------------------------------------------
+    
 
     //-------------START VIEW------------------------------------------------------------
     var body: some View {
-       
+        
         //Popup main sheet: Has all display info for text and buttons for start sheet.
         VStack {
             HStack {
@@ -62,43 +81,65 @@ struct HomeDetails: View {
                 }
             }
             
-            SessionStats(close: $openSessionStats, memory: $currentMemory)
-            
+            //SessionStats(close: $openSessionStats, memory: $currentMemory) //Database
             Spacer().frame(maxWidth: .infinity) //Attach bar to bottom
             
-            Text("Random")
-                .foregroundColor(isRandom ? .green : .gray)
-            Toggle("Random", isOn: $isRandom)
-                .labelsHidden()
-             .overlay(
-             RoundedRectangle(cornerRadius: 15)
-             .stroke(lineWidth: 2)
-             .foregroundColor(isRandom ? .green : .gray)
-             )
+            //Text("Poses drawn today: \(currentMemory?.userPoseCount)")
+           // Text("\nuserPoseCount: \(memory.userPoseCount)\n")
             
-            HStack {
-                Text("Length:").padding(10)
-                // Length time of pose
-                Picker("Numbers", selection: $selectorIndexTime) {
-                    ForEach(0 ..< time.count) { index in
-                        Text(self.time[index]).tag(index)
+            //UserObjectView(userObject: userObjects)
+            /*
+            List {
+                ForEach(userObjects, id: \.self) { item in
+                    NavigationLink(destination: UserObjectView(userObject: item)) {
+                        Text("\(item.name) - \(item.posesDrawn)")
                     }
                 }
-                .pickerStyle(SegmentedPickerStyle())
-            }
-                         
-            //Button("\(Image(systemName: "play.rectangle.fill")) Start") {
+                //.onDelete(perform: deleteItem)
+                //.onMove(perform: moveItem)
+            } */
             
-            Button("Start") {
+            
+            VStack{
+                //Josiah
+                //This is where the list of data is opened.
+                ForEach(results){memory in
+                    
+                    CardView(memory: memory)
+                        .contextMenu {
+                            
+                            Button("Delete"){
+                               // context.delete(memory)
+                               // try? context.save()
+                            }
+                            
+                            Button("Edit"){
+                                currentMemory = memory
+                             //   createMemory.toggle()
+                            }
+                        }
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
+            
+            toggleSwitch()
+            timePickerView()
+            
+            Button("Start") { //Button("\(Image(systemName: "play.rectangle.fill")) Start") {
                 loadLocalPhotos()
             }
+            .keyboardShortcut(.defaultAction)
             .padding(20)
             .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
-             
         }.padding()                                                              //End Vstack
-    }//End of View
+    }//------------------END OF VIEW------------------------------------------------------
     
-    //Start of functions.
+    
+    
+    
+    
+    //-------------------FUNCTIONS-----------------------------------------------
     func getDocumentsDirectory() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
@@ -118,7 +159,7 @@ struct HomeDetails: View {
             prefs.startBoolean.toggle()
             prefs.disableSkip = false
             //self.presentationMode.wrappedValue.dismiss() //Josiah Oct15 //Hide sheet.
-            timeObject.timeLength = Double(time[selectorIndexTime])!
+            timeObject.timeLength = Double(prefs.time[prefs.selectorIndexTime])!
             startTimer() //Do not start timer if there is no wifi.
             self.startSession = true //Tells the view to switch and start.
         }
@@ -135,8 +176,9 @@ struct HomeDetails: View {
     //End of stack view.
 }
 
+/*
 struct HomeDetails_Previews: PreviewProvider {
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     //@Binding var startSession: Bool --> This doesn't work. Must use line below.
     @State static var startSessionA = false
     
@@ -145,14 +187,14 @@ struct HomeDetails_Previews: PreviewProvider {
         //HomeDetails(isPresented: $prefs.showMainScreen)
         Group {
             HomeDetails(startSession: $startSessionA)
-                .environmentObject(Settings())
+                .environmentObject(GlobalVariables())
                 .environmentObject(TimerObject())
                 .environmentObject(UserObject())
         }
     }
 }
 
-
+*/
 
 
 

@@ -43,6 +43,20 @@
 		2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */; };
 		2C663A67271F00370097AEFE /* SessionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A66271F00370097AEFE /* SessionStats.swift */; };
 		2C663A68271F00370097AEFE /* SessionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A66271F00370097AEFE /* SessionStats.swift */; };
+		2C663A6B271F6B810097AEFE /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A6A271F6B810097AEFE /* CheckBoxView.swift */; };
+		2C663A6C271F6B810097AEFE /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A6A271F6B810097AEFE /* CheckBoxView.swift */; };
+		2C663A6F271F71300097AEFE /* ToggleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A6E271F71300097AEFE /* ToggleSwitch.swift */; };
+		2C663A70271F71300097AEFE /* ToggleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A6E271F71300097AEFE /* ToggleSwitch.swift */; };
+		2C663A72271F74470097AEFE /* timePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A71271F74470097AEFE /* timePickerView.swift */; };
+		2C663A73271F74470097AEFE /* timePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A71271F74470097AEFE /* timePickerView.swift */; };
+		2C663A7527205B460097AEFE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A7427205B460097AEFE /* CardView.swift */; };
+		2C663A7627205B460097AEFE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A7427205B460097AEFE /* CardView.swift */; };
+		2C663A78272097500097AEFE /* UserObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A77272097500097AEFE /* UserObjectView.swift */; };
+		2C663A79272097500097AEFE /* UserObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A77272097500097AEFE /* UserObjectView.swift */; };
+		2C663A7B27209ABF0097AEFE /* UserDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A7A27209ABF0097AEFE /* UserDataEntity.swift */; };
+		2C663A7C27209ABF0097AEFE /* UserDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A7A27209ABF0097AEFE /* UserDataEntity.swift */; };
+		2C663A822720BACD0097AEFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A812720BACD0097AEFE /* AppDelegate.swift */; };
+		2C663A832720BACD0097AEFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A812720BACD0097AEFE /* AppDelegate.swift */; };
 		2C704F69254BA86200C5805B /* TimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F68254BA86200C5805B /* TimerObject.swift */; };
 		2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F6C254BA93D00C5805B /* UserObject.swift */; };
 		2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C83DE255B888B00CC4096 /* MessageDocument.swift */; };
@@ -60,7 +74,7 @@
 		2CAC6639271CA552005066B5 /* HomeViewBACKUP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAC6638271CA552005066B5 /* HomeViewBACKUP.swift */; };
 		2CC05E8A25406DE8007C733D /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC05E8925406DE8007C733D /* Cache.swift */; };
 		2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB2EF3253F7A590087D696 /* TimerView.swift */; };
-		2CEB2EF9253F86DD0087D696 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB2EF8253F86DD0087D696 /* Settings.swift */; };
+		2CEB2EF9253F86DD0087D696 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB2EF8253F86DD0087D696 /* GlobalVariables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +166,13 @@
 		2C663A61271E1D720097AEFE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		2C663A63271E20130097AEFE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2C663A66271F00370097AEFE /* SessionStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStats.swift; sourceTree = "<group>"; };
+		2C663A6A271F6B810097AEFE /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		2C663A6E271F71300097AEFE /* ToggleSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleSwitch.swift; sourceTree = "<group>"; };
+		2C663A71271F74470097AEFE /* timePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timePickerView.swift; sourceTree = "<group>"; };
+		2C663A7427205B460097AEFE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		2C663A77272097500097AEFE /* UserObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObjectView.swift; sourceTree = "<group>"; };
+		2C663A7A27209ABF0097AEFE /* UserDataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataEntity.swift; sourceTree = "<group>"; };
+		2C663A812720BACD0097AEFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C704F68254BA86200C5805B /* TimerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerObject.swift; sourceTree = "<group>"; };
 		2C704F6C254BA93D00C5805B /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		2C8C83DE255B888B00CC4096 /* MessageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
@@ -169,7 +190,7 @@
 		2CC05E8925406DE8007C733D /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		2CC05E8E2540D393007C733D /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		2CEB2EF3253F7A590087D696 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		2CEB2EF8253F86DD0087D696 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		2CEB2EF8253F86DD0087D696 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,10 +320,12 @@
 				2CAA8BCD259382B500B39793 /* Persistence.swift */,
 				2C943EE325B8F9130010FA24 /* TagSearchModel.swift */,
 				2C02D8B4253A2CA100D5F960 /* Model.swift */,
-				2CEB2EF8253F86DD0087D696 /* Settings.swift */,
+				2CEB2EF8253F86DD0087D696 /* GlobalVariables.swift */,
 				2C704F68254BA86200C5805B /* TimerObject.swift */,
 				2CC05E8925406DE8007C733D /* Cache.swift */,
 				2C704F6C254BA93D00C5805B /* UserObject.swift */,
+				2C663A7A27209ABF0097AEFE /* UserDataEntity.swift */,
+				2C663A812720BACD0097AEFE /* AppDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,9 +333,10 @@
 		2C02D8C2253A50D200D5F960 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2C663A6D271F71220097AEFE /* Buttons */,
 				2C663A20271CC8490097AEFE /* SettingsMac */,
 				2C02D8C3253A50E300D5F960 /* PhotoButtonsView.swift */,
-				2CAA8BD62593835600B39793 /* Main */,
+				2CAA8BD62593835600B39793 /* MainViews */,
 				2CAA8BD52593833600B39793 /* Stats */,
 				2C02D8DD253ABB7100D5F960 /* ProgressBarView.swift */,
 				2CEB2EF3253F7A590087D696 /* TimerView.swift */,
@@ -414,6 +438,18 @@
 			path = OLD;
 			sourceTree = "<group>";
 		};
+		2C663A6D271F71220097AEFE /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				2C663A6A271F6B810097AEFE /* CheckBoxView.swift */,
+				2C663A6E271F71300097AEFE /* ToggleSwitch.swift */,
+				2C663A71271F74470097AEFE /* timePickerView.swift */,
+				2C663A7427205B460097AEFE /* CardView.swift */,
+				2C663A77272097500097AEFE /* UserObjectView.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		2CAA8BD52593833600B39793 /* Stats */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,19 +462,19 @@
 			path = Stats;
 			sourceTree = "<group>";
 		};
-		2CAA8BD62593835600B39793 /* Main */ = {
+		2CAA8BD62593835600B39793 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
-				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
 				2C2EA837253CEC6500D9A8C7 /* HomeDetails.swift */,
+				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
+				2C214148271B5DCC00493E4E /* HomeView.swift */,
 				2C55F914253FC86E000B6AFC /* NavBar.swift */,
 				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
 				2C943EDF25B797BB0010FA24 /* MenuPicker.swift */,
-				2C214148271B5DCC00493E4E /* HomeView.swift */,
 				2CAC6636271CA435005066B5 /* ContentView.swift */,
 				2C663A66271F00370097AEFE /* SessionStats.swift */,
 			);
-			path = Main;
+			path = MainViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -666,9 +702,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C663A78272097500097AEFE /* UserObjectView.swift in Sources */,
 				2C663A24271DAEFA0097AEFE /* MenuView.swift in Sources */,
+				2C663A6B271F6B810097AEFE /* CheckBoxView.swift in Sources */,
 				2C02D8B5253A2CA100D5F960 /* Model.swift in Sources */,
 				2CAA8BD22593830200B39793 /* saveUserData.swift in Sources */,
+				2C663A72271F74470097AEFE /* timePickerView.swift in Sources */,
 				2C943EEA25B9F4790010FA24 /* CollectionButtons.swift in Sources */,
 				2C214149271B5DCC00493E4E /* HomeView.swift in Sources */,
 				2C142B972593E19500A7DC54 /* UserData+CoreDataClass.swift in Sources */,
@@ -678,10 +717,13 @@
 				2C943ED425B78F460010FA24 /* SignIn.swift in Sources */,
 				2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */,
 				2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */,
+				2C663A7527205B460097AEFE /* CardView.swift in Sources */,
 				2C943ED025B77FBB0010FA24 /* SettingsView.swift in Sources */,
 				2C2EA838253CEC6500D9A8C7 /* HomeDetails.swift in Sources */,
 				2CAA8BCE259382B500B39793 /* Persistence.swift in Sources */,
+				2C663A6F271F71300097AEFE /* ToggleSwitch.swift in Sources */,
 				2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */,
+				2C663A7B27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2C02D886253A2C5700D5F960 /* pose_referenceApp.swift in Sources */,
 				2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */,
 				2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */,
@@ -691,9 +733,10 @@
 				2C663A1F271CC7DC0097AEFE /* SettingsMacView.swift in Sources */,
 				2CAC6637271CA435005066B5 /* ContentView.swift in Sources */,
 				2C2BDF432543225400D2434E /* StatsView.swift in Sources */,
+				2C663A822720BACD0097AEFE /* AppDelegate.swift in Sources */,
 				2CAC6639271CA552005066B5 /* HomeViewBACKUP.swift in Sources */,
 				2C663A22271CC9410097AEFE /* AdvancedSettingsView.swift in Sources */,
-				2CEB2EF9253F86DD0087D696 /* Settings.swift in Sources */,
+				2CEB2EF9253F86DD0087D696 /* GlobalVariables.swift in Sources */,
 				2CC05E8A25406DE8007C733D /* Cache.swift in Sources */,
 				2C943ED825B7910C0010FA24 /* DotMenuView.swift in Sources */,
 				2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */,
@@ -726,12 +769,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C663A68271F00370097AEFE /* SessionStats.swift in Sources */,
+				2C663A79272097500097AEFE /* UserObjectView.swift in Sources */,
 				2C663A38271DB9DE0097AEFE /* Persistence.swift in Sources */,
 				2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */,
+				2C663A832720BACD0097AEFE /* AppDelegate.swift in Sources */,
+				2C663A73271F74470097AEFE /* timePickerView.swift in Sources */,
+				2C663A70271F71300097AEFE /* ToggleSwitch.swift in Sources */,
 				2C663A3B271DB9DE0097AEFE /* Art_Athlete.xcdatamodeld in Sources */,
 				2C663A31271DB9DC0097AEFE /* ContentView.swift in Sources */,
 				2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */,
 				2C663A2F271DB9DC0097AEFE /* Art_AthleteApp.swift in Sources */,
+				2C663A7627205B460097AEFE /* CardView.swift in Sources */,
+				2C663A6C271F6B810097AEFE /* CheckBoxView.swift in Sources */,
+				2C663A7C27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

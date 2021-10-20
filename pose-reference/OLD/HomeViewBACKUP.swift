@@ -3,7 +3,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct HomeViewBACKUP: View {
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var userObject: UserObject
     
@@ -138,7 +138,7 @@ struct HomeViewBACKUP: View {
 struct HomeViewBACKUP_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environmentObject(Settings())
+            .environmentObject(GlobalVariables())
             .environmentObject(TimerObject())
         //.environmentObject(UserObject())
     }

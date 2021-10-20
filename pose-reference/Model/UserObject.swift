@@ -1,10 +1,49 @@
-/*
- Josiah - Oct 29, 2020
- User object used to keep track of:
-    name, progress, preferences,
- 
- */
 
+import CoreData
+
+class UserObject: NSManagedObject {
+    @NSManaged var name: String
+    @NSManaged var order: Int
+    @NSManaged var posesDrawn: Int
+   //@NSManaged var date: Date = Date()
+    @NSManaged var date: Date
+    
+    @NSManaged var totalTimeDrawn: Int
+    @NSManaged var totalPosesDrawn: Int
+    @NSManaged var totalPosesDrawnToday: Int
+    
+    //Certificates
+    //Make an array with the certs.
+    @NSManaged var currectCert: String
+    @NSManaged var beginnerCert: Bool
+    @NSManaged var intermediateCert: Bool
+    @NSManaged var advancedCert: Bool
+    @NSManaged var masterCert: Bool
+    
+    @NSManaged var userName: String
+    @NSManaged var lastUsedSearch: String
+    @NSManaged var favoriteQuote: String
+    
+
+}
+
+extension UserObject {
+    static func getListItemFetchRequest() -> NSFetchRequest<UserObject>{
+        let request = UserObject.fetchRequest() as! NSFetchRequest<UserObject>
+        request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true)]
+        return request
+    }
+}
+
+
+
+
+
+
+
+
+
+/*
 import Foundation
 
 class UserObject: ObservableObject {
@@ -18,10 +57,12 @@ class UserObject: ObservableObject {
     @Published var totalPosesDrawnToday = 0
 
     //Certificates
+    //Make an array with the certs. 
     @Published var currectCert = "beginner"
     @Published var beginnerCert = true
-    @Published var intermediateCert = true
-    @Published var advancedCert = true
-    @Published var masterCert = true
+    @Published var intermediateCert = false
+    @Published var advancedCert = false
+    @Published var masterCert = false
     
 }
+*/

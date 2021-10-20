@@ -2,17 +2,17 @@
  Josiah - Oct 29, 2020
  1st file called by program.
  Loads HomeView.
- Initializes the global objects: for Settings, TimerObject, & UserObject
+ Initializes the global objects: for GlobalVariables, TimerObject, & UserObject
  */
 
 import SwiftUI
 
 @main
 struct pose_referenceApp: App {
-    @ObservedObject var prefs = Settings()
+    @ObservedObject var prefs = GlobalVariables()
     @ObservedObject var timeObject = TimerObject()
-    //@ObservedObject var userObject = UserObject()
-    
+    @ObservedObject var userObject = UserObject()
+
     let persistenceController = PersistenceController.shared
     
     // Connecting App Delegate...

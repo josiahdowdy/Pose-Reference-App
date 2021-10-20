@@ -50,7 +50,7 @@ class UnsplashData: ObservableObject {
     @Published var photoArray: [Photo] = []
     //@Published var userArray: [User] = []
     //@Published var urlArray: [String] = []
-    //@EnvironmentObject var prefs: Settings
+    //@EnvironmentObject var prefs: GlobalVariables
  
     init() {
         //self.loadData(pose: tag, count: count)

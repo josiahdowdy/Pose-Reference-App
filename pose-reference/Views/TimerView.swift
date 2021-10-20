@@ -10,24 +10,36 @@ import SwiftUI
 
 struct TimerView: View {
     @EnvironmentObject var timeObject: TimerObject
-    @EnvironmentObject var prefs: Settings
-    @EnvironmentObject var userObject: UserObject
+    @EnvironmentObject var prefs: GlobalVariables
+    @State var currentMemory: Memory?
+    
+    //@EnvironmentObject var userObject: UserObject
+    
+    //SAVE DATA...
+    @Environment(\.managedObjectContext) var context
+    @State var memory: Memory?
+    @State var date: Date = Date()
+    @State var userSessionPoseCount : Int16 = 0
+    @State var alertMsg = ""
+    @State var showAlert = false
+    @State var title = ""
+    
+    
     
     ///User Data saving
     //@Environment(\.managedObjectContext) private var viewContext //UserData
-    
     //@FetchRequest(entity: UserData.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
-    
     //var userData: FetchedResults<UserData>
     
     @State private var startSession = false
     @State private var showNavBar = true
     //@Binding var startSession: Bool
+
+
+    //-------------END VARIABLES------------------------------------------------------------
     
     
-    @State var userPoseCount = 0
-    ///End UserData saving
-    
+    //-------------START VIEW------------------------------------------------------------
     var body: some View {
         VStack {
             ProgressBar(value: $timeObject.progressValue)
@@ -62,6 +74,12 @@ struct TimerView: View {
                                 timeObject.timeDouble = 0.0
                                 
                                 //Save user data pose count.
+                                currentMemory?.userPoseCount += 1
+                                userSessionPoseCount += 1
+                                title = "Harry Potter"
+                                
+                                saveData()
+                                //print("\nuserPoseCount: \(currentMemory?.userPoseCount)\n")
                                 //userData.count += 1
                                 //updateUserInfo()
                                // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
@@ -102,7 +120,40 @@ struct TimerView: View {
         print("\nSTART TIMER\n")
         
         //timeObject.timer.tolerance = 0.2
+    }//------------------END OF VIEW------------------------------------------------------
+    
+    
+    
+    
+    
+    //-------------------FUNCTIONS-----------------------------------------------
+    func saveData(){
+        if memory != nil{
+            memory?.title = title
+            //memory?.content = content
+            //memory?.image = imageData
+            memory?.userPoseCount = userSessionPoseCount
+            
+        }
+        else{
+            let memory = Memory(context: context)
+            memory.title = title
+            memory.timestamp = date
+            memory.userPoseCount = userSessionPoseCount
+            //memory.content = content
+            //memory.image = imageData
+        }
+        
+        do{
+            try context.save()
+            //close.toggle()
+        }
+        catch{
+            alertMsg = error.localizedDescription
+            showAlert.toggle()
+        }
     }
+    
     
     ///First time create info
     /*

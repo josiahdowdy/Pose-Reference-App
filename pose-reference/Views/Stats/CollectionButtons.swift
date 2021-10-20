@@ -4,7 +4,7 @@ import SwiftUI
 
 struct CollectionButtons: View {
     //Variables 
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     
     @State private var dance = false
     @State private var darkPortraits = false
@@ -153,7 +153,7 @@ struct ButtonOnOffStyle: ButtonStyle {
 }
 
 struct buttonOutline: ButtonStyle {
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -170,7 +170,7 @@ struct buttonOutline: ButtonStyle {
 }
 
 struct bounceButtonStyle: ButtonStyle {
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label

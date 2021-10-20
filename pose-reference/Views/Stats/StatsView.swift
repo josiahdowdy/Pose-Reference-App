@@ -10,7 +10,7 @@ import Kingfisher
 struct StatsView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var timeObject: TimerObject
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var userObject: UserObject
 
     @State private var showingSheet = false
@@ -20,7 +20,7 @@ struct StatsView: View {
         VStack(alignment: .leading) {
             Group {
                 Text("Drawing Summary").font(.largeTitle)
-                Text("\(userObject.userName)").font(.headline).padding(.top, 10)
+                //Text("\(userObject.userName)").font(.headline).padding(.top, 10)
                 //Text("\(Image(systemName: "clock"))   Session Length: \(userObject.totalTimeDrawn)").padding(.top, 10)
                 Text("\(Image(systemName: "clock"))   Draw time: \(userObject.totalTimeDrawn)").padding(.top, 10)
                 Text("\(Image(systemName: "pencil.and.outline"))   Poses drawn: \(userObject.totalPosesDrawn)").padding(.top, 10)

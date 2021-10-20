@@ -11,7 +11,7 @@ import Kingfisher
 struct NavBar: View {
     //@Environment(\.presentationMode) var presentationMode //Oct17
     @EnvironmentObject var timeObject: TimerObject
-    @EnvironmentObject var prefs: Settings
+    @EnvironmentObject var prefs: GlobalVariables
     
     @State private var showingSheet = false
     
@@ -169,9 +169,7 @@ struct NavBar: View {
              }.buttonStyle(BorderlessButtonStyle())
              */
             
-            if (!prefs.changeTimer) {
-                //do nothing
-            } else if (prefs.changeTimer) {
+            if (prefs.numberTimer) {
                 Text("\(timeLeft, specifier: "%.0f")")
                 //Text("\(timeLeft)")
                     .onReceive(timeObject.$timeDouble) { input in
