@@ -1,39 +1,4 @@
-/* Josiah Oct 29, 2020
- Project flow:
- HomeView has
- PhotoView (photo)
- + NavBar (buttons at bottom)
- + TimerView: which has (ProgressBarView)
- 
- HomeDetails pops up as a sheet,
- which has loadUnsplashPhotos()
- + options to select settings for session (time, photoCount, poseType)
- 
- ------------------------------------------------------------------------------------------------------
- To do:
- // BUG BUG: If you pause the timer, and then wait a few minutes, and then hit play, it will skip the photo (the timer must keep on running in background?)
- 1. Collection search.
- 2. When no internet display error message.
- 3. Set localPhotos AND unsplashPhotos to false after session ends so
- user cannot start new session without selecting photos
- 
- 2. Update Stats: total poses drawn
- Save to a note sheet in app
- -Only add to time of total if user finishes the photo time. (if they skip halfway then that photo time doesn't count)
- -If user finished drawing photo time (30 seconds), then true, now add total time towards total drawing time.
- 
- 3. Allow user to type collection name in tag search.
- 
- 5. Draw a sketch bg image for Main Menu + design logo. "Artist Reference"
- 
- Bugs:
- -timer bug? Sometimes the timer does not start, if I minimize the app, and then reopen it?
- - User can swipe down on the home view sheet and it just shows the session not started.
- 
- Low priority:
- Offline mode: cached images from Unsplash
- Prefetch data with Fisher (does not seem slow in loading photos...so maybe not?)
- */
+// Josiah Oct 29, 2020
 import UniformTypeIdentifiers
 import SwiftUI
 import CoreData
@@ -102,8 +67,8 @@ struct PhotoButtonsView: View {
         //Set which view opens when timer runs out on last image.
         /*
          .sheet(isPresented: $prefs.showMainMenu) { //$showingSheet
-         //HomeDetails(prefs: _prefs, userObject: _userObject, name: "Artist")
-         return HomeDetails() //Josiah Oct16 isPresented: $showingSheet
+         //HomeScreen(prefs: _prefs, userObject: _userObject, name: "Artist")
+         return HomeScreen() //Josiah Oct16 isPresented: $showingSheet
          .environmentObject(self.userObject)
          .environmentObject(self.prefs)
          .environmentObject(self.timeObject)

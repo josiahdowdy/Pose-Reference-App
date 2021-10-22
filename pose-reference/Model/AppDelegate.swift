@@ -1,4 +1,6 @@
 //
+//#if !os(macOS) { }
+    //import UIKit
 import UIKit
 import CoreData
 

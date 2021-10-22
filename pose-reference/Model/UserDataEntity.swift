@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Kingfisher
+//import Kingfisher
 
 //class Entity: NSManagedObject {
 //    @NSManaged var name: String?

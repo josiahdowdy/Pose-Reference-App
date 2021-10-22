@@ -77,7 +77,7 @@ struct NavBar: View {
                     //Image(systemName: skip ? "arrowshape.turn.up.right.fill" : "arrowshape.turn.up.right")//Text("Skip")
                 }.disabled(prefs.disableSkip)
                     .sheet(isPresented: $showingSheet) {  //$showingSheet
-                        HomeDetails(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah OCT16
+                        HomeScreen(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah OCT16
                     }.keyboardShortcut(.rightArrow)
                     .buttonStyle(BorderlessButtonStyle())
                 //.buttonStyle(bounceButtonStyle())
@@ -156,7 +156,7 @@ struct NavBar: View {
             
             /*
                 .sheet(isPresented: $showingSheet) {
-                    HomeDetails(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
+                    HomeScreen(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
                 }.buttonStyle(BorderlessButtonStyle())
             */
             //.buttonStyle(bounceButtonStyle())

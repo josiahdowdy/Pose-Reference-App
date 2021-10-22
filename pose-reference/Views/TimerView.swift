@@ -11,28 +11,33 @@ import SwiftUI
 struct TimerView: View {
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
-    @State var currentMemory: Memory?
+    //@State var currentMemory: Memory?
     
     //@EnvironmentObject var userObject: UserObject
     
     //SAVE DATA...
-    @Environment(\.managedObjectContext) var context
-    @State var memory: Memory?
+    //@Environment(\.managedObjectContext) var context
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @FetchRequest(entity: UserEntity.entity(), sortDescriptors: [])
+    var userEntity: FetchedResults<UserEntity>
+    
+    //@State var memory: Memory?
     @State var date: Date = Date()
-    @State var userSessionPoseCount : Int16 = 0
+    //@State var userSessionPoseCount : Int16 = 0
     @State var alertMsg = ""
     @State var showAlert = false
     @State var title = ""
-    
-    
-    
+
     ///User Data saving
     //@Environment(\.managedObjectContext) private var viewContext //UserData
     //@FetchRequest(entity: UserData.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
     //var userData: FetchedResults<UserData>
     
-    @State private var startSession = false
+    @State private var startSession = true
     @State private var showNavBar = true
+    //@State private var startSession = true
+    
     //@Binding var startSession: Bool
 
 
@@ -77,17 +82,26 @@ struct TimerView: View {
                                 prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
                                 
                                 //Save user data pose count.
-                                currentMemory?.userPoseCount += 1
-                                userSessionPoseCount += 1
+                                //currentMemory?.userPoseCount += 1
+                                prefs.userSessionPoseCount += 1
+                                
                                 title = "Harry Potter"
-                                saveData()
+                                
+                                //I could save the data here. But better to save the data when the session finishes,
+                                //or when the user puts the app to the background or closes it.
+                                //I just want to save it to local data.
+                                //saveLocalData()
+                                saveDataUpdate() //I could
+                                HomeScreen(startSession: $startSession).saveData()
+                               
+                                
                                 
                                 //print("\nuserPoseCount: \(currentMemory?.userPoseCount)\n")
                                 //userData.count += 1
                                 //updateUserInfo()
                                // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
                                 //prefs.currentIndex += 1
-                                
+                            
                             } else { //else if done with last photo, end session.
                                 endSession()
                             }
@@ -131,21 +145,51 @@ struct TimerView: View {
     
     
     //-------------------FUNCTIONS-----------------------------------------------
-    func saveData(){
+    //Save the data to the ArtAthlete database.
+    func saveDataUpdate(){
+        //newSession.posesToday = prefs.userSessionPoseCount
+        //let sess = UserEntity.self
+        //let session = UserEntity.posesToday
+        //sess.posesToday = Int16(prefs.userSessionPoseCount)
+        //Save the data.
+        
+        //let sess = UserEntity.fetchRequest()
+        let currSession = UserEntity(context: viewContext)
+        currSession.posesToday = Int16(prefs.userSessionPoseCount)
+        
+        
+        do {
+            try viewContext.save()
+            print("\n Updated session saved.\n")
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        print("\ncurrSession.id: \(currSession.id).\n")
+        print("\ncurrSession.dateString: \(currSession.dateString).\n")
+        print("\ncurrSession.posesToday: \(currSession.posesToday).\n")
+        
+        //@State var startSessionA = false
+        
+        //HomeScreen(startSession: $startSessionA).saveData()
+        /*
         if memory != nil{
             memory?.title = title
+            //memory?.sessionTimeLength = Int16(prefs.time[prefs.selectorIndexTime])!
             //memory?.content = content
             //memory?.image = imageData
             memory?.userPoseCount = userSessionPoseCount
             
         }
         else{
+            /*
             let memory = Memory(context: context)
             memory.title = title
             memory.timestamp = date
             memory.userPoseCount = userSessionPoseCount
             //memory.content = content
             //memory.image = imageData
+             */
         }
         
         do{
@@ -155,7 +199,7 @@ struct TimerView: View {
         catch{
             alertMsg = error.localizedDescription
             showAlert.toggle()
-        }
+        }*/
     }
     
     

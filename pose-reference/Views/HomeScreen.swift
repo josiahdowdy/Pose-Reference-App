@@ -1,5 +1,5 @@
 /* Josiah - Oct 29, 2020
- HomeDetails: 1st screen shown, called from ContentView   */
+ HomeScreen: 1st screen shown, called from ContentView   */
 
 import SwiftUI
 import UniformTypeIdentifiers
@@ -12,23 +12,38 @@ import LocalAuthentication
 //import MobileCoreServices
 //import AuthenticationServices
 
-struct HomeDetails: View {
+struct HomeScreen: View {
     //@Environment(\.presentationMode) var presentationMode //This was on in 1st draft.
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     //@EnvironmentObject var userObject: UserObject
     //@EnvironmentObject var memory: Memory
+    //@EnvironmentObject var store: CalendarStore
+    @EnvironmentObject var user: UserEntity
+
+
+    
+    
+    //@Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) var viewContext
+    
+    @FetchRequest(entity: UserEntity.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
+    var entityData: FetchedResults<UserEntity>
+    
+  
+    
+    //@ObservedObject var objectUserEntity = UserEntity()
+    
     
     // Memories.....
-    @State var currentMemory: Memory?
+    //@State var currentMemory: Memory?
     
-    @FetchRequest(entity: Memory.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memory.timestamp, ascending: false)], animation: .easeInOut) var results : FetchedResults<Memory>
+    //@FetchRequest(entity: Memory.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memory.timestamp, ascending: false)], animation: .easeInOut) var results : FetchedResults<Memory>
     
     //@FetchRequest(fetchRequest: UserObject.getListItemFetchRequest()) var userObjects: FetchedResults<UserObject>
     
-    
     //@Environment(\.managedObjectContext) var context
-    @Environment(\.managedObjectContext) var managedObjectContext
+    //@Environment(\.managedObjectContext) var managedObjectContext
     
     @State private var selectorPoseAmount = 3
     @State var poseAmount = ["5", "10", "20", "30"] //Image(systemName: "infinity")
@@ -81,8 +96,20 @@ struct HomeDetails: View {
                 }
             }
             
+            //Text(hope.posesToday)
+            
+            //List(userEntity, id: \.self)
+            //print("userEntity: \(userEntity, id: \.self)")
+            
+            
+            UserSessionStats()
+            
+            
+            
             //SessionStats(close: $openSessionStats, memory: $currentMemory) //Database
             Spacer().frame(maxWidth: .infinity) //Attach bar to bottom
+            
+            //Text(newSession.posesToday)
             
             //Text("Poses drawn today: \(currentMemory?.userPoseCount)")
            // Text("\nuserPoseCount: \(memory.userPoseCount)\n")
@@ -99,15 +126,13 @@ struct HomeDetails: View {
                 //.onMove(perform: moveItem)
             } */
             
-            
+            /*
             VStack{
                 //Josiah
                 //This is where the list of data is opened.
                 ForEach(results){memory in
-                    
                     CardView(memory: memory)
                         .contextMenu {
-                            
                             Button("Delete"){
                                // context.delete(memory)
                                // try? context.save()
@@ -122,7 +147,7 @@ struct HomeDetails: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
-            
+            */
             toggleSwitch()
             timePickerView()
             
@@ -144,6 +169,60 @@ struct HomeDetails: View {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
     
+    func updateData() {
+        let currentSession = UserEntity(context: viewContext)
+        currentSession.posesToday = Int16(prefs.userSessionPoseCount)
+    }
+    
+    public func updateDetails() {
+        print("UPDATE DETAILS.")
+        
+    }
+    
+    func saveData() {
+        //Create the id for the session. Each session has its own row in the data table.
+        //hope.posesToday = 10
+        //print(prefs.userSessionPoseCount)
+        
+        let newSession = UserEntity(context: viewContext)
+        
+        //prefs.sessionFirstStarted.toggle()
+        
+        //print(prefs.sessionFirstStarted)
+        //
+        
+        //if (!prefs.sessionFirstStarted) {
+            newSession.posePhotoLength = Int16(prefs.time[prefs.selectorIndexTime])
+            let myFormatter = DateFormatter()
+            myFormatter.timeStyle = .short
+            let dateString = myFormatter.string(from: Date())
+            //newSession.id = UUID()
+            newSession.dateString = dateString
+            //prefs.sessionFirstStarted.toggle()
+            
+        //} else {
+            //just update the pose count
+            newSession.posesToday = Int16(prefs.userSessionPoseCount)
+        //}
+
+        //Save the new session.
+        do {
+            try viewContext.save()
+            print("\n New session saved.\n")
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    //Don't confuse with start timer in Timer.swift
+    private func startTimer() {
+        timeObject.isTimerRunning = true
+        timeObject.startTime = Date()
+        timeObject.progressValue = 0.0
+        timeObject.timeDouble = 0.0
+        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+    }
+    
     func loadLocalPhotos(){
         if (isRandom) {
             prefs.arrayOfURLStrings.shuffle()
@@ -159,20 +238,38 @@ struct HomeDetails: View {
             prefs.startBoolean.toggle()
             prefs.disableSkip = false
             //self.presentationMode.wrappedValue.dismiss() //Josiah Oct15 //Hide sheet.
-            timeObject.timeLength = Double(prefs.time[prefs.selectorIndexTime])!
+            timeObject.timeLength = Double(prefs.time[prefs.selectorIndexTime]) //Double(prefs.time[prefs.selectorIndexTime])!
+            prefs.sessionFirstStarted = false
+             //<#T##self: UserSessionStats##UserSessionStats#>
+                //.environmentObject(prefs)
+            /*
+            //Create the id for the session. Each session has its own row in the data table.
+            let newSession = UserEntity(context: viewContext)
+            newSession.posePhotoLength = Int16(prefs.time[prefs.selectorIndexTime])
+            
+            let myFormatter = DateFormatter()
+            myFormatter.timeStyle = .short
+            let dateString = myFormatter.string(from: Date())
+            
+            newSession.dateString = dateString
+            //newSession.date = "hi"//dateString //.formatted(date: .abbreviated, time: .shortened)
+            //newSession.posesToday = 
+            
+            //Save the new session.
+            do {
+                try viewContext.save()
+                print("\n New session saved.\n")
+            } catch {
+                print(error.localizedDescription)
+            } */
+            //UserSessionStats().newSession()
+            saveData()
             startTimer() //Do not start timer if there is no wifi.
             self.startSession = true //Tells the view to switch and start.
         }
     }  //End of load local photos
-
-    //Don't confuse with start timer in Timer.swift
-    private func startTimer() {
-        timeObject.isTimerRunning = true
-        timeObject.startTime = Date()
-        timeObject.progressValue = 0.0
-        timeObject.timeDouble = 0.0
-        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
-    }
+    
+    
     //End of stack view.
 }
 
@@ -184,9 +281,9 @@ struct HomeDetails_Previews: PreviewProvider {
     
     static var previews: some View {
         //Text("Need to add view")
-        //HomeDetails(isPresented: $prefs.showMainScreen)
+        //HomeScreen(isPresented: $prefs.showMainScreen)
         Group {
-            HomeDetails(startSession: $startSessionA)
+            HomeScreen(startSession: $startSessionA)
                 .environmentObject(GlobalVariables())
                 .environmentObject(TimerObject())
                 .environmentObject(UserObject())

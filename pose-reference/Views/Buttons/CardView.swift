@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CardView: View {
     
-    var memory: Memory
+    @State var memory: Memory
     @Environment(\.colorScheme) var scheme
     
     var body: some View {

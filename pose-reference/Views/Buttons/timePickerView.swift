@@ -16,7 +16,7 @@ struct timePickerView: View {
             // Length time of pose
             Picker("Numbers", selection: $prefs.selectorIndexTime) {
                 ForEach(0 ..< prefs.time.count) { index in
-                    Text(self.prefs.time[index]).tag(index)
+                    Text(String(self.prefs.time[index])).tag(index)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())

@@ -3,12 +3,23 @@
     <entity name="Memory" representedClassName="Memory" syncable="YES" codeGenerationType="class">
         <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="sessionTimeLength" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="userName" optional="YES" attributeType="String"/>
         <attribute name="userPoseCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateString" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="posePhotoLength" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="posesDrawnInSession" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="posesToday" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="posesTotal" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
-        <element name="Memory" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="Memory" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="UserEntity" positionX="-63" positionY="36" width="128" height="134"/>
     </elements>
 </model>

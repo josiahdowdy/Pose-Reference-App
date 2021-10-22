@@ -19,11 +19,12 @@ class GlobalVariables: ObservableObject {
     //----------ARRAYS---------------------------
     @Published var arrayOfURLStrings = [String]()
     @Published var randomImages = UnsplashData() //Still needed till I update...
-    @Published var time = ["30", "60", "120", "300"]
+    @Published var time = [5, 30, 60, 120, 300]
     
 
     @Published var currentIndex = 0
     @Published var selectorIndexTime = 2
+    @Published var userSessionPoseCount = 0 
     
     //----------BOOLS----------------------------------------------------------------
     @Published var showMainScreen = true
@@ -36,6 +37,7 @@ class GlobalVariables: ObservableObject {
     @Published var hideTimer = false
     @Published var numberTimer = false
     @Published var isRandom = true
+    @Published var sessionFirstStarted = false
     
 
     

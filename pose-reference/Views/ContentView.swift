@@ -20,7 +20,7 @@ struct ContentView: View {
     var body: some View {
         VStack{
             if !startSession {
-                HomeDetails(startSession: $startSession)
+                HomeScreen(startSession: $startSession)
                  //   .frame(maxWidth: .infinity, maxHeight: .infinity)
                   //  .background(Color.blue)
                  //   .transition(AnyTransition.move(edge: .leading)).animation(.default)
@@ -36,11 +36,13 @@ struct ContentView: View {
     }
 }
 
-/*
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+       // ContentView()
+            //.environmentObject(GlobalVariables())
+        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             .environmentObject(GlobalVariables())
     }
 }
- */
+ 

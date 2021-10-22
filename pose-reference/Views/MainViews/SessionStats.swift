@@ -10,7 +10,7 @@ import SwiftUI
 struct SessionStats: View {
     //------------Database iCloud-------------------------------------------------------------
     @Binding var close: Bool
-    @Binding var memory: Memory? //Database name.
+    //@Binding var memory: Memory? //Database name.
     //@Binding var memory: Memory?
     @Environment(\.managedObjectContext) var context
     
@@ -44,6 +44,7 @@ struct SessionStats: View {
                     Text("Memorable Title")
                 }
                 
+                /*
                 if memory == nil{
                     
                     Section {
@@ -55,7 +56,7 @@ struct SessionStats: View {
                         
                         Text("Moment Happened")
                     }
-                }
+                } */
                 
                 Section {
                     
@@ -143,7 +144,7 @@ struct SessionStats: View {
     
     //------------FUNCTIONS----------------
     func saveData(){
-        
+        /*
         if memory != nil{
             
             memory?.title = title
@@ -165,7 +166,7 @@ struct SessionStats: View {
         catch{
             alertMsg = error.localizedDescription
             showAlert.toggle()
-        }
+        } */
     }
 }
 
