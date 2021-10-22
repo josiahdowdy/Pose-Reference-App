@@ -73,16 +73,20 @@ struct TimerView: View {
                                 timeObject.progressValue = 0.0
                                 timeObject.timeDouble = 0.0
                                 
+                                prefs.currentIndex += 1
+                                prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
+                                
                                 //Save user data pose count.
                                 currentMemory?.userPoseCount += 1
                                 userSessionPoseCount += 1
                                 title = "Harry Potter"
-                                
                                 saveData()
+                                
                                 //print("\nuserPoseCount: \(currentMemory?.userPoseCount)\n")
                                 //userData.count += 1
                                 //updateUserInfo()
                                // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
+                                //prefs.currentIndex += 1
                                 
                             } else { //else if done with last photo, end session.
                                 endSession()

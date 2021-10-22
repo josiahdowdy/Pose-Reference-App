@@ -361,7 +361,6 @@ struct HomeDetails_Previews: PreviewProvider {
 
 
 /*
- 
  func passInfo() {
  /*
   if (prefs.collection) {
