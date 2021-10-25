@@ -15,8 +15,13 @@ struct ContentView: View {
     //@EnvironmentObject var userEntity: UserEntity
     
     @Environment(\.managedObjectContext) var context //viewContext
-    @FetchRequest(entity: UserEntity.entity(), sortDescriptors: [])
-    var userObject: FetchedResults<UserEntity>
+    @FetchRequest(
+        entity: Memory.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Memory.content, ascending: true)]
+    ) var userData: FetchedResults<Memory>
+    
+    //@FetchRequest(entity: UserEntity.entity(), sortDescriptors: [])
+    //var userObject: FetchedResults<UserEntity>
         //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
     
     
@@ -28,8 +33,8 @@ struct ContentView: View {
     var body: some View {
         VStack{
             if !startSession {
-                HomeScreen(startSession: $startSession) //user: userObject, 
-                
+                //HomeScreen(startSession: $startSession) //user: userObject,
+                HomeScreen(userData: userData, startSession: $startSession)
                 
                  //   .frame(maxWidth: .infinity, maxHeight: .infinity)
                   //  .background(Color.blue)
@@ -37,7 +42,7 @@ struct ContentView: View {
                  
             }
             if startSession {
-                DrawingView(startSession: $startSession)
+                DrawingView(userData: userData, startSession: $startSession)
                    // .frame(maxWidth: .infinity, maxHeight: .infinity)
                     //.background(Color.green)
                  //   .transition(AnyTransition.move(edge: .trailing)).animation(.default)

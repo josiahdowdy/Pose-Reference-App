@@ -16,8 +16,10 @@ extension UserData {
         return NSFetchRequest<UserData>(entityName: "UserData")
     }
     
-    @NSManaged public var userPoseCount: Int16
-    @NSManaged public var userName: String?
+    @NSManaged public var count: Int16
+    @NSManaged public var date = Date()
+    @NSManaged public var sessionTimerLength: Int16
+    @NSManaged public var name: String?
     @NSManaged public var id: UUID?
     
     @NSManaged public var status: String

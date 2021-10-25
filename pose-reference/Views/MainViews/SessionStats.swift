@@ -5,6 +5,7 @@
 //  Created by josiah on 2021-10-19.
 //
 
+/*
 import SwiftUI
 
 struct SessionStats: View {
@@ -14,7 +15,7 @@ struct SessionStats: View {
     //@Binding var memory: Memory?
     @Environment(\.managedObjectContext) var context
     
-
+    
     
     @State var title = ""
     @State var content = ""
@@ -29,47 +30,34 @@ struct SessionStats: View {
     
     
     var body: some View {
-        Text("I HAVE THE FARTS!")
-        
         NavigationView {
-            
             List{
-                
                 Section {
-                    
                     TextField("Finally Saw Her....", text: $title)
-                    
                 } header: {
-                    
                     Text("Memorable Title")
                 }
                 
                 /*
-                if memory == nil{
-                    
-                    Section {
-                        
-                        DatePicker("", selection: $date)
-                            .labelsHidden()
-                        
-                    } header: {
-                        
-                        Text("Moment Happened")
-                    }
-                } */
+                 if memory == nil{
+                 
+                 Section {
+                 
+                 DatePicker("", selection: $date)
+                 .labelsHidden()
+                 
+                 } header: {
+                 
+                 Text("Moment Happened")
+                 }
+                 } */
                 
                 Section {
-                    
                     if isImage{
-                        
                         Button {
-                            
                             showImagePicker.toggle()
-                            
                         } label: {
-                            
                             ZStack{
-                                
                                 if imageData.isEmpty{
                                     Image(systemName: "plus")
                                         .font(.largeTitle)
@@ -80,7 +68,6 @@ struct SessionStats: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                 }
-                                
                             }
                             .frame(height: 200)
                             .cornerRadius(10)
@@ -92,7 +79,6 @@ struct SessionStats: View {
                     }
                     
                 } header: {
-                    
                     Toggle(isOn: $isImage) {
                         Text("Memorable Pic?")
                     }
@@ -100,10 +86,8 @@ struct SessionStats: View {
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 
                 Section {
-                    
                     TextEditor(text: $content)
                         .background(
-                            
                             Text("When I Met her....")
                                 .foregroundColor(.gray)
                                 .opacity(content == "" ? 0.7 : 0)
@@ -111,7 +95,6 @@ struct SessionStats: View {
                             
                             ,alignment: .leading
                         )
-                    
                 } header: {
                     
                     Text("Describe the Moment")
@@ -144,36 +127,38 @@ struct SessionStats: View {
     
     //------------FUNCTIONS----------------
     func saveData(){
+ */
         /*
-        if memory != nil{
-            
-            memory?.title = title
-            memory?.content = content
-            //memory?.image = imageData
-        }
-        else{
-            let memory = Memory(context: context)
-            memory.title = title
-            memory.timestamp = date
-            memory.content = content
-            //memory.image = imageData
-        }
-        
-        do{
-            try context.save()
-            close.toggle()
-        }
-        catch{
-            alertMsg = error.localizedDescription
-            showAlert.toggle()
-        } */
-    }
-}
-
+         if memory != nil{
+         
+         memory?.title = title
+         memory?.content = content
+         //memory?.image = imageData
+         }
+         else{
+         let memory = Memory(context: context)
+         memory.title = title
+         memory.timestamp = date
+         memory.content = content
+         //memory.image = imageData
+         }
+         
+         do{
+         try context.save()
+         close.toggle()
+         }
+         catch{
+         alertMsg = error.localizedDescription
+         showAlert.toggle()
+         } */
 /*
-struct SessionStats_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionStats()
     }
 }
 */
+/*
+ struct SessionStats_Previews: PreviewProvider {
+ static var previews: some View {
+ SessionStats()
+ }
+ }
+ */

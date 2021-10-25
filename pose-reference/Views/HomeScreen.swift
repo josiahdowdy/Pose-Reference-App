@@ -8,6 +8,7 @@ import struct Kingfisher.LocalFileImageDataProvider
 import CoreData
 import PhotosUI
 import LocalAuthentication
+import Accelerate
 
 //@EnvironmentObject var userObject: UserObject
 // @EnvironmentObject var userTest: UserEntity
@@ -42,7 +43,7 @@ struct HomeScreen: View {
 
     //@State var currentMemory: UserEntity?
     
-    //var user : UserEntity
+    var userData : FetchedResults<Memory>
     
     @State private var selectorPoseAmount = 3
     @State var poseAmount = ["5", "10", "20", "30"] //Image(systemName: "infinity")
@@ -91,6 +92,12 @@ struct HomeScreen: View {
                 }
             }
             //UserSessionStats()
+            //Text(userData.)
+            List {
+                ForEach(userData, id:\.self) { user in
+                    Text("\(user.count) - \(user.title ?? "Unknown")")
+                }
+            }
             
             VStack{
                 //Josiah
@@ -228,7 +235,7 @@ struct HomeScreen: View {
         timeObject.startTime = Date()
         timeObject.progressValue = 0.0
         timeObject.timeDouble = 0.0
-        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+        TimerView(timeObject: _timeObject, prefs: _prefs, userData: userData).startTimer()
     }
     
     func loadLocalPhotos(){

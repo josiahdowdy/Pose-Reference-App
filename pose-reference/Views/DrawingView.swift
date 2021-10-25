@@ -15,6 +15,8 @@ struct DrawingView: View {
 //    var userData: FetchedResults<UserData>
     //End UserData saving
     
+    var userData : FetchedResults<Memory>
+    
     @State var isImporting: Bool = false
     
     @State private var showingSheet = false
@@ -49,7 +51,7 @@ struct DrawingView: View {
                             if (prefs.numberTimer) {
                                 //print(timeObject.progressValue)
                             } else {
-                                TimerView(prefs: _prefs).padding(.bottom, 5)
+                                TimerView(prefs: _prefs, userData: userData).padding(.bottom, 5)
                             }
                         }
                         
@@ -60,7 +62,7 @@ struct DrawingView: View {
         
         Group {
             HStack(){
-                NavBar(prefs: _prefs, startSession: $startSession).padding(.bottom, 5)
+                NavBar(prefs: _prefs, userData: userData, startSession: $startSession).padding(.bottom, 5)
             }
             .padding(.bottom, 30)
         }
@@ -86,17 +88,19 @@ struct DrawingView: View {
  }
  */
 
-
+/*
 struct PhotoButtonsView_Previews: PreviewProvider {
     @State static var start = true
     
     static var previews: some View {
         Text("home view")
         //HomeView(prefs: _prefs, timeObject: _timeObject)
-        DrawingView(startSession: $start)
+        DrawingView(startSession: $start, userData: userData)
             .environmentObject(GlobalVariables())
             .environmentObject(TimerObject())
             .environmentObject(UserObject())
     }
+
 }
+ */
 

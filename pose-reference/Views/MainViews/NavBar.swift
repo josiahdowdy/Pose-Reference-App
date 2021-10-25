@@ -13,6 +13,8 @@ struct NavBar: View {
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     
+    var userData : FetchedResults<Memory>
+    
     @State private var showingSheet = false
     
     
@@ -77,7 +79,7 @@ struct NavBar: View {
                     //Image(systemName: skip ? "arrowshape.turn.up.right.fill" : "arrowshape.turn.up.right")//Text("Skip")
                 }.disabled(prefs.disableSkip)
                     .sheet(isPresented: $showingSheet) {  //$showingSheet
-                        HomeScreen(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah OCT16
+                        HomeScreen(prefs: _prefs, userData: userData, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah OCT16
                     }.keyboardShortcut(.rightArrow)
                     .buttonStyle(BorderlessButtonStyle())
                 //.buttonStyle(bounceButtonStyle())
@@ -88,12 +90,12 @@ struct NavBar: View {
                     if timeObject.isTimerRunning {
                         // stop UI updates
                         pause.toggle()
-                        TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
+                        TimerView(timeObject: _timeObject, prefs: _prefs, userData: userData).stopTimer()
                         Timer().invalidate() //stop the timer,
                     } else {
                         pause.toggle()
                         // start UI updates
-                        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+                        TimerView(timeObject: _timeObject, prefs: _prefs, userData: userData).startTimer()
                     }
                     timeObject.isTimerRunning.toggle()
                 }) {
@@ -193,7 +195,7 @@ struct NavBar: View {
         pause = false
         self.timeObject.endSessionBool.toggle()
         prefs.disableSkip.toggle()
-        TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
+        TimerView(timeObject: _timeObject, prefs: _prefs, userData: userData).stopTimer()
         prefs.startBoolean.toggle()
         prefs.randomImages.photoArray.removeAll()
         prefs.currentIndex = 0
