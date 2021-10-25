@@ -23,6 +23,7 @@ extension UserEntity {
     @NSManaged public var status: String
     @NSManaged public var dateString: String
     
+    /*
     var sessionStatus: Status {
         set {
             status = newValue.rawValue
@@ -31,15 +32,16 @@ extension UserEntity {
             Status(rawValue: status) ?? .drawing
         }
     }
-
+     */
 }
 
 extension UserEntity : Identifiable {
-
 }
 
+/*
 enum Status: String {
     case drawing = "Drawing"
     case studying = "Studying"
     case completed = "Completed"
 }
+ */

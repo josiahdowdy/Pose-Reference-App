@@ -9,6 +9,16 @@
         <attribute name="userName" optional="YES" attributeType="String"/>
         <attribute name="userPoseCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="TestEntity" representedClassName="TestEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="poseCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="UserData" representedClassName="UserData" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+        <attribute name="userPoseCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateString" optional="YES" attributeType="String"/>
@@ -20,6 +30,8 @@
     </entity>
     <elements>
         <element name="Memory" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="UserData" positionX="-54" positionY="72" width="128" height="89"/>
         <element name="UserEntity" positionX="-63" positionY="36" width="128" height="134"/>
+        <element name="TestEntity" positionX="-54" positionY="63" width="128" height="59"/>
     </elements>
 </model>

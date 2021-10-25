@@ -14,6 +14,7 @@ struct pose_referenceApp: App {
     @ObservedObject var userObject = UserObject()
 
     let persistenceController = PersistenceController.shared
+    @Environment(\.scenePhase) var scenePhase
     
     // Connecting App Delegate...
     //@NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -25,9 +26,26 @@ struct pose_referenceApp: App {
                 .environmentObject(prefs)
                 .environmentObject(timeObject)
                // .environmentObject(userObject)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext) //Storing data.
+                .environment(\.managedObjectContext, persistenceController.container.viewContext) //Shares data in WHOLE project.
+            //Storing data.
             
                 //.environmentObject(persistenceController.container.viewContext)
+            
+                //This saves the data when it is changed.
+                .onChange(of: scenePhase) { (newScenePhase) in
+                    switch newScenePhase {
+                        
+                    case .background:
+                        print("Scene is in background")
+                        persistenceController.save()
+                    case .inactive:
+                        print("Scene is inactive")
+                    case .active:
+                        print("Scene is active")
+                    @unknown default:
+                        print("Apple must have changed something")
+                    }
+                }
         }
         
         #if os(macOS)

@@ -9,41 +9,40 @@ import CoreData
 import PhotosUI
 import LocalAuthentication
 
-//import MobileCoreServices
-//import AuthenticationServices
+//@EnvironmentObject var userObject: UserObject
+// @EnvironmentObject var userTest: UserEntity
+
+//@State var wifiError = ""
+
+//@State private var showingSheet = false
+//@State private var showStats = false
+//@State private var showSettings = false
+
+//@Environment(\.managedObjectContext) private var viewContext
+//    @Environment(\.managedObjectContext) var context //viewContext
+//
+//    @FetchRequest(entity: UserEntity.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
+//    var resultObject: FetchedResults<UserEntity>
+//@ObservedObject var objectUserEntity = UserEntity()
+
+// Memories.....
+//@State var currentMemory: Memory?
+
+//@FetchRequest(entity: Memory.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memory.timestamp, ascending: false)], animation: .easeInOut) var results : FetchedResults<Memory>
+
+//@FetchRequest(fetchRequest: UserObject.getListItemFetchRequest()) var userObjects: FetchedResults<UserObject>
+
+//@Environment(\.managedObjectContext) var context
+//@Environment(\.managedObjectContext) var managedObjectContext
 
 struct HomeScreen: View {
     //@Environment(\.presentationMode) var presentationMode //This was on in 1st draft.
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
-    //@EnvironmentObject var userObject: UserObject
-    //@EnvironmentObject var memory: Memory
-    //@EnvironmentObject var store: CalendarStore
-    @EnvironmentObject var user: UserEntity
 
-
+    //@State var currentMemory: UserEntity?
     
-    
-    //@Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.managedObjectContext) var viewContext
-    
-    @FetchRequest(entity: UserEntity.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
-    var entityData: FetchedResults<UserEntity>
-    
-  
-    
-    //@ObservedObject var objectUserEntity = UserEntity()
-    
-    
-    // Memories.....
-    //@State var currentMemory: Memory?
-    
-    //@FetchRequest(entity: Memory.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memory.timestamp, ascending: false)], animation: .easeInOut) var results : FetchedResults<Memory>
-    
-    //@FetchRequest(fetchRequest: UserObject.getListItemFetchRequest()) var userObjects: FetchedResults<UserObject>
-    
-    //@Environment(\.managedObjectContext) var context
-    //@Environment(\.managedObjectContext) var managedObjectContext
+    //var user : UserEntity
     
     @State private var selectorPoseAmount = 3
     @State var poseAmount = ["5", "10", "20", "30"] //Image(systemName: "infinity")
@@ -58,11 +57,7 @@ struct HomeScreen: View {
     @State var isRandom: Bool = true
     @State var name = ""
     @State var error = ""
-    //@State var wifiError = ""
-    
-    //@State private var showingSheet = false
-    //@State private var showStats = false
-    //@State private var showSettings = false
+
     @State private var sort: Int = 0
     
     @State private var totalImagesImported: Int = 0
@@ -95,22 +90,34 @@ struct HomeScreen: View {
                     HomeView()
                 }
             }
+            //UserSessionStats()
             
-            //Text(hope.posesToday)
+            VStack{
+                //Josiah
+                //This is where the list of data is opened.
+                
+//                ForEach(resultObject){memory in
+//                    CardView(userEntity: memory)
+//                        .contextMenu {
+//                            Button("Delete"){
+//                                 context.delete(memory)
+//                                 try? context.save()
+//                            }
+//                            
+//                            Button("Edit"){
+//                                currentMemory = memory
+//                                //   createMemory.toggle()
+//                            }
+//                        }
+//                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
             
-            //List(userEntity, id: \.self)
-            //print("userEntity: \(userEntity, id: \.self)")
-            
-            
-            UserSessionStats()
-            
-            
-            
+    
             //SessionStats(close: $openSessionStats, memory: $currentMemory) //Database
             Spacer().frame(maxWidth: .infinity) //Attach bar to bottom
-            
-            //Text(newSession.posesToday)
-            
+ 
             //Text("Poses drawn today: \(currentMemory?.userPoseCount)")
            // Text("\nuserPoseCount: \(memory.userPoseCount)\n")
             
@@ -170,8 +177,8 @@ struct HomeScreen: View {
     }
     
     func updateData() {
-        let currentSession = UserEntity(context: viewContext)
-        currentSession.posesToday = Int16(prefs.userSessionPoseCount)
+        //let currentSession = UserEntity(context: context) //viewContext
+        //currentSession.posesToday = Int16(prefs.userSessionPoseCount)
     }
     
     public func updateDetails() {
@@ -179,12 +186,13 @@ struct HomeScreen: View {
         
     }
     
+    /*
     func saveData() {
         //Create the id for the session. Each session has its own row in the data table.
         //hope.posesToday = 10
         //print(prefs.userSessionPoseCount)
         
-        let newSession = UserEntity(context: viewContext)
+        let userObject = UserEntity(context: context) //viewContext
         
         //prefs.sessionFirstStarted.toggle()
         
@@ -192,27 +200,27 @@ struct HomeScreen: View {
         //
         
         //if (!prefs.sessionFirstStarted) {
-            newSession.posePhotoLength = Int16(prefs.time[prefs.selectorIndexTime])
+        userObject.posePhotoLength = Int16(prefs.time[prefs.selectorIndexTime])
             let myFormatter = DateFormatter()
             myFormatter.timeStyle = .short
             let dateString = myFormatter.string(from: Date())
             //newSession.id = UUID()
-            newSession.dateString = dateString
+        userObject.dateString = dateString
             //prefs.sessionFirstStarted.toggle()
             
         //} else {
             //just update the pose count
-            newSession.posesToday = Int16(prefs.userSessionPoseCount)
+        userObject.posesToday = Int16(prefs.userSessionPoseCount)
         //}
 
         //Save the new session.
         do {
-            try viewContext.save()
+            try context.save()//viewContext.save()
             print("\n New session saved.\n")
         } catch {
             print(error.localizedDescription)
         }
-    }
+    } */
     
     //Don't confuse with start timer in Timer.swift
     private func startTimer() {
@@ -239,31 +247,11 @@ struct HomeScreen: View {
             prefs.disableSkip = false
             //self.presentationMode.wrappedValue.dismiss() //Josiah Oct15 //Hide sheet.
             timeObject.timeLength = Double(prefs.time[prefs.selectorIndexTime]) //Double(prefs.time[prefs.selectorIndexTime])!
-            prefs.sessionFirstStarted = false
-             //<#T##self: UserSessionStats##UserSessionStats#>
-                //.environmentObject(prefs)
-            /*
-            //Create the id for the session. Each session has its own row in the data table.
-            let newSession = UserEntity(context: viewContext)
-            newSession.posePhotoLength = Int16(prefs.time[prefs.selectorIndexTime])
+            //prefs.sessionFirstStarted = false
             
-            let myFormatter = DateFormatter()
-            myFormatter.timeStyle = .short
-            let dateString = myFormatter.string(from: Date())
-            
-            newSession.dateString = dateString
-            //newSession.date = "hi"//dateString //.formatted(date: .abbreviated, time: .shortened)
-            //newSession.posesToday = 
-            
-            //Save the new session.
-            do {
-                try viewContext.save()
-                print("\n New session saved.\n")
-            } catch {
-                print(error.localizedDescription)
-            } */
-            //UserSessionStats().newSession()
-            saveData()
+          
+            //saveData()
+            //TimerView().newUserInfo()
             startTimer() //Do not start timer if there is no wifi.
             self.startSession = true //Tells the view to switch and start.
         }
@@ -477,4 +465,28 @@ struct HomeDetails_Previews: PreviewProvider {
  //timeObject.timeLength = Double(time[selectorIndexTime])!
  }
  
+ 
+ //<#T##self: UserSessionStats##UserSessionStats#>
+ //.environmentObject(prefs)
+ /*
+  //Create the id for the session. Each session has its own row in the data table.
+  let newSession = UserEntity(context: viewContext)
+  newSession.posePhotoLength = Int16(prefs.time[prefs.selectorIndexTime])
+  
+  let myFormatter = DateFormatter()
+  myFormatter.timeStyle = .short
+  let dateString = myFormatter.string(from: Date())
+  
+  newSession.dateString = dateString
+  //newSession.date = "hi"//dateString //.formatted(date: .abbreviated, time: .shortened)
+  //newSession.posesToday =
+  
+  //Save the new session.
+  do {
+  try viewContext.save()
+  print("\n New session saved.\n")
+  } catch {
+  print(error.localizedDescription)
+  } */
+ //UserSessionStats().newSession()
  */

@@ -3,16 +3,16 @@ import UniformTypeIdentifiers
 import SwiftUI
 import CoreData
 
-struct PhotoButtonsView: View {
+struct DrawingView: View {
     //@Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var userObject: UserObject
     
     //User Data saving
-    //@Environment(\.managedObjectContext) private var viewContext //UserData
-    //@FetchRequest(entity: UserData.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
-    //var userData: FetchedResults<UserData>
+//    @Environment(\.managedObjectContext) private var viewContext //UserData
+//    @FetchRequest(entity: UserData.entity(), sortDescriptors: [], predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)) //
+//    var userData: FetchedResults<UserData>
     //End UserData saving
     
     @State var isImporting: Bool = false
@@ -93,7 +93,7 @@ struct PhotoButtonsView_Previews: PreviewProvider {
     static var previews: some View {
         Text("home view")
         //HomeView(prefs: _prefs, timeObject: _timeObject)
-        PhotoButtonsView(startSession: $start)
+        DrawingView(startSession: $start)
             .environmentObject(GlobalVariables())
             .environmentObject(TimerObject())
             .environmentObject(UserObject())

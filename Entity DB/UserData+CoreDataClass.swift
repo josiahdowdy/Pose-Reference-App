@@ -2,10 +2,10 @@
 //  UserData+CoreDataClass.swift
 //  pose-reference
 //
-//  Created by jo on 2020-12-23.
+//  Created by josiah on 2021-10-22.
 //
 //
-/*
+
 import Foundation
 import CoreData
 
@@ -13,4 +13,3 @@ import CoreData
 public class UserData: NSManagedObject {
 
 }
-*/

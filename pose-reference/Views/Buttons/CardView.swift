@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CardView: View {
     
-    @State var memory: Memory
+    @State var userEntity: UserEntity
     @Environment(\.colorScheme) var scheme
     
     var body: some View {
@@ -19,13 +19,21 @@ struct CardView: View {
             
             VStack(alignment: .leading,spacing: 10){
                 
+                Text(userEntity.date ?? Date(),style: .date)
+                Text("Pose Count: \(userEntity.posesToday)")
+                
+                Text(userEntity.dateString) // ?? ""
+                    .font(.title3)
+                    .fontWeight(.bold)
+                
+                /*
                 Text(memory.timestamp ?? Date(),style: .date)
                 Text("Pose Count: \(memory.userPoseCount)")
 
                 Text(memory.title ?? "")
                     .font(.title3)
                     .fontWeight(.bold)
-                
+                */
                 
             }
             .foregroundColor(.primary)

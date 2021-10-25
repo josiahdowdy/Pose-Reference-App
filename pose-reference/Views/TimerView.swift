@@ -8,39 +8,41 @@ import SwiftUI
 //import CoreData
 //import Foundation
 
-struct TimerView: View {
+struct TimerView: View{
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
+    //@EnvironmentObject var userTest: UserEntity
+    
     //@State var currentMemory: Memory?
     
     //@EnvironmentObject var userObject: UserObject
     
     //SAVE DATA...
-    //@Environment(\.managedObjectContext) var context
+    @Environment(\.managedObjectContext) var context
+    /*
     @Environment(\.managedObjectContext) private var viewContext
-    
-    @FetchRequest(entity: UserEntity.entity(), sortDescriptors: [])
-    var userEntity: FetchedResults<UserEntity>
+    @FetchRequest(entity: UserEntity.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
+    var userEntity: FetchedResults<UserEntity> */
     
     //@State var memory: Memory?
+    @State var userInfo: UserEntity?
     @State var date: Date = Date()
     //@State var userSessionPoseCount : Int16 = 0
     @State var alertMsg = ""
     @State var showAlert = false
-    @State var title = ""
+    @State var posesCount = 0
+    
 
     ///User Data saving
-    //@Environment(\.managedObjectContext) private var viewContext //UserData
-    //@FetchRequest(entity: UserData.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
-    //var userData: FetchedResults<UserData>
+    //@Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: UserData.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
+    var userData: FetchedResults<UserEntity> //  UserData !!!!!!!!!!!!!!!!!!!!!!!!!!!!!look here
     
     @State private var startSession = true
     @State private var showNavBar = true
     //@State private var startSession = true
     
     //@Binding var startSession: Bool
-
-
     //-------------END VARIABLES------------------------------------------------------------
     
     
@@ -85,16 +87,19 @@ struct TimerView: View {
                                 //currentMemory?.userPoseCount += 1
                                 prefs.userSessionPoseCount += 1
                                 
-                                title = "Harry Potter"
+                                //title = "Harry Potter"
+                                posesCount += 1
+                                updateDataJosiah()
                                 
                                 //I could save the data here. But better to save the data when the session finishes,
                                 //or when the user puts the app to the background or closes it.
                                 //I just want to save it to local data.
                                 //saveLocalData()
-                                saveDataUpdate() //I could
-                                HomeScreen(startSession: $startSession).saveData()
+                                //saveDataUpdate() //I could
+                                //HomeScreen(startSession: $startSession).saveData()
                                
                                 
+                                //updateUserInfo() //Josiah Poo butt
                                 
                                 //print("\nuserPoseCount: \(currentMemory?.userPoseCount)\n")
                                 //userData.count += 1
@@ -146,6 +151,37 @@ struct TimerView: View {
     
     //-------------------FUNCTIONS-----------------------------------------------
     //Save the data to the ArtAthlete database.
+    func updateDataJosiah() {
+        if userInfo != nil{
+            print("\nEXISTING USER\n")
+            userInfo?.posesToday = Int16(posesCount)
+            userInfo?.posePhotoLength = Int16(exactly: prefs.time[prefs.selectorIndexTime])!
+            //userInfo? = content
+            //userInfo?.image = imageData
+            //userInfo?.dateString = prefs.userSessionPoseCount
+            
+        }
+        else{
+            print("\nNEW USER\n")
+            let userInfo = UserEntity(context: context)
+            userInfo.posesToday = Int16(posesCount)
+            //userInfo.timestamp = date
+            //userInfo.userPoseCount = prefs.userSessionPoseCount
+             //memory.content = content
+             //memory.image = imageData
+             
+        }
+        
+        do{
+            try context.save()
+            //close.toggle()
+        }
+        catch{
+            alertMsg = error.localizedDescription
+            showAlert.toggle()
+        }
+    }
+    
     func saveDataUpdate(){
         //newSession.posesToday = prefs.userSessionPoseCount
         //let sess = UserEntity.self
@@ -154,10 +190,10 @@ struct TimerView: View {
         //Save the data.
         
         //let sess = UserEntity.fetchRequest()
-        let currSession = UserEntity(context: viewContext)
-        currSession.posesToday = Int16(prefs.userSessionPoseCount)
+        //let currSession = UserEntity(context: viewContext)
+        //currSession.posesToday = Int16(prefs.userSessionPoseCount)
         
-        
+        /*
         do {
             try viewContext.save()
             print("\n Updated session saved.\n")
@@ -168,56 +204,31 @@ struct TimerView: View {
         print("\ncurrSession.id: \(currSession.id).\n")
         print("\ncurrSession.dateString: \(currSession.dateString).\n")
         print("\ncurrSession.posesToday: \(currSession.posesToday).\n")
-        
+        */
         //@State var startSessionA = false
         
         //HomeScreen(startSession: $startSessionA).saveData()
-        /*
-        if memory != nil{
-            memory?.title = title
-            //memory?.sessionTimeLength = Int16(prefs.time[prefs.selectorIndexTime])!
-            //memory?.content = content
-            //memory?.image = imageData
-            memory?.userPoseCount = userSessionPoseCount
-            
-        }
-        else{
-            /*
-            let memory = Memory(context: context)
-            memory.title = title
-            memory.timestamp = date
-            memory.userPoseCount = userSessionPoseCount
-            //memory.content = content
-            //memory.image = imageData
-             */
-        }
         
-        do{
-            try context.save()
-            //close.toggle()
-        }
-        catch{
-            alertMsg = error.localizedDescription
-            showAlert.toggle()
-        }*/
+       
     }
     
     
     ///First time create info
-    /*
+    
      func newUserInfo(){
-     let newUserData = UserData(context: viewContext)
-     newUserData.userPoseCount = Int16(self.userPoseCount)
-     newUserData.id = UUID()
+         let newUserData = UserData(context: context)
+         //newUserData.userPoseCount = Int16(prefs.userSessionPoseCount)
+         newUserData.id = UUID()
      
+         print(newUserData.id as Any)
      }
-     */
+     
     
     //Update data in future.
     func updateUserInfo(){
-        //  let newUserData = UserData(context: viewContext)
-        //newUserData.userPoseCount = self.userPoseCount
-        //newUserData.id = UUID()
+        let newUserData = UserData(context: context)
+        newUserData.userPoseCount = Int16(prefs.userSessionPoseCount)
+        newUserData.id = UUID()
         
     }
     
