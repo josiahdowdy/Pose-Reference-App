@@ -90,12 +90,12 @@ struct NavBar: View {
                     if timeObject.isTimerRunning {
                         // stop UI updates
                         pause.toggle()
-                        TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
+                        TimerView(timeObject: _timeObject, prefs: _prefs, startSession: $startSession).stopTimer()
                         Timer().invalidate() //stop the timer,
                     } else {
                         pause.toggle()
                         // start UI updates
-                        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+                        TimerView(timeObject: _timeObject, prefs: _prefs, startSession: $startSession).startTimer()
                     }
                     timeObject.isTimerRunning.toggle()
                 }) {
@@ -149,7 +149,7 @@ struct NavBar: View {
                 Button(action: {
                     print("quit")
                     endSession()
-                    self.startSession = false
+                    //self.startSession = false
                     //ContentView()
                 }) {
                     Image(systemName: "multiply.circle.fill") //Text("Grayscale")
@@ -191,11 +191,11 @@ struct NavBar: View {
         //prefs.showMainMenu.toggle()
         
         //changeTimer = false
-        
+        self.startSession = false
         pause = false
         self.timeObject.endSessionBool.toggle()
         prefs.disableSkip.toggle()
-        TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
+        TimerView(timeObject: _timeObject, prefs: _prefs, startSession: $startSession).stopTimer()
         prefs.startBoolean.toggle()
         prefs.randomImages.photoArray.removeAll()
         prefs.currentIndex = 0
@@ -206,5 +206,6 @@ struct NavBar: View {
         //prefs.collection = false
         
         prefs.arrayOfURLStrings.removeAll()
+        
     }
 }

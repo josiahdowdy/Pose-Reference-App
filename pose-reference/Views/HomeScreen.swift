@@ -91,6 +91,10 @@ struct HomeScreen: View {
     @FetchRequest(
         entity: UserData.entity(), sortDescriptors: []
     ) var testData : FetchedResults<UserData>
+    
+//    @FetchRequest(
+//        entity: UserData.entity(), sortDescriptors: [NSSortDescriptor(key: "momentTimeStamp", ascending: false)]
+//    ) var mostRecentSession : FetchedResults<UserData>
     //-------------END VARIABLES------------------------------------------------------------
     
 
@@ -121,12 +125,13 @@ struct HomeScreen: View {
 //          setupDate()
             
             Button(action: {
-                testData[0].userName = "bob"
+               // testData[0].userName = "bob"
                 //testData
                 let newRow = UserData(context: context)
-                newRow.userName = "henry"
+                newRow.userName = ("henry".appending(String(testData[0].countPoses))) //
+                newRow.countPoses = 10
             }, label: {
-                Text("set name as bob")
+                Text("New row.")
             })
             
             Button(action: {
@@ -256,7 +261,7 @@ struct HomeScreen: View {
         timeObject.startTime = Date()
         timeObject.progressValue = 0.0
         timeObject.timeDouble = 0.0
-        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+        TimerView(timeObject: _timeObject, prefs: _prefs, startSession: $startSession).startTimer()
     }
     
     func loadLocalPhotos(){

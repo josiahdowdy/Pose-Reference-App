@@ -25,9 +25,7 @@ struct TimerView: View{
     )
     var testData : FetchedResults<UserData>
     
-   
-    
-    
+    @Binding var startSession: Bool
     /*
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(entity: UserEntity.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
@@ -47,7 +45,7 @@ struct TimerView: View{
     //@FetchRequest(entity: UserData.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
     //var userData: FetchedResults<UserEntity> //  UserData !!!!!!!!!!!!!!!!!!!!!!!!!!!!!look here
     
-    @State private var startSession = true
+//    @State private var startSession = true
     @State private var showNavBar = true
     //@State private var startSession = true
     
@@ -61,12 +59,12 @@ struct TimerView: View{
             ProgressBar(value: $timeObject.progressValue)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
                     print("Moving to the background!")
-                    TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
+                    TimerView(timeObject: _timeObject, prefs: _prefs, startSession: $startSession).stopTimer()
                     Timer().invalidate() //stop the timer,
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                     print("Moving back to the foreground!")
-                    TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+                    TimerView(timeObject: _timeObject, prefs: _prefs, startSession: $startSession).startTimer()
                 }
                 .frame(height: 10)
             
@@ -163,12 +161,15 @@ struct TimerView: View{
     
     
     func endSession() {
+        self.startSession = false
+ 
         prefs.arrayOfURLStrings.removeAll()
         //timeObject.timeDouble = 0.0
         //timeObject.progressValue = 0.0
         timeObject.isTimerRunning = false
         timeObject.endSessionBool.toggle()
         prefs.disableSkip.toggle()
+        
         NavBar(timeObject: _timeObject, prefs: _prefs, testData: testData, startSession: $startSession).endSession()
     }
     

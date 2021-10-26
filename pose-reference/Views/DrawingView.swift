@@ -51,7 +51,7 @@ struct DrawingView: View {
                             if (prefs.numberTimer) {
                                 //print(timeObject.progressValue)
                             } else {
-                                TimerView(prefs: _prefs).padding(.bottom, 5)
+                                TimerView(prefs: _prefs, startSession: $startSession).padding(.bottom, 5)
                             }
                         }
                         
