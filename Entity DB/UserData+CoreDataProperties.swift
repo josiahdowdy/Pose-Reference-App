@@ -16,23 +16,24 @@ extension UserData {
         return NSFetchRequest<UserData>(entityName: "UserData")
     }
     
-    @NSManaged public var count: Int16
-    @NSManaged public var date = Date()
-    @NSManaged public var sessionTimerLength: Int16
-    @NSManaged public var name: String?
+    
+    @NSManaged public var date: Date?
+    //@NSManaged public var sessionTimerLength: Int16?
+    @NSManaged public var userName: String?
     @NSManaged public var id: UUID?
+    @NSManaged public var countPoses: Int16
     
-    @NSManaged public var status: String
+   // @NSManaged public var status: String
     
-    
-    var orderStatus: artStatus {
-        set {
-            status = newValue.rawValue
-        }
-        get {
-            artStatus(rawValue: status) ?? .pending
-        }
-    }
+//
+//    var orderStatus: artStatus {
+//        set {
+//            status = newValue.rawValue
+//        }
+//        get {
+//            artStatus(rawValue: status) ?? .pending
+//        }
+//    }
     
     
 }
@@ -42,9 +43,9 @@ extension UserData : Identifiable {
 }
 
 
-enum artStatus: String {
-    case pending = "Pending"
-    case preparing = "Preparing"
-    case completed = "Completed"
-}
-
+//enum artStatus: String {
+//    case pending = "Pending"
+//    case preparing = "Preparing"
+//    case completed = "Completed"
+//}
+//

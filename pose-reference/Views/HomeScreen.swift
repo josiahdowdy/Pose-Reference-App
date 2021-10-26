@@ -40,10 +40,19 @@ struct HomeScreen: View {
     //@Environment(\.presentationMode) var presentationMode //This was on in 1st draft.
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
-
+    
     //@State var currentMemory: UserEntity?
     
-    var userData : FetchedResults<Memory>
+    //var userData : FetchedResults<Memory>
+    @Environment(\.managedObjectContext) var context
+
+    
+    
+    @FetchRequest(
+        entity: Category.entity(), sortDescriptors: []
+    ) var categories : FetchedResults<Category>
+    
+    
     
     @State private var selectorPoseAmount = 3
     @State var poseAmount = ["5", "10", "20", "30"] //Image(systemName: "infinity")
@@ -71,12 +80,17 @@ struct HomeScreen: View {
     //Import photo files.
     @State var importFiles = false
     @State var files = [URL]()
+    @State var aDate = "date"
     
     @State var openSessionStats = false
 
     @Binding var startSession: Bool
     
     @State private var checked = false
+    
+    @FetchRequest(
+        entity: UserData.entity(), sortDescriptors: []
+    ) var testData : FetchedResults<UserData>
     //-------------END VARIABLES------------------------------------------------------------
     
 
@@ -91,77 +105,45 @@ struct HomeScreen: View {
                     HomeView()
                 }
             }
-            //UserSessionStats()
-            //Text(userData.)
+            
+            //Text("Poses drawn: \(testData[0].countPoses)")
+            //Text("Total sessions (rows in DB): \(testData.count)")
+            
+            //Text("Last Row in DB: \(testData[endOfDataReached])")
+            
+            
+            Button(action: {
+                testData[0].countPoses += 1
+            }, label: {
+                Text("Increase poses")
+            })
+            
+//          setupDate()
+            
+            Button(action: {
+                testData[0].userName = "bob"
+                //testData
+                let newRow = UserData(context: context)
+                newRow.userName = "henry"
+            }, label: {
+                Text("set name as bob")
+            })
+            
+            Button(action: {
+                PersistenceController.shared.save() //Save data.
+            }, label: {
+                Text("Save Data")
+            })
+            
             List {
-                ForEach(userData, id:\.self) { user in
-                    Text("\(user.count) - \(user.title ?? "Unknown")")
+                ForEach(testData, id:\.self) { user in
+                    //let mydate = 1 // convertDateFormatter(date: String(user.date))
+                    Text("\(aDate) - \(user.countPoses) - \(user.userName ?? "unknown")") //\(mydate) -
                 }
             }
-            
-            VStack{
-                //Josiah
-                //This is where the list of data is opened.
-                
-//                ForEach(resultObject){memory in
-//                    CardView(userEntity: memory)
-//                        .contextMenu {
-//                            Button("Delete"){
-//                                 context.delete(memory)
-//                                 try? context.save()
-//                            }
-//                            
-//                            Button("Edit"){
-//                                currentMemory = memory
-//                                //   createMemory.toggle()
-//                            }
-//                        }
-//                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            
-    
-            //SessionStats(close: $openSessionStats, memory: $currentMemory) //Database
+
             Spacer().frame(maxWidth: .infinity) //Attach bar to bottom
- 
-            //Text("Poses drawn today: \(currentMemory?.userPoseCount)")
-           // Text("\nuserPoseCount: \(memory.userPoseCount)\n")
-            
-            //UserObjectView(userObject: userObjects)
-            /*
-            List {
-                ForEach(userObjects, id: \.self) { item in
-                    NavigationLink(destination: UserObjectView(userObject: item)) {
-                        Text("\(item.name) - \(item.posesDrawn)")
-                    }
-                }
-                //.onDelete(perform: deleteItem)
-                //.onMove(perform: moveItem)
-            } */
-            
-            /*
-            VStack{
-                //Josiah
-                //This is where the list of data is opened.
-                ForEach(results){memory in
-                    CardView(memory: memory)
-                        .contextMenu {
-                            Button("Delete"){
-                               // context.delete(memory)
-                               // try? context.save()
-                            }
-                            
-                            Button("Edit"){
-                                currentMemory = memory
-                             //   createMemory.toggle()
-                            }
-                        }
-                }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-            */
+
             toggleSwitch()
             timePickerView()
             
@@ -188,9 +170,48 @@ struct HomeScreen: View {
         //currentSession.posesToday = Int16(prefs.userSessionPoseCount)
     }
     
+    func setupDate() {
+        //let myDate = Date().formatted(.dateTime)
+        testData[0].date = Date()
+        //
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        //
+        //            guard let testData[0].date = dateFormatter.date(from: "2018-05-27T00:00:00.000Z")
+        //            else {
+        //                print("fail")
+        //            }
+        //
+        aDate = dateFormatter.string(from: testData[0].date!)
+        //
+        //
+        // testData[0].date = DateFormatter()//.formatted(.dateTime)//myDate
+        
+    }
+    
     public func updateDetails() {
         print("UPDATE DETAILS.")
         
+    }
+    
+    func convertDateFormatter(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"//this your string date format
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        dateFormatter.locale = Locale(identifier: "your_loc_id")
+        let convertedDate = dateFormatter.date(from: date)
+        
+        guard dateFormatter.date(from: date) != nil else {
+            assert(false, "no date from string")
+            return ""
+        }
+        
+        dateFormatter.dateFormat = "yyyy MMM HH:mm EEEE"///this is what you want to convert format
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        let timeStamp = dateFormatter.string(from: convertedDate!)
+        
+        return timeStamp
     }
     
     /*
@@ -235,7 +256,7 @@ struct HomeScreen: View {
         timeObject.startTime = Date()
         timeObject.progressValue = 0.0
         timeObject.timeDouble = 0.0
-        TimerView(timeObject: _timeObject, prefs: _prefs, userData: userData).startTimer()
+        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
     }
     
     func loadLocalPhotos(){
@@ -496,4 +517,71 @@ struct HomeDetails_Previews: PreviewProvider {
   print(error.localizedDescription)
   } */
  //UserSessionStats().newSession()
+ */
+
+
+/*
+ 
+ VStack{
+ //Josiah
+ //This is where the list of data is opened.
+ 
+ //                ForEach(resultObject){memory in
+ //                    CardView(userEntity: memory)
+ //                        .contextMenu {
+ //                            Button("Delete"){
+ //                                 context.delete(memory)
+ //                                 try? context.save()
+ //                            }
+ //
+ //                            Button("Edit"){
+ //                                currentMemory = memory
+ //                                //   createMemory.toggle()
+ //                            }
+ //                        }
+ //                }
+ }
+ .frame(maxWidth: .infinity, maxHeight: .infinity)
+ .padding()
+ 
+ 
+ //SessionStats(close: $openSessionStats, memory: $currentMemory) //Database
+ */
+
+//Text("Poses drawn today: \(currentMemory?.userPoseCount)")
+// Text("\nuserPoseCount: \(memory.userPoseCount)\n")
+
+//UserObjectView(userObject: userObjects)
+/*
+ List {
+ ForEach(userObjects, id: \.self) { item in
+ NavigationLink(destination: UserObjectView(userObject: item)) {
+ Text("\(item.name) - \(item.posesDrawn)")
+ }
+ }
+ //.onDelete(perform: deleteItem)
+ //.onMove(perform: moveItem)
+ } */
+
+/*
+ VStack{
+ //Josiah
+ //This is where the list of data is opened.
+ ForEach(results){memory in
+ CardView(memory: memory)
+ .contextMenu {
+ Button("Delete"){
+ // context.delete(memory)
+ // try? context.save()
+ }
+ 
+ Button("Edit"){
+ currentMemory = memory
+ //   createMemory.toggle()
+ }
+ }
+ }
+ }
+ .frame(maxWidth: .infinity, maxHeight: .infinity)
+ .padding()
  */

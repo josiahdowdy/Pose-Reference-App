@@ -11,7 +11,7 @@ import SwiftUI
 struct pose_referenceApp: App {
     @ObservedObject var prefs = GlobalVariables()
     @ObservedObject var timeObject = TimerObject()
-    @ObservedObject var userObject = UserObject()
+    //@ObservedObject var userObject = UserObject()
 
     let persistenceController = PersistenceController.shared
     @Environment(\.scenePhase) var scenePhase

@@ -15,7 +15,7 @@ struct DrawingView: View {
 //    var userData: FetchedResults<UserData>
     //End UserData saving
     
-    var userData : FetchedResults<Memory>
+    var testData : FetchedResults<UserData>
     
     @State var isImporting: Bool = false
     
@@ -51,7 +51,7 @@ struct DrawingView: View {
                             if (prefs.numberTimer) {
                                 //print(timeObject.progressValue)
                             } else {
-                                TimerView(prefs: _prefs, userData: userData).padding(.bottom, 5)
+                                TimerView(prefs: _prefs).padding(.bottom, 5)
                             }
                         }
                         
@@ -62,7 +62,7 @@ struct DrawingView: View {
         
         Group {
             HStack(){
-                NavBar(prefs: _prefs, userData: userData, startSession: $startSession).padding(.bottom, 5)
+                NavBar(prefs: _prefs, testData: testData, startSession: $startSession).padding(.bottom, 5)
             }
             .padding(.bottom, 30)
         }

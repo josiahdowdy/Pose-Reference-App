@@ -19,14 +19,7 @@ struct TimerView: View{
     
     //SAVE DATA...
     @Environment(\.managedObjectContext) var context
-    @FetchRequest(
-        entity: UserData.entity(), sortDescriptors: []
-        //sortDescriptors: [NSSortDescriptor(keyPath: \UserData.countPoses, ascending: true)]
-    )
-    var testData : FetchedResults<UserData>
-    
-   
-    
+    var userData : FetchedResults<Memory>
     
     /*
     @Environment(\.managedObjectContext) private var viewContext
@@ -34,7 +27,7 @@ struct TimerView: View{
     var userEntity: FetchedResults<UserEntity> */
     
     //@State var memory: Memory?
-    //@State var userInfo: UserEntity?
+    @State var userInfo: UserEntity?
     @State var date: Date = Date()
     //@State var userSessionPoseCount : Int16 = 0
     @State var alertMsg = ""
@@ -61,12 +54,12 @@ struct TimerView: View{
             ProgressBar(value: $timeObject.progressValue)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
                     print("Moving to the background!")
-                    TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
+                    TimerView(timeObject: _timeObject, prefs: _prefs, userData: userData).stopTimer()
                     Timer().invalidate() //stop the timer,
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                     print("Moving back to the foreground!")
-                    TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+                    TimerView(timeObject: _timeObject, prefs: _prefs, userData: userData).startTimer()
                 }
                 .frame(height: 10)
             
@@ -91,12 +84,47 @@ struct TimerView: View{
                                 
                                 prefs.currentIndex += 1
                                 prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
-
-                                posesCount += 1
-                                testData[0].countPoses += 1
-
-                                updateSession()
                                 
+                                //Save user data pose count.
+                                //currentMemory?.userPoseCount += 1
+                                
+                                //let newUserData = UserData(context: context)
+                                //prefs.userSessionPoseCount += 1
+                                if (posesCount == 0) {
+                                    let test = UserData(context: context)
+                                    newSession()
+                                }
+                                
+                                if (posesCount > 0) {
+                                    updateData()
+                                    test.count += 1
+                                    
+                                }
+                                //title = "Harry Potter"
+                                posesCount += 1
+                                
+                                
+                                //userData.title = "hi"
+                                
+                                //userData.count = posesCount
+                                
+                                
+                                //I could save the data here. But better to save the data when the session finishes,
+                                //or when the user puts the app to the background or closes it.
+                                //I just want to save it to local data.
+                                //saveLocalData()
+                                //saveDataUpdate() //I could
+                                //HomeScreen(startSession: $startSession).saveData()
+                               
+                                
+                                //updateUserInfo() //Josiah Poo butt
+                                
+                                //print("\nuserPoseCount: \(currentMemory?.userPoseCount)\n")
+                                //userData.count += 1
+                                //updateUserInfo()
+                               // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
+                                //prefs.currentIndex += 1
+                            
                             } else { //else if done with last photo, end session.
                                 endSession()
                             }
@@ -118,50 +146,6 @@ struct TimerView: View{
     
     
     //-------------------FUNCTIONS-----------------------------------------------
-    //Update data in future.
-    func updateSession(){
-        do{
-            try context.save()
-            //close.toggle()
-        }
-        catch{
-            alertMsg = error.localizedDescription
-            showAlert.toggle()
-        }
-        
-        
-        //testData : UserData
-       // let test = UserData(context: context)
-        
-//        if (testData.countPoses == 0) {
-//            testData.date = Date()
-//        }
-//        let test = testData()
-        //test.username = "poop"
-        //test.countPoses = 33
-        
-        //testData.countPoses += 1
-//        testData.username = "FUCK YEAH"
-        
-       // let updateCount = userData.count  // = UserData(context: context)
-        //newUserData.count = Int16(prefs.userSessionPoseCount)
-       // newUserData.id = UUID()
-        
-    }
-    
-    func newSession(){
-        let test = UserData(context: context)
-        test.countPoses = 4
-        
-        //let newUserData = UserData(context: context)
-        //newUserData.userPoseCount = Int16(prefs.userSessionPoseCount)
-        //newUserData.id = UUID()
-        
-        //print(newUserData.id as Any)
-    }
-    
-    
-    
     func endSession() {
         prefs.arrayOfURLStrings.removeAll()
         //timeObject.timeDouble = 0.0
@@ -169,7 +153,7 @@ struct TimerView: View{
         timeObject.isTimerRunning = false
         timeObject.endSessionBool.toggle()
         prefs.disableSkip.toggle()
-        NavBar(timeObject: _timeObject, prefs: _prefs, testData: testData, startSession: $startSession).endSession()
+        NavBar(timeObject: _timeObject, prefs: _prefs, userData: userData, startSession: $startSession).endSession()
     }
     
     func stopTimer() {
@@ -184,7 +168,6 @@ struct TimerView: View{
         //timeObject.timer.tolerance = 0.2
     }
     //Save the data to the ArtAthlete database.
-    /*
     func updateData() {
         //let user = userData(context: self.moc)
         //user.count += 1
@@ -218,7 +201,7 @@ struct TimerView: View{
             alertMsg = error.localizedDescription
             showAlert.toggle()
         }
-    } */
+    }
     
     func saveDataUpdate(){
         //newSession.posesToday = prefs.userSessionPoseCount
@@ -253,7 +236,25 @@ struct TimerView: View{
     
     ///First time create info
     
+     func newSession(){
+         let test = UserData(context: context)
+         test.count = 4
+         
+         //let newUserData = UserData(context: context)
+         //newUserData.userPoseCount = Int16(prefs.userSessionPoseCount)
+         //newUserData.id = UUID()
+     
+         //print(newUserData.id as Any)
+     }
+     
     
+    //Update data in future.
+    func updateUserInfo(){
+        let newUserData = UserData(context: context)
+        newUserData.count = Int16(prefs.userSessionPoseCount)
+        newUserData.id = UUID()
+        
+    }
     
 }
 

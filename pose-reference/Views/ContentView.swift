@@ -16,9 +16,9 @@ struct ContentView: View {
     
     @Environment(\.managedObjectContext) var context //viewContext
     @FetchRequest(
-        entity: Memory.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Memory.content, ascending: true)]
-    ) var userData: FetchedResults<Memory>
+        entity: UserData.entity(), sortDescriptors: []
+        //sortDescriptors: [NSSortDescriptor(keyPath: \UserData.countPoses, ascending: true)]
+    ) var testData: FetchedResults<UserData> //Memory
     
     //@FetchRequest(entity: UserEntity.entity(), sortDescriptors: [])
     //var userObject: FetchedResults<UserEntity>
@@ -32,9 +32,11 @@ struct ContentView: View {
     
     var body: some View {
         VStack{
+            
+            
             if !startSession {
                 //HomeScreen(startSession: $startSession) //user: userObject,
-                HomeScreen(userData: userData, startSession: $startSession)
+                HomeScreen(startSession: $startSession)
                 
                  //   .frame(maxWidth: .infinity, maxHeight: .infinity)
                   //  .background(Color.blue)
@@ -42,7 +44,7 @@ struct ContentView: View {
                  
             }
             if startSession {
-                DrawingView(userData: userData, startSession: $startSession)
+                DrawingView(testData: testData, startSession: $startSession)
                    // .frame(maxWidth: .infinity, maxHeight: .infinity)
                     //.background(Color.green)
                  //   .transition(AnyTransition.move(edge: .trailing)).animation(.default)
