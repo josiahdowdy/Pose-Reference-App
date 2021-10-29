@@ -173,13 +173,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2C02D882253A2C5700D5F960 /* ArtAthlete (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ArtAthlete (iOS).app"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug-iphoneos/ArtAthlete (iOS).app"; sourceTree = "<absolute>"; };
 		2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pose_referenceApp.swift; sourceTree = "<group>"; };
 		2C02D88C253A2C5900D5F960 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C02D88E253A2C5900D5F960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C02D897253A2C5A00D5F960 /* pose_referenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pose_referenceTests.swift; sourceTree = "<group>"; };
 		2C02D899253A2C5A00D5F960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C02D89E253A2C5A00D5F960 /* pose-referenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "pose-referenceUITests.xctest"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug-iphoneos/pose-referenceUITests.xctest"; sourceTree = "<absolute>"; };
 		2C02D8A2253A2C5A00D5F960 /* pose_referenceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pose_referenceUITests.swift; sourceTree = "<group>"; };
 		2C02D8A4253A2C5A00D5F960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C02D8B4253A2CA100D5F960 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -192,10 +190,14 @@
 		2C064310272C6587001DF985 /* PrivateSyncApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateSyncApp.swift; sourceTree = "<group>"; };
 		2C064313272C6612001DF985 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2C064316272C66CD001DF985 /* Art AthleteTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Art AthleteTests-Bridging-Header.h"; sourceTree = "<group>"; };
-		2C064317272C66CD001DF985 /* Art AthleteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Art AthleteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C064317272C66CD001DF985 /* Art_AthleteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Art_AthleteTests.xctest; path = /Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/Art_AthleteTests.xctest; sourceTree = "<absolute>"; };
 		2C064318272C66CE001DF985 /* PrivateSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateSyncTests.swift; sourceTree = "<group>"; };
-		2C06431B272C674A001DF985 /* pose-referenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pose-referenceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C06431B272C674A001DF985 /* pose-referenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "pose-referenceTests.xctest"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug-iphoneos/pose-referenceTests.xctest"; sourceTree = "<absolute>"; };
+		2C06431E272C682F001DF985 /* Art_AthleteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Art_AthleteUITests.xctest; path = /Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/Art_AthleteUITests.xctest; sourceTree = "<absolute>"; };
 		2C142B912593D71A00A7DC54 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		2C147D08272C865B00AF1E71 /* ArtAthlete (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArtAthlete (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C147D09272C865B00AF1E71 /* pose-referenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "pose-referenceUITests.xctest"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug-iphoneos/pose-referenceUITests.xctest"; sourceTree = "<absolute>"; };
+		2C147D0A272C865B00AF1E71 /* ArtAthlete (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ArtAthlete (macOS).app"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/ArtAthlete (macOS).app"; sourceTree = "<absolute>"; };
 		2C16EDA02575E9EB00ABF18D /* pose-reference.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pose-reference.entitlements"; sourceTree = "<group>"; };
 		2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportBackup.swift; sourceTree = "<group>"; };
 		2C214148271B5DCC00493E4E /* FileImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporterView.swift; sourceTree = "<group>"; };
@@ -208,8 +210,6 @@
 		2C663A1E271CC7DC0097AEFE /* SettingsMacView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMacView.swift; sourceTree = "<group>"; };
 		2C663A21271CC9410097AEFE /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
 		2C663A23271DAEFA0097AEFE /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		2C663A2C271DB9DC0097AEFE /* ArtAthlete (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ArtAthlete (macOS).app"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/ArtAthlete (macOS).app"; sourceTree = "<absolute>"; };
-		2C663A4B271DB9DE0097AEFE /* Art AthleteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Art AthleteUITests.xctest"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/Art AthleteUITests.xctest"; sourceTree = "<absolute>"; };
 		2C663A63271E20130097AEFE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2C663A66271F00370097AEFE /* SessionStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStats.swift; sourceTree = "<group>"; };
 		2C663A6A271F6B810097AEFE /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -299,16 +299,15 @@
 				2CED7E0D27272A3000B99CAD /* Entity DB */,
 				2C663A9327234FCF0097AEFE /* Supporting Files */,
 				2C663A5C271DC98E0097AEFE /* Shared */,
-				2C02D884253A2C5700D5F960 /* pose-reference */,
+				2C02D884253A2C5700D5F960 /* Art_Athlete */,
 				2C02D896253A2C5A00D5F960 /* tests */,
 				2C02D8A1253A2C5A00D5F960 /* UI_tests */,
 				2C663A60271E1D720097AEFE /* Frameworks */,
-				2C064317272C66CD001DF985 /* Art AthleteTests.xctest */,
-				2C06431B272C674A001DF985 /* pose-referenceTests.xctest */,
+				2C147D08272C865B00AF1E71 /* ArtAthlete (iOS).app */,
 			);
 			sourceTree = "<group>";
 		};
-		2C02D884253A2C5700D5F960 /* pose-reference */ = {
+		2C02D884253A2C5700D5F960 /* Art_Athlete */ = {
 			isa = PBXGroup;
 			children = (
 				2C06430C272C6521001DF985 /* PrivateSync */,
@@ -322,7 +321,7 @@
 				2C02D88B253A2C5900D5F960 /* Preview Content */,
 				2CC05E8E2540D393007C733D /* Config.xcconfig */,
 			);
-			path = "pose-reference";
+			path = Art_Athlete;
 			sourceTree = "<group>";
 		};
 		2C02D88B253A2C5900D5F960 /* Preview Content */ = {
@@ -546,7 +545,7 @@
 				2C9A4EC526FC186B00DA0455 /* Kingfisher */,
 			);
 			productName = "pose-reference";
-			productReference = 2C02D882253A2C5700D5F960 /* ArtAthlete (iOS).app */;
+			productReference = 2C147D08272C865B00AF1E71 /* ArtAthlete (iOS).app */;
 			productType = "com.apple.product-type.application";
 		};
 		2C02D892253A2C5A00D5F960 /* pose-referenceTests */ = {
@@ -582,7 +581,7 @@
 			);
 			name = "pose-referenceUITests";
 			productName = "pose-referenceUITests";
-			productReference = 2C02D89E253A2C5A00D5F960 /* pose-referenceUITests.xctest */;
+			productReference = 2C147D09272C865B00AF1E71 /* pose-referenceUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		2C663A2B271DB9DC0097AEFE /* ArtAthlete (macOS) */ = {
@@ -599,12 +598,12 @@
 			);
 			name = "ArtAthlete (macOS)";
 			productName = "Art Athlete";
-			productReference = 2C663A2C271DB9DC0097AEFE /* ArtAthlete (macOS).app */;
+			productReference = 2C147D0A272C865B00AF1E71 /* ArtAthlete (macOS).app */;
 			productType = "com.apple.product-type.application";
 		};
-		2C663A40271DB9DE0097AEFE /* Art AthleteTests */ = {
+		2C663A40271DB9DE0097AEFE /* Art_AthleteTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C663A56271DB9DE0097AEFE /* Build configuration list for PBXNativeTarget "Art AthleteTests" */;
+			buildConfigurationList = 2C663A56271DB9DE0097AEFE /* Build configuration list for PBXNativeTarget "Art_AthleteTests" */;
 			buildPhases = (
 				2C663A3D271DB9DE0097AEFE /* Sources */,
 				2C663A3E271DB9DE0097AEFE /* Frameworks */,
@@ -616,14 +615,14 @@
 				2C663A43271DB9DE0097AEFE /* PBXTargetDependency */,
 				2C06431D272C6763001DF985 /* PBXTargetDependency */,
 			);
-			name = "Art AthleteTests";
+			name = Art_AthleteTests;
 			productName = "Art AthleteTests";
-			productReference = 2C064317272C66CD001DF985 /* Art AthleteTests.xctest */;
+			productReference = 2C064317272C66CD001DF985 /* Art_AthleteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		2C663A4A271DB9DE0097AEFE /* Art AthleteUITests */ = {
+		2C663A4A271DB9DE0097AEFE /* Art_AthleteUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C663A59271DB9DE0097AEFE /* Build configuration list for PBXNativeTarget "Art AthleteUITests" */;
+			buildConfigurationList = 2C663A59271DB9DE0097AEFE /* Build configuration list for PBXNativeTarget "Art_AthleteUITests" */;
 			buildPhases = (
 				2C663A47271DB9DE0097AEFE /* Sources */,
 				2C663A48271DB9DE0097AEFE /* Frameworks */,
@@ -634,9 +633,9 @@
 			dependencies = (
 				2C663A4D271DB9DE0097AEFE /* PBXTargetDependency */,
 			);
-			name = "Art AthleteUITests";
+			name = Art_AthleteUITests;
 			productName = "Art AthleteUITests";
-			productReference = 2C663A4B271DB9DE0097AEFE /* Art AthleteUITests.xctest */;
+			productReference = 2C06431E272C682F001DF985 /* Art_AthleteUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -673,7 +672,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2C02D87D253A2C5700D5F960 /* Build configuration list for PBXProject "pose-reference" */;
+			buildConfigurationList = 2C02D87D253A2C5700D5F960 /* Build configuration list for PBXProject "Art_Athlete" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -693,8 +692,8 @@
 				2C02D892253A2C5A00D5F960 /* pose-referenceTests */,
 				2C02D89D253A2C5A00D5F960 /* pose-referenceUITests */,
 				2C663A2B271DB9DC0097AEFE /* ArtAthlete (macOS) */,
-				2C663A40271DB9DE0097AEFE /* Art AthleteTests */,
-				2C663A4A271DB9DE0097AEFE /* Art AthleteUITests */,
+				2C663A40271DB9DE0097AEFE /* Art_AthleteTests */,
+				2C663A4A271DB9DE0097AEFE /* Art_AthleteUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1051,22 +1050,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "pose-reference/pose-reference.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Art_Athlete/pose-reference.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"pose-reference/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Art_Athlete/Preview Content\"";
 				DEVELOPMENT_TEAM = NEFG8858W8;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "pose-reference/Info.plist";
+				INFOPLIST_FILE = Art_Athlete/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "forlorn-studio.pose-reference";
+				PRODUCT_BUNDLE_IDENTIFIER = josiahdowdy.artathlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -1081,15 +1080,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "pose-reference/pose-reference.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Art_Athlete/pose-reference.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"pose-reference/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Art_Athlete/Preview Content\"";
 				DEVELOPMENT_TEAM = NEFG8858W8;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "pose-reference/Info.plist";
+				INFOPLIST_FILE = Art_Athlete/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1214,7 +1213,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "josiahdowdy.Art-Athlete";
+				PRODUCT_BUNDLE_IDENTIFIER = josiahdowdy.artathlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1246,7 +1245,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "josiahdowdy.Art-Athlete";
+				PRODUCT_BUNDLE_IDENTIFIER = josiahdowdy.artathlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1368,7 +1367,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2C02D87D253A2C5700D5F960 /* Build configuration list for PBXProject "pose-reference" */ = {
+		2C02D87D253A2C5700D5F960 /* Build configuration list for PBXProject "Art_Athlete" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C02D8A5253A2C5A00D5F960 /* Debug */,
@@ -1413,7 +1412,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C663A56271DB9DE0097AEFE /* Build configuration list for PBXNativeTarget "Art AthleteTests" */ = {
+		2C663A56271DB9DE0097AEFE /* Build configuration list for PBXNativeTarget "Art_AthleteTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C663A57271DB9DE0097AEFE /* Debug */,
@@ -1422,7 +1421,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C663A59271DB9DE0097AEFE /* Build configuration list for PBXNativeTarget "Art AthleteUITests" */ = {
+		2C663A59271DB9DE0097AEFE /* Build configuration list for PBXNativeTarget "Art_AthleteUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C663A5A271DB9DE0097AEFE /* Debug */,
