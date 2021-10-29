@@ -7,8 +7,7 @@
  import class Kingfisher.SessionDataTask
  //import struct Kingfisher.LocalFileImageDataProvider
  //import protocol Kingfisher.ImageDataProvider
- //import UniformTypeIdentifiers
- */
+ //import UniformTypeIdentifiers     */
 
 import SwiftUI
 import Kingfisher

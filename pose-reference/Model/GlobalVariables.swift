@@ -1,11 +1,7 @@
-/*
- Josiah - Oct 29, 2020
- Main object used to keep track of draw session data.
- 
- */
+/* Josiah - Oct 29, 2020 - Main object used to keep track of draw session data. */
+
 
 import Foundation
-import Kingfisher
 
 class GlobalVariables: ObservableObject {
     //----------STRINGS---------------------------------------------------------------

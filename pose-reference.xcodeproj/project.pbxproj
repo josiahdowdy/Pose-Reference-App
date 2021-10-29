@@ -14,9 +14,23 @@
 		2C02D8B5253A2CA100D5F960 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D8B4253A2CA100D5F960 /* Model.swift */; };
 		2C02D8C4253A50E300D5F960 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D8C3253A50E300D5F960 /* DrawingView.swift */; };
 		2C02D8DE253ABB7100D5F960 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D8DD253ABB7100D5F960 /* ProgressBarView.swift */; };
+		2C064303272B9806001DF985 /* ListRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064302272B9806001DF985 /* ListRowsView.swift */; };
+		2C064304272B9806001DF985 /* ListRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064302272B9806001DF985 /* ListRowsView.swift */; };
+		2C064306272C43EC001DF985 /* ButtonsTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064305272C43EC001DF985 /* ButtonsTestView.swift */; };
+		2C064307272C43EC001DF985 /* ButtonsTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064305272C43EC001DF985 /* ButtonsTestView.swift */; };
+		2C06430A272C4579001DF985 /* iOSSettingsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064309272C4579001DF985 /* iOSSettingsBarView.swift */; };
+		2C06430B272C4579001DF985 /* iOSSettingsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064309272C4579001DF985 /* iOSSettingsBarView.swift */; };
+		2C06430E272C6554001DF985 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C06430D272C6554001DF985 /* Config.swift */; };
+		2C06430F272C6554001DF985 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C06430D272C6554001DF985 /* Config.swift */; };
+		2C064311272C6587001DF985 /* PrivateSyncApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064310272C6587001DF985 /* PrivateSyncApp.swift */; };
+		2C064312272C6587001DF985 /* PrivateSyncApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064310272C6587001DF985 /* PrivateSyncApp.swift */; };
+		2C064314272C6612001DF985 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064313272C6612001DF985 /* ViewModel.swift */; };
+		2C064315272C6612001DF985 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064313272C6612001DF985 /* ViewModel.swift */; };
+		2C064319272C66CE001DF985 /* PrivateSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064318272C66CE001DF985 /* PrivateSyncTests.swift */; };
+		2C06431A272C66CE001DF985 /* PrivateSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064318272C66CE001DF985 /* PrivateSyncTests.swift */; };
 		2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */; };
 		2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */; };
-		2C214149271B5DCC00493E4E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* HomeView.swift */; };
+		2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* FileImporterView.swift */; };
 		2C2BDF432543225400D2434E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF422543225400D2434E /* StatsView.swift */; };
 		2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF4625432AC000D2434E /* CertificateView.swift */; };
 		2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */; };
@@ -26,11 +40,7 @@
 		2C663A1F271CC7DC0097AEFE /* SettingsMacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A1E271CC7DC0097AEFE /* SettingsMacView.swift */; };
 		2C663A22271CC9410097AEFE /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A21271CC9410097AEFE /* AdvancedSettingsView.swift */; };
 		2C663A24271DAEFA0097AEFE /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A23271DAEFA0097AEFE /* MenuView.swift */; };
-		2C663A46271DB9DE0097AEFE /* Art_AthleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A45271DB9DE0097AEFE /* Art_AthleteTests.swift */; };
-		2C663A50271DB9DE0097AEFE /* Art_AthleteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A4F271DB9DE0097AEFE /* Art_AthleteUITests.swift */; };
-		2C663A52271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A51271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift */; };
 		2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */; };
-		2C663A62271E1D720097AEFE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C663A61271E1D720097AEFE /* CloudKit.framework */; };
 		2C663A64271E20130097AEFE /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C663A63271E20130097AEFE /* CloudKit.framework */; };
 		2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */; };
 		2C663A67271F00370097AEFE /* SessionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A66271F00370097AEFE /* SessionStats.swift */; };
@@ -94,7 +104,7 @@
 		2CB6249627277C35001AFA85 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943ED325B78F460010FA24 /* SignIn.swift */; };
 		2CB6249727277C38001AFA85 /* CollectionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943EE925B9F4790010FA24 /* CollectionButtons.swift */; };
 		2CB6249827277C3F001AFA85 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */; };
-		2CB6249927277C42001AFA85 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* HomeView.swift */; };
+		2CB6249927277C42001AFA85 /* FileImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* FileImporterView.swift */; };
 		2CB6249A27277C45001AFA85 /* DotMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943ED725B7910C0010FA24 /* DotMenuView.swift */; };
 		2CB6249B27277C47001AFA85 /* MenuPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943EDF25B797BB0010FA24 /* MenuPicker.swift */; };
 		2CB6249C27277C4D001AFA85 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A1C271CC7A80097AEFE /* GeneralSettingsView.swift */; };
@@ -126,6 +136,13 @@
 			remoteGlobalIDString = 2C02D881253A2C5700D5F960;
 			remoteInfo = "pose-reference";
 		};
+		2C06431C272C6763001DF985 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C02D87A253A2C5700D5F960 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C02D881253A2C5700D5F960;
+			remoteInfo = "ArtAthlete (iOS)";
+		};
 		2C663A42271DB9DE0097AEFE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2C02D87A253A2C5700D5F960 /* Project object */;
@@ -156,23 +173,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2C02D882253A2C5700D5F960 /* ArtAthlete (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArtAthlete (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C02D882253A2C5700D5F960 /* ArtAthlete (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ArtAthlete (iOS).app"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug-iphoneos/ArtAthlete (iOS).app"; sourceTree = "<absolute>"; };
 		2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pose_referenceApp.swift; sourceTree = "<group>"; };
 		2C02D88C253A2C5900D5F960 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C02D88E253A2C5900D5F960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C02D893253A2C5A00D5F960 /* pose-referenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pose-referenceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C02D897253A2C5A00D5F960 /* pose_referenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pose_referenceTests.swift; sourceTree = "<group>"; };
 		2C02D899253A2C5A00D5F960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C02D89E253A2C5A00D5F960 /* pose-referenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pose-referenceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C02D89E253A2C5A00D5F960 /* pose-referenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "pose-referenceUITests.xctest"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug-iphoneos/pose-referenceUITests.xctest"; sourceTree = "<absolute>"; };
 		2C02D8A2253A2C5A00D5F960 /* pose_referenceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pose_referenceUITests.swift; sourceTree = "<group>"; };
 		2C02D8A4253A2C5A00D5F960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C02D8B4253A2CA100D5F960 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		2C02D8C3253A50E300D5F960 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		2C02D8DD253ABB7100D5F960 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		2C064302272B9806001DF985 /* ListRowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowsView.swift; sourceTree = "<group>"; };
+		2C064305272C43EC001DF985 /* ButtonsTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsTestView.swift; sourceTree = "<group>"; };
+		2C064309272C4579001DF985 /* iOSSettingsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSettingsBarView.swift; sourceTree = "<group>"; };
+		2C06430D272C6554001DF985 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2C064310272C6587001DF985 /* PrivateSyncApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateSyncApp.swift; sourceTree = "<group>"; };
+		2C064313272C6612001DF985 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		2C064316272C66CD001DF985 /* Art AthleteTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Art AthleteTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		2C064317272C66CD001DF985 /* Art AthleteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Art AthleteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C064318272C66CE001DF985 /* PrivateSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateSyncTests.swift; sourceTree = "<group>"; };
+		2C06431B272C674A001DF985 /* pose-referenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pose-referenceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C142B912593D71A00A7DC54 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		2C16EDA02575E9EB00ABF18D /* pose-reference.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pose-reference.entitlements"; sourceTree = "<group>"; };
 		2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportBackup.swift; sourceTree = "<group>"; };
-		2C214148271B5DCC00493E4E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2C214148271B5DCC00493E4E /* FileImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporterView.swift; sourceTree = "<group>"; };
 		2C2BDF422543225400D2434E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		2C2BDF4625432AC000D2434E /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
 		2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
@@ -182,13 +208,8 @@
 		2C663A1E271CC7DC0097AEFE /* SettingsMacView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMacView.swift; sourceTree = "<group>"; };
 		2C663A21271CC9410097AEFE /* AdvancedSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsView.swift; sourceTree = "<group>"; };
 		2C663A23271DAEFA0097AEFE /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		2C663A2C271DB9DC0097AEFE /* ArtAthlete (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArtAthlete (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C663A41271DB9DE0097AEFE /* Art AthleteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Art AthleteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C663A45271DB9DE0097AEFE /* Art_AthleteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Art_AthleteTests.swift; sourceTree = "<group>"; };
-		2C663A4B271DB9DE0097AEFE /* Art AthleteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Art AthleteUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C663A4F271DB9DE0097AEFE /* Art_AthleteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Art_AthleteUITests.swift; sourceTree = "<group>"; };
-		2C663A51271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Art_AthleteUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		2C663A61271E1D720097AEFE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		2C663A2C271DB9DC0097AEFE /* ArtAthlete (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ArtAthlete (macOS).app"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/ArtAthlete (macOS).app"; sourceTree = "<absolute>"; };
+		2C663A4B271DB9DE0097AEFE /* Art AthleteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Art AthleteUITests.xctest"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/Art AthleteUITests.xctest"; sourceTree = "<absolute>"; };
 		2C663A63271E20130097AEFE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2C663A66271F00370097AEFE /* SessionStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStats.swift; sourceTree = "<group>"; };
 		2C663A6A271F6B810097AEFE /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -252,7 +273,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C663A62271E1D720097AEFE /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,31 +300,18 @@
 				2C663A9327234FCF0097AEFE /* Supporting Files */,
 				2C663A5C271DC98E0097AEFE /* Shared */,
 				2C02D884253A2C5700D5F960 /* pose-reference */,
-				2C02D896253A2C5A00D5F960 /* pose-referenceTests */,
-				2C02D8A1253A2C5A00D5F960 /* pose-referenceUITests */,
-				2C663A44271DB9DE0097AEFE /* Art AthleteTests */,
-				2C663A4E271DB9DE0097AEFE /* Art AthleteUITests */,
-				2C02D883253A2C5700D5F960 /* Products */,
+				2C02D896253A2C5A00D5F960 /* tests */,
+				2C02D8A1253A2C5A00D5F960 /* UI_tests */,
 				2C663A60271E1D720097AEFE /* Frameworks */,
+				2C064317272C66CD001DF985 /* Art AthleteTests.xctest */,
+				2C06431B272C674A001DF985 /* pose-referenceTests.xctest */,
 			);
-			sourceTree = "<group>";
-		};
-		2C02D883253A2C5700D5F960 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2C02D882253A2C5700D5F960 /* ArtAthlete (iOS).app */,
-				2C02D893253A2C5A00D5F960 /* pose-referenceTests.xctest */,
-				2C02D89E253A2C5A00D5F960 /* pose-referenceUITests.xctest */,
-				2C663A2C271DB9DC0097AEFE /* ArtAthlete (macOS).app */,
-				2C663A41271DB9DE0097AEFE /* Art AthleteTests.xctest */,
-				2C663A4B271DB9DE0097AEFE /* Art AthleteUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		2C02D884253A2C5700D5F960 /* pose-reference */ = {
 			isa = PBXGroup;
 			children = (
+				2C06430C272C6521001DF985 /* PrivateSync */,
 				2CED7E0E272752E700B99CAD /* Extensions */,
 				2C663A69271F22150097AEFE /* OLD */,
 				2C16EDA02575E9EB00ABF18D /* pose-reference.entitlements */,
@@ -326,22 +333,24 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		2C02D896253A2C5A00D5F960 /* pose-referenceTests */ = {
+		2C02D896253A2C5A00D5F960 /* tests */ = {
 			isa = PBXGroup;
 			children = (
 				2C02D897253A2C5A00D5F960 /* pose_referenceTests.swift */,
 				2C02D899253A2C5A00D5F960 /* Info.plist */,
+				2C064318272C66CE001DF985 /* PrivateSyncTests.swift */,
+				2C064316272C66CD001DF985 /* Art AthleteTests-Bridging-Header.h */,
 			);
-			path = "pose-referenceTests";
+			path = tests;
 			sourceTree = "<group>";
 		};
-		2C02D8A1253A2C5A00D5F960 /* pose-referenceUITests */ = {
+		2C02D8A1253A2C5A00D5F960 /* UI_tests */ = {
 			isa = PBXGroup;
 			children = (
 				2C02D8A2253A2C5A00D5F960 /* pose_referenceUITests.swift */,
 				2C02D8A4253A2C5A00D5F960 /* Info.plist */,
 			);
-			path = "pose-referenceUITests";
+			path = UI_tests;
 			sourceTree = "<group>";
 		};
 		2C02D8B3253A2C8B00D5F960 /* Model */ = {
@@ -369,6 +378,7 @@
 				2C02D8DD253ABB7100D5F960 /* ProgressBarView.swift */,
 				2C55F914253FC86E000B6AFC /* NavBar.swift */,
 				2C663A6D271F71220097AEFE /* Buttons */,
+				2C064308272C454C001DF985 /* iOSSettingsView */,
 				2C663A20271CC8490097AEFE /* SettingsMac */,
 				2CAA8BD62593835600B39793 /* MainViews */,
 				2CAA8BD52593833600B39793 /* Stats */,
@@ -380,6 +390,24 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2C064308272C454C001DF985 /* iOSSettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				2C064309272C4579001DF985 /* iOSSettingsBarView.swift */,
+			);
+			path = iOSSettingsView;
+			sourceTree = "<group>";
+		};
+		2C06430C272C6521001DF985 /* PrivateSync */ = {
+			isa = PBXGroup;
+			children = (
+				2C06430D272C6554001DF985 /* Config.swift */,
+				2C064310272C6587001DF985 /* PrivateSyncApp.swift */,
+				2C064313272C6612001DF985 /* ViewModel.swift */,
+			);
+			path = PrivateSync;
+			sourceTree = "<group>";
+		};
 		2C663A20271CC8490097AEFE /* SettingsMac */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,23 +417,6 @@
 				2C663A23271DAEFA0097AEFE /* MenuView.swift */,
 			);
 			path = SettingsMac;
-			sourceTree = "<group>";
-		};
-		2C663A44271DB9DE0097AEFE /* Art AthleteTests */ = {
-			isa = PBXGroup;
-			children = (
-				2C663A45271DB9DE0097AEFE /* Art_AthleteTests.swift */,
-			);
-			path = "Art AthleteTests";
-			sourceTree = "<group>";
-		};
-		2C663A4E271DB9DE0097AEFE /* Art AthleteUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2C663A4F271DB9DE0097AEFE /* Art_AthleteUITests.swift */,
-				2C663A51271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift */,
-			);
-			path = "Art AthleteUITests";
 			sourceTree = "<group>";
 		};
 		2C663A5C271DC98E0097AEFE /* Shared */ = {
@@ -435,7 +446,6 @@
 			isa = PBXGroup;
 			children = (
 				2C663A63271E20130097AEFE /* CloudKit.framework */,
-				2C663A61271E1D720097AEFE /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -456,6 +466,7 @@
 				2C663A71271F74470097AEFE /* timePickerView.swift */,
 				2C663A7427205B460097AEFE /* CardView.swift */,
 				2C663A77272097500097AEFE /* UserObjectView.swift */,
+				2C064305272C43EC001DF985 /* ButtonsTestView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -484,7 +495,7 @@
 			isa = PBXGroup;
 			children = (
 				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
-				2C214148271B5DCC00493E4E /* HomeView.swift */,
+				2C214148271B5DCC00493E4E /* FileImporterView.swift */,
 				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
 				2C943EDF25B797BB0010FA24 /* MenuPicker.swift */,
 				2C663A66271F00370097AEFE /* SessionStats.swift */,
@@ -509,6 +520,7 @@
 			children = (
 				2CED7E0F2727531B00B99CAD /* SettingsRow.swift */,
 				2CED7E132727534100B99CAD /* Color.swift */,
+				2C064302272B9806001DF985 /* ListRowsView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -552,7 +564,7 @@
 			);
 			name = "pose-referenceTests";
 			productName = "pose-referenceTests";
-			productReference = 2C02D893253A2C5A00D5F960 /* pose-referenceTests.xctest */;
+			productReference = 2C06431B272C674A001DF985 /* pose-referenceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		2C02D89D253A2C5A00D5F960 /* pose-referenceUITests */ = {
@@ -602,10 +614,11 @@
 			);
 			dependencies = (
 				2C663A43271DB9DE0097AEFE /* PBXTargetDependency */,
+				2C06431D272C6763001DF985 /* PBXTargetDependency */,
 			);
 			name = "Art AthleteTests";
 			productName = "Art AthleteTests";
-			productReference = 2C663A41271DB9DE0097AEFE /* Art AthleteTests.xctest */;
+			productReference = 2C064317272C66CD001DF985 /* Art AthleteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		2C663A4A271DB9DE0097AEFE /* Art AthleteUITests */ = {
@@ -651,7 +664,8 @@
 					};
 					2C663A40271DB9DE0097AEFE = {
 						CreatedOnToolsVersion = 13.0;
-						TestTargetID = 2C663A2B271DB9DC0097AEFE;
+						LastSwiftMigration = 1310;
+						TestTargetID = 2C02D881253A2C5700D5F960;
 					};
 					2C663A4A271DB9DE0097AEFE = {
 						CreatedOnToolsVersion = 13.0;
@@ -671,7 +685,7 @@
 			packageReferences = (
 				2C9A4EC426FC186B00DA0455 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
-			productRefGroup = 2C02D883253A2C5700D5F960 /* Products */;
+			productRefGroup = 2C02D879253A2C5700D5F960;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -736,6 +750,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C064306272C43EC001DF985 /* ButtonsTestView.swift in Sources */,
 				2C663A9827238C820097AEFE /* UserData+CoreDataProperties.swift in Sources */,
 				2C663A78272097500097AEFE /* UserObjectView.swift in Sources */,
 				2C663A24271DAEFA0097AEFE /* MenuView.swift in Sources */,
@@ -747,7 +762,7 @@
 				2C663A8C272306D40097AEFE /* UserEntity+CoreDataClass.swift in Sources */,
 				2C663A72271F74470097AEFE /* timePickerView.swift in Sources */,
 				2C943EEA25B9F4790010FA24 /* CollectionButtons.swift in Sources */,
-				2C214149271B5DCC00493E4E /* HomeView.swift in Sources */,
+				2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */,
 				2C02D8C4253A50E300D5F960 /* DrawingView.swift in Sources */,
 				2C98427F258C04E40008AD1C /* ImagePicker.swift in Sources */,
 				2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */,
@@ -755,6 +770,7 @@
 				2C943ED425B78F460010FA24 /* SignIn.swift in Sources */,
 				2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */,
 				2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */,
+				2C064311272C6587001DF985 /* PrivateSyncApp.swift in Sources */,
 				2C663A7527205B460097AEFE /* CardView.swift in Sources */,
 				2C943ED025B77FBB0010FA24 /* SettingsView.swift in Sources */,
 				2C2EA838253CEC6500D9A8C7 /* HomeScreen.swift in Sources */,
@@ -763,6 +779,7 @@
 				2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */,
 				2C663A7B27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2C663A9627238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
+				2C064314272C6612001DF985 /* ViewModel.swift in Sources */,
 				2C02D886253A2C5700D5F960 /* pose_referenceApp.swift in Sources */,
 				2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */,
 				2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */,
@@ -773,10 +790,13 @@
 				2C2BDF432543225400D2434E /* StatsView.swift in Sources */,
 				2C663A822720BACD0097AEFE /* AppDelegate.swift in Sources */,
 				2CAC6639271CA552005066B5 /* HomeViewBACKUP.swift in Sources */,
+				2C06430E272C6554001DF985 /* Config.swift in Sources */,
 				2C663A22271CC9410097AEFE /* AdvancedSettingsView.swift in Sources */,
+				2C064303272B9806001DF985 /* ListRowsView.swift in Sources */,
 				2CEB2EF9253F86DD0087D696 /* GlobalVariables.swift in Sources */,
 				2CC05E8A25406DE8007C733D /* Cache.swift in Sources */,
 				2C943ED825B7910C0010FA24 /* DotMenuView.swift in Sources */,
+				2C06430A272C4579001DF985 /* iOSSettingsBarView.swift in Sources */,
 				2C663A91272327010097AEFE /* UserSessionStats.swift in Sources */,
 				2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */,
 				2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */,
@@ -790,6 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C064319272C66CE001DF985 /* PrivateSyncTests.swift in Sources */,
 				2C02D898253A2C5A00D5F960 /* pose_referenceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -812,16 +833,18 @@
 				2C663A8D272306D40097AEFE /* UserEntity+CoreDataClass.swift in Sources */,
 				2C663A79272097500097AEFE /* UserObjectView.swift in Sources */,
 				2CB6249D27277C50001AFA85 /* SettingsMacView.swift in Sources */,
+				2C064315272C6612001DF985 /* ViewModel.swift in Sources */,
 				2C663A92272327010097AEFE /* UserSessionStats.swift in Sources */,
 				2C663A9927238C820097AEFE /* UserData+CoreDataProperties.swift in Sources */,
 				2CB6249627277C35001AFA85 /* SignIn.swift in Sources */,
 				2CB6248B27277C07001AFA85 /* DrawingView.swift in Sources */,
+				2C064307272C43EC001DF985 /* ButtonsTestView.swift in Sources */,
 				2CB6249C27277C4D001AFA85 /* GeneralSettingsView.swift in Sources */,
 				2CED7E0B27271C3F00B99CAD /* ContentView.swift in Sources */,
 				2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */,
 				2CB6248527277294001AFA85 /* Cache.swift in Sources */,
 				2CB6248C27277C0C001AFA85 /* TimerView.swift in Sources */,
-				2CB6249927277C42001AFA85 /* HomeView.swift in Sources */,
+				2CB6249927277C42001AFA85 /* FileImporterView.swift in Sources */,
 				2CB6249227277C27001AFA85 /* ImportExportBackup.swift in Sources */,
 				2CB6249027277C22001AFA85 /* saveUserData.swift in Sources */,
 				2CB6249327277C2B001AFA85 /* StatsView.swift in Sources */,
@@ -842,16 +865,20 @@
 				2CB6249827277C3F001AFA85 /* PhotoView.swift in Sources */,
 				2CB624872727729B001AFA85 /* Model.swift in Sources */,
 				2CB624882727729F001AFA85 /* PersistenceController.swift in Sources */,
+				2C06430F272C6554001DF985 /* Config.swift in Sources */,
 				2CED7E112727531B00B99CAD /* SettingsRow.swift in Sources */,
 				2CB6248F27277C1E001AFA85 /* MessageDocument.swift in Sources */,
 				2CB624842727728D001AFA85 /* UserObject.swift in Sources */,
 				2CB6249E27277C52001AFA85 /* AdvancedSettingsView.swift in Sources */,
+				2C064312272C6587001DF985 /* PrivateSyncApp.swift in Sources */,
 				2C663A9727238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
 				2C663A7627205B460097AEFE /* CardView.swift in Sources */,
+				2C064304272B9806001DF985 /* ListRowsView.swift in Sources */,
 				2C663A8F272306D40097AEFE /* UserEntity+CoreDataProperties.swift in Sources */,
 				2C663A6C271F6B810097AEFE /* CheckBoxView.swift in Sources */,
 				2C663A7C27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2CED7E152727534100B99CAD /* Color.swift in Sources */,
+				2C06430B272C4579001DF985 /* iOSSettingsBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,7 +886,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C663A46271DB9DE0097AEFE /* Art_AthleteTests.swift in Sources */,
+				2C06431A272C66CE001DF985 /* PrivateSyncTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,8 +894,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C663A52271DB9DE0097AEFE /* Art_AthleteUITestsLaunchTests.swift in Sources */,
-				2C663A50271DB9DE0097AEFE /* Art_AthleteUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,6 +909,11 @@
 			isa = PBXTargetDependency;
 			target = 2C02D881253A2C5700D5F960 /* ArtAthlete (iOS) */;
 			targetProxy = 2C02D89F253A2C5A00D5F960 /* PBXContainerItemProxy */;
+		};
+		2C06431D272C6763001DF985 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C02D881253A2C5700D5F960 /* ArtAthlete (iOS) */;
+			targetProxy = 2C06431C272C6763001DF985 /* PBXContainerItemProxy */;
 		};
 		2C663A43271DB9DE0097AEFE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -949,7 +979,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1004,7 +1035,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1033,7 +1065,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "forlorn-studio.pose-reference";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1063,7 +1095,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "forlorn-studio.pose-reference";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1092,7 +1124,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pose-reference.app/pose-reference";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArtAthlete (iOS).app/ArtAthlete (iOS)";
 			};
 			name = Debug;
 		};
@@ -1114,7 +1146,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pose-reference.app/pose-reference";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArtAthlete (iOS).app/ArtAthlete (iOS)";
 			};
 			name = Release;
 		};
@@ -1180,7 +1212,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "josiahdowdy.Art-Athlete";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1212,7 +1244,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "josiahdowdy.Art-Athlete";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1228,6 +1260,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1244,8 +1277,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "tests/Art AthleteTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Art Athlete.app/Contents/MacOS/Art Athlete";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArtAthlete (iOS).app/ArtAthlete (iOS)";
 			};
 			name = Debug;
 		};
@@ -1255,6 +1290,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1271,8 +1307,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "tests/Art AthleteTests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Art Athlete.app/Contents/MacOS/Art Athlete";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArtAthlete (iOS).app/ArtAthlete (iOS)";
 			};
 			name = Release;
 		};

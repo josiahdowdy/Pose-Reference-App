@@ -4,7 +4,9 @@ Save local data.
 */
 
 import CoreData
-import UIKit
+#if !os(macOS)
+    import UIKit
+#endif
 
 struct PersistenceController {
     static let shared = PersistenceController()

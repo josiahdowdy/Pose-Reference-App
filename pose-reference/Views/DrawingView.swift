@@ -46,7 +46,6 @@ struct DrawingView: View {
                         .background(Color.black)
                         .foregroundColor(.white)
                     HStack {
-                        
                         if !(prefs.hideTimer) {
                             if (prefs.numberTimer) {
                                 //print(timeObject.progressValue)
@@ -54,7 +53,6 @@ struct DrawingView: View {
                                 TimerView(prefs: _prefs, startSession: $startSession).padding(.bottom, 5)
                             }
                         }
-                        
                     } //End HStack
                 } //End VStack.
             } //End ZStack

@@ -91,11 +91,11 @@ struct TimerView: View{
                                 prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
 
                                 posesCount += 1
-                                testData[0].countPoses += 1
-
+                                testData[testData.count - 1].countPoses += 1
                                 updateSession()
                                 
                             } else { //else if done with last photo, end session.
+                                testData[testData.count - 1].countPoses += 1 //Add 1 more pose count if the user finishees. DO NOT put this in endSession function, otherwise it'll get called when that function is called in other areas like quit.
                                 endSession()
                             }
                         }

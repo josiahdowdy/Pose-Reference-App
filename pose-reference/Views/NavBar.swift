@@ -6,7 +6,7 @@
  */
 
 import SwiftUI
-import Kingfisher
+//import Kingfisher
 
 struct NavBar: View {
     //@Environment(\.presentationMode) var presentationMode //Oct17

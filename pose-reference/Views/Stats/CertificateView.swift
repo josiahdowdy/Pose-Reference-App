@@ -7,7 +7,7 @@
 */
 
 import SwiftUI
-import Kingfisher
+//import Kingfisher
 
 struct CertificateView: View {
     @Environment(\.presentationMode) var presentationMode

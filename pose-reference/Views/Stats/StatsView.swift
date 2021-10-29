@@ -5,7 +5,7 @@
 */
 
 import SwiftUI
-import Kingfisher
+//import Kingfisher
 
 struct StatsView: View {
     @Environment(\.presentationMode) var presentationMode

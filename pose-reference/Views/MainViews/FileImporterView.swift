@@ -1,14 +1,12 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct HomeView: View {
+struct FileImporterView: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     //@EnvironmentObject var userObject: UserObject
     
-    @State private var showStats = false
-    @State private var showSettings = false
-    
+
     @State var name = ""
     @State var error = ""
     //@State var wifiError = ""
@@ -18,31 +16,24 @@ struct HomeView: View {
     //---------------START VIEW-----------------------------------------------------------------
     var body: some View {
         VStack(alignment: .center) {
-            //This is the top right settings menu.
-            //.sheet(popover(isPresented: $showSettings, content: DotMenuView(localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings)))
-            /*
-            Button("Settings") {
-                //self.error = "Memorize on: photo interval of 2 seconds on and 3 seconds off."
-                showSettings = true
-            }
-            .sheet(isPresented: $showSettings) {
-                return DotMenuView(localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings)
-            } */
             
-            DotMenuView(localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings) //unsplashPhotos: $prefs.unsplashPhotosView,
+            Button(action: {
+                //action
+            }, label: {
+                HStack {
+                    Image(systemName: "photo")
+                        .font(.system(size: 20))
+                    
+                    Text("Create folder")
+                        .font(.headline)
+                }.padding(6)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            })
             
-                .sheet(isPresented: $showStats) {
-                    return StatsView()
-                        //.environmentObject(self.userObject)
-                        .environmentObject(self.prefs)
-                        .environmentObject(self.timeObject)
-                }
-                .sheet(isPresented: $showSettings) {
-                    return SettingsView()
-                      //  .environmentObject(self.userObject)
-                        .environmentObject(self.prefs)
-                        .environmentObject(self.timeObject)
-                }
+            
+            
             
             //Text("Art Athlete").font(.largeTitle).padding(.top, 20)
             Text("\(prefs.userName)").padding(.top, 10) //the artist
@@ -138,9 +129,9 @@ struct HomeView: View {
     } //End of struct
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct FileImporterView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        FileImporterView()
             .environmentObject(GlobalVariables())
             .environmentObject(TimerObject())
         //.environmentObject(UserObject())
