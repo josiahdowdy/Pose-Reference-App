@@ -24,7 +24,7 @@ struct SettingsMacView: View {
                 .tag(Tabs.general)
             AdvancedSettingsView()
                 .tabItem {
-                    Label("Advanced", systemImage: "star")
+                    Label("Advanced josiah", systemImage: "star")
                 }
                 .tag(Tabs.advanced)
         }

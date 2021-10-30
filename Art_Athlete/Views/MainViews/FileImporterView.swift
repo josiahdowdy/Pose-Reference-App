@@ -5,7 +5,6 @@ struct FileImporterView: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     //@EnvironmentObject var userObject: UserObject
-    
 
     @State var name = ""
     @State var error = ""
@@ -16,25 +15,6 @@ struct FileImporterView: View {
     //---------------START VIEW-----------------------------------------------------------------
     var body: some View {
         VStack(alignment: .center) {
-            
-            Button(action: {
-                //action
-            }, label: {
-                HStack {
-                    Image(systemName: "photo")
-                        .font(.system(size: 20))
-                    
-                    Text("Create folder")
-                        .font(.headline)
-                }.padding(6)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            })
-            
-            
-            
-            
             //Text("Art Athlete").font(.largeTitle).padding(.top, 20)
             Text("\(prefs.userName)").padding(.top, 10) //the artist
             // Button("\(Image(systemName: "gearshape.fill"))")
@@ -55,15 +35,9 @@ struct FileImporterView: View {
                     HStack {
                         Image(systemName: "photo")
                             .font(.system(size: 20))
-                        
                         Text("Files: \(prefs.sPoseCount)")
                             .font(.headline)
-                    }.padding(6)
-                    
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                    //.padding(.horizontal)
+                    }
                 })
             }
         } //End of Vstack

@@ -29,6 +29,15 @@
 		2C064319272C66CE001DF985 /* PrivateSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064318272C66CE001DF985 /* PrivateSyncTests.swift */; };
 		2C06431A272C66CE001DF985 /* PrivateSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064318272C66CE001DF985 /* PrivateSyncTests.swift */; };
 		2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */; };
+		2C147D10272C985500AF1E71 /* LoadFoldersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */; };
+		2C147D11272C985500AF1E71 /* LoadFoldersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */; };
+		2C147D14272C9A0600AF1E71 /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 2C147D13272C9A0600AF1E71 /* Files */; };
+		2C147D17272D9C7600AF1E71 /* PhotoFolders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D15272D9C7600AF1E71 /* PhotoFolders+CoreDataClass.swift */; };
+		2C147D18272D9C7600AF1E71 /* PhotoFolders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D15272D9C7600AF1E71 /* PhotoFolders+CoreDataClass.swift */; };
+		2C147D19272D9C7600AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D16272D9C7600AF1E71 /* PhotoFolders+CoreDataProperties.swift */; };
+		2C147D1A272D9C7600AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D16272D9C7600AF1E71 /* PhotoFolders+CoreDataProperties.swift */; };
+		2C147D1C272DA15600AF1E71 /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D1B272DA15600AF1E71 /* FoldersView.swift */; };
+		2C147D1D272DA15600AF1E71 /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D1B272DA15600AF1E71 /* FoldersView.swift */; };
 		2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */; };
 		2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* FileImporterView.swift */; };
 		2C2BDF432543225400D2434E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF422543225400D2434E /* StatsView.swift */; };
@@ -59,10 +68,6 @@
 		2C663A7C27209ABF0097AEFE /* UserDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A7A27209ABF0097AEFE /* UserDataEntity.swift */; };
 		2C663A822720BACD0097AEFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A812720BACD0097AEFE /* AppDelegate.swift */; };
 		2C663A832720BACD0097AEFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A812720BACD0097AEFE /* AppDelegate.swift */; };
-		2C663A8C272306D40097AEFE /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A8A272306D40097AEFE /* UserEntity+CoreDataClass.swift */; };
-		2C663A8D272306D40097AEFE /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A8A272306D40097AEFE /* UserEntity+CoreDataClass.swift */; };
-		2C663A8E272306D40097AEFE /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A8B272306D40097AEFE /* UserEntity+CoreDataProperties.swift */; };
-		2C663A8F272306D40097AEFE /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A8B272306D40097AEFE /* UserEntity+CoreDataProperties.swift */; };
 		2C663A91272327010097AEFE /* UserSessionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A90272327010097AEFE /* UserSessionStats.swift */; };
 		2C663A92272327010097AEFE /* UserSessionStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A90272327010097AEFE /* UserSessionStats.swift */; };
 		2C663A9627238C820097AEFE /* UserData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A9427238C820097AEFE /* UserData+CoreDataClass.swift */; };
@@ -195,9 +200,13 @@
 		2C06431B272C674A001DF985 /* pose-referenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "pose-referenceTests.xctest"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug-iphoneos/pose-referenceTests.xctest"; sourceTree = "<absolute>"; };
 		2C06431E272C682F001DF985 /* Art_AthleteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Art_AthleteUITests.xctest; path = /Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/Art_AthleteUITests.xctest; sourceTree = "<absolute>"; };
 		2C142B912593D71A00A7DC54 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
-		2C147D08272C865B00AF1E71 /* ArtAthlete (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArtAthlete (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C147D08272C865B00AF1E71 /* ArtAthlete (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ArtAthlete (iOS).app"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug-iphoneos/ArtAthlete (iOS).app"; sourceTree = "<absolute>"; };
 		2C147D09272C865B00AF1E71 /* pose-referenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "pose-referenceUITests.xctest"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug-iphoneos/pose-referenceUITests.xctest"; sourceTree = "<absolute>"; };
-		2C147D0A272C865B00AF1E71 /* ArtAthlete (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ArtAthlete (macOS).app"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/ArtAthlete (macOS).app"; sourceTree = "<absolute>"; };
+		2C147D0B272C8B9500AF1E71 /* ArtAthlete (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "ArtAthlete (macOS).app"; path = "/Users/josiahdowdy/Downloads/Xcode/ArtAthlete/build/Debug/ArtAthlete (macOS).app"; sourceTree = "<absolute>"; };
+		2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFoldersButton.swift; sourceTree = "<group>"; };
+		2C147D15272D9C7600AF1E71 /* PhotoFolders+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2C147D16272D9C7600AF1E71 /* PhotoFolders+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2C147D1B272DA15600AF1E71 /* FoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersView.swift; sourceTree = "<group>"; };
 		2C16EDA02575E9EB00ABF18D /* pose-reference.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pose-reference.entitlements"; sourceTree = "<group>"; };
 		2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportBackup.swift; sourceTree = "<group>"; };
 		2C214148271B5DCC00493E4E /* FileImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporterView.swift; sourceTree = "<group>"; };
@@ -219,8 +228,6 @@
 		2C663A77272097500097AEFE /* UserObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObjectView.swift; sourceTree = "<group>"; };
 		2C663A7A27209ABF0097AEFE /* UserDataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataEntity.swift; sourceTree = "<group>"; };
 		2C663A812720BACD0097AEFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2C663A8A272306D40097AEFE /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2C663A8B272306D40097AEFE /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C663A90272327010097AEFE /* UserSessionStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionStats.swift; sourceTree = "<group>"; };
 		2C663A9427238C820097AEFE /* UserData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C663A9527238C820097AEFE /* UserData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserData+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -273,6 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C147D14272C9A0600AF1E71 /* Files in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +311,6 @@
 				2C02D896253A2C5A00D5F960 /* tests */,
 				2C02D8A1253A2C5A00D5F960 /* UI_tests */,
 				2C663A60271E1D720097AEFE /* Frameworks */,
-				2C147D08272C865B00AF1E71 /* ArtAthlete (iOS).app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -372,7 +379,10 @@
 			children = (
 				2CAC6636271CA435005066B5 /* ContentView.swift */,
 				2C2EA837253CEC6500D9A8C7 /* HomeScreen.swift */,
+				2C147D1B272DA15600AF1E71 /* FoldersView.swift */,
 				2C02D8C3253A50E300D5F960 /* DrawingView.swift */,
+				2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */,
+				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
 				2CEB2EF3253F7A590087D696 /* TimerView.swift */,
 				2C02D8DD253ABB7100D5F960 /* ProgressBarView.swift */,
 				2C55F914253FC86E000B6AFC /* NavBar.swift */,
@@ -493,7 +503,6 @@
 		2CAA8BD62593835600B39793 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
-				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
 				2C214148271B5DCC00493E4E /* FileImporterView.swift */,
 				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
 				2C943EDF25B797BB0010FA24 /* MenuPicker.swift */,
@@ -505,10 +514,10 @@
 		2CED7E0D27272A3000B99CAD /* Entity DB */ = {
 			isa = PBXGroup;
 			children = (
+				2C147D15272D9C7600AF1E71 /* PhotoFolders+CoreDataClass.swift */,
+				2C147D16272D9C7600AF1E71 /* PhotoFolders+CoreDataProperties.swift */,
 				2C663A9427238C820097AEFE /* UserData+CoreDataClass.swift */,
 				2C663A9527238C820097AEFE /* UserData+CoreDataProperties.swift */,
-				2C663A8A272306D40097AEFE /* UserEntity+CoreDataClass.swift */,
-				2C663A8B272306D40097AEFE /* UserEntity+CoreDataProperties.swift */,
 				2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */,
 			);
 			path = "Entity DB";
@@ -597,8 +606,11 @@
 			dependencies = (
 			);
 			name = "ArtAthlete (macOS)";
+			packageProductDependencies = (
+				2C147D13272C9A0600AF1E71 /* Files */,
+			);
 			productName = "Art Athlete";
-			productReference = 2C147D0A272C865B00AF1E71 /* ArtAthlete (macOS).app */;
+			productReference = 2C147D0B272C8B9500AF1E71 /* ArtAthlete (macOS).app */;
 			productType = "com.apple.product-type.application";
 		};
 		2C663A40271DB9DE0097AEFE /* Art_AthleteTests */ = {
@@ -683,6 +695,7 @@
 			mainGroup = 2C02D879253A2C5700D5F960;
 			packageReferences = (
 				2C9A4EC426FC186B00DA0455 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */,
 			);
 			productRefGroup = 2C02D879253A2C5700D5F960;
 			projectDirPath = "";
@@ -758,14 +771,13 @@
 				2CED7E142727534100B99CAD /* Color.swift in Sources */,
 				2CED7E102727531B00B99CAD /* SettingsRow.swift in Sources */,
 				2CAA8BD22593830200B39793 /* saveUserData.swift in Sources */,
-				2C663A8C272306D40097AEFE /* UserEntity+CoreDataClass.swift in Sources */,
 				2C663A72271F74470097AEFE /* timePickerView.swift in Sources */,
 				2C943EEA25B9F4790010FA24 /* CollectionButtons.swift in Sources */,
 				2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */,
 				2C02D8C4253A50E300D5F960 /* DrawingView.swift in Sources */,
 				2C98427F258C04E40008AD1C /* ImagePicker.swift in Sources */,
 				2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */,
-				2C663A8E272306D40097AEFE /* UserEntity+CoreDataProperties.swift in Sources */,
+				2C147D10272C985500AF1E71 /* LoadFoldersButton.swift in Sources */,
 				2C943ED425B78F460010FA24 /* SignIn.swift in Sources */,
 				2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */,
 				2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */,
@@ -774,10 +786,12 @@
 				2C943ED025B77FBB0010FA24 /* SettingsView.swift in Sources */,
 				2C2EA838253CEC6500D9A8C7 /* HomeScreen.swift in Sources */,
 				2CAA8BCE259382B500B39793 /* PersistenceController.swift in Sources */,
+				2C147D19272D9C7600AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2C663A6F271F71300097AEFE /* ToggleSwitch.swift in Sources */,
 				2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */,
 				2C663A7B27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2C663A9627238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
+				2C147D17272D9C7600AF1E71 /* PhotoFolders+CoreDataClass.swift in Sources */,
 				2C064314272C6612001DF985 /* ViewModel.swift in Sources */,
 				2C02D886253A2C5700D5F960 /* pose_referenceApp.swift in Sources */,
 				2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */,
@@ -800,6 +814,7 @@
 				2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */,
 				2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */,
 				2C663A67271F00370097AEFE /* SessionStats.swift in Sources */,
+				2C147D1C272DA15600AF1E71 /* FoldersView.swift in Sources */,
 				2C943EE025B797BB0010FA24 /* MenuPicker.swift in Sources */,
 				2C663A1D271CC7A80097AEFE /* GeneralSettingsView.swift in Sources */,
 			);
@@ -829,9 +844,9 @@
 				2CB6249427277C2E001AFA85 /* SettingsView.swift in Sources */,
 				2CB6249727277C38001AFA85 /* CollectionButtons.swift in Sources */,
 				2C663A68271F00370097AEFE /* SessionStats.swift in Sources */,
-				2C663A8D272306D40097AEFE /* UserEntity+CoreDataClass.swift in Sources */,
 				2C663A79272097500097AEFE /* UserObjectView.swift in Sources */,
 				2CB6249D27277C50001AFA85 /* SettingsMacView.swift in Sources */,
+				2C147D11272C985500AF1E71 /* LoadFoldersButton.swift in Sources */,
 				2C064315272C6612001DF985 /* ViewModel.swift in Sources */,
 				2C663A92272327010097AEFE /* UserSessionStats.swift in Sources */,
 				2C663A9927238C820097AEFE /* UserData+CoreDataProperties.swift in Sources */,
@@ -840,6 +855,7 @@
 				2C064307272C43EC001DF985 /* ButtonsTestView.swift in Sources */,
 				2CB6249C27277C4D001AFA85 /* GeneralSettingsView.swift in Sources */,
 				2CED7E0B27271C3F00B99CAD /* ContentView.swift in Sources */,
+				2C147D1D272DA15600AF1E71 /* FoldersView.swift in Sources */,
 				2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */,
 				2CB6248527277294001AFA85 /* Cache.swift in Sources */,
 				2CB6248C27277C0C001AFA85 /* TimerView.swift in Sources */,
@@ -849,7 +865,9 @@
 				2CB6249327277C2B001AFA85 /* StatsView.swift in Sources */,
 				2CB6249527277C31001AFA85 /* CertificateView.swift in Sources */,
 				2CB6248627277297001AFA85 /* TimerObject.swift in Sources */,
+				2C147D1A272D9C7600AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2CB6248E27277C11001AFA85 /* NavBar.swift in Sources */,
+				2C147D18272D9C7600AF1E71 /* PhotoFolders+CoreDataClass.swift in Sources */,
 				2CB6249A27277C45001AFA85 /* DotMenuView.swift in Sources */,
 				2CB6249F27277C54001AFA85 /* MenuView.swift in Sources */,
 				2CB6249127277C25001AFA85 /* ImagePicker.swift in Sources */,
@@ -873,7 +891,6 @@
 				2C663A9727238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
 				2C663A7627205B460097AEFE /* CardView.swift in Sources */,
 				2C064304272B9806001DF985 /* ListRowsView.swift in Sources */,
-				2C663A8F272306D40097AEFE /* UserEntity+CoreDataProperties.swift in Sources */,
 				2C663A6C271F6B810097AEFE /* CheckBoxView.swift in Sources */,
 				2C663A7C27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2CED7E152727534100B99CAD /* Color.swift in Sources */,
@@ -1200,7 +1217,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"pose-reference/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Art_Athlete/Preview Content\"";
 				DEVELOPMENT_TEAM = NEFG8858W8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1232,7 +1249,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"pose-reference/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Art_Athlete/Preview Content\"";
 				DEVELOPMENT_TEAM = NEFG8858W8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1433,6 +1450,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JohnSundell/Files";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		2C9A4EC426FC186B00DA0455 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -1444,6 +1469,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2C147D13272C9A0600AF1E71 /* Files */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */;
+			productName = Files;
+		};
 		2C9A4EC526FC186B00DA0455 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2C9A4EC426FC186B00DA0455 /* XCRemoteSwiftPackageReference "Kingfisher" */;

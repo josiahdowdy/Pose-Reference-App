@@ -10,7 +10,8 @@
  //import UniformTypeIdentifiers     */
 
 import SwiftUI
-import Kingfisher
+//import Files
+import Kingfisher //needs fixed for macOS
 
 struct PhotoView: View {
     @EnvironmentObject var prefs: GlobalVariables

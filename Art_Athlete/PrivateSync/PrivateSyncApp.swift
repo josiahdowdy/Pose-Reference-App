@@ -1,6 +1,8 @@
 // PrivateSyncApp.swift - Created by josiah on 2021-10-29.
 import SwiftUI
-import UIKit
+#if !os(macOS)
+    import UIKit
+#endif
 import CloudKit
 
  //@main

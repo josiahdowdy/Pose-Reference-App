@@ -14,30 +14,30 @@ struct ButtonsTestView: View {
     
     
     var body: some View {
-        Button(action: {
-            testData[0].countPoses += 1
-        }, label: {
-            Text("Increase poses")
-        })
-        
-        //          setupDate()
-        
-        Button(action: {
-            // testData[0].userName = "bob"
-            //testData
-            let newRow = UserData(context: context)
-            newRow.date = Date()
-            //newRow.userName = ("henry".appending(String(testData[0].countPoses))) //
-            //newRow.countPoses = 0
-        }, label: {
-            Text("New row.")
-        })
-        
-        Button(action: {
-            PersistenceController.shared.save() //Save data.
-        }, label: {
-            Text("Save Data")
-        })
+        LazyHStack {
+            Button(action: {
+                testData[0].countPoses += 1
+            }, label: {
+                Text("Increase poses")
+            })
+            
+            Button(action: {
+                // testData[0].userName = "bob"
+                //testData
+                let newRow = UserData(context: context)
+                newRow.date = Date()
+                //newRow.userName = ("henry".appending(String(testData[0].countPoses))) //
+                //newRow.countPoses = 0
+            }, label: {
+                Text("New row.")
+            })
+            
+            Button(action: {
+                PersistenceController.shared.save() //Save data.
+            }, label: {
+                Text("Save Data")
+            })
+        }
     }
 }
 

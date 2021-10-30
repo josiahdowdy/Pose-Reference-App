@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="toItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="toCategory" inverseEntity="Item"/>
-    </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="toCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="toItem" inverseEntity="Category"/>
-    </entity>
     <entity name="Memory" representedClassName="Memory" syncable="YES" codeGenerationType="class">
         <attribute name="content" optional="YES" attributeType="String"/>
         <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -17,9 +9,10 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="userName" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="TestEntity" representedClassName="TestEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="poseCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    <entity name="PhotoFolders" representedClassName="PhotoFolders" syncable="YES">
+        <attribute name="folderName" optional="YES" attributeType="String"/>
+        <attribute name="folderURL" optional="YES" attributeType="URI"/>
+        <attribute name="tag" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserData" representedClassName="UserData" syncable="YES">
         <attribute name="countPoses" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -27,21 +20,9 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="userName" optional="YES" attributeType="String" defaultValueString="Poop"/>
     </entity>
-    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dateString" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="posePhotoLength" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="posesDrawnInSession" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="posesToday" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="posesTotal" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-    </entity>
     <elements>
-        <element name="Category" positionX="-36" positionY="81" width="128" height="59"/>
-        <element name="Item" positionX="-45" positionY="72" width="128" height="59"/>
         <element name="Memory" positionX="-63" positionY="-18" width="128" height="134"/>
-        <element name="TestEntity" positionX="-54" positionY="63" width="128" height="59"/>
         <element name="UserData" positionX="-54" positionY="72" width="128" height="89"/>
-        <element name="UserEntity" positionX="-63" positionY="36" width="128" height="134"/>
+        <element name="PhotoFolders" positionX="-54" positionY="54" width="128" height="74"/>
     </elements>
 </model>
