@@ -23,3 +23,20 @@ struct GeneralSettingsView: View {
         .frame(width: 350, height: 100)
     }
 }
+
+
+
+
+
+//Change Timer Style
+//Put this in settings.
+/*
+ Button(action: {
+ print("\nTimer Style\n")
+ //changeTimer.toggle()
+ prefs.changeTimer.toggle()
+ }) {
+ Image(systemName: prefs.changeTimer ? "clock.fill" : "clock" ) //Text("Grayscale")
+ }.buttonStyle(BorderlessButtonStyle())
+ .buttonStyle(bounceButtonStyle())
+ */

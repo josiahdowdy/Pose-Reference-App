@@ -15,7 +15,7 @@ struct UserObjectView: View {
                 do {
                     try self.managedObjectContext.save()
                 } catch {
-                    print(error)
+                    print("Josiah3: \(error)")
                 }
                 
                 self.presentationMode.wrappedValue.dismiss()

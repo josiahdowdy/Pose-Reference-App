@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Memory" representedClassName="Memory" syncable="YES" codeGenerationType="class">
-        <attribute name="content" optional="YES" attributeType="String"/>
-        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="sessionTimeLength" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="userName" optional="YES" attributeType="String"/>
-    </entity>
     <entity name="PhotoFolders" representedClassName="PhotoFolders" syncable="YES">
         <attribute name="folderName" optional="YES" attributeType="String"/>
         <attribute name="folderURL" optional="YES" attributeType="URI"/>
         <attribute name="tag" optional="YES" attributeType="String"/>
+        <relationship name="photosArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotosArray" inverseName="photoFolders" inverseEntity="PhotosArray"/>
+    </entity>
+    <entity name="PhotosArray" representedClassName="PhotosArray" syncable="YES">
+        <attribute name="fileName" optional="YES" attributeType="String"/>
+        <attribute name="photosString" optional="YES" attributeType="String"/>
+        <attribute name="photoURL" optional="YES" attributeType="URI" defaultValueString="duckduckgo.com"/>
+        <relationship name="photoFolders" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoFolders" inverseName="photosArray" inverseEntity="PhotoFolders"/>
     </entity>
     <entity name="UserData" representedClassName="UserData" syncable="YES">
         <attribute name="countPoses" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -21,8 +19,8 @@
         <attribute name="userName" optional="YES" attributeType="String" defaultValueString="Poop"/>
     </entity>
     <elements>
-        <element name="Memory" positionX="-63" positionY="-18" width="128" height="134"/>
         <element name="UserData" positionX="-54" positionY="72" width="128" height="89"/>
-        <element name="PhotoFolders" positionX="-54" positionY="54" width="128" height="74"/>
+        <element name="PhotoFolders" positionX="-54" positionY="54" width="128" height="89"/>
+        <element name="PhotosArray" positionX="-45" positionY="63" width="128" height="89"/>
     </elements>
 </model>

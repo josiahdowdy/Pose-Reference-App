@@ -11,6 +11,7 @@ struct timePickerView: View {
     @EnvironmentObject var prefs: GlobalVariables
     
     var body: some View {
+        
         HStack {
             Text("Length:").padding(10)
             // Length time of pose

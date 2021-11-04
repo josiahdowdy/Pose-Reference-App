@@ -37,7 +37,15 @@ struct FileImporterView: View {
                             .font(.system(size: 20))
                         Text("Files: \(prefs.sPoseCount)")
                             .font(.headline)
+                                          
+                      
                     }
+                    .cornerRadius(40)
+                    .padding(6)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    
+                    
                 })
             }
         } //End of Vstack
@@ -57,10 +65,7 @@ struct FileImporterView: View {
                     self.error = ""
                 } catch { print("failed") }
             })
-        .toolbar {
-            Menu("Action") {
-            }
-        }
+       
         
         Spacer() //Space in Vstack to the button for files
     } //---------------------------End of HStack------------------------------------------------------------------------------------------------
@@ -88,7 +93,7 @@ struct FileImporterView: View {
                     //print("Success.")
                 }
             } catch {
-                print(error.localizedDescription)
+                print("Josiah1: \(error.localizedDescription)")
             }
             CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
             

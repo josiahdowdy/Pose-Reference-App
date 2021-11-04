@@ -48,11 +48,11 @@ struct pose_referenceApp: App {
                 }
         }
         
-        #if os(macOS)
-            Settings {
-                SettingsMacView()
-            }
-        #endif
+//        #if os(macOS)
+//            Settings {
+//                SettingsMacView()
+//            }
+//        #endif
     }
 }
 

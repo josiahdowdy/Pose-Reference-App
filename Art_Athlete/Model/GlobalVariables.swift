@@ -23,17 +23,19 @@ class GlobalVariables: ObservableObject {
     @Published var userSessionPoseCount = 0 
     
     //----------BOOLS----------------------------------------------------------------
+    @Published var startSession = false
     @Published var showMainScreen = true
     @Published var showHomeView = false
     @Published var localPhotosView = true
     @Published var disableSkip = true
     @Published var togglePhotoDisplay = true
-    @Published var startBoolean = false
+    
     @Published var localPhotos = false
     @Published var hideTimer = false
     @Published var numberTimer = false
     @Published var isRandom = true
     @Published var sessionFirstStarted = false
+    @Published var introIsFinished = true
     
 
     
