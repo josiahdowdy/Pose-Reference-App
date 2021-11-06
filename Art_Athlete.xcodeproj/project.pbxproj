@@ -30,6 +30,11 @@
 		2C06431A272C66CE001DF985 /* PrivateSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064318272C66CE001DF985 /* PrivateSyncTests.swift */; };
 		2C131571273391B7001019BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C131570273391B7001019BA /* Kingfisher */; };
 		2C13157527339B41001019BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13157427339B41001019BA /* Kingfisher */; };
+		2C13157827344E65001019BA /* CheckDevice in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13157727344E65001019BA /* CheckDevice */; };
+		2C13157B27346941001019BA /* SettingsSlideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13157A27346941001019BA /* SettingsSlideCard.swift */; };
+		2C13157C27346941001019BA /* SettingsSlideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13157A27346941001019BA /* SettingsSlideCard.swift */; };
+		2C13158227346ECF001019BA /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13158127346ECF001019BA /* SlideOverCard */; };
+		2C1315842735A2B0001019BA /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 2C1315832735A2B0001019BA /* SlideOverCard */; };
 		2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */; };
 		2C147D10272C985500AF1E71 /* LoadFoldersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */; };
 		2C147D11272C985500AF1E71 /* LoadFoldersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */; };
@@ -45,6 +50,8 @@
 		2C147D2E272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D27272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift */; };
 		2C147D2F272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D27272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift */; };
 		2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */; };
+		2C2097C82735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */; };
+		2C2097C92735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */; };
 		2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* FileImporterView.swift */; };
 		2C2BDF432543225400D2434E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF422543225400D2434E /* StatsView.swift */; };
 		2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF4625432AC000D2434E /* CertificateView.swift */; };
@@ -233,6 +240,7 @@
 		2C064316272C66CD001DF985 /* Art AthleteTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Art AthleteTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C064318272C66CE001DF985 /* PrivateSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateSyncTests.swift; sourceTree = "<group>"; };
 		2C131566273387B3001019BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C13157A27346941001019BA /* SettingsSlideCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSlideCard.swift; sourceTree = "<group>"; };
 		2C142B912593D71A00A7DC54 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFoldersButton.swift; sourceTree = "<group>"; };
 		2C147D1B272DA15600AF1E71 /* FoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersView.swift; sourceTree = "<group>"; };
@@ -242,6 +250,7 @@
 		2C147D27272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C16EDA02575E9EB00ABF18D /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportBackup.swift; sourceTree = "<group>"; };
+		2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCheckBoxView.swift; sourceTree = "<group>"; };
 		2C214148271B5DCC00493E4E /* FileImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporterView.swift; sourceTree = "<group>"; };
 		2C2BDF422543225400D2434E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		2C2BDF4625432AC000D2434E /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
@@ -305,8 +314,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C13158227346ECF001019BA /* SlideOverCard in Frameworks */,
 				2C131571273391B7001019BA /* Kingfisher in Frameworks */,
 				2C663A64271E20130097AEFE /* CloudKit.framework in Frameworks */,
+				2C13157827344E65001019BA /* CheckDevice in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C1315842735A2B0001019BA /* SlideOverCard in Frameworks */,
 				2C13157527339B41001019BA /* Kingfisher in Frameworks */,
 				2C147D14272C9A0600AF1E71 /* Files in Frameworks */,
 				2CEB6ED3273368C2001C6FEB /* CloudKit.framework in Frameworks */,
@@ -357,9 +369,9 @@
 				2C13157227339A15001019BA /* watchOS */,
 				2C131565273386D9001019BA /* macOS */,
 				2C131564273386D3001019BA /* iOS */,
-				2CED7E0D27272A3000B99CAD /* Entity DB */,
 				2C663A9327234FCF0097AEFE /* Supporting Files */,
 				2C663A5C271DC98E0097AEFE /* Shared */,
+				2CED7E0D27272A3000B99CAD /* Entity DB */,
 				2C02D884253A2C5700D5F960 /* Art_Athlete */,
 				2C02D896253A2C5A00D5F960 /* tests */,
 				2C02D8A1253A2C5A00D5F960 /* UI_tests */,
@@ -573,6 +585,7 @@
 				2C663A7427205B460097AEFE /* CardView.swift */,
 				2C663A77272097500097AEFE /* UserObjectView.swift */,
 				2C064305272C43EC001DF985 /* ButtonsTestView.swift */,
+				2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -613,6 +626,7 @@
 				2C55F914253FC86E000B6AFC /* NavBar.swift */,
 				2C214148271B5DCC00493E4E /* FileImporterView.swift */,
 				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
+				2C13157A27346941001019BA /* SettingsSlideCard.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -660,6 +674,8 @@
 			name = "ArtAthlete (iOS)";
 			packageProductDependencies = (
 				2C131570273391B7001019BA /* Kingfisher */,
+				2C13157727344E65001019BA /* CheckDevice */,
+				2C13158127346ECF001019BA /* SlideOverCard */,
 			);
 			productName = "pose-reference";
 			productReference = 2C614D9A272DE7100037BFA1 /* ArtAthlete (iOS).app */;
@@ -718,6 +734,7 @@
 			packageProductDependencies = (
 				2C147D13272C9A0600AF1E71 /* Files */,
 				2C13157427339B41001019BA /* Kingfisher */,
+				2C1315832735A2B0001019BA /* SlideOverCard */,
 			);
 			productName = "Art Athlete";
 			productReference = 2C614D9D272DE7100037BFA1 /* ArtAthlete (macOS).app */;
@@ -806,6 +823,8 @@
 			packageReferences = (
 				2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */,
 				2C13156F273391B7001019BA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2C13157627344E65001019BA /* XCRemoteSwiftPackageReference "CheckDevice" */,
+				2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */,
 			);
 			productRefGroup = 2C02D879253A2C5700D5F960;
 			projectDirPath = "";
@@ -907,11 +926,13 @@
 				2C663A9627238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
 				2C064314272C6612001DF985 /* ViewModel.swift in Sources */,
 				2C02D886253A2C5700D5F960 /* pose_referenceApp.swift in Sources */,
+				2C2097C82735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */,
 				2C147D28272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift in Sources */,
 				2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */,
 				2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */,
 				2C704F69254BA86200C5805B /* TimerObject.swift in Sources */,
 				2C02D8DE253ABB7100D5F960 /* ProgressBarView.swift in Sources */,
+				2C13157B27346941001019BA /* SettingsSlideCard.swift in Sources */,
 				2C663A1F271CC7DC0097AEFE /* SettingsMacView.swift in Sources */,
 				2CAC6637271CA435005066B5 /* ContentView.swift in Sources */,
 				2C2BDF432543225400D2434E /* StatsView.swift in Sources */,
@@ -995,11 +1016,13 @@
 				2CB6249A27277C45001AFA85 /* DotMenuView.swift in Sources */,
 				2CB6249F27277C54001AFA85 /* MenuView.swift in Sources */,
 				2CEB6EDB273371A2001C6FEB /* Home.swift in Sources */,
+				2C2097C92735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */,
 				2CB6249127277C25001AFA85 /* ImagePicker.swift in Sources */,
 				2C663A832720BACD0097AEFE /* AppDelegate.swift in Sources */,
 				2C663A73271F74470097AEFE /* timePickerView.swift in Sources */,
 				2CB6248D27277C0F001AFA85 /* ProgressBarView.swift in Sources */,
 				2CB6248A27277C01001AFA85 /* HomeScreen.swift in Sources */,
+				2C13157C27346941001019BA /* SettingsSlideCard.swift in Sources */,
 				2C663A70271F71300097AEFE /* ToggleSwitch.swift in Sources */,
 				2CB6248327277287001AFA85 /* GlobalVariables.swift in Sources */,
 				2CB6249B27277C47001AFA85 /* MenuPicker.swift in Sources */,
@@ -1604,6 +1627,22 @@
 				kind = branch;
 			};
 		};
+		2C13157627344E65001019BA /* XCRemoteSwiftPackageReference "CheckDevice" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ugurethemaydin/CheckDevice.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/moifort/swiftUI-slide-over-card.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Files";
@@ -1624,6 +1663,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2C13156F273391B7001019BA /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		2C13157727344E65001019BA /* CheckDevice */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C13157627344E65001019BA /* XCRemoteSwiftPackageReference "CheckDevice" */;
+			productName = CheckDevice;
+		};
+		2C13158127346ECF001019BA /* SlideOverCard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */;
+			productName = SlideOverCard;
+		};
+		2C1315832735A2B0001019BA /* SlideOverCard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */;
+			productName = SlideOverCard;
 		};
 		2C147D13272C9A0600AF1E71 /* Files */ = {
 			isa = XCSwiftPackageProductDependency;

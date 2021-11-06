@@ -10,76 +10,33 @@ struct LoadFoldersButton: View {
     @Environment(\.managedObjectContext) var context
     
     
-    var folderData : FetchedResults<PhotoFolders>
+  //  var folderData : FetchedResults<PhotoFolders>
+
+    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
+    ) var folderData : FetchedResults<PhotoFolders>
+
     
 //    @FetchRequest(
 //        entity: PhotoFolders.entity(), sortDescriptors: []
 //    ) var photoData : FetchedResults<PhotoFolders>
 
+    //---------------END VARIABLES--------------------------------------------------------
+////\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+    //-----------------START VIEW-------------------------------------------------
     var body: some View {
-        /*
-        VStack {
-            
-            List {
-                ForEach(folderData, id: \.self) { folderData in
-                    Section(header: Text(folderData.wrappedFolderName)) {
-                        ForEach(folderData.photosArrayJosiah, id: \.self) { photoURL in
-                            Text(photoURL.wrappedName)
-                        }
-                    }
-                }
-            }
-            
-            Button("Add Custom Data") {
-                let file1 = PhotosArray(context: self.context)
-                file1.fileName = "donkey"
-                file1.photoFolders = PhotoFolders(context: self.context)
-                file1.photoFolders?.folderName = "Animals"
-                file1.photoFolders?.tag = "animals"
-                
-                let file2 = PhotosArray(context: self.context)
-                file2.fileName = "squirrel"
-                file2.photoFolders = PhotoFolders(context: self.context)
-                file2.photoFolders?.folderName = "Animals"
-                file2.photoFolders?.tag = "animals"
-            
-                
-                let file3 = PhotosArray(context: self.context)
-                file3.fileName = "guys nude"
-                file3.photoFolders = PhotoFolders(context: self.context)
-                file3.photoFolders?.folderName = "Human Poses"
-                file3.photoFolders?.tag = "animals"
-                
-                let file4 = PhotosArray(context: self.context)
-                file4.fileName = "dinosaur"
-                file4.photoFolders = PhotoFolders(context: self.context)
-                file4.photoFolders?.folderName = "Animals"
-        
-                try? self.context.save()
-            }
-        } //End VStack for Folders.
-        */
- 
         VStack(alignment: .trailing) {
-            if (prefs.localPhotosView) {
-                Button(action: {
-                    isImporting = false
+            Button(action: {
+                isImporting = false
 
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        isImporting = true
-                    }
-                }, label: {
-                    Image(systemName: "folder.badge.plus")
-                        //.font(.system(size: 30))
-                   // Text("Add Folder")
-                       // .font(.system(size: 100))
-                    //                        .padding(6)
-                    //                        .background(Color.blue)
-                    //                        .foregroundColor(.white)
-                       // .cornerRadius(8)
-                })
-            }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    isImporting = true
+                }
+            }, label: {
+                Image(systemName: "folder.badge.plus")
+            })
+          //  if (prefs.localPhotosView) { }
         }
+     //   .fileImporter(isPresented: <#T##Binding<Bool>#>, allowedContentTypes: <#T##[UTType]#>, onCompletion: <#T##(Result<URL, Error>) -> Void##(Result<URL, Error>) -> Void##(_ result: Result<URL, Error>) -> Void#>)
         .fileImporter(
             //isPresented: $isImporting, allowedContentTypes: [UTType.png, UTType.image, UTType.jpeg, UTType.pdf],
             isPresented: $isImporting, allowedContentTypes: [UTType.folder],
@@ -91,31 +48,31 @@ struct LoadFoldersButton: View {
                     //arrayOfPhotos = selectedFolder.pathComponents
                     let newFolder = PhotoFolders(context: context)
                     newFolder.folderURL = selectedFolder //Save the folder URL.
-                    
+
                     let folderName: String = selectedFolder.lastPathComponent
-                    
+
                     newFolder.folderName = folderName//newFolder.folderURL(newFolder.folderURL as NSString).lastPathComponent
-                    
+
                     //print("josiah: \(newFolder.folderName)")
-                    
+
                     // *IMPORTANT* : Make sure I move this to be done on Start of session.
                     // ...for when user updates the folder contents!
                     //let contentsInFolder = PhotosArray(context: context)
-                    
-                    
+
+
                  //   newFolder.PhotoFolders.
-                    
+
                    // contentsInFolder.photoFolders?.folderURL =
-                    
+
                    //
                    // contentsInFolder.photosString = selectedFolder.pathComponents //Save the contents in folderURLs into array.
-                    
-                    
+
+
                     //print("\n newFolder.folderURL: \(newFolder.folderURL) \n")
-                    
+
                     /* let selectedFiles = try result.get()
                     prefs.sPoseCount = selectedFiles.count
-                    
+
                     for i in 0...(selectedFiles.count-1) { //selectedFiles.count
                         //print("\n\(i)") //This prints out the photo data
                         saveFile(url: selectedFiles[i])
@@ -124,6 +81,50 @@ struct LoadFoldersButton: View {
                 } catch { print("failed") }
             })
        // .toolbar { Menu("Action") {  } }
+
+
+        /*
+         VStack {
+
+         List {
+         ForEach(folderData, id: \.self) { folderData in
+         Section(header: Text(folderData.wrappedFolderName)) {
+         ForEach(folderData.photosArrayJosiah, id: \.self) { photoURL in
+         Text(photoURL.wrappedName)
+         }
+         }
+         }
+         }
+
+         Button("Add Custom Data") {
+         let file1 = PhotosArray(context: self.context)
+         file1.fileName = "donkey"
+         file1.photoFolders = PhotoFolders(context: self.context)
+         file1.photoFolders?.folderName = "Animals"
+         file1.photoFolders?.tag = "animals"
+
+         let file2 = PhotosArray(context: self.context)
+         file2.fileName = "squirrel"
+         file2.photoFolders = PhotoFolders(context: self.context)
+         file2.photoFolders?.folderName = "Animals"
+         file2.photoFolders?.tag = "animals"
+
+
+         let file3 = PhotosArray(context: self.context)
+         file3.fileName = "guys nude"
+         file3.photoFolders = PhotoFolders(context: self.context)
+         file3.photoFolders?.folderName = "Human Poses"
+         file3.photoFolders?.tag = "animals"
+
+         let file4 = PhotosArray(context: self.context)
+         file4.fileName = "dinosaur"
+         file4.photoFolders = PhotoFolders(context: self.context)
+         file4.photoFolders?.folderName = "Animals"
+
+         try? self.context.save()
+         }
+         } //End VStack for Folders.
+         */
     } //------------------------END VIEW------------------------------------------------------------------
     
     

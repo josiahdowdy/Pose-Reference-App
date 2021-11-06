@@ -19,6 +19,8 @@ extension PhotoFolders {
     @NSManaged public var folderName: String?
     @NSManaged public var tag: String?
     @NSManaged public var folderURL: URL?
+
+    @NSManaged public var isSelected: Bool
     @NSManaged public var photosArray: NSSet? //An NSSet can contain ANYTHING.
     
     public var wrappedFolderName: String {
@@ -27,6 +29,10 @@ extension PhotoFolders {
     
     public var wrappedTag: String {
         tag ?? "Unknown Tag"
+    }
+
+    public var wrappedIsSelected: Bool {
+        isSelected //?? false
     }
     
     public var wrappedFolderURL: URL {

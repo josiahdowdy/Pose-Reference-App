@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "CheckDevice",
+        "repositoryURL": "https://github.com/ugurethemaydin/CheckDevice.git",
+        "state": {
+          "branch": null,
+          "revision": "537377852502f7cc394e4d55ae65fc5da7708e6d",
+          "version": "1.0.5"
+        }
+      },
+      {
         "package": "Files",
         "repositoryURL": "https://github.com/JohnSundell/Files",
         "state": {
@@ -16,6 +25,15 @@
         "state": {
           "branch": "master",
           "revision": "9432bffb68d417c207900ef6a329b8e61cedf370",
+          "version": null
+        }
+      },
+      {
+        "package": "SlideOverCard",
+        "repositoryURL": "https://github.com/moifort/swiftUI-slide-over-card.git",
+        "state": {
+          "branch": "master",
+          "revision": "8ef209792c080bc1852074f91289ba46339367bb",
           "version": null
         }
       }

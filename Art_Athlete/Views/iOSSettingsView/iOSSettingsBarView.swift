@@ -27,7 +27,7 @@ struct iOSSettingsBarView: View {
          return DotMenuView(localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings)
          } */
         
-        DotMenuView(localPhotos: $prefs.localPhotosView, showStats: $showStats, showSettings: $showSettings) //unsplashPhotos: $prefs.unsplashPhotosView,
+        DotMenuView(showStats: $showStats, showSettings: $showSettings) //unsplashPhotos: $prefs.unsplashPhotosView,
         
             .sheet(isPresented: $showStats) {
                 return StatsView()

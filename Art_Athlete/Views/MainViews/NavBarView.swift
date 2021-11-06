@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-
+//import CheckDevice
 
 struct NavBarView: View {
     @Environment(\.managedObjectContext) var context
@@ -28,14 +28,34 @@ struct NavBarView: View {
 //    
     //@EnvironmentObject var vm: ViewModel
     
-    var photoData : FetchedResults<PhotoFolders>
+   // var photoData : FetchedResults<PhotoFolders>
     var folderData : FetchedResults<PhotoFolders>
     // --------END VARIABLES--------------
     
     // ------START VIEW---------------------
     var body: some View {
         NavigationView {
-            FoldersView(photoData: photoData)
+                FoldersView(folderData: folderData)
+                    .navigationTitle("Photos")
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            //iOSSettingsBarView()
+                            NavigationLink("START", destination: HomeScreenButtonsView()) //Image(systemName: "line.3.horizontal.circle")
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button(action: {
+                                //   iOSSettingsBarView()
+                                
+                            }) {
+                                Image(systemName: "gearshape.fill") }
+                        }
+                        
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button(action: {
+                                self.isAddingPhotos = true }) {
+                                    Image(systemName: "plus") }
+                        }
+                    }
             
             
             //            List {
@@ -44,51 +64,52 @@ struct NavBarView: View {
             //                } // .onDelete(perform: deleteContacts)
             //            }
             //.onAppear { vm.initializeAndFetchLatestChanges() }
-                .navigationTitle("Photos")
-                .toolbar {
-                    //                ToolbarItem(placement: .navigationBarLeading) {
-                    //                    Button(action: { vm.fetchLatestChanges() }) { Image(systemName: "arrow.clockwise" )}
-                    //                }
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        //iOSSettingsBarView()
-                        
-                        Button(action: {
-                          //  HomeScreenButtonsView()
-                            
-                        }) {
-                                Image(systemName: "line.3.horizontal.circle") }
-                    }
-                    
-//                    ToolbarItem(placement: .navigationBarLeading) {
-//                        Button("Full Screen") {
-//                            self.fullScreen.toggle()
-//                        }
-//                        .navigationTitle("Full Screen")
-//                        .navigationBarHidden(fullScreen)
-//                    }
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        LoadFoldersButton(folderData: folderData)
-//                            
-//                    }
-                    
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                         //   iOSSettingsBarView()
-                            
-                        }) {
-                                Image(systemName: "gearshape.fill") }
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                            Button(action: {
-                                self.isAddingPhotos = true }) {
-                                    Image(systemName: "plus") }
-                        }
-                }
             
-            HomeScreenButtonsView() //startSession: $startSession
-        }//.sheet(isPresented: $isAddingPhotos, content: { createAddPhotoView() }) //createAddContactView()
+            
+                
+//
+//                .toolbar {
+//                    //                ToolbarItem(placement: .navigationBarLeading) {
+//                    //                    Button(action: { vm.fetchLatestChanges() }) { Image(systemName: "arrow.clockwise" )}
+//                    //                }
+//
+//
+//
+////                    ToolbarItem(placement: .navigationBarLeading) {
+////                        Button("Full Screen") {
+////                            self.fullScreen.toggle()
+////                        }
+////                        .navigationTitle("Full Screen")
+////                        .navigationBarHidden(fullScreen)
+////                    }
+////                    ToolbarItem(placement: .navigationBarTrailing) {
+////                        LoadFoldersButton(folderData: folderData)
+////
+////                    }
+//
+//
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        Button(action: {
+//                         //   iOSSettingsBarView()
+//
+//                        }) {
+//                                Image(systemName: "gearshape.fill") }
+//                    }
+//
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                            Button(action: {
+//                                self.isAddingPhotos = true }) {
+//                                    Image(systemName: "plus") }
+//                        }
+//                }
+            
+            
+            HomeScreenButtonsView()
+             //startSession: $startSession
+        }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(false)
+        //.sheet(isPresented: $isAddingPhotos, content: { createAddPhotoView() }) //createAddContactView()
         //.navigationViewStyle(StackNavigationViewStyle())
         .fileImporter(
             //isPresented: $isImporting, allowedContentTypes: [UTType.png, UTType.image, UTType.jpeg, UTType.pdf],

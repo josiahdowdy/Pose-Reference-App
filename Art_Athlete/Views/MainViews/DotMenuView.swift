@@ -4,7 +4,7 @@ struct DotMenuView: View {
     @EnvironmentObject var prefs: GlobalVariables
     
     //@Binding var unsplashPhotos: Bool
-    @Binding var localPhotos: Bool
+   //@Binding var localPhotos: Bool
     @Binding var showStats: Bool
     @Binding var showSettings: Bool
     

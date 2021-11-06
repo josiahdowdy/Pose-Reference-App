@@ -16,40 +16,39 @@ struct FileImporterView: View {
     var body: some View {
         VStack(alignment: .center) {
             //Text("Art Athlete").font(.largeTitle).padding(.top, 20)
-            Text("\(prefs.userName)").padding(.top, 10) //the artist
+            //Text("\(prefs.userName)").padding(.top, 10) //the artist
             // Button("\(Image(systemName: "gearshape.fill"))")
             //Text("Poses drawn today: \(userObject.totalPosesDrawnToday)").padding(.top, 10)
             
             Text(prefs.error)
+            Button(action: {
+                isImporting = false
+
+                //fix broken picker sheet
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    isImporting = true
+                }
+            }, label: {
+                HStack {
+                    Image(systemName: "photo")
+                        .font(.system(size: 20))
+                    Text("Files: \(prefs.sPoseCount)")
+                        .font(.headline)
+
+
+                }
+                .cornerRadius(40)
+                .padding(2)
+                .background(Color.blue)
+                .foregroundColor(.white)
+
+
+            })
 
             // Import local photos
-            if (prefs.localPhotosView) {
-                Button(action: {
-                    isImporting = false
-                    
-                    //fix broken picker sheet
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        isImporting = true
-                    }
-                }, label: {
-                    HStack {
-                        Image(systemName: "photo")
-                            .font(.system(size: 20))
-                        Text("Files: \(prefs.sPoseCount)")
-                            .font(.headline)
-                                          
-                      
-                    }
-                    .cornerRadius(40)
-                    .padding(6)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    
-                    
-                })
-            }
+          //  if (prefs.localPhotosView) {}
         } //End of Vstack
-        .padding()
+        //.padding()
         .fileImporter(
             isPresented: $isImporting, allowedContentTypes: [UTType.png, UTType.image, UTType.jpeg, UTType.pdf],
             allowsMultipleSelection: true,

@@ -12,6 +12,7 @@ struct timePickerView: View {
     
     var body: some View {
         
+
         HStack {
             Text("Length:").padding(10)
             // Length time of pose
@@ -21,7 +22,10 @@ struct timePickerView: View {
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
+            .padding(10)
         }
+        .padding(50)
+        
     }
 }
 

@@ -26,7 +26,7 @@ class GlobalVariables: ObservableObject {
     @Published var startSession = false
     @Published var showMainScreen = true
     @Published var showHomeView = false
-    @Published var localPhotosView = true
+    //@Published var localPhotosView = true
     @Published var disableSkip = true
     @Published var togglePhotoDisplay = true
     
@@ -36,6 +36,9 @@ class GlobalVariables: ObservableObject {
     @Published var isRandom = true
     @Published var sessionFirstStarted = false
     @Published var introIsFinished = true
+    @Published var showSettings = false
+    @Published var addFolder = false
+    
     
 
     
