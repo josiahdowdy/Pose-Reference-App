@@ -22,6 +22,7 @@ struct LoadFoldersButton: View {
 
     //---------------END VARIABLES--------------------------------------------------------
 ////\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+    //############################################################################
     //-----------------START VIEW-------------------------------------------------
     var body: some View {
         VStack(alignment: .trailing) {
@@ -48,6 +49,7 @@ struct LoadFoldersButton: View {
                     //arrayOfPhotos = selectedFolder.pathComponents
                     let newFolder = PhotoFolders(context: context)
                     newFolder.folderURL = selectedFolder //Save the folder URL.
+                    newFolder.id = UUID()
 
                     let folderName: String = selectedFolder.lastPathComponent
 

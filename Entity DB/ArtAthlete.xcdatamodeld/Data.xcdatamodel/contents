@@ -3,6 +3,7 @@
     <entity name="PhotoFolders" representedClassName="PhotoFolders" syncable="YES">
         <attribute name="folderName" optional="YES" attributeType="String"/>
         <attribute name="folderURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isSelected" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="tag" optional="YES" attributeType="String"/>
         <relationship name="photosArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotosArray" inverseName="photoFolders" inverseEntity="PhotosArray"/>
@@ -20,7 +21,7 @@
         <attribute name="userName" optional="YES" attributeType="String" defaultValueString="Poop"/>
     </entity>
     <elements>
-        <element name="PhotoFolders" positionX="-54" positionY="54" width="128" height="104"/>
+        <element name="PhotoFolders" positionX="-54" positionY="54" width="128" height="119"/>
         <element name="PhotosArray" positionX="-45" positionY="63" width="128" height="89"/>
         <element name="UserData" positionX="-54" positionY="72" width="128" height="89"/>
     </elements>

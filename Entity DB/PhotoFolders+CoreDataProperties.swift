@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-extension PhotoFolders {
+extension PhotoFolders : Identifiable { //, SelectableRow
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<PhotoFolders> {
         return NSFetchRequest<PhotoFolders>(entityName: "PhotoFolders")
@@ -18,11 +18,14 @@ extension PhotoFolders {
 
     @NSManaged public var folderName: String?
     @NSManaged public var tag: String?
+    @NSManaged public var id: UUID?
     @NSManaged public var folderURL: URL?
 
     @NSManaged public var isSelected: Bool
     @NSManaged public var photosArray: NSSet? //An NSSet can contain ANYTHING.
-    
+
+
+
     public var wrappedFolderName: String {
         folderName ?? "Unknown Folder"
     }
@@ -31,9 +34,18 @@ extension PhotoFolders {
         tag ?? "Unknown Tag"
     }
 
-    public var wrappedIsSelected: Bool {
-        isSelected //?? false
-    }
+//    public var wrappedIsSelected: Bool {
+//        isSelected // = true
+//
+//       // get { return isSelected }
+//       // set { isSelected = true }
+//       // Binding<isSelected>
+//      //  return isSelected
+//    }
+
+
+   // var getSetIsSelected: Bool { get set }
+
     
     public var wrappedFolderURL: URL {
         folderURL! //?? URL(string: "test")!
@@ -47,7 +59,6 @@ extension PhotoFolders {
             $0.wrappedName < $1.wrappedName
         }
     }
-
 }
 
 // MARK: Generated accessors for photosArray
@@ -66,7 +77,9 @@ extension PhotoFolders {
     @NSManaged public func removeFromPhotosArray(_ values: NSSet)
 
 }
+//
+//extension PhotoFolders : Identifiable {
+//
+//}
 
-extension PhotoFolders : Identifiable {
 
-}

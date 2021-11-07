@@ -24,6 +24,19 @@ struct HomeScreenButtonsView: View {
     ) var folderData : FetchedResults<PhotoFolders>
 
 
+    // Core Data variables
+    @State var cdSelection = Set<PhotoFolders>()
+
+
+
+    //@State var cdSelection = Set<UUID>()
+    @State var cdEditMode = EditMode.inactive
+
+    //@State private var items: [PhotoFolders] = []
+
+    //@FetchRequest(entity: PhotoFolders.entity(), sortDescriptors:[])
+    //var cdNumbers: FetchedResults<PhotoFolders>
+
     //-----END VARIABLES------
     //    init() {
     //        let coloredAppearance = UINavigationBarAppearance()
@@ -39,6 +52,7 @@ struct HomeScreenButtonsView: View {
     //        UINavigationBar.appearance().tintColor = .white
     //    }
     ////\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+
     //-----------------START VIEW------------------------
     var body: some View {
         NavigationView {
@@ -48,17 +62,14 @@ struct HomeScreenButtonsView: View {
 
                     //LoadFoldersButton()
                     //Text("Display the button options here.")
-                    FoldersView(folderData: folderData) 
-                }
-                // .navigationViewStyle(.stack)
-                //.navigationTitle("Main Screen")
-                //.navigationViewStyle(StackNavigationViewStyle())
-                // .phoneOnlyStackNavigationView()
-                //  .iPadOnly()
-                .padding()
+                    FoldersView(folderData: folderData)
+
+
+                    MultipleSelectRow()
+
 
                 // .navigationBarTitle("Art Athlete")
-
+                }
                 .navigationBarItems(
                     leading:
                         HStack {
@@ -70,25 +81,30 @@ struct HomeScreenButtonsView: View {
                                 timePickerView()
 
 
+
+
                                 Button("Start") { //Button("\(Image(systemName: "play.rectangle.fill")) Start") {
                                     //   NavBarView().loadLocalPhotos()
+                             //       MultipleSelectRow().saveArrayOfFolders()
                                     loadLocalPhotos()
                                 }
                                 .keyboardShortcut(.defaultAction)
                                 .padding(20)
                                 .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
                             }) {
+                              //  cdDeleteButton
                                 Label("Home", systemImage: "house")
                             }
-                            NavigationLink(destination: Text("Study View")) {
-                                Label("Study", systemImage: "menucard")
-                            }
+//                            NavigationLink(destination: Text("Study View")) {
+//                                Label("Study", systemImage: "menucard")
+//                            }
 //                            //Load new folders.
 //                            NavigationLink(destination: Text("ok")) {
 //                               LoadFoldersButton()//Label("Study", systemImage: "menucard")
 //                            }
                         },
                     trailing:
+                        //EditButton()
                         NavigationLink(destination: Text("Stats View")) {
                             Label("Settings", systemImage: "chart.bar.xaxis")//Text("Stats")
                         }
@@ -123,7 +139,26 @@ struct HomeScreenButtonsView: View {
                 .padding(20)
                 .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
             }
-            
+
+//            List(selection: $cdSelection) {
+//                //ForEach(cdNumbers, id: \.id) { number in
+//                ForEach(cdNumbers, id: \.self) { data in
+//                    //  ForEach(items) { data in
+//                    // Text("Row \(data)")  #IMPORTANT# Shows all the data in the row.
+//                    // Text(data.wrappedFolderName)
+//                    Text(data.name ?? "POOP")
+//                }
+//                .onDelete(perform: cdOnSwipeDelete)
+//                //                        .onDelete(perform: onDelete)
+//                //                        .onMove(perform: onMove)
+//                //                        .onMove(perform: relocate)
+//            }
+//
+//            .navigationBarTitle("P2: \(cdSelection.count)")
+//            .environment(\.editMode, self.$cdEditMode)
+//            .navigationBarItems(leading: cdDeleteButton, trailing: EditButton())
+//
+//            
             
         }
 
@@ -161,6 +196,21 @@ struct HomeScreenButtonsView: View {
 
     
     //---------START FUNCTIONS-------
+//    func relocate(from source: IndexSet, to destination: Int) {
+//        cdNumbers.move(fromOffsets: source, toOffset: destination)
+//    }
+//
+//    private func onDelete(offsets: IndexSet) {
+//        items.remove(atOffsets: offsets)
+//    }
+//
+//    private func onMove(source: IndexSet, destination: Int) {
+//        items.move(fromOffsets: source, toOffset: destination)
+//    }
+
+
+   
+
     private func showSettings() {
         prefs.showSettings.toggle()
     }

@@ -45,13 +45,17 @@
 		2C147D29272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D24272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift */; };
 		2C147D2A272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */; };
 		2C147D2B272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */; };
-		2C147D2C272DCFCE00AF1E71 /* PhotoFolders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D26272DCFCE00AF1E71 /* PhotoFolders+CoreDataClass.swift */; };
-		2C147D2D272DCFCE00AF1E71 /* PhotoFolders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D26272DCFCE00AF1E71 /* PhotoFolders+CoreDataClass.swift */; };
-		2C147D2E272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D27272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift */; };
-		2C147D2F272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D27272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift */; };
 		2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */; };
 		2C2097C82735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */; };
 		2C2097C92735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */; };
+		2C2097D72737543A00D5B5FC /* SelectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097D62737543A00D5B5FC /* SelectionHandler.swift */; };
+		2C2097D82737543A00D5B5FC /* SelectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097D62737543A00D5B5FC /* SelectionHandler.swift */; };
+		2C2098282737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2098262737869900D5B5FC /* PhotoFolders+CoreDataClass.swift */; };
+		2C2098292737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2098262737869900D5B5FC /* PhotoFolders+CoreDataClass.swift */; };
+		2C20982A2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */; };
+		2C20982B2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */; };
+		2C20982D2737921900D5B5FC /* MultipleSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */; };
+		2C20982E2737921900D5B5FC /* MultipleSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */; };
 		2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* FileImporterView.swift */; };
 		2C2BDF432543225400D2434E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF422543225400D2434E /* StatsView.swift */; };
 		2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF4625432AC000D2434E /* CertificateView.swift */; };
@@ -246,11 +250,13 @@
 		2C147D1B272DA15600AF1E71 /* FoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersView.swift; sourceTree = "<group>"; };
 		2C147D24272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosArray+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosArray+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		2C147D26272DCFCE00AF1E71 /* PhotoFolders+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2C147D27272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C16EDA02575E9EB00ABF18D /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportBackup.swift; sourceTree = "<group>"; };
 		2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCheckBoxView.swift; sourceTree = "<group>"; };
+		2C2097D62737543A00D5B5FC /* SelectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionHandler.swift; sourceTree = "<group>"; };
+		2C2098262737869900D5B5FC /* PhotoFolders+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectRow.swift; sourceTree = "<group>"; };
 		2C214148271B5DCC00493E4E /* FileImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporterView.swift; sourceTree = "<group>"; };
 		2C2BDF422543225400D2434E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		2C2BDF4625432AC000D2434E /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
@@ -439,6 +445,7 @@
 				2C704F6C254BA93D00C5805B /* UserObject.swift */,
 				2C663A7A27209ABF0097AEFE /* UserDataEntity.swift */,
 				2C663A812720BACD0097AEFE /* AppDelegate.swift */,
+				2C2097D62737543A00D5B5FC /* SelectionHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -627,6 +634,7 @@
 				2C214148271B5DCC00493E4E /* FileImporterView.swift */,
 				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
 				2C13157A27346941001019BA /* SettingsSlideCard.swift */,
+				2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -636,8 +644,8 @@
 			children = (
 				2C147D24272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift */,
 				2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */,
-				2C147D26272DCFCE00AF1E71 /* PhotoFolders+CoreDataClass.swift */,
-				2C147D27272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift */,
+				2C2098262737869900D5B5FC /* PhotoFolders+CoreDataClass.swift */,
+				2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */,
 				2C663A9427238C820097AEFE /* UserData+CoreDataClass.swift */,
 				2C663A9527238C820097AEFE /* UserData+CoreDataProperties.swift */,
 				2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */,
@@ -918,7 +926,6 @@
 				2C943ED025B77FBB0010FA24 /* SettingsView.swift in Sources */,
 				2C2EA838253CEC6500D9A8C7 /* HomeScreen.swift in Sources */,
 				2CAA8BCE259382B500B39793 /* PersistenceController.swift in Sources */,
-				2C147D2C272DCFCE00AF1E71 /* PhotoFolders+CoreDataClass.swift in Sources */,
 				2C663A6F271F71300097AEFE /* ToggleSwitch.swift in Sources */,
 				2C614DAB273211010037BFA1 /* DotInversion.swift in Sources */,
 				2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */,
@@ -929,6 +936,7 @@
 				2C2097C82735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */,
 				2C147D28272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift in Sources */,
 				2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */,
+				2C2098282737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */,
 				2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */,
 				2C704F69254BA86200C5805B /* TimerObject.swift in Sources */,
 				2C02D8DE253ABB7100D5F960 /* ProgressBarView.swift in Sources */,
@@ -936,6 +944,7 @@
 				2C663A1F271CC7DC0097AEFE /* SettingsMacView.swift in Sources */,
 				2CAC6637271CA435005066B5 /* ContentView.swift in Sources */,
 				2C2BDF432543225400D2434E /* StatsView.swift in Sources */,
+				2C20982A2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2C614DAE2732118F0037BFA1 /* IntroScreen.swift in Sources */,
 				2C663A822720BACD0097AEFE /* AppDelegate.swift in Sources */,
 				2C614DA127319BC30037BFA1 /* NavBarView.swift in Sources */,
@@ -943,6 +952,7 @@
 				2C614DBA273337700037BFA1 /* Home.swift in Sources */,
 				2C06430E272C6554001DF985 /* Config.swift in Sources */,
 				2C663A22271CC9410097AEFE /* AdvancedSettingsView.swift in Sources */,
+				2C2097D72737543A00D5B5FC /* SelectionHandler.swift in Sources */,
 				2C064303272B9806001DF985 /* ListRowsView.swift in Sources */,
 				2CEB2EF9253F86DD0087D696 /* GlobalVariables.swift in Sources */,
 				2CC05E8A25406DE8007C733D /* Cache.swift in Sources */,
@@ -951,8 +961,8 @@
 				2C06430A272C4579001DF985 /* iOSSettingsBarView.swift in Sources */,
 				2C663A91272327010097AEFE /* UserSessionStats.swift in Sources */,
 				2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */,
-				2C147D2E272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */,
+				2C20982D2737921900D5B5FC /* MultipleSelectRow.swift in Sources */,
 				2C614DA72731CE8A0037BFA1 /* HomeScreenButtonsView.swift in Sources */,
 				2C663A67271F00370097AEFE /* SessionStats.swift in Sources */,
 				2C147D1C272DA15600AF1E71 /* FoldersView.swift in Sources */,
@@ -998,7 +1008,6 @@
 				2CB6249627277C35001AFA85 /* SignIn.swift in Sources */,
 				2CB6248B27277C07001AFA85 /* DrawingView.swift in Sources */,
 				2C064307272C43EC001DF985 /* ButtonsTestView.swift in Sources */,
-				2C147D2D272DCFCE00AF1E71 /* PhotoFolders+CoreDataClass.swift in Sources */,
 				2CB6249C27277C4D001AFA85 /* GeneralSettingsView.swift in Sources */,
 				2CED7E0B27271C3F00B99CAD /* ContentView.swift in Sources */,
 				2C147D1D272DA15600AF1E71 /* FoldersView.swift in Sources */,
@@ -1019,6 +1028,7 @@
 				2C2097C92735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */,
 				2CB6249127277C25001AFA85 /* ImagePicker.swift in Sources */,
 				2C663A832720BACD0097AEFE /* AppDelegate.swift in Sources */,
+				2C2098292737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */,
 				2C663A73271F74470097AEFE /* timePickerView.swift in Sources */,
 				2CB6248D27277C0F001AFA85 /* ProgressBarView.swift in Sources */,
 				2CB6248A27277C01001AFA85 /* HomeScreen.swift in Sources */,
@@ -1026,6 +1036,7 @@
 				2C663A70271F71300097AEFE /* ToggleSwitch.swift in Sources */,
 				2CB6248327277287001AFA85 /* GlobalVariables.swift in Sources */,
 				2CB6249B27277C47001AFA85 /* MenuPicker.swift in Sources */,
+				2C20982B2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */,
 				2C614DAF2732118F0037BFA1 /* IntroScreen.swift in Sources */,
 				2CB6249827277C3F001AFA85 /* PhotoView.swift in Sources */,
@@ -1033,8 +1044,8 @@
 				2CB624882727729F001AFA85 /* PersistenceController.swift in Sources */,
 				2C06430F272C6554001DF985 /* Config.swift in Sources */,
 				2C614DA227319BC30037BFA1 /* NavBarView.swift in Sources */,
+				2C2097D82737543A00D5B5FC /* SelectionHandler.swift in Sources */,
 				2CED7E112727531B00B99CAD /* SettingsRow.swift in Sources */,
-				2C147D2F272DCFCE00AF1E71 /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2CB6248F27277C1E001AFA85 /* MessageDocument.swift in Sources */,
 				2CB624842727728D001AFA85 /* UserObject.swift in Sources */,
 				2CB6249E27277C52001AFA85 /* AdvancedSettingsView.swift in Sources */,
@@ -1043,6 +1054,7 @@
 				2C663A7627205B460097AEFE /* CardView.swift in Sources */,
 				2C064304272B9806001DF985 /* ListRowsView.swift in Sources */,
 				2C614DA82731CE8A0037BFA1 /* HomeScreenButtonsView.swift in Sources */,
+				2C20982E2737921900D5B5FC /* MultipleSelectRow.swift in Sources */,
 				2C663A6C271F6B810097AEFE /* CheckBoxView.swift in Sources */,
 				2C663A7C27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2CED7E152727534100B99CAD /* Color.swift in Sources */,

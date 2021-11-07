@@ -12,8 +12,31 @@ struct FoldersView: View {
     @State var trimVal : CGFloat = 0
     @State var checked = false
 
+    @ObservedObject var observedFolder = PhotoFolders()
+
     var folderData : FetchedResults<PhotoFolders>
-    
+
+    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
+    ) var photoFoldersTest : FetchedResults<PhotoFolders>
+
+    @State private var AllData = PhotoFolders()
+
+    @State var selectedItems = Set<UUID>()
+
+    // Core Data variables
+    @State var cdSelection = Set<PhotoFolders>()
+    @State var cdEditMode = EditMode.inactive
+
+    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors:[]) var cdNumbers: FetchedResults<PhotoFolders>
+
+
+
+    //  @FetchRequest(entity: MyNumber.entity(), sortDescriptors:[]) var cdNumbers: FetchedResults<MyNumber>
+
+
+    //@State var fruits = [Bool](repeating: false, count: PhotoFolders.fetchRequest()..allCases.count)
+
+
     var body: some View {
 
         VStack(){
@@ -22,71 +45,50 @@ struct FoldersView: View {
                 LoadFoldersButton()
             }
 
-            List {
+//            //Add the Foreach here.
+//            List(selection: $cdSelection) {
+//                //ForEach(cdNumbers, id: \.id) { number in
+//                ForEach(cdNumbers, id: \.self) { data in
+//                    Text(data.wrappedFolderName)
+//                }
+//             //   .onDelete(perform: cdOnSwipeDelete)
+//            }
+//            .navigationBarTitle("P2: \(cdSelection.count)")
+//          //  .navigationBarItems(leading: cdDeleteButton, trailing: EditButton())
+//            .environment(\.editMode, self.$cdEditMode)
 
-                ForEach(folderData, id:\.self) { data in
-                //ForEach(Array(zip(photoFolders.indices, photoFolders)), id:\.0 ) { data in  //id:\.self
-                   // let isOn = data.wrappedIsSelected
-                    //Add the checkbox.
-//                    Button(action: {
-//                    if !self.checked {
-//                        withAnimation(Animation.easeIn(duration: 0.8)) {
-//                            self.trimVal = 1
-//                            self.checked.toggle()
-//                        }
-//                    } else {
-//                        withAnimation {
-//                            self.trimVal = 0
-//                            self.checked.toggle()
-//                        }
-//                    }) {
-
-                    //self.photoFoldersid:\.self[data].wrappedIsSelected
-                    LazyHStack {
-                       // CircularCheckBoxView(checked: self.photoFolders.wrappedIsSelected, trimVal: $trimVal)
-                        CircularCheckBoxView(checked: $checked, trimVal: $trimVal)
-                            .onTapGesture {
-                                if !self.checked {
-                                    withAnimation(Animation.easeIn(duration: 0.8)) {
-                                        self.trimVal = 1
-                                        self.checked.toggle()
-
-                                    }
-                                } else {
-                                    withAnimation {
-                                        self.trimVal = 0
-                                        self.checked.toggle()
-                                    }
-                                }
-                            }
-
-
-                        Text(" \(data.wrappedFolderName ) ")//- \(data.tag ?? "tags") - ")
-                           // .font(.caption)
-                            .contextMenu {
-                                Button("Delete"){
-                                    context.delete(data)
-                                    try? context.save()
-                                }
-                            }
-                    }
-
-                }
-                //.listRowBackground(Color.gray)
-            }
         }
-//        .accentColor(Color.black)
-//                .overlay(
-//            RoundedRectangle(cornerRadius: 20)
-//                .stroke(Color.purple, lineWidth: 5)
-//                .background(Color.pink)
-//
-//        )
     }
+
+//    init() {
+//        // Global Navigation bar customizations
+//        UINavigationBar.appearance().largeTitleTextAttributes = [
+//            .font : UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.bold)]
+//    }
 }
+
+
 
 //struct FoldersView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        FoldersView()
 //    }
 //}
+
+
+
+struct CheckmarkToggleStyle: ToggleStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        HStack {
+            Button(action: { withAnimation { configuration.$isOn.wrappedValue.toggle() }}){
+                HStack{
+                    configuration.label.foregroundColor(.primary)
+                    Spacer()
+                    if configuration.isOn {
+                        Image(systemName: "checkmark").foregroundColor(.primary)
+                    }
+                }
+            }
+        }
+    }
+}

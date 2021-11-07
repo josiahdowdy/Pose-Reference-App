@@ -16,6 +16,8 @@ class GlobalVariables: ObservableObject {
     @Published var arrayOfURLStrings = [String]()
     @Published var randomImages = UnsplashData() //Still needed till I update...
     @Published var time = [5, 30, 60, 120, 300]
+    @Published var arrayOfFolders = [String]()
+
     
 
     @Published var currentIndex = 0
