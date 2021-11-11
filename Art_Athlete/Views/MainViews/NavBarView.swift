@@ -40,7 +40,7 @@ struct NavBarView: View {
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
                             //iOSSettingsBarView()
-                            NavigationLink("START", destination: HomeScreenButtonsView()) //Image(systemName: "line.3.horizontal.circle")
+                            NavigationLink("Home", destination: HomeScreenButtonsView()) //Image(systemName: "line.3.horizontal.circle")
                         }
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button(action: {

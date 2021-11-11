@@ -6,7 +6,7 @@ import Foundation
 class GlobalVariables: ObservableObject {
     //----------STRINGS---------------------------------------------------------------
     @Published var sPose = ""
-    @Published var sPoseCount = 0
+    @Published var sPoseCount = 30
     @Published var tag = ""
     @Published var sURL = ""
     @Published var error = ""
@@ -16,13 +16,15 @@ class GlobalVariables: ObservableObject {
     @Published var arrayOfURLStrings = [String]()
     @Published var randomImages = UnsplashData() //Still needed till I update...
     @Published var time = [5, 30, 60, 120, 300]
+    @Published var homeManyPhotosToDraw = [5, 10, 20, 60, 90]
     @Published var arrayOfFolders = [String]()
 
     
 
     @Published var currentIndex = 0
     @Published var selectorIndexTime = 2
-    @Published var userSessionPoseCount = 0 
+    @Published var selectorCountTime = 2
+    @Published var userSessionPoseCount = 0
     
     //----------BOOLS----------------------------------------------------------------
     @Published var startSession = false
@@ -89,7 +91,7 @@ class GlobalVariables: ObservableObject {
     
     
     //@Published var sPhotographer = ""
-    // @Published var sPoseCount = 30
+
     // @Published var localURL :URL = URL(string: "")
     //@Published var imageQuality = "regular"
     // //?utm_source=Drawing_Reference_Timer&utm_medium=referral"

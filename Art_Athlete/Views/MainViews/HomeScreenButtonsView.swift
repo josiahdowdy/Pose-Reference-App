@@ -80,9 +80,6 @@ struct HomeScreenButtonsView: View {
 
                                 timePickerView()
 
-
-
-
                                 Button("Start") { //Button("\(Image(systemName: "play.rectangle.fill")) Start") {
                                     //   NavBarView().loadLocalPhotos()
                              //       MultipleSelectRow().saveArrayOfFolders()
@@ -128,6 +125,8 @@ struct HomeScreenButtonsView: View {
             VStack {
               //  FileImporterView()
                 Spacer().frame(maxWidth: .infinity)
+
+                countPickerView()
 
                 timePickerView()
 
@@ -232,6 +231,8 @@ struct HomeScreenButtonsView: View {
     }
     
     func loadLocalPhotos(){
+        print("JD01 : loadLocalPhotos() : \(prefs.arrayOfURLStrings)")
+
         if (isRandom) {
             prefs.arrayOfURLStrings.shuffle()
         }

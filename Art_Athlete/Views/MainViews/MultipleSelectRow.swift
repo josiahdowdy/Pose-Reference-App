@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Files
 
 struct MultipleSelectRow : View {
     @EnvironmentObject var prefs: GlobalVariables
@@ -29,28 +30,11 @@ struct MultipleSelectRow : View {
             //   List(foldersData, id: \.self, selection: $rowSelection){ name in //*this works*
             List(selection: $rowSelection) {
                 ForEach(cdNumbers, id: \.self) { name in
-                    HStack {
-
-
                         HStack {
                             Text(name.wrappedFolderName)
                         }
-                        HStack {
-                            if (rowSelection.contains(name) == true) {
-                                Text(name.wrappedFolderName).font(.caption)
-                                //    prefs.arrayOfFolders.append(name)
-                                
-
-                                //  print("Josiah, prefs.arrayOfFolders: \(prefs.arrayOfFolders)")
-                            }
-                        }
-
-                    }
-
                 }
-                
                 .onDelete(perform: cdOnSwipeDelete)
-
             }
         }
         // the next line is the modifier
@@ -68,11 +52,6 @@ struct MultipleSelectRow : View {
      ••••••••••••••••••••••••••••••••••
      ••••••••••••••••••••••••••••••••••
      ••••••••••••••••••••••••••••••••*/
-//    public func saveArrayOfFolders(name) {
-//        prefs.arrayOfFolders.append(name)
-//        print("Josiah, prefs.arrayOfFolders: \(prefs.arrayOfFolders)")
-//    }
-
     private var cdArraySave: some View {
         return Button(action: cdSaveArray) {
             Image(systemName: "square.and.arrow.down")
@@ -80,16 +59,57 @@ struct MultipleSelectRow : View {
     }
 
     private func cdSaveArray() {
+        prefs.arrayOfFolders.removeAll()
+
         for selectedItem in self.rowSelection{
        // ForEach(rowSelection, id: \.self) { i in
             //self.context.delete(selectedItem)
             prefs.arrayOfFolders.append(selectedItem.wrappedFolderName)
 
+            /*••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+             saveFile works, when I have just added new folders. BUT, if I am trying to select the URLs of
+             folders loaded in a previous session, then I don't have permission to view them.
+             ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*/
+          //  saveFile(url: selectedItem.wrappedFolderURL) //selectedFiles[i]
+            print("J2: \(selectedItem.wrappedFolderURL)")
+            prefs.arrayOfURLStrings.append(String(describing: selectedItem.wrappedFolderURL))
+
+
+            do {
+                let folderSelected = try Folder(path: selectedItem.wrappedFolderURL.path)
+
+                for file in try Folder(path: folderSelected.path).files {
+                    print(file.name)
+                    prefs.arrayOfURLStrings.append(String(describing: file.url))
+                }
+
+               // prefs.arrayOfURLStrings.append(String(describing: folderSelected.files))
+                            //.append(String(describing: actualPath))
+            } catch {
+                print(error.localizedDescription)
+            }
+             //selectedItem.folderURL!.path
+
+            //folderSelected.folder.files.append()
+
+            //prefs.arrayOfURLStrings.append(selectedItem.folderURL!.path)
+            print("JD03: \(prefs.arrayOfURLStrings)")
         }
+
         try? self.context.save()
         rowSelection = Set<PhotoFolders>()
 
+
+
         print(prefs.arrayOfFolders)
+
+
+        print(prefs.arrayOfURLStrings)
+
+//        for i in 0...(selectedFiles.count-1) { //selectedFiles.count
+//            //print("\n\(i)") //This prints out the photo data
+//            saveFile(url: selectedFiles[i])
+//        }
     }
 
     // Core Data Functions
@@ -144,6 +164,41 @@ struct MultipleSelectRow : View {
 
 
 
+    func saveFile (url: URL) {
+        var actualPath: URL
+
+        if (CFURLStartAccessingSecurityScopedResource(url as CFURL)) { // <- here
+
+            let fileData = try? Data.init(contentsOf: url)
+            let fileName = url.lastPathComponent
+
+            actualPath = getDocumentsDirectory().appendingPathComponent(fileName)
+
+            // print("\nactualPath = \(actualPath)\n") //Prints out the actual path.
+            do {
+                try fileData?.write(to: actualPath)
+                prefs.arrayOfURLStrings.append(String(describing: actualPath))
+                //print("\nString: arrayOfURLStrings: \n\(prefs.arrayOfURLStrings)\n")
+                if(fileData == nil){
+                    print("Permission error! ...in saveFile function from MultipleSelectRow.")
+                }
+                else {
+                    //print("Success.")
+                }
+            } catch {
+                print("Josiah1: \(error.localizedDescription)")
+            }
+            CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
+
+        }
+        else {
+            print("Permission error!")
+        }
+
+        func getDocumentsDirectory() -> URL {
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
+    }
 
 }
 

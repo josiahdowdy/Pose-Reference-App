@@ -10,6 +10,7 @@ import CoreData
 //import CheckDevice
 import SlideOverCard
 import UniformTypeIdentifiers
+import CoreLocation
 
 
 
@@ -45,6 +46,9 @@ struct ContentView: View {
     
     //@State private var startSession = false
     @State var startSession = false
+
+    private let locationManager = CLLocationManager()
+
     
     var body: some View {
         //        if #available(iOS 15.0, *) {
@@ -103,6 +107,13 @@ struct ContentView: View {
                             Button("Done") {
                                 prefs.showSettings = false
                             }.alignmentGuide(.trailing, computeValue: { _ in 90 } )
+
+                            Button(action: {
+                                self.locationManager.requestAlwaysAuthorization()
+                                self.locationManager.requestWhenInUseAuthorization()
+                            }) {
+                                Text("Request authorization")
+                            }
                         }
 
                         toggleSwitch()

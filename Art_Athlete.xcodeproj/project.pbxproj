@@ -56,6 +56,9 @@
 		2C20982B2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */; };
 		2C20982D2737921900D5B5FC /* MultipleSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */; };
 		2C20982E2737921900D5B5FC /* MultipleSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */; };
+		2C209830273C8F7100D5B5FC /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 2C20982F273C8F7100D5B5FC /* Files */; };
+		2C209832273CD9D100D5B5FC /* countPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C209831273CD9D100D5B5FC /* countPickerView.swift */; };
+		2C209833273CD9D100D5B5FC /* countPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C209831273CD9D100D5B5FC /* countPickerView.swift */; };
 		2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* FileImporterView.swift */; };
 		2C2BDF432543225400D2434E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF422543225400D2434E /* StatsView.swift */; };
 		2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF4625432AC000D2434E /* CertificateView.swift */; };
@@ -257,6 +260,7 @@
 		2C2098262737869900D5B5FC /* PhotoFolders+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectRow.swift; sourceTree = "<group>"; };
+		2C209831273CD9D100D5B5FC /* countPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countPickerView.swift; sourceTree = "<group>"; };
 		2C214148271B5DCC00493E4E /* FileImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporterView.swift; sourceTree = "<group>"; };
 		2C2BDF422543225400D2434E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		2C2BDF4625432AC000D2434E /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 			files = (
 				2C13158227346ECF001019BA /* SlideOverCard in Frameworks */,
 				2C131571273391B7001019BA /* Kingfisher in Frameworks */,
+				2C209830273C8F7100D5B5FC /* Files in Frameworks */,
 				2C663A64271E20130097AEFE /* CloudKit.framework in Frameworks */,
 				2C13157827344E65001019BA /* CheckDevice in Frameworks */,
 			);
@@ -593,6 +598,7 @@
 				2C663A77272097500097AEFE /* UserObjectView.swift */,
 				2C064305272C43EC001DF985 /* ButtonsTestView.swift */,
 				2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */,
+				2C209831273CD9D100D5B5FC /* countPickerView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -684,6 +690,7 @@
 				2C131570273391B7001019BA /* Kingfisher */,
 				2C13157727344E65001019BA /* CheckDevice */,
 				2C13158127346ECF001019BA /* SlideOverCard */,
+				2C20982F273C8F7100D5B5FC /* Files */,
 			);
 			productName = "pose-reference";
 			productReference = 2C614D9A272DE7100037BFA1 /* ArtAthlete (iOS).app */;
@@ -949,6 +956,7 @@
 				2C663A822720BACD0097AEFE /* AppDelegate.swift in Sources */,
 				2C614DA127319BC30037BFA1 /* NavBarView.swift in Sources */,
 				2C147D2A272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */,
+				2C209832273CD9D100D5B5FC /* countPickerView.swift in Sources */,
 				2C614DBA273337700037BFA1 /* Home.swift in Sources */,
 				2C06430E272C6554001DF985 /* Config.swift in Sources */,
 				2C663A22271CC9410097AEFE /* AdvancedSettingsView.swift in Sources */,
@@ -1041,6 +1049,7 @@
 				2C614DAF2732118F0037BFA1 /* IntroScreen.swift in Sources */,
 				2CB6249827277C3F001AFA85 /* PhotoView.swift in Sources */,
 				2CB624872727729B001AFA85 /* Model.swift in Sources */,
+				2C209833273CD9D100D5B5FC /* countPickerView.swift in Sources */,
 				2CB624882727729F001AFA85 /* PersistenceController.swift in Sources */,
 				2C06430F272C6554001DF985 /* Config.swift in Sources */,
 				2C614DA227319BC30037BFA1 /* NavBarView.swift in Sources */,
@@ -1692,6 +1701,11 @@
 			productName = SlideOverCard;
 		};
 		2C147D13272C9A0600AF1E71 /* Files */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */;
+			productName = Files;
+		};
+		2C20982F273C8F7100D5B5FC /* Files */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
