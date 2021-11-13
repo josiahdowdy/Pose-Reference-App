@@ -138,6 +138,7 @@ struct NavBarView: View {
     func getDocumentsDirectory() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
+}
     
 //    //Don't confuse with start timer in Timer.swift
 //    private func startTimer() {
@@ -150,32 +151,6 @@ struct NavBarView: View {
 //        newSession.date = Date()
 //    }
 //    
-//    func loadLocalPhotos(){
-//        if (isRandom) {
-//            prefs.arrayOfURLStrings.shuffle()
-//        }
-//        
-//        if (prefs.arrayOfURLStrings.isEmpty) {
-//            prefs.error = "Error loading images..." //Error Oct16 HomeView().error
-//        } else {
-//            //passInfo()
-//            prefs.error = ""
-//            prefs.sURL = prefs.arrayOfURLStrings[0]
-//            prefs.localPhotos = true
-//            prefs.startBoolean.toggle()
-//            prefs.disableSkip = false
-//            //self.presentationMode.wrappedValue.dismiss() //Josiah Oct15 //Hide sheet.
-//            timeObject.timeChosen = Double(prefs.time[prefs.selectorIndexTime]) //Double(prefs.time[prefs.selectorIndexTime])!
-//            //prefs.sessionFirstStarted = false
-//            
-//            
-//            //saveData()
-//            //TimerView().newUserInfo()
-//            startTimer() //Do not start timer if there is no wifi.
-//            self.startSession = true //Tells the view to switch and start.
-//        }
-//    }  //End of load local photos
-}
 //    private func createAddPhotoView() -> some View {
 //        return NavigationView {
 //            VStack {

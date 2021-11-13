@@ -6,14 +6,16 @@
 //
 import SwiftUI
 import UniformTypeIdentifiers
+import Files
 
 
 struct HomeScreenButtonsView: View {
+    //@ObservedObject var dataProvider = DataProvider.shared
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
     @State var isAddingPhotos: Bool = false
-    @State var isImporting: Bool = false
+    //@State var isImporting: Bool = false
     // @Binding var startSession: Bool
     @State var error = ""
 
@@ -21,15 +23,12 @@ struct HomeScreenButtonsView: View {
     //var folderData : FetchedResults<PhotoFolders>
 
     @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
-    ) var folderData : FetchedResults<PhotoFolders>
-
+    ) var cdFolders : FetchedResults<PhotoFolders>
 
     // Core Data variables
     @State var cdSelection = Set<PhotoFolders>()
 
-
-
-    //@State var cdSelection = Set<UUID>()
+    @State private var editMode: EditMode = .inactive
     @State var cdEditMode = EditMode.inactive
 
     //@State private var items: [PhotoFolders] = []
@@ -37,187 +36,107 @@ struct HomeScreenButtonsView: View {
     //@FetchRequest(entity: PhotoFolders.entity(), sortDescriptors:[])
     //var cdNumbers: FetchedResults<PhotoFolders>
 
-    //-----END VARIABLES------
-    //    init() {
-    //        let coloredAppearance = UINavigationBarAppearance()
-    //        coloredAppearance.configureWithOpaqueBackground()
-    //        coloredAppearance.backgroundColor = .systemBrown
-    //        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    //        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-    //
-    //        UINavigationBar.appearance().standardAppearance = coloredAppearance
-    //        UINavigationBar.appearance().compactAppearance = coloredAppearance
-    //        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-    //
-    //        UINavigationBar.appearance().tintColor = .white
-    //    }
-    ////\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+             /*\___/\ ((
+              \`@_@'/  ))
+              {_:Y:.}_//
+    ----------{_}^-'{_}----------*/
 
-    //-----------------START VIEW------------------------
+    //MARK: - VIEW
     var body: some View {
         NavigationView {
-            if #available(iOS 15.0, *) {
-                VStack {
-                    FileImporterView() //This loads in photos.
-
-                    //LoadFoldersButton()
-                    //Text("Display the button options here.")
-                    FoldersView(folderData: folderData)
-
-
-                    MultipleSelectRow()
-
-
-                // .navigationBarTitle("Art Athlete")
-                }
-                .navigationBarItems(
-                    leading:
-                        HStack {
-                            NavigationLink(destination:
-                                            VStack {
-                                //FileImporterView()
-                                Spacer().frame(maxWidth: .infinity)
-
-                                timePickerView()
-
-                                Button("Start") { //Button("\(Image(systemName: "play.rectangle.fill")) Start") {
-                                    //   NavBarView().loadLocalPhotos()
-                             //       MultipleSelectRow().saveArrayOfFolders()
-                                    loadLocalPhotos()
-                                }
-                                .keyboardShortcut(.defaultAction)
-                                .padding(20)
-                                .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
-                            }) {
-                              //  cdDeleteButton
-                                Label("Home", systemImage: "house")
-                            }
-//                            NavigationLink(destination: Text("Study View")) {
-//                                Label("Study", systemImage: "menucard")
-//                            }
-//                            //Load new folders.
-//                            NavigationLink(destination: Text("ok")) {
-//                               LoadFoldersButton()//Label("Study", systemImage: "menucard")
-//                            }
-                        },
-                    trailing:
-                        //EditButton()
-                        NavigationLink(destination: Text("Stats View")) {
-                            Label("Settings", systemImage: "chart.bar.xaxis")//Text("Stats")
-                        }
-                )
-                .toolbar {
-                    Button(action: showSettings) {
-                        Label("Settings", systemImage: "gearshape.fill")
-                    }
-                    Button(action: addFolders) {
-                        Label("Add Folder", systemImage: "gearshape.fill")
-                    }
-
-
-                }
-                
-            } else {
-                // Fallback on earlier versions
-                Text("Version is before iOS 15")
-            }
-
             VStack {
-              //  FileImporterView()
+                // FileImporterView() //This loads in photos MARK: [BLUE BOX]
+                //LoadFoldersButton()
+                FoldersView(folderData: cdFolders)
+
+                LoadFoldersButton()
+
+//                LoadFoldersButton(isImporting: true)
+                MultipleSelectRow(cdFolders: cdFolders)
+            }
+            .toolbar(content: {
+
+            })
+            /*
+            .navigationBarItems(
+                leading:
+                    HStack {
+                        NavigationLink(destination:
+                                        VStack {
+                            //FileImporterView()
+                            //Spacer().frame(maxWidth: .infinity)
+
+                           // timePickerView()
+
+                        }) {
+                            Label("Home", systemImage: "house")
+                        }
+                    } //,
+                trailing:
+                    EditButton()
+                NavigationLink(destination: Text("Stats View")) {
+                    Label("Settings", systemImage: "chart.bar.xaxis")//Text("Stats")
+                }
+            ) */
+//            .navigationBarItems {
+//
+//                HStack {
+//                    Button(action: showSettings) {
+//                        Label("Settings", systemImage: "gearshape.fill")
+//                    }
+//                    Button(action: addFolders) { //
+//                        Label("Add Folder", systemImage: "heart")
+//                    }
+//            }
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(action: {
+                        // imageData[current].description = description
+                        showSettings()
+                        // showSheet = false
+                    }, label: {
+                        Image(systemName: "gearshape")
+                    })
+                }
+
+               // ToolbarItem {
+
+                //}
+            }
+        }
+
+            VStack {  // MARK: - Shows the main screen (right side).
+                //  FileImporterView()
                 Spacer().frame(maxWidth: .infinity)
 
                 countPickerView()
                 timePickerView()
 
-                Button("Start") { //Button("\(Image(systemName: "play.rectangle.fill")) Start") {
+                Button("Start \(Image(systemName: "play.rectangle.fill"))") { //Button(" Start") {
                     //   NavBarView().loadLocalPhotos()
                     loadLocalPhotos()
                 }
                 .keyboardShortcut(.defaultAction)
                 .padding(20)
                 .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
-            }
-
-//            List(selection: $cdSelection) {
-//                //ForEach(cdNumbers, id: \.id) { number in
-//                ForEach(cdNumbers, id: \.self) { data in
-//                    //  ForEach(items) { data in
-//                    // Text("Row \(data)")  #IMPORTANT# Shows all the data in the row.
-//                    // Text(data.wrappedFolderName)
-//                    Text(data.name ?? "POOP")
-//                }
-//                .onDelete(perform: cdOnSwipeDelete)
-//                //                        .onDelete(perform: onDelete)
-//                //                        .onMove(perform: onMove)
-//                //                        .onMove(perform: relocate)
-//            }
-//
-//            .navigationBarTitle("P2: \(cdSelection.count)")
-//            .environment(\.editMode, self.$cdEditMode)
-//            .navigationBarItems(leading: cdDeleteButton, trailing: EditButton())
-//
-//            
-            
-        }
-
-
-
-//        if (UIDevice.current.userInterfaceIdiom == .phone) {
-//            //  print("Not phone")
-//            Text("Only shows on iPhone.")
-//        }
-
-
-
-
-
-    } //--------END VIEW-------------
-    /*
-     ToolbarItem(placement: .navigationBarLeading) {
-     Button(action: {
-     //   iOSSettingsBarView()
-
-     }) {
-     //Image(systemName: "gearshape.fill") }
-     Text("Settings") }
-     }
-
-     ToolbarItem(placement: .navigationBarTrailing) {
-     Button(action: {
-     self.isAddingPhotos = true }) {
-     Image(systemName: "plus") }
-     */
-
-
-    //  }
-
-
+            } //End VStack.
+        } //End UI.
     
-    //---------START FUNCTIONS-------
-//    func relocate(from source: IndexSet, to destination: Int) {
-//        cdNumbers.move(fromOffsets: source, toOffset: destination)
-//    }
-//
-//    private func onDelete(offsets: IndexSet) {
-//        items.remove(atOffsets: offsets)
-//    }
-//
-//    private func onMove(source: IndexSet, destination: Int) {
-//        items.move(fromOffsets: source, toOffset: destination)
-//    }
+       /*__/,|   (`\
+     _.|o o  |_   ) )
+   -(((---(((-----*/
 
-
-   
-
+    //MARK: - FUNCTIONS
     private func showSettings() {
         prefs.showSettings.toggle()
     }
 
     private func addFolders() {
         prefs.addFolder.toggle()
+    //    isImporting = true
     }
 
-    
+
     //Don't confuse with start timer in Timer.swift
     private func startTimer() {
         timeObject.isTimerRunning = true
@@ -228,7 +147,7 @@ struct HomeScreenButtonsView: View {
         let newSession = UserData(context: context)
         newSession.date = Date()
     }
-    
+
     func loadLocalPhotos(){
         print("JD01 : loadLocalPhotos() : \(prefs.arrayOfURLStrings)")
         print("JD20: \(prefs.arrayOfURLStrings.count)")
@@ -241,7 +160,7 @@ struct HomeScreenButtonsView: View {
         if (isRandom) {
             prefs.arrayOfURLStrings.shuffle()
         }
-        
+
         if (prefs.arrayOfURLStrings.isEmpty) {
             prefs.error = "Error loading images..." //Error Oct16 HomeView().error
         } else {
@@ -251,20 +170,9 @@ struct HomeScreenButtonsView: View {
             prefs.localPhotos = true
             prefs.disableSkip = false
             timeObject.timeChosen = Double(prefs.time[prefs.selectorIndexTime]) //Double(prefs.time[prefs.selectorIndexTime])!
-            
+
             startTimer()
             prefs.startSession = true
-            //ContentView().$startSession = true
-            
-            
-            
-            //self.presentationMode.wrappedValue.dismiss() //Josiah Oct15 //Hide sheet.
-            //   self.startSession = true //Tells the view to switch and start.
-            //ContentView().startSession = true
-            //prefs.sessionFirstStarted = false
-            //saveData()
-            //TimerView().newUserInfo()
-            //passInfo()
         }
     }  //End of load local photos
 
@@ -302,10 +210,11 @@ struct HomeScreenButtonsView: View {
         func getDocumentsDirectory() -> URL {
             return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         }
-    //---------END FUNCTIONS---------
-    
+        //---------END FUNCTIONS---------
+
+    }
 }
-}
+
 
 
 //
@@ -314,3 +223,157 @@ struct HomeScreenButtonsView: View {
 //        HomeScreenButtonsView()
 //    }
 //}
+
+
+
+
+//  trailing:
+//EditButton()
+//                    Button(action: {
+//                        withAnimation {
+//                            isImporting = false
+//
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                                isImporting = true
+//                            }
+//                        }
+//                    }, label: {
+//                        Image(systemName: "folder.badge.plus")
+//                    })
+
+//AddButton(editMode: $editMode, isImporting: isImporting)
+//                        NavigationLink(destination: Text("Stats View")) {
+//                            Label("Settings", systemImage: "chart.bar.xaxis")//Text("Stats")
+//                        }
+//                    )
+//                .toolbar {
+//                    Button(action: showSettings) {
+//                        Label("Settings", systemImage: "gearshape.fill")
+//                    }
+//                }
+
+
+
+//            List(selection: $cdSelection) {
+//                //ForEach(cdNumbers, id: \.id) { number in
+//                ForEach(cdNumbers, id: \.self) { data in
+//                    //  ForEach(items) { data in
+//                    // Text("Row \(data)")  #IMPORTANT# Shows all the data in the row.
+//                    // Text(data.wrappedFolderName)
+//                    Text(data.name ?? "POOP")
+//                }
+//                .onDelete(perform: cdOnSwipeDelete)
+//                //                        .onDelete(perform: onDelete)
+//                //                        .onMove(perform: onMove)
+//                //                        .onMove(perform: relocate)
+//            }
+//
+//            .navigationBarTitle("P2: \(cdSelection.count)")
+//            .environment(\.editMode, self.$cdEditMode)
+//            .navigationBarItems(leading: cdDeleteButton, trailing: EditButton())
+//
+//
+
+/*
+ .fileImporter(
+ isPresented: $isImporting, allowedContentTypes: [UTType.folder], //, UTType.png, UTType.image, UTType.jpeg, UTType.pdf],
+ allowsMultipleSelection: false,
+ onCompletion: { result in
+ do {
+ guard let selectedFolder: URL = try result.get().first else { return }
+ //
+ //                        let name = selectedFolder.lastPathComponent
+ //                        let url = selectedFolder
+ //                        let note = Note(name: name, isFolderSelected: false, url: url)
+
+ //  DataProvider.shared.create(note: note)
+
+ //                    userSettings.storedFolderURL = selectedFolder
+
+ //                    userSettings.arrayOfFolderURLs.append(selectedFolder.path)
+ //  userSettings.workingDirectoryBookmark = selectedFolder
+
+ //Store photo urls in array.
+ var arrayFiles = [String]()
+ for i in try Folder(path: selectedFolder.path).files {
+ arrayFiles.append(i.path) //Save the photo urls into the array.
+ }
+
+ //  for file in try Folder(path: selectedFolder.path).files {
+ //userSettings.arrayPhotoURLs = [file]
+ //                        userSettings.arrayOfFolderNames.append(file.name)
+ //                        userSettings.arrayOfFolderURLs.append(file.path)
+ //                        userSettings.arrayPhotoDownloadPath.append(file.url.downloadURL)
+ //     }
+ } catch { print("failed") }
+ })
+
+
+
+
+
+
+ //--------END VIEW-------------
+
+
+ //        if (UIDevice.current.userInterfaceIdiom == .phone) {
+ //            //  print("Not phone")
+ //            Text("Only shows on iPhone.")
+ //        }
+
+
+
+
+
+
+ /*
+  ToolbarItem(placement: .navigationBarLeading) {
+  Button(action: {
+  //   iOSSettingsBarView()
+
+  }) {
+  //Image(systemName: "gearshape.fill") }
+  Text("Settings") }
+  }
+
+  ToolbarItem(placement: .navigationBarTrailing) {
+  Button(action: {
+  self.isAddingPhotos = true }) {
+  Image(systemName: "plus") }
+  */
+
+
+ //  }
+
+
+
+
+ //-----END VARIABLES------
+ //    init() {
+ //        let coloredAppearance = UINavigationBarAppearance()
+ //        coloredAppearance.configureWithOpaqueBackground()
+ //        coloredAppearance.backgroundColor = .systemBrown
+ //        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+ //        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+ //
+ //        UINavigationBar.appearance().standardAppearance = coloredAppearance
+ //        UINavigationBar.appearance().compactAppearance = coloredAppearance
+ //        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+ //
+ //        UINavigationBar.appearance().tintColor = .white
+ //    }
+    //-----END VARIABLES------
+    //    init() {
+    //        let coloredAppearance = UINavigationBarAppearance()
+    //        coloredAppearance.configureWithOpaqueBackground()
+    //        coloredAppearance.backgroundColor = .systemBrown
+    //        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+    //        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+    //
+    //        UINavigationBar.appearance().standardAppearance = coloredAppearance
+    //        UINavigationBar.appearance().compactAppearance = coloredAppearance
+    //        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+    //
+    //        UINavigationBar.appearance().tintColor = .white
+    //    }
+ */

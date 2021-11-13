@@ -12,7 +12,9 @@ import SlideOverCard
 import UniformTypeIdentifiers
 import CoreLocation
 
+//TODO: - Selected down form the dropdown.
 
+//FIXME: - CAN ADD these lines to view.
 
 
 struct ContentView: View {
@@ -25,6 +27,14 @@ struct ContentView: View {
     @State var isImporting: Bool = false
     
     @State var pause = false
+
+    //Settings vars.
+    @State var notifyMeAbout : Bool = true
+    @State var playNotificationSounds : Bool = false
+    @State var profileImageSize : Bool = true
+    @State var sendReadReceipts : Bool = true
+
+
 
     @Environment(\.managedObjectContext) var context
     @FetchRequest(
@@ -49,7 +59,9 @@ struct ContentView: View {
 
     private let locationManager = CLLocationManager()
 
-    
+
+    /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
+    //MARK: - UI
     var body: some View {
         //        if #available(iOS 15.0, *) {
         //  BaseView()
@@ -70,22 +82,8 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                         .transition(AnyTransition.move(edge: .leading)).animation(.default)
-                        .fileImporter(
-                            isPresented: $isImporting, allowedContentTypes: [UTType.folder],
-                            allowsMultipleSelection: false, //set to true to select multiple folders. But then I need to put them in an array.
-                            onCompletion: { result in
-                                do {
 
-                                    guard let selectedFolder: URL = try result.get().first else { return }
-                                    //arrayOfPhotos = selectedFolder.pathComponents
-                                    let newFolder = PhotoFolders(context: context)
-                                    newFolder.folderURL = selectedFolder //Save the folder URL.
-
-                                    let folderName: String = selectedFolder.lastPathComponent
-
-                                    newFolder.folderName = folderName//newFolder.folderURL(newFolder.folderURL as
-                                } catch { print("failed importing") }
-                            })
+                            }
                 }
                 if prefs.startSession {
                     DrawingView(testData: testData, startSession: $startSession)
@@ -95,31 +93,7 @@ struct ContentView: View {
 
             if (prefs.showSettings) {
                 SlideOverCard($position, backgroundStyle: $background) {
-                    VStack {
-                        HStack {
-                            Text("Settings")//.font(.title)
-                                .bold()
-                                .foregroundColor(Color("ColorAccentWhite"))
-                                .background(Color("ColorGrayTwo"))
-                                .cornerRadius(2)
-                                .font(.subheadline)
-                            //    .alignmentGuide(.center, computeValue: { _ in 90 } )
-                            Button("Done") {
-                                prefs.showSettings = false
-                            }.alignmentGuide(.trailing, computeValue: { _ in 90 } )
-
-                            Button(action: {
-                                self.locationManager.requestAlwaysAuthorization()
-                                self.locationManager.requestWhenInUseAuthorization()
-                            }) {
-                                Text("Request authorization")
-                            }
-                        }
-
-                        toggleSwitch()
-
-                        Spacer()
-                    }
+                    ArtAthleteSettings(notifyMeAbout: $notifyMeAbout, playNotificationSounds: $playNotificationSounds, profileImageSize: $profileImageSize, sendReadReceipts: $sendReadReceipts)
                 }
             }
 
@@ -127,7 +101,11 @@ struct ContentView: View {
                 
             }
         }
+    /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
+
+    //MARK: - FUNCTIONS
     }
+
 
     /*
      VStack{
@@ -158,7 +136,7 @@ struct ContentView: View {
     //        prefs.localPhotos = false
     //        prefs.arrayOfURLStrings.removeAll()
     //    }
-}
+
 
 
 //struct ContentView_Previews: PreviewProvider {

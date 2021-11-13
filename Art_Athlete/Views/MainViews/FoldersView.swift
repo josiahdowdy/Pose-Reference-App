@@ -27,10 +27,11 @@ struct FoldersView: View {
     @State var cdSelection = Set<PhotoFolders>()
     @State var cdEditMode = EditMode.inactive
 
+    //let dataProvider: DataProvider
+
     @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors:[]) var cdNumbers: FetchedResults<PhotoFolders>
 
-
-
+  //  let note: Note
     //  @FetchRequest(entity: MyNumber.entity(), sortDescriptors:[]) var cdNumbers: FetchedResults<MyNumber>
 
 
@@ -41,8 +42,9 @@ struct FoldersView: View {
 
         VStack(){
             HStack {
-                Text("Folders").font(.title3).padding()
-                LoadFoldersButton()
+                Text("F-View").font(.title3).padding()
+                
+
             }
 
 //            //Add the Foreach here.

@@ -66,8 +66,7 @@ struct NavBar: View {
                     } else { ///Skip photo.
                         skip.toggle()
                         if (prefs.localPhotos) {
-                            prefs.currentIndex += 1 //self.
-                            print("\n\nprefs.currentIndex: \(prefs.currentIndex)")
+                            prefs.currentIndex += 1 
                             prefs.sURL = (prefs.arrayOfURLStrings[prefs.currentIndex]) //self.prefs.currentIndex
                         } else { ///Only use if using Unsplash photos.
                             // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()

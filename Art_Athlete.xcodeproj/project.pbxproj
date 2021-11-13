@@ -62,6 +62,12 @@
 		2C209832273CD9D100D5B5FC /* countPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C209831273CD9D100D5B5FC /* countPickerView.swift */; };
 		2C209833273CD9D100D5B5FC /* countPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C209831273CD9D100D5B5FC /* countPickerView.swift */; };
 		2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* FileImporterView.swift */; };
+		2C28F3F727400F0800BB7405 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28F3F627400F0800BB7405 /* DataProvider.swift */; };
+		2C28F3F827400F0800BB7405 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28F3F627400F0800BB7405 /* DataProvider.swift */; };
+		2C28F3FA2740112000BB7405 /* NoteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28F3F92740112000BB7405 /* NoteListCell.swift */; };
+		2C28F3FB2740112000BB7405 /* NoteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28F3F92740112000BB7405 /* NoteListCell.swift */; };
+		2C28F3FD2740151800BB7405 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28F3FC2740151800BB7405 /* AddButton.swift */; };
+		2C28F3FE2740151800BB7405 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28F3FC2740151800BB7405 /* AddButton.swift */; };
 		2C2BDF432543225400D2434E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF422543225400D2434E /* StatsView.swift */; };
 		2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF4625432AC000D2434E /* CertificateView.swift */; };
 		2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */; };
@@ -265,6 +271,9 @@
 		2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectRow.swift; sourceTree = "<group>"; };
 		2C209831273CD9D100D5B5FC /* countPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countPickerView.swift; sourceTree = "<group>"; };
 		2C214148271B5DCC00493E4E /* FileImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporterView.swift; sourceTree = "<group>"; };
+		2C28F3F627400F0800BB7405 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		2C28F3F92740112000BB7405 /* NoteListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCell.swift; sourceTree = "<group>"; };
+		2C28F3FC2740151800BB7405 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		2C2BDF422543225400D2434E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		2C2BDF4625432AC000D2434E /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
 		2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
@@ -445,6 +454,7 @@
 		2C02D8B3253A2C8B00D5F960 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2C28F3F627400F0800BB7405 /* DataProvider.swift */,
 				2CAA8BCD259382B500B39793 /* PersistenceController.swift */,
 				2C02D8B4253A2CA100D5F960 /* Model.swift */,
 				2CEB2EF8253F86DD0087D696 /* GlobalVariables.swift */,
@@ -645,6 +655,8 @@
 				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
 				2C13157A27346941001019BA /* SettingsSlideCard.swift */,
 				2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */,
+				2C28F3F92740112000BB7405 /* NoteListCell.swift */,
+				2C28F3FC2740151800BB7405 /* AddButton.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -938,9 +950,11 @@
 				2C943ED025B77FBB0010FA24 /* SettingsView.swift in Sources */,
 				2C2EA838253CEC6500D9A8C7 /* HomeScreen.swift in Sources */,
 				2CAA8BCE259382B500B39793 /* PersistenceController.swift in Sources */,
+				2C28F3FD2740151800BB7405 /* AddButton.swift in Sources */,
 				2C663A6F271F71300097AEFE /* ToggleSwitch.swift in Sources */,
 				2C614DAB273211010037BFA1 /* DotInversion.swift in Sources */,
 				2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */,
+				2C28F3F727400F0800BB7405 /* DataProvider.swift in Sources */,
 				2C663A7B27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2C663A9627238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
 				2C064314272C6612001DF985 /* ViewModel.swift in Sources */,
@@ -965,6 +979,7 @@
 				2C614DBA273337700037BFA1 /* Home.swift in Sources */,
 				2C06430E272C6554001DF985 /* Config.swift in Sources */,
 				2C663A22271CC9410097AEFE /* AdvancedSettingsView.swift in Sources */,
+				2C28F3FA2740112000BB7405 /* NoteListCell.swift in Sources */,
 				2C2097D72737543A00D5B5FC /* SelectionHandler.swift in Sources */,
 				2C064303272B9806001DF985 /* ListRowsView.swift in Sources */,
 				2CEB2EF9253F86DD0087D696 /* GlobalVariables.swift in Sources */,
@@ -1032,9 +1047,11 @@
 				2CB6249227277C27001AFA85 /* ImportExportBackup.swift in Sources */,
 				2CB6249027277C22001AFA85 /* saveUserData.swift in Sources */,
 				2CB6249327277C2B001AFA85 /* StatsView.swift in Sources */,
+				2C28F3FE2740151800BB7405 /* AddButton.swift in Sources */,
 				2CB6249527277C31001AFA85 /* CertificateView.swift in Sources */,
 				2C614DAC273211010037BFA1 /* DotInversion.swift in Sources */,
 				2CB6248627277297001AFA85 /* TimerObject.swift in Sources */,
+				2C28F3F827400F0800BB7405 /* DataProvider.swift in Sources */,
 				2CB6248E27277C11001AFA85 /* NavBar.swift in Sources */,
 				2CB6249A27277C45001AFA85 /* DotMenuView.swift in Sources */,
 				2CB6249F27277C54001AFA85 /* MenuView.swift in Sources */,
@@ -1059,6 +1076,7 @@
 				2CB624882727729F001AFA85 /* PersistenceController.swift in Sources */,
 				2C06430F272C6554001DF985 /* Config.swift in Sources */,
 				2C614DA227319BC30037BFA1 /* NavBarView.swift in Sources */,
+				2C28F3FB2740112000BB7405 /* NoteListCell.swift in Sources */,
 				2C2097D82737543A00D5B5FC /* SelectionHandler.swift in Sources */,
 				2CED7E112727531B00B99CAD /* SettingsRow.swift in Sources */,
 				2CB6248F27277C1E001AFA85 /* MessageDocument.swift in Sources */,

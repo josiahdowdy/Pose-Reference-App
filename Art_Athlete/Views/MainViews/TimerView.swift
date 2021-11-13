@@ -104,45 +104,6 @@ struct TimerView: View{
                             endSession()
                         }
                     }
-                    
-                    /*
-                    
-                    //If the boolean is set to true.
-                    if self.timeObject.isTimerRunning {
-                        timeObject.timeDouble = ((Date().timeIntervalSince(self.timeObject.startTime)))
-                        timeObject.currentTime += timeObject.timeDouble
-                        self.timeObject.progressValue += Float(1 / timeObject.timeChosen)
-                        
-                        //If time is up for photo go back to 0
-                        if (timeObject.timeDouble >= timeObject.timeChosen) {
-                            timeObject.progressValue = 0.0
-                            timeObject.timeDouble = 0.0
-                            timeObject.startTime = Date()
-                            
-                            //If there is another photo in queue then go ahead
-                            if (prefs.currentIndex + 1 < prefs.sPoseCount) {
-                                timeObject.progressValue = 0.0
-                                timeObject.timeDouble = 0.0
-                                
-                                prefs.currentIndex += 1
-                                prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
-
-                                posesCount += 1
-                                testData[testData.count - 1].countPoses += 1
-                                updateSession()
-                                
-                            } else { //else if done with last photo, end session.
-                                testData[testData.count - 1].countPoses += 1 //Add 1 more pose count if the user finishees. DO NOT put this in endSession function, otherwise it'll get called when that function is called in other areas like quit.
-                                endSession()
-                            }
-                        }
-                    } else if !(self.timeObject.isTimerRunning) { //if the timer boolean is false, stop the timer.
-                        pauseTimer()
-                        //stopTimer()//self.stopTimer() //Stop timer. Check to make sure works.
-                        //pauseTimer()
-                        //If timer is not working, then move up to else above.
-                    }
-                    */
                 }
                 .onAppear() {
                     // no need for UI updates at startup
@@ -150,9 +111,6 @@ struct TimerView: View{
                 }
         }.padding()
     }//------------------END OF VIEW------------------------------------------------------
-    
-    
-    
     
     
     //-------------------FUNCTIONS-----------------------------------------------

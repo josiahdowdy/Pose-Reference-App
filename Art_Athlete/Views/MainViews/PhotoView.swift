@@ -26,11 +26,11 @@ struct PhotoView: View {
     var body: some View {
         Group(){
             ZStack(alignment: .bottomTrailing) {
-                let testURL = URL(string: prefs.sURL)
+                let photoURL = URL(string: prefs.sURL)
                 let processorDefault =  DefaultImageProcessor.default
                             
                 if(prefs.processorDefault == true){
-                    KFImage(testURL)
+                    KFImage(photoURL)
                     /* options: [
                      .transition(.fade(0.2)),
                      .cacheOriginalImage,
@@ -38,8 +38,7 @@ struct PhotoView: View {
                      ])      */
                         .onSuccess { r in
                             // r: RetrieveImageResult
-                            //print("success: \(r)")
-                            
+                            print("Success loading image.") //: \(r)")
                         }
                         .onFailure { e in
                             // e: KingfisherError
@@ -61,7 +60,7 @@ struct PhotoView: View {
                         .rotationEffect(.degrees(prefs.flippedVertically ? 180.0 : 0.0 ))
                         .rotation3DEffect(.degrees(prefs.flippedHorizontally ? 180.0 : 0.0), axis: (x: 0.0, y: -1.0, z: 0.0))
                 } else if (prefs.processorBlack == true) {
-                    KFImage(testURL)
+                    KFImage(photoURL)
                     /* options: [
                      .transition(.fade(0.2)),
                      .cacheOriginalImage,
@@ -168,34 +167,3 @@ struct PhotoView: View {
  } */
 
 
-
-/*
- .fileImporter(
- isPresented: $isImporting,
- allowedContentTypes: [UTType.plainText, UTType.png, UTType.image, UTType.jpeg, UTType.pdf],
- allowsMultipleSelection: true, //false
- onCompletion: { result in
- 
- if let urls = try? result.get() {
- //  prefs.myURL.startAccessingSecurityScopedResource()
- urls[0].startAccessingSecurityScopedResource()
- print("\n\n**PhotoView:\n urls[0]: \(urls[0]) ** \n\n")
- prefs.myURL = urls[0]
- 
- 
- //let url = URL(fileURLWithPath: )
- //let provider = LocalFileImageDataProvider(fileURL: prefs.myURL)
- 
- print("urls: \(urls)")
- 
- 
- let urlString = "\(urls[0])"
- prefs.sURL = urlString
- print("urlString: \(prefs.sURL)")
- 
- print("\n\n**PhotoView:\n prefs.myURL: \(prefs.myURL) ** \n\n")
- }
- }
- )
- */
-//end of fileImporter
