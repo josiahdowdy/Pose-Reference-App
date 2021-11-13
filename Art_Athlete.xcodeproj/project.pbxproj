@@ -45,6 +45,8 @@
 		2C147D29272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D24272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift */; };
 		2C147D2A272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */; };
 		2C147D2B272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */; };
+		2C15680F273F3CD8001D5ED9 /* StoredUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */; };
+		2C156810273F3CD8001D5ED9 /* StoredUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */; };
 		2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */; };
 		2C2097C82735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */; };
 		2C2097C92735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */; };
@@ -253,6 +255,7 @@
 		2C147D1B272DA15600AF1E71 /* FoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersView.swift; sourceTree = "<group>"; };
 		2C147D24272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosArray+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosArray+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredUserData.swift; sourceTree = "<group>"; };
 		2C16EDA02575E9EB00ABF18D /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportBackup.swift; sourceTree = "<group>"; };
 		2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCheckBoxView.swift; sourceTree = "<group>"; };
@@ -451,6 +454,7 @@
 				2C663A7A27209ABF0097AEFE /* UserDataEntity.swift */,
 				2C663A812720BACD0097AEFE /* AppDelegate.swift */,
 				2C2097D62737543A00D5B5FC /* SelectionHandler.swift */,
+				2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -928,6 +932,7 @@
 				2C943ED425B78F460010FA24 /* SignIn.swift in Sources */,
 				2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */,
 				2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */,
+				2C15680F273F3CD8001D5ED9 /* StoredUserData.swift in Sources */,
 				2C064311272C6587001DF985 /* PrivateSyncApp.swift in Sources */,
 				2C663A7527205B460097AEFE /* CardView.swift in Sources */,
 				2C943ED025B77FBB0010FA24 /* SettingsView.swift in Sources */,
@@ -1021,6 +1026,7 @@
 				2C147D1D272DA15600AF1E71 /* FoldersView.swift in Sources */,
 				2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */,
 				2CB6248527277294001AFA85 /* Cache.swift in Sources */,
+				2C156810273F3CD8001D5ED9 /* StoredUserData.swift in Sources */,
 				2CB6248C27277C0C001AFA85 /* TimerView.swift in Sources */,
 				2CB6249927277C42001AFA85 /* FileImporterView.swift in Sources */,
 				2CB6249227277C27001AFA85 /* ImportExportBackup.swift in Sources */,

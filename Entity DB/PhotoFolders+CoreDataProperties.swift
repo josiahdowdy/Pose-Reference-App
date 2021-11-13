@@ -34,6 +34,12 @@ extension PhotoFolders : Identifiable { //, SelectableRow
         tag ?? "Unknown Tag"
     }
 
+
+
+    public var wrappedFolderURL: URL {
+        folderURL ?? URL(string: "n")!
+    }
+
 //    public var wrappedIsSelected: Bool {
 //        isSelected // = true
 //
@@ -46,10 +52,6 @@ extension PhotoFolders : Identifiable { //, SelectableRow
 
    // var getSetIsSelected: Bool { get set }
 
-    
-    public var wrappedFolderURL: URL {
-        folderURL! //?? URL(string: "test")!
-    }
     
     public var photosArrayJosiah: [PhotosArray] {
         let set = photosArray as? Set<PhotosArray> ?? []

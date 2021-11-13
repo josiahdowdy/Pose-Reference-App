@@ -10,8 +10,10 @@
     </entity>
     <entity name="PhotosArray" representedClassName="PhotosArray" syncable="YES">
         <attribute name="fileName" optional="YES" attributeType="String"/>
-        <attribute name="photosString" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="photoURL" optional="YES" attributeType="URI" defaultValueString="duckduckgo.com"/>
+        <attribute name="photoURLString" optional="YES" attributeType="String"/>
         <relationship name="photoFolders" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoFolders" inverseName="photosArray" inverseEntity="PhotoFolders"/>
     </entity>
     <entity name="UserData" representedClassName="UserData" syncable="YES">
@@ -22,7 +24,7 @@
     </entity>
     <elements>
         <element name="PhotoFolders" positionX="-54" positionY="54" width="128" height="119"/>
-        <element name="PhotosArray" positionX="-45" positionY="63" width="128" height="89"/>
+        <element name="PhotosArray" positionX="-45" positionY="63" width="128" height="119"/>
         <element name="UserData" positionX="-54" positionY="72" width="128" height="89"/>
     </elements>
 </model>

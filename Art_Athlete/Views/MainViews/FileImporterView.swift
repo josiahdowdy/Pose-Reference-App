@@ -55,8 +55,13 @@ struct FileImporterView: View {
             onCompletion: { result in
                 do {
                     let selectedFiles = try result.get()
-                    prefs.sPoseCount = selectedFiles.count
-                    
+
+//                    if (selectedFiles.count < prefs.time[prefs.selectorIndexTime]) {
+//                        prefs.sPoseCount = selectedFiles.count
+//                    } else {
+//                        prefs.sPoseCount = prefs.time[prefs.selectorIndexTime]
+//                    }
+
                     for i in 0...(selectedFiles.count-1) { //selectedFiles.count
                         //print("\n\(i)") //This prints out the photo data
                         saveFile(url: selectedFiles[i])
@@ -95,7 +100,6 @@ struct FileImporterView: View {
                 print("Josiah1: \(error.localizedDescription)")
             }
             CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
-            
         }
         else {
             print("Permission error!")

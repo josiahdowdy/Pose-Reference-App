@@ -30,6 +30,8 @@ class GlobalVariables: ObservableObject {
     @Published var startSession = false
     @Published var showMainScreen = true
     @Published var showHomeView = false
+    @Published var falseBool = false
+
     //@Published var localPhotosView = true
     @Published var disableSkip = true
     @Published var togglePhotoDisplay = true

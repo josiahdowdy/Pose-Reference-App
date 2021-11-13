@@ -16,14 +16,20 @@ extension PhotosArray {
         return NSFetchRequest<PhotosArray>(entityName: "PhotosArray")
     }
 
+    @NSManaged public var id: UUID?
     @NSManaged public var photoURL: URL?
-    @NSManaged public var photosString: String?
+    @NSManaged public var photoURLString: String?
     @NSManaged public var photoFolders: PhotoFolders?
     @NSManaged public var fileName: String?
+    @NSManaged public var photo: Data?
     
     
     public var wrappedPhotoURL: URL {
-        photoURL! //?? URL(string: "test")!
+        photoURL ?? URL(string: "n")!
+    }
+
+    public var wrappedPhotoURLString: String {
+        photoURLString ?? "nil"
     }
     
     public var wrappedName: String {

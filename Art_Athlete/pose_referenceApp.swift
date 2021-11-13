@@ -15,8 +15,7 @@ struct pose_referenceApp: App {
 
     let persistenceController = PersistenceController.shared
     @Environment(\.scenePhase) var scenePhase
-    
-    // Connecting App Delegate...
+
     //@NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     

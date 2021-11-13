@@ -235,6 +235,8 @@ struct TimerView: View{
         
         //timeObject.timer.tolerance = 0.2
     }
+
+
     //Save the data to the ArtAthlete database.
     /*
     func updateData() {

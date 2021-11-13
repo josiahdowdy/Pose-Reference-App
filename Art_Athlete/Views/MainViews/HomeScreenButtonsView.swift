@@ -127,7 +127,6 @@ struct HomeScreenButtonsView: View {
                 Spacer().frame(maxWidth: .infinity)
 
                 countPickerView()
-
                 timePickerView()
 
                 Button("Start") { //Button("\(Image(systemName: "play.rectangle.fill")) Start") {
@@ -232,6 +231,12 @@ struct HomeScreenButtonsView: View {
     
     func loadLocalPhotos(){
         print("JD01 : loadLocalPhotos() : \(prefs.arrayOfURLStrings)")
+        print("JD20: \(prefs.arrayOfURLStrings.count)")
+        if (prefs.arrayOfURLStrings.count < prefs.homeManyPhotosToDraw[prefs.selectorCountTime]) {
+            prefs.sPoseCount = prefs.arrayOfURLStrings.count
+        } else {
+            prefs.sPoseCount = prefs.homeManyPhotosToDraw[prefs.selectorCountTime]
+        }
 
         if (isRandom) {
             prefs.arrayOfURLStrings.shuffle()

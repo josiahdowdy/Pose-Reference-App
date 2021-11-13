@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 
 struct NavBarView: View {
     @Environment(\.managedObjectContext) var context
-    
+
 //    @EnvironmentObject var prefs: GlobalVariables
 //    @EnvironmentObject var timeObject: TimerObject
 
