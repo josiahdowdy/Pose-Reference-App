@@ -25,7 +25,13 @@ extension PhotoFolders : Identifiable { //, SelectableRow
     @NSManaged public var photosArray: NSSet? //An NSSet can contain ANYTHING.
 
     @NSManaged public var workingDirectoryBookmark: NSSet?
+    @NSManaged public var photo: Data?
+    @NSManaged public var photoDataArray: Data?
 
+
+    public var wrappedPhoto: Data {
+        photo ?? Data()
+    }
 
 
     public var wrappedFolderName: String {

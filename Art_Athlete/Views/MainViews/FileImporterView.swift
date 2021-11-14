@@ -11,8 +11,9 @@ struct FileImporterView: View {
     //@State var wifiError = ""
     @State var isImporting: Bool = false
     @State var fileName = "" //To save file URL in.
-    
-    //---------------START VIEW-----------------------------------------------------------------
+
+    /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
+    //START VIEW
     var body: some View {
         VStack(alignment: .center) {
             //Text("Art Athlete").font(.largeTitle).padding(.top, 20)

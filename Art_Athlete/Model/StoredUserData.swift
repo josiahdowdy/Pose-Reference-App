@@ -10,6 +10,10 @@ import Combine
 
 class StoredUserData: ObservableObject {
 
+
+    @Published var recoveredURL : URL
+
+    @Published var showPhoto : Bool = false
     @Published var storedFolderData : Data = Data()
     @Published var arrayOfFolderNames : [String] = []
     @Published var arrayOfFolderURLs : [String] = []
@@ -18,6 +22,10 @@ class StoredUserData: ObservableObject {
     @Published var arrayPhotoNames: [String] = []
     @Published var arrayPhotoURLs: [URL] = []  //
     @Published var arrayPhotoDownloadPath: [URL] = []
+    @Published var photo : Data = Data() //= UIImage()
+    @Published var photoArray : [Data] = [] //= UIImage()
+
+
 
     @Published var bookmarksArray = [URL: Data]() {
         didSet {
@@ -63,6 +71,10 @@ class StoredUserData: ObservableObject {
         }
     }
 
+//    @Published var fileURL: URL {
+//        return URL(fileURLWithPath: workingDirectoryBookmark)
+//    }
+
     //public var arraryUserURLs = []
 
 
@@ -75,7 +87,13 @@ class StoredUserData: ObservableObject {
 
         self.storedFolderURL = UserDefaults.standard.object(forKey: "storedFolderURL") as? URL ?? URL(string: "nope")!
 
+        self.recoveredURL = UserDefaults.standard.object(forKey: "recoveredURL") as? URL ?? URL(string: "nope")!
+
         self.storedFolderData = UserDefaults.standard.object(forKey: "storedFolderData") as? Data ?? Data()
+
+
+        self.photo = UserDefaults.standard.object(forKey: "photo") as? Data ?? Data()
+
 
 
         self.isPrivate = UserDefaults.standard.object(forKey: "isAccountPrivate") as? Bool ?? false

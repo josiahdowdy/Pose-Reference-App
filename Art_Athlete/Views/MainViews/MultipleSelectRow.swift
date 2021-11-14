@@ -15,38 +15,22 @@ struct MultipleSelectRow : View {
     //@ObservedObject var dataProvider = DataProvider.shared
     @EnvironmentObject var prefs: GlobalVariables
     
-    
     @State private var alertShowing = false
     @State private var editMode: EditMode = .inactive
     
     @Environment(\.managedObjectContext) var context
-    
-    //    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
-    //    ) var foldersData : FetchedResults<PhotoFolders>
-    //
-    //Core Data
+
     @State var rowSelection = Set<PhotoFolders>()
-    
-    //@State var rowSelection = Set<DataProvider.allNotes>()
-    //@State var rowSelection = [Note]()//Note?
-    
-    
-    //@FetchRequest(entity: PhotoFolders.entity(), sortDescriptors:[])
+
     var cdFolders: FetchedResults<PhotoFolders>
-    
-//    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \PhotoFolders.folderURL, ascending: true)])
-//    var folderURLFetchRequest: FetchedResults<PhotoFolders>
-    
+
     @FetchRequest(entity: PhotosArray.entity(), sortDescriptors:[])
     var cdPhotosSelected: FetchedResults<PhotosArray>
-    
-    // let dataProvider: DataProvider
-    
-    
+
     // @State var cdEditMode = EditMode.active
-    // MARK: - END VARIABLES
-    
-    /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
+
+/*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
+/*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     // MARK: - UI
     var body: some View {
         //  NavigationView {
@@ -56,12 +40,12 @@ struct MultipleSelectRow : View {
                 ForEach(cdFolders, id: \.self) { name in
                     HStack {
                         Text(name.wrappedFolderName)
-                        Text(name.wrappedFolderURL.path).font(.caption2)
+                    //    Text(name.wrappedFolderURL.path).font(.caption2)
                     }
                 }
                 .onDelete(perform: cdOnSwipeDelete)
             }
-            //  .listStyle(InsetListStyle())
+              .listStyle(InsetListStyle())
         }
 
         // the next line is the modifier
@@ -77,23 +61,8 @@ struct MultipleSelectRow : View {
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
-//                HStack {
-//                    cdDeleteButton
-//                }
-
             }
         }
-
-        // .navigationBarItems(leading: cdDeleteButton, trailing: cdArraySave)
-        //trailing: LoadFoldersButton())
-
-        //cdDeleteButton,
-
-        //
-        //            trailing: AddButton(editMode: $editMode, isImporting: alertShowing)
-        //        )//, trailing: EditButton()
-        //  .environment(\.editMode, self.$cdEditMode)
-
     }
     /*•••••••••••••END VIEW••••••••••••*/
        /*__/,|   (`\
@@ -111,17 +80,21 @@ struct MultipleSelectRow : View {
         print("JD00: userSettings.arrayPhotoURLs: \(userSettings.arrayPhotoURLs)")
         //prefs.arrayOfFolders.removeAll()
         for selectedItem in self.rowSelection{
-
             let url = selectedItem.wrappedFolderURL
-
             userSettings.storedFolderURL = url
 
-          //  saveBookmarkData(for: selectedItem.wrappedFolderURL.downloadURL)
-         //   let restoredURL = restoreFileAccess(with: userSettings.workingDirectoryBookmark)
+            print("JD60: \(userSettings.storedFolderURL.downloadURL)")
+           // saveBookmarkData(for: url)
 
+            //FIXME: - Is restoreFileAccess working? No.
+            //It does load in the URL correctly, but the image does not show.
             let savedURL = restoreFileAccess(with: userSettings.workingDirectoryBookmark)
 
-            saveBookmarkData(for: userSettings.storedFolderURL)
+            userSettings.recoveredURL = savedURL!//!.downloadURL
+
+            prefs.arrayOfURLStrings.append(userSettings.recoveredURL.path)
+            print("JD65: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings)")
+            print("JD61: userSettings.recoveredURL \(userSettings.recoveredURL)")
 
             //  CFURLCreateBookmarkData(nil, userSettings.storedFolderURL.downloadURL as CFURL, options: [userSettings.storedFolderURL], nil, nil, nil)
 
@@ -132,7 +105,7 @@ struct MultipleSelectRow : View {
             print("JD21: \(String(describing: savedURL))")
 
             if (CFURLStartAccessingSecurityScopedResource(url as CFURL?)) { //url as CFURL
-                print("JD28: ACCESS GRANTED TO SECURITY RESOURCES.")
+                print("JD28: ACCESS GRANTED TO SECURITY RESOURCES in CD save array..")
                 //prefs.arrayOfFolders.append(selectedItem.wrappedFolderURL)
 
                 do {
@@ -141,16 +114,29 @@ struct MultipleSelectRow : View {
 
 
                     //userSettings.storedFolderURL = selectedItem.wrappedFolderURL
+                    //TODO: - FOR loop in Security Access
                     do {
-                        for file in try Folder(path: selectedItem.wrappedFolderURL.path).files {  //userSettings.url.path
-                            print("JD06: \(file.url.downloadURL) - \(file.name) - \(file.path)")
+                        var error: NSError? = nil
 
+                        //FIXME: - Will only work if a folder is a selected, NOT a photo.
+                        for file in try Folder(path: selectedItem.wrappedFolderURL.path).files {  //userSettings.url.path
+                            print("JD63: \(file.url.downloadURL) - \(file.name) - \(file.path)")
 
                             prefs.arrayOfURLStrings.append(String(describing: file.url.downloadURL))
+
+                            //TODO: - Working, image data stored properly.
+                            print("JD62: file.url \(file.url)")
+                            let imageData = try Data(contentsOf: file.url)
+                            let img = UIImage(data: imageData)
+                                //  userSettings.photo = (img?.pngData())! //?? img?.jpegData(compressionQuality: 1)
+
+                            userSettings.photo = (img?.jpegData(compressionQuality: 1))!//.append(img)
+                            //Image(uiImage: UIImage(data: student.picture ?? Data()) ?? UIImage())
+
                             //userSettings.arrayPhotoURLs.append(file.url.downloadURL) //(String(describing: file.url))
                         }
                     } catch {
-                        print("JD19: Catch Error")
+                        print("JD19: Catch Error", error)
                     }
                     //  saveBookmarkData(for: selectedItem.wrappedFolderURL)
                     // saveBookmarkData(for: userSettings.storedFolderURL)

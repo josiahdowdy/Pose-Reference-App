@@ -42,62 +42,145 @@ struct LoadFoldersButton: View {
             })
             //  if (prefs.localPhotosView) { }
         }
-        .fileImporter(isPresented: $isImporting, allowedContentTypes: [UTType.folder], onCompletion: importImage)
+        .fileImporter(isPresented: $isImporting, allowedContentTypes: [UTType.folder, UTType.png, UTType.image, UTType.jpeg, UTType.pdf], allowsMultipleSelection: true, onCompletion: importImage)
+        //
     } //------------------------END VIEW---------
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - FUNCTIONS
-    func importImage(_ res: Result<URL, Error>) {
+    func importImage(_ result: Result<[URL], Error>) {
         do{
-            let fileUrl = try res.get()
-            print(fileUrl)
+            let selectedFiles = try result.get()//let selectedFiles = try res.get()
+            print("JD40: ", selectedFiles)
 
-
-           // guard let selectedFolder = try res.get() else { return }//try result.get() else { return }
-
-           // userSettings.storedFolderData = selectedFolder
-            //userSettings.storedFolderURL = selectedFolder
-          //  userSettings.arrayOfFolderURLs.append(selectedFolder.path)
-
-
-            guard fileUrl.startAccessingSecurityScopedResource() else { return }
-                print("Access granted.")
-            let  selectedFolder = fileUrl
-
-
-            let folderName: String = selectedFolder.lastPathComponent
-
-            print("JD31: \(selectedFolder)")
             let newFolder = PhotoFolders(context: context)
             newFolder.id = UUID()
-            newFolder.folderURL = selectedFolder //Save the folder URL.
-            newFolder.folderName = folderName
+           // newFolder.folderURL = selectedFiles.description.pathExtension //Save the folder URL.
+          //  newFolder.folderName = folderName
             newFolder.tag = "Human Poses"
 
-           // print("JD32: \(newFolder.folderURL)")
+      //      newFolder.addToPhotosArray(selectedFiles)
 
+            for i in 0...(selectedFiles.count-1) { //selectedFiles.count
+                //print("\n\(i)") //This prints out the photo data
+                saveFile(url: selectedFiles[i])
+                userSettings.photoArray.append(selectedFiles[i].dataRepresentation)
+                
 
+                newFolder.folderURL = selectedFiles[i].downloadURL
+                newFolder.photo = selectedFiles[i].dataRepresentation
+                newFolder.folderName = selectedFiles[i].lastPathComponent
+            //   newFolder.addToPhotosArray(selectedFiles[i])
+           //     newfolder.photoDataArray.append(selectedFiles[i].dataRepresentation)
 
-                for file in try Folder(path: selectedFolder.path).files {
-                    prefs.arrayOfURLStrings.append(file.path)
+            }
 
-                }
-            
-//            if let imageData = try? Data(contentsOf: fileUrl),
-//               let image = UIImage(data: imageData) {
-//                self.images[index] = image
-//            }
             try? self.context.save()
 
             print("JD11: \(prefs.arrayOfURLStrings)")
+            print("JD41: userSettings.photoArray \(userSettings.photoArray.description)")
+            print("JD42: newFolder.photo \(String(describing: newFolder.photo?.description))")
 
-
-            fileUrl.stopAccessingSecurityScopedResource()
+          //  selectedFiles.stopAccessingSecurityScopedResource()
         } catch{
             print ("error reading")
             print (error.localizedDescription)
         }
     }
+
+    func saveFile (url: URL) {
+        var actualPath: URL
+
+        if (CFURLStartAccessingSecurityScopedResource(url as CFURL)) { // <- here
+            //BOOKMARK IT!
+            saveBookmarkData(for: url)
+
+            let fileData = try? Data.init(contentsOf: url)
+            let fileName = url.lastPathComponent
+
+            actualPath = getDocumentsDirectory().appendingPathComponent(fileName)
+
+            // print("\nactualPath = \(actualPath)\n") //Prints out the actual path.
+            do {
+                try fileData?.write(to: actualPath)
+                prefs.arrayOfURLStrings.append(String(describing: actualPath))
+                //print("\nString: arrayOfURLStrings: \n\(prefs.arrayOfURLStrings)\n")
+                if(fileData == nil){
+                    print("Permission error!")
+                }
+                else {
+                    //print("Success.")
+                }
+            } catch {
+                print("Josiah1: \(error.localizedDescription)")
+            }
+            CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
+        }
+        else {
+            print("Permission error!")
+        }
+
+        func getDocumentsDirectory() -> URL {
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
+    } //End of FUNC.
+
+    private func saveBookmarkData(for workDir: URL) { //URL //for workDir: URL //[URL: Data]
+        do {
+            let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
+
+            // save in UserDefaults
+            userSettings.workingDirectoryBookmark = bookmarkData
+            print("JD22: \(userSettings.workingDirectoryBookmark)")
+        } catch {
+            print("Failed to save bookmark data for \(workDir)", error)
+        }
+    }
+} //END OF STRUCT.
+    
+
+
+
+
+/*
+
+
+ // guard let selectedFolder = try res.get() else { return }//try result.get() else { return }
+
+ // userSettings.storedFolderData = selectedFolder
+ //userSettings.storedFolderURL = selectedFolder
+ //  userSettings.arrayOfFolderURLs.append(selectedFolder.path)
+
+ /*
+  guard selectedFiles.startAccessingSecurityScopedResource() else { return }
+  print("Access granted.")
+  let  selectedFolder = selectedFiles
+
+
+  let folderName: String = selectedFolder.lastPathComponent
+
+  print("JD31: \(selectedFolder)")
+  let newFolder = PhotoFolders(context: context)
+  newFolder.id = UUID()
+  newFolder.folderURL = selectedFolder //Save the folder URL.
+  newFolder.folderName = folderName
+  newFolder.tag = "Human Poses"
+  */
+ // print("JD32: \(newFolder.folderURL)")
+
+
+ /*
+  for file in try Folder(path: selectedFolder.path).files {
+  prefs.arrayOfURLStrings.append(file.path)
+
+  }
+  */
+
+ //            if let imageData = try? Data(contentsOf: selectedFiles),
+ //               let image = UIImage(data: imageData) {
+ //                self.images[index] = image
+ //            }
+
 
 
 
@@ -139,8 +222,9 @@ struct LoadFoldersButton: View {
         }
         
     }
+ */
     //----------------------END FUNCTIONS------------------------------------------
-}
+
 
 
 

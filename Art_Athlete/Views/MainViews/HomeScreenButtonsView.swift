@@ -11,30 +11,27 @@ import Files
 
 struct HomeScreenButtonsView: View {
     //@ObservedObject var dataProvider = DataProvider.shared
+    @ObservedObject var userSettings = StoredUserData()
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
     @State var isAddingPhotos: Bool = false
+    @State var showPhotos: Bool = false
+
     //@State var isImporting: Bool = false
     // @Binding var startSession: Bool
     @State var error = ""
 
     @State var isRandom: Bool = true
-    //var folderData : FetchedResults<PhotoFolders>
+    @State var url : URL = URL(fileURLWithPath: "nil")
 
     @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
     ) var cdFolders : FetchedResults<PhotoFolders>
 
-    // Core Data variables
     @State var cdSelection = Set<PhotoFolders>()
+    //@State private var editMode: EditMode = .inactive
+    //@State var cdEditMode = EditMode.inactive
 
-    @State private var editMode: EditMode = .inactive
-    @State var cdEditMode = EditMode.inactive
-
-    //@State private var items: [PhotoFolders] = []
-
-    //@FetchRequest(entity: PhotoFolders.entity(), sortDescriptors:[])
-    //var cdNumbers: FetchedResults<PhotoFolders>
 
              /*\___/\ ((
               \`@_@'/  ))
@@ -42,52 +39,19 @@ struct HomeScreenButtonsView: View {
     ----------{_}^-'{_}----------*/
 
     //MARK: - VIEW
+    
     var body: some View {
         NavigationView {
             VStack {
                 // FileImporterView() //This loads in photos MARK: [BLUE BOX]
                 //LoadFoldersButton()
-                FoldersView(folderData: cdFolders)
+                //FoldersView(folderData: cdFolders)
 
                 LoadFoldersButton()
 
 //                LoadFoldersButton(isImporting: true)
                 MultipleSelectRow(cdFolders: cdFolders)
             }
-            .toolbar(content: {
-
-            })
-            /*
-            .navigationBarItems(
-                leading:
-                    HStack {
-                        NavigationLink(destination:
-                                        VStack {
-                            //FileImporterView()
-                            //Spacer().frame(maxWidth: .infinity)
-
-                           // timePickerView()
-
-                        }) {
-                            Label("Home", systemImage: "house")
-                        }
-                    } //,
-                trailing:
-                    EditButton()
-                NavigationLink(destination: Text("Stats View")) {
-                    Label("Settings", systemImage: "chart.bar.xaxis")//Text("Stats")
-                }
-            ) */
-//            .navigationBarItems {
-//
-//                HStack {
-//                    Button(action: showSettings) {
-//                        Label("Settings", systemImage: "gearshape.fill")
-//                    }
-//                    Button(action: addFolders) { //
-//                        Label("Add Folder", systemImage: "heart")
-//                    }
-//            }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
@@ -98,14 +62,44 @@ struct HomeScreenButtonsView: View {
                         Image(systemName: "gearshape")
                     })
                 }
-
-               // ToolbarItem {
-
-                //}
             }
-        }
 
             VStack {  // MARK: - Shows the main screen (right side).
+                VStack {
+                    Text("PhotoFolders Data.").font(.title)
+                    //      List(cdFolders, id: \.self, selection: $rowSelection){ name in //*this works*
+                    List() {
+                        ForEach(cdFolders, id: \.self) { name in
+                            HStack {
+                                Text(name.wrappedFolderName)
+                                Text(name.wrappedFolderURL.path).font(.caption2)
+                                Text("Photo Data: \(name.wrappedPhoto.description)")
+                            }
+                        }
+
+                    }
+                    .listStyle(InsetListStyle())
+                }
+
+
+                showPhotoButton
+
+                //TODO: - AsyncImage. UI.
+                if (showPhotos) {
+                   // Image(uiImage: UIImage(data: userSettings.photo) ?? UIImage(named: "/Users/josiahdowdy/Library/Mobile Documents/com~apple~CloudDocs/Screenshots") ?? UIImage())
+                    Text("Enjoy!")
+                    if #available(iOS 15.0, *) {
+                        AsyncImage(url: url)
+                            .frame(width: 100, height: 100)
+                        if !(prefs.arrayOfURLStrings.isEmpty) {
+                            AsyncImage(url: URL(string: prefs.arrayOfURLStrings[0]))
+                                .frame(width: 100, height: 100)
+                        }
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                } //
+
                 //  FileImporterView()
                 Spacer().frame(maxWidth: .infinity)
 
@@ -115,11 +109,16 @@ struct HomeScreenButtonsView: View {
                 Button("Start \(Image(systemName: "play.rectangle.fill"))") { //Button(" Start") {
                     //   NavBarView().loadLocalPhotos()
                     loadLocalPhotos()
+
+
                 }
                 .keyboardShortcut(.defaultAction)
                 .padding(20)
                 .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
             } //End VStack.
+        }
+
+
         } //End UI.
     
        /*__/,|   (`\
@@ -131,11 +130,57 @@ struct HomeScreenButtonsView: View {
         prefs.showSettings.toggle()
     }
 
-    private func addFolders() {
-        prefs.addFolder.toggle()
-    //    isImporting = true
+    private var showPhotoButton: some View {
+        return Button(action: showPhotoFunction) {
+            Image(systemName: "heart")
+        }
     }
 
+
+    private func showPhotoFunction() {
+        //TODO: - Show Photo Here.
+        url = restoreFileAccess(with: userSettings.workingDirectoryBookmark)!
+
+        //FIXME: START HERE JOSIAH. GET THE BOOKMARK URL WORKING.
+        if (url.startAccessingSecurityScopedResource()) {
+            print("JD67: TRUE")
+            prefs.arrayOfURLStrings.append(String(describing: url))
+            print("JD68: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings[0])")
+        } else {
+            print("JD67: False")
+        }
+
+        if !(showPhotos) {
+            showPhotos = true
+        } else {
+            showPhotos = false
+        }
+
+        print("JD69: showPhoto - ", showPhotos)
+    }
+
+
+    private func restoreFileAccess(with bookmarkData: Data) -> URL? { //[URL: Data]) -> URL? {
+        do {
+            var isStale = false
+
+            //            for url in bookmarkData {
+            //                let url2 = try URL(resolvingBookmarkData: bookmarkData[url], relativeTo: nil, bookmarkDataIsStale: &isStale)
+            //
+            //            }
+            let url = try URL(resolvingBookmarkData: bookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
+
+            if isStale {
+                // bookmarks could become stale as the OS changes
+                print("Bookmark is stale, need to save a new one... ")
+                //    saveBookmarkData(for: url)
+            }
+            return url
+        } catch {
+            print("Error resolving bookmark:", error)
+            return nil
+        }
+    }
 
     //Don't confuse with start timer in Timer.swift
     private func startTimer() {
@@ -216,7 +261,26 @@ struct HomeScreenButtonsView: View {
 }
 
 
+/*
 
+ //           let bookmarkedData = userSettings.workingDirectoryBookmark//URL(string: userSettings.workingDirectoryBookmark)
+ // let imageData = UIImage(data: bookmarkedData)// try Data(contentsOf: bookmarkedData) //userSettings.recoveredURL.downloadURL)//cdFolders[0].wrappedFolderURL)
+
+ //      print("JD44: bookmarkedData \(bookmarkedData)")
+
+ // let img = UIImage(data: try bookmarkedData.toData())
+ //    print("JD45: img \(String(describing: img))")
+
+
+ //   userSettings.photo = (img?.pngData())!
+ //let imageData = try Data(contentsOf: bookmarkedData ) //userSettings.recoveredURL
+ //            print("JD44: imageData \(String(describing: imageData))")
+ //       let img = UIImage(data: bookmarkedData)
+ //        print("JD45: img \(String(describing: img))")
+ //
+ //       userSettings.photo = (img?.jpegData(compressionQuality: 1.0))! //img?.pngData()
+
+ */
 //
 //struct HomeScreenButtonsView_Previews: PreviewProvider {
 //    static var previews: some View {
