@@ -111,14 +111,27 @@ struct MultipleSelectRow : View {
         print("JD00: userSettings.arrayPhotoURLs: \(userSettings.arrayPhotoURLs)")
         //prefs.arrayOfFolders.removeAll()
         for selectedItem in self.rowSelection{
-            saveBookmarkData(for: selectedItem.wrappedFolderURL.downloadURL)
-            let restoredURL = restoreFileAccess(with: userSettings.workingDirectoryBookmark)
+
+            let url = selectedItem.wrappedFolderURL
+
+            userSettings.storedFolderURL = url
+
+          //  saveBookmarkData(for: selectedItem.wrappedFolderURL.downloadURL)
+         //   let restoredURL = restoreFileAccess(with: userSettings.workingDirectoryBookmark)
+
+            let savedURL = restoreFileAccess(with: userSettings.workingDirectoryBookmark)
+
+            saveBookmarkData(for: userSettings.storedFolderURL)
+
+            //  CFURLCreateBookmarkData(nil, userSettings.storedFolderURL.downloadURL as CFURL, options: [userSettings.storedFolderURL], nil, nil, nil)
 
             print("JD36: cdFolders.count", cdFolders.count)
 
-            print("JD21: \(String(describing: restoredURL))")
+           // print("JD21: \(String(describing: restoredURL))")
 
-            if (CFURLStartAccessingSecurityScopedResource(restoredURL as CFURL?)) { //url as CFURL
+            print("JD21: \(String(describing: savedURL))")
+
+            if (CFURLStartAccessingSecurityScopedResource(url as CFURL?)) { //url as CFURL
                 print("JD28: ACCESS GRANTED TO SECURITY RESOURCES.")
                 //prefs.arrayOfFolders.append(selectedItem.wrappedFolderURL)
 
@@ -141,7 +154,7 @@ struct MultipleSelectRow : View {
                     }
                     //  saveBookmarkData(for: selectedItem.wrappedFolderURL)
                     // saveBookmarkData(for: userSettings.storedFolderURL)
-                    CFURLStopAccessingSecurityScopedResource(restoredURL as CFURL?) // <- and here
+                    CFURLStopAccessingSecurityScopedResource(url as CFURL?) // <- and here
                 }
                 try? self.context.save()
             } else {
