@@ -44,7 +44,7 @@ struct LoadFoldersButton: View {
         }
         .fileImporter(isPresented: $isImporting, allowedContentTypes: [UTType.folder], onCompletion: importImage)
     } //------------------------END VIEW---------
-    
+
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - FUNCTIONS
     func importImage(_ res: Result<URL, Error>) {

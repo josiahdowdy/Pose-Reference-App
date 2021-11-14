@@ -24,6 +24,8 @@ extension PhotoFolders : Identifiable { //, SelectableRow
     @NSManaged public var isSelected: Bool
     @NSManaged public var photosArray: NSSet? //An NSSet can contain ANYTHING.
 
+    @NSManaged public var workingDirectoryBookmark: NSSet?
+
 
 
     public var wrappedFolderName: String {
@@ -33,6 +35,13 @@ extension PhotoFolders : Identifiable { //, SelectableRow
     public var wrappedTag: String {
         tag ?? "Unknown Tag"
     }
+//
+//    public var wrappedWorkingDirectoryBookmark : Data {
+//        workingDirectoryBookmark 
+//        didSet {
+//            UserDefaults.standard.set(workingDirectoryBookmark, forKey: "workingDirectoryBookmark")
+//        }
+//    }
 
 
 

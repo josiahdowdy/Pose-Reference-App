@@ -51,16 +51,12 @@ struct MultipleSelectRow : View {
     var body: some View {
         //  NavigationView {
         VStack {
-            //  Text("MultipleRowSelect")
             //      List(cdFolders, id: \.self, selection: $rowSelection){ name in //*this works*
-            //
-           // List(cdFolders, id: \.self, selection: $rowSelection){ name in
             List(selection: $rowSelection) {
                 ForEach(cdFolders, id: \.self) { name in
                     HStack {
                         Text(name.wrappedFolderName)
-                        
-                       // Text(name.wrappedFolderURL.path).font(.caption2)
+                        Text(name.wrappedFolderURL.path).font(.caption2)
                     }
                 }
                 .onDelete(perform: cdOnSwipeDelete)
@@ -75,14 +71,8 @@ struct MultipleSelectRow : View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 HStack {
-                    cdArraySave
-                    cdDeleteButton
-
-//                    Button(action: {
-//                        print("hi")
-//                    }, label: {
-//                        Image(systemName: "pencil.circle")
-//                    })
+                    self.cdArraySave
+                    self.cdDeleteButton
                 }
             }
 
@@ -119,40 +109,29 @@ struct MultipleSelectRow : View {
     
     private func cdSaveArray() {
         print("JD00: userSettings.arrayPhotoURLs: \(userSettings.arrayPhotoURLs)")
-        
         //prefs.arrayOfFolders.removeAll()
-        
         for selectedItem in self.rowSelection{
+            saveBookmarkData(for: selectedItem.wrappedFolderURL.downloadURL)
+            let restoredURL = restoreFileAccess(with: userSettings.workingDirectoryBookmark)
 
-            //for selectedItem in dataProvider.allNotes {
-            //    if (selectedItem.isFolderSelected) {
-            let url = selectedItem.wrappedFolderURL
-            //userSettings.storedFolderData = try! Data.init(contentsOf: url)
-            //    selectedItem. = try! Data.init(contentsOf: url)
-            saveBookmarkData(for: url)//userSettings.storedFolderURL) //selectedItem.wrappedURL
-
-            // print("JD31: userSettings.storedFolderData: ", userSettings.storedFolderData)
-
-            let restoredURL = restoreFileAccess(with: userSettings.workingDirectoryBookmark)//userSettings.workingDirectoryBookmark)
-
-            //    CFURLCreateBookmarkData(nil, userSettings.storedFolderURL.downloadURL as CFURL, options: [userSettings.storedFolderURL], nil, nil, nil)
+            print("JD36: cdFolders.count", cdFolders.count)
 
             print("JD21: \(String(describing: restoredURL))")
 
             if (CFURLStartAccessingSecurityScopedResource(restoredURL as CFURL?)) { //url as CFURL
                 print("JD28: ACCESS GRANTED TO SECURITY RESOURCES.")
-
-                //   prefs.arrayOfFolders.append(selectedItem.wrappedFolderURL)
+                //prefs.arrayOfFolders.append(selectedItem.wrappedFolderURL)
 
                 do {
                     //LOAD AND SAVE URLS FOR IMAGES IN FOLDERS.
                     //     userSettings.url = selectedItem.wrappedFolderURL
 
-                    //userSettings.storedFolderURL = selectedItem.wrappedFolderURL
 
+                    //userSettings.storedFolderURL = selectedItem.wrappedFolderURL
                     do {
                         for file in try Folder(path: selectedItem.wrappedFolderURL.path).files {  //userSettings.url.path
                             print("JD06: \(file.url.downloadURL) - \(file.name) - \(file.path)")
+
 
                             prefs.arrayOfURLStrings.append(String(describing: file.url.downloadURL))
                             //userSettings.arrayPhotoURLs.append(file.url.downloadURL) //(String(describing: file.url))
@@ -161,29 +140,16 @@ struct MultipleSelectRow : View {
                         print("JD19: Catch Error")
                     }
                     //  saveBookmarkData(for: selectedItem.wrappedFolderURL)
-
-
                     // saveBookmarkData(for: userSettings.storedFolderURL)
-
-                    CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
-
+                    CFURLStopAccessingSecurityScopedResource(restoredURL as CFURL?) // <- and here
                 }
-
                 try? self.context.save()
-
-
             } else {
                 print("JD22: Failed access to security scoped resources.")
-
             }
-
-            
-            
-            //
             print("JD04: prefs.arrayOfFolders : \(prefs.arrayOfFolders)")
             print("JD05: prefs.arrayOfURLStrings : \(prefs.arrayOfURLStrings)")
             print("JD06: userSettings.arrayPhotoURLs: \(userSettings.arrayPhotoURLs)")
-            
         }
     }
 
@@ -384,4 +350,18 @@ struct MultipleSelectRow : View {
 
 
 
+ //for selectedItem in dataProvider.allNotes {
+ //    if (selectedItem.isFolderSelected) {
+
+ //userSettings.storedFolderData = try! Data.init(contentsOf: url)
+ //    selectedItem. = try! Data.init(contentsOf: url)
+ //userSettings.storedFolderURL) //selectedItem.wrappedURL
+
+ // print("JD31: userSettings.storedFolderData: ", userSettings.storedFolderData)
+
+ // userSettings.workingDirectoryBookmark)//userSettings.workingDirectoryBookmark)
+
+ //    CFURLCreateBookmarkData(nil, userSettings.storedFolderURL.downloadURL as CFURL, options: [userSettings.storedFolderURL], nil, nil, nil)
+
+ //    let url = selectedItem.wrappedFolderURL
  */
