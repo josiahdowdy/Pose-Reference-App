@@ -20,6 +20,7 @@ struct pose_referenceApp: App {
     
     
     var body: some Scene {
+
         WindowGroup {
             ContentView() //isPresented: $prefs.showMainScreen
                 .environmentObject(prefs)
@@ -27,7 +28,7 @@ struct pose_referenceApp: App {
                // .environmentObject(userObject)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext) //Shares data in WHOLE project.
             //Storing data.
-            
+
                 //.environmentObject(persistenceController.container.viewContext)
             
                 //This saves the data when it is changed.

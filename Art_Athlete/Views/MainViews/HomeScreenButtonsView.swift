@@ -45,6 +45,10 @@ struct HomeScreenButtonsView: View {
 
                 //                LoadFoldersButton(isImporting: true)
                 MultipleSelectRow(cdFolders: cdFolders)
+
+                if UIDevice.current.userInterfaceIdiom == (.phone) {
+                    StartButton()
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {

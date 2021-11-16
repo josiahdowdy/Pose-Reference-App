@@ -94,15 +94,53 @@ struct MultipleSelectRow : View {
             ToolbarItem(placement: .navigationBarTrailing) {
             }
         }
-
-
-
     }
     /*•••••••••••••END VIEW••••••••••••*/
        /*__/,|   (`\
      _.|o o  |_   ) )
      -(((---(((-----*/
     /*•••••••••START FUNCTIONS•••••••••*/
+    private var cdDeleteButton: some View {
+        print("JD33: cdDeleteButton")
+        return Button(action: cdDeleteNumbers) {
+            Image(systemName: "trash")
+            //            if cdEditMode == .active {
+            //                Image(systemName: "trash")
+            //            }
+            // #####################################################################
+            // Even with a commented .disable rule, the trash can deletes nothing
+            // #####################################################################
+        }.disabled(rowSelection.count <= 0)
+    }
+
+    private func cdDeleteNumbers() {
+        for selectedItem in self.rowSelection{
+            self.context.delete(selectedItem)
+        }
+        try? self.context.save()
+        rowSelection = Set<PhotoFolders>()
+    }
+
+    private func deleteAllRows() {
+        PersistenceController.shared.clearDatabase()
+        try? self.context.save()
+        rowSelection = Set<PhotoFolders>()
+    }
+
+    // #####################################################################
+    // Core data selecction is affected by the presence of the cdOnSwipeDelete function
+    // IE: The selection column is shown in edit mode only if
+    // this functuion is referenced by ForEach{}.onDelete()
+    // #####################################################################
+    private func cdOnSwipeDelete(with indexSet: IndexSet) {
+
+        indexSet.forEach { index in
+            let number = cdFolders[index]
+            self.context.delete(number)
+        }
+        try? self.context.save()
+    }
+}
     /*
     public var cdArraySave: some View {
         print("CD34: cdArraySave")
@@ -276,49 +314,7 @@ struct MultipleSelectRow : View {
     
     // Core Data Functions
 
-    private var cdDeleteButton: some View {
-        print("JD33: cdDeleteButton")
-        return Button(action: cdDeleteNumbers) {
 
-            Image(systemName: "trash")
-
-            //            if cdEditMode == .active {
-            //                Image(systemName: "trash")
-            //            }
-            // #####################################################################
-            // Even with a commented .disable rule, the trash can deletes nothing
-            // #####################################################################
-        }.disabled(rowSelection.count <= 0)
-    }
-
-    private func cdDeleteNumbers() {
-        for selectedItem in self.rowSelection{
-            self.context.delete(selectedItem)
-        }
-        try? self.context.save()
-        rowSelection = Set<PhotoFolders>()
-    }
-
-    private func deleteAllRows() {
-        PersistenceController.shared.clearDatabase()
-        try? self.context.save()
-        rowSelection = Set<PhotoFolders>()
-    }
-    
-    // #####################################################################
-    // Core data selecction is affected by the presence of the cdOnSwipeDelete function
-    // IE: The selection column is shown in edit mode only if
-    // this functuion is referenced by ForEach{}.onDelete()
-    // #####################################################################
-    private func cdOnSwipeDelete(with indexSet: IndexSet) {
-
-        indexSet.forEach { index in
-            let number = cdFolders[index]
-            self.context.delete(number)
-        }
-        try? self.context.save()
-    }
-    
     
     //    func saveFile (url: URL) {
     //        var actualPath: URL
@@ -357,7 +353,7 @@ struct MultipleSelectRow : View {
     //    }
     
     
-}
+
 
 
 

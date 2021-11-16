@@ -53,6 +53,12 @@ class StoredUserData: ObservableObject {
         }
     }
 
+    @Published var arrayWorkingDirectoryBookmark : [Data] {
+        didSet {
+            UserDefaults.standard.set(arrayWorkingDirectoryBookmark, forKey: "arrayWorkingDirectoryBookmark")
+        }
+    }
+
     @Published var username: String {
         didSet {
             UserDefaults.standard.set(username, forKey: "username")
@@ -81,21 +87,17 @@ class StoredUserData: ObservableObject {
 
     init() {
         self.username = UserDefaults.standard.object(forKey: "username") as? String ?? "sorry."
-        self.workingDirectoryBookmark = UserDefaults.standard.object(forKey: "workingDirectoryBookmark") as? Data ?? Data.init()  
-        self.url = UserDefaults.standard.object(forKey: "url") as? URL ?? URL(string: "n")!
-      //  self.arrayPhotoURLs = UserDefaults.standard.object(forKey: "arrayPhotoURLs") as? [String] ?? ["none."]//as? URL ?? URL(string: "a")!
 
+        self.workingDirectoryBookmark = UserDefaults.standard.object(forKey: "workingDirectoryBookmark") as? Data ?? Data.init()
+        self.arrayWorkingDirectoryBookmark = UserDefaults.standard.object(forKey: "arrayWorkingDirectoryBookmark") as? [Data] ?? [Data].init()
+
+        self.url = UserDefaults.standard.object(forKey: "url") as? URL ?? URL(string: "n")!
         self.storedFolderURL = UserDefaults.standard.object(forKey: "storedFolderURL") as? URL ?? URL(string: "nope")!
 
         self.recoveredURL = UserDefaults.standard.object(forKey: "recoveredURL") as? URL ?? URL(string: "nope")!
 
         self.storedFolderData = UserDefaults.standard.object(forKey: "storedFolderData") as? Data ?? Data()
-
-
         self.photo = UserDefaults.standard.object(forKey: "photo") as? Data ?? Data()
-
-
-
         self.isPrivate = UserDefaults.standard.object(forKey: "isAccountPrivate") as? Bool ?? false
     }
 }

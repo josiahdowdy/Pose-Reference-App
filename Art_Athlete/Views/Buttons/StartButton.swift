@@ -17,31 +17,13 @@ struct StartButton: View {
     @State var isRandom: Bool = true
 
     var body: some View {
-        Button("Start \(Image(systemName: "play.rectangle.fill"))") { //Button(" Start") {
-            //   NavBarView().loadLocalPhotos()
-            loadBookmarkedPhotos()
-            loadLocalPhotos()
-        }
-        .keyboardShortcut(.defaultAction)
-        .padding(20)
-        .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
-
-        //iPhone Only
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            Text("iPhone Only").font(.caption2)
-            Spacer().frame(maxWidth: .infinity)
-
-            countPickerView()
-            timePickerView()
-
-            Button("Start \(Image(systemName: "play.rectangle.fill"))") { //Button(" Start") {
-                //   NavBarView().loadLocalPhotos()
-                loadLocalPhotos()
+            Button("Start \(Image(systemName: "play.rectangle.fill"))") {
+                loadBookmarkedPhotos()
+                 loadLocalPhotos()
             }
             .keyboardShortcut(.defaultAction)
             .padding(20)
             .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
-        } //End if phone.
     } //END UI View.
 
     //MARK: - Functions
@@ -84,7 +66,8 @@ struct StartButton: View {
         }
     }
 
-    private func restoreFileAccess(with bookmarkData: Data) -> URL? { //[URL: Data]) -> URL? {
+    //private func restoreFileAccess(with bookmarkData: Data) -> URL? { //[URL: Data]) -> URL? {
+    private func restoreFileAccess(with bookmarkData: Data) -> URL? {
         do {
             var isStale = false
 
@@ -113,22 +96,32 @@ struct StartButton: View {
             // save in UserDefaults
             userSettings.workingDirectoryBookmark = bookmarkData
             //print("JD22: \(userSettings.workingDirectoryBookmark)")
+
+            userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
+
         } catch {
             print("Failed to save bookmark data for \(workDir)", error)
         }
     }
 
     private func loadBookmarkedPhotos() {
-        //TODO: - Show Photo Here.
-        url = restoreFileAccess(with: userSettings.workingDirectoryBookmark)!
+        //MARK:
+        //--> WORKING FOR SINGLE PHOTOURL -->  url = restoreFileAccess(with: userSettings.workingDirectoryBookmark)!
 
-        //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
-        if (url.startAccessingSecurityScopedResource()) {
-            print("JD67: TRUE")
-            prefs.arrayOfURLStrings.append(String(describing: url))
-            print("JD68: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings[0])")
-        } else {
-            print("JD67: False")
+        //prefs.arrayOfURLStringsTEMP.removeAll()
+
+        //for photo in userSettings.arrayWorkingDirectoryBookmark {
+        for i in 0..<userSettings.arrayWorkingDirectoryBookmark.count {
+            url = restoreFileAccess(with: userSettings.arrayWorkingDirectoryBookmark[i])!
+
+            //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
+            if (url.startAccessingSecurityScopedResource()) {
+                print("JD67: TRUE")
+                prefs.arrayOfURLStrings.append(String(describing: url))
+                print("JD68: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings)")
+            } else {
+                print("JD67: False")
+            }
         }
     }
 }
