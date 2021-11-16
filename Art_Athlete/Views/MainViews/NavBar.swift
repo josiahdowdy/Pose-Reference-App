@@ -13,8 +13,8 @@ struct NavBar: View {
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     
-//    var photoData : FetchedResults<PhotoFolders>
-//    var folderData : FetchedResults<PhotoFolders>
+    //    var photoData : FetchedResults<PhotoFolders>
+    //    var folderData : FetchedResults<PhotoFolders>
     
     
     var testData : FetchedResults<UserData>
@@ -37,10 +37,18 @@ struct NavBar: View {
     @State var showNavBar = true
     
     var body: some View {
-        if (showNavBar) {
+        //Spacer()
+        //Spacer().frame(maxWidth: .infinity)
+
+        if (prefs.numberTimer) {
+            Text("\(timeLeft, specifier: "%.0f")")
+            //Text("\(timeLeft)")
+                .onReceive(timeObject.$timeDouble) { input in
+                    timeLeft = timeObject.timeChosen - timeObject.timeDouble
+                }
+        }
+
         HStack(alignment: .bottom, spacing: 50) { //alignment: .bottom,
-            Spacer()
-            
             //Show/Hide NavBar
             Button {
                 showNavBar.toggle()
@@ -49,47 +57,38 @@ struct NavBar: View {
                 Image(systemName: showNavBar ? "menubar.rectangle" : "menubar.dock.rectangle.badge.record")
             }
 
-            
+            if(showNavBar) {
                 //SKIP
                 Button(action: {
                     //changeTimer = false
-                    
+
                     print("\n jo: \(prefs.currentIndex + 1) = \(prefs.sPoseCount) ")
-                    
+
                     if ((prefs.currentIndex + 1) == (prefs.sPoseCount)) { ///End session if photos are at end.
                         timeObject.timeDouble = 0.0
                         timeObject.progressValue = 0.0
                         timeObject.isTimerRunning.toggle()
                         //self.startSession = false
-                        
                         endSession()
                     } else { ///Skip photo.
                         skip.toggle()
                         if (prefs.localPhotos) {
-                            prefs.currentIndex += 1 
+                            prefs.currentIndex += 1
                             prefs.sURL = (prefs.arrayOfURLStrings[prefs.currentIndex]) //self.prefs.currentIndex
                         } else { ///Only use if using Unsplash photos.
                             // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
                         }
-                        
                         timeObject.timeDouble = 0.0
                         timeObject.progressValue = 0.0
                         timeObject.startTime = Date()
-                        
                     }
                 }) {
                     Image(systemName: "arrowshape.turn.up.right")
-                    //Image(systemName: skip ? "arrowshape.turn.up.right.fill" : "arrowshape.turn.up.right")//Text("Skip")
                 }.disabled(prefs.disableSkip)
-            
-//                    .sheet(isPresented: $showingSheet) {  //$showingSheet
-//                        NavBarView(photoData: photoData, folderData: folderData) //startSession: $startSession,
-                     //   HomeScreen(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah OCT16
-                    //}
-                .keyboardShortcut(.rightArrow)
+                    .keyboardShortcut(.rightArrow)
                     .buttonStyle(BorderlessButtonStyle())
                 //.buttonStyle(bounceButtonStyle())
-                
+
                 //PAUSE TIMER
                 Button(action: {
                     print("Pause")
@@ -111,33 +110,33 @@ struct NavBar: View {
                 }.keyboardShortcut(.space)
                     .buttonStyle(BorderlessButtonStyle())
                 //.buttonStyle(bounceButtonStyle())
-                
-                //BLACK AND WHITE
-                Button(action: {
-                    print("\nBlack and White processor filter.\n")
-                    prefs.processorDefault.toggle()
-                    prefs.processorBlack.toggle()
-                    
-                }) {
-                    Image(systemName: "camera.filters") //Text("Grayscale")
-                }.buttonStyle(BorderlessButtonStyle())
-                
-                //Upside Down
-                Button(action: {
-                    print("\nUpside down.\n")
-                    prefs.flippedVertically.toggle()
-                }) {
-                    Image(systemName: prefs.flippedVertically ? "rotate.left.fill" : "rotate.left") //Text("Grayscale")
-                }.buttonStyle(BorderlessButtonStyle())
-                
-                //Flip.
-                Button(action: {
-                    print("\nFlip.\n")
-                    prefs.flippedHorizontally.toggle()
-                }) {
-                    Image(systemName: prefs.flippedHorizontally ? "arrow.left.and.right.righttriangle.left.righttriangle.right.fill" : "arrow.left.and.right.righttriangle.left.righttriangle.right") //Text("Grayscale")
-                }.buttonStyle(BorderlessButtonStyle())
 
+                if !(UIDevice.current.userInterfaceIdiom == .phone) {
+                    //BLACK AND WHITE
+                    Button(action: {
+                        print("\nBlack and White processor filter.\n")
+                        prefs.processorDefault.toggle()
+                        prefs.processorBlack.toggle()
+                    }) {
+                        Image(systemName: "camera.filters") //Text("Grayscale")
+                    }.buttonStyle(BorderlessButtonStyle())
+
+                    //Upside Down
+                    Button(action: {
+                        print("\nUpside down.\n")
+                        prefs.flippedVertically.toggle()
+                    }) {
+                        Image(systemName: prefs.flippedVertically ? "rotate.left.fill" : "rotate.left") //Text("Grayscale")
+                    }.buttonStyle(BorderlessButtonStyle())
+
+                    //Flip.
+                    Button(action: {
+                        print("\nFlip.\n")
+                        prefs.flippedHorizontally.toggle()
+                    }) {
+                        Image(systemName: prefs.flippedHorizontally ? "arrow.left.and.right.righttriangle.left.righttriangle.right.fill" : "arrow.left.and.right.righttriangle.left.righttriangle.right") //Text("Grayscale")
+                    }.buttonStyle(BorderlessButtonStyle())
+                }
                 //QUIT
                 Button(action: {
                     print("quit")
@@ -147,13 +146,13 @@ struct NavBar: View {
                 }) {
                     Image(systemName: "multiply.circle.fill") //Text("Grayscale")
                 }.buttonStyle(BorderlessButtonStyle())
-            
-            
+            }
+
             /*
-                .sheet(isPresented: $showingSheet) {
-                    HomeScreen(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
-                }.buttonStyle(BorderlessButtonStyle())
-            */
+             .sheet(isPresented: $showingSheet) {
+             HomeScreen(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
+             }.buttonStyle(BorderlessButtonStyle())
+             */
             //.buttonStyle(bounceButtonStyle())
             //.keyboardShortcut(.escape)
             //Photo counter x /30
@@ -165,22 +164,18 @@ struct NavBar: View {
              }.buttonStyle(BorderlessButtonStyle())
              */
             
-            if (prefs.numberTimer) {
-                Text("\(timeLeft, specifier: "%.0f")")
-                //Text("\(timeLeft)")
-                    .onReceive(timeObject.$timeDouble) { input in
-                        timeLeft = timeObject.timeChosen - timeObject.timeDouble
-                    }
-            }
+
             
-            Spacer()
-            
+            //  Spacer()
         } //End HStack.
-        }
+        .padding()
+        .background(Color.black)
+        .cornerRadius(15)
     } //End View.
-    
+
+    //MARK: - FUNCTIONS
     func endSession(){
-      //  self.startSession = false
+        //  self.startSession = false
         pause = false
         self.timeObject.endSessionBool.toggle()
         prefs.disableSkip.toggle()

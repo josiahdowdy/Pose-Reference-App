@@ -46,9 +46,7 @@ struct pose_referenceApp: App {
                     }
                 }
         }
-        .commands {
-            SidebarCommands()
-        }
+        .commands { SidebarCommands() }
 //        #if os(macOS)
 //            Settings {
 //                SettingsMacView()

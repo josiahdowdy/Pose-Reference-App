@@ -11,6 +11,7 @@ import UniformTypeIdentifiers
 
 struct MultipleSelectRow : View {
     // MARK: - VARIABLES
+    
     @ObservedObject var userSettings = StoredUserData()
     //@ObservedObject var dataProvider = DataProvider.shared
     @EnvironmentObject var prefs: GlobalVariables
@@ -21,6 +22,11 @@ struct MultipleSelectRow : View {
     @Environment(\.managedObjectContext) var context
 
     @State var rowSelection = Set<PhotoFolders>()
+
+
+    @State var url : URL = URL(fileURLWithPath: "nil")
+    @State var selectAll = false
+
 
     var cdFolders: FetchedResults<PhotoFolders>
 
@@ -34,7 +40,28 @@ struct MultipleSelectRow : View {
     // MARK: - UI
     var body: some View {
         //  NavigationView {
+        HStack {
+            Button(action: {
+                print("Select All Photos")
+                if !(selectAll) {
+                    selectAll.toggle()
+                    deleteAllRows()
+                    //select all photos.
+
+                } else {
+                    selectAll.toggle()
+                    //unSelect all photos.
+                }
+            }) {
+                Image(systemName: selectAll ? "checkmark.circle.fill" : "checkmark.circle") //Text("Pause")
+            }.keyboardShortcut(.space).buttonStyle(BorderlessButtonStyle())
+
+            Text("Photos").font(.title)
+
+        }
+
         VStack {
+
             //      List(cdFolders, id: \.self, selection: $rowSelection){ name in //*this works*
             List(selection: $rowSelection) {
                 ForEach(cdFolders, id: \.self) { name in
@@ -45,17 +72,21 @@ struct MultipleSelectRow : View {
                 }
                 .onDelete(perform: cdOnSwipeDelete)
             }
-              .listStyle(InsetListStyle())
-        }
+            .listStyle(InsetListStyle())
+         //   .navigationTitle("Photos") // Photos"
 
-        // the next line is the modifier
+
+            // checkmark.circle
+            // checkmark.cirlce.fill
+
+        }
         .environment(\.editMode, .constant(EditMode.active)) // *IMPORTANT* Allows checkbox to appear.
-        .navigationBarTitle(Text("#: \(rowSelection.count)"))
+       // .navigationBarTitle(Text("#: \(rowSelection.count)"))
         //.navigationBarItems( leading: cdArraySave )
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 HStack {
-                    self.cdArraySave
+                    //self.cdArraySave
                     self.cdDeleteButton
                 }
             }
@@ -63,17 +94,35 @@ struct MultipleSelectRow : View {
             ToolbarItem(placement: .navigationBarTrailing) {
             }
         }
+
+
+
     }
     /*•••••••••••••END VIEW••••••••••••*/
        /*__/,|   (`\
      _.|o o  |_   ) )
      -(((---(((-----*/
     /*•••••••••START FUNCTIONS•••••••••*/
+    /*
     public var cdArraySave: some View {
         print("CD34: cdArraySave")
-        return Button(action: cdSaveArray) {
+        return Button(action: showPhotoFunction) { //cdSaveArray
             Image(systemName: "square.and.arrow.down")
         }.disabled(rowSelection.count <= 0)
+    }
+
+    private func showPhotoFunction() {
+        //TODO: - Show Photo Here.
+        url = restoreFileAccess(with: userSettings.workingDirectoryBookmark)!
+
+        //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
+        if (url.startAccessingSecurityScopedResource()) {
+            print("JD67: TRUE")
+            prefs.arrayOfURLStrings.append(String(describing: url))
+            print("JD68: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings[0])")
+        } else {
+            print("JD67: False")
+        }
     }
     
     private func cdSaveArray() {
@@ -223,7 +272,7 @@ struct MultipleSelectRow : View {
                 url.stopAccessingSecurityScopedResource()
             }
         }
-    }
+    } */
     
     // Core Data Functions
 
@@ -246,6 +295,12 @@ struct MultipleSelectRow : View {
         for selectedItem in self.rowSelection{
             self.context.delete(selectedItem)
         }
+        try? self.context.save()
+        rowSelection = Set<PhotoFolders>()
+    }
+
+    private func deleteAllRows() {
+        PersistenceController.shared.clearDatabase()
         try? self.context.save()
         rowSelection = Set<PhotoFolders>()
     }

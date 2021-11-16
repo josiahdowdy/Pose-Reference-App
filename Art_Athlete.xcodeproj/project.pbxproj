@@ -28,6 +28,8 @@
 		2C064315272C6612001DF985 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064313272C6612001DF985 /* ViewModel.swift */; };
 		2C064319272C66CE001DF985 /* PrivateSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064318272C66CE001DF985 /* PrivateSyncTests.swift */; };
 		2C06431A272C66CE001DF985 /* PrivateSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064318272C66CE001DF985 /* PrivateSyncTests.swift */; };
+		2C0DF7562742CF580090E5EF /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DF7552742CF580090E5EF /* StartButton.swift */; };
+		2C0DF7572742CF580090E5EF /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DF7552742CF580090E5EF /* StartButton.swift */; };
 		2C131571273391B7001019BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C131570273391B7001019BA /* Kingfisher */; };
 		2C13157527339B41001019BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13157427339B41001019BA /* Kingfisher */; };
 		2C13157827344E65001019BA /* CheckDevice in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13157727344E65001019BA /* CheckDevice */; };
@@ -254,6 +256,7 @@
 		2C064313272C6612001DF985 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2C064316272C66CD001DF985 /* Art AthleteTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Art AthleteTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C064318272C66CE001DF985 /* PrivateSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateSyncTests.swift; sourceTree = "<group>"; };
+		2C0DF7552742CF580090E5EF /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
 		2C131566273387B3001019BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C13157A27346941001019BA /* SettingsSlideCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSlideCard.swift; sourceTree = "<group>"; };
 		2C142B912593D71A00A7DC54 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
@@ -613,6 +616,7 @@
 				2C064305272C43EC001DF985 /* ButtonsTestView.swift */,
 				2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */,
 				2C209831273CD9D100D5B5FC /* countPickerView.swift */,
+				2C0DF7552742CF580090E5EF /* StartButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -963,6 +967,7 @@
 				2C147D28272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift in Sources */,
 				2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */,
 				2C2098282737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */,
+				2C0DF7562742CF580090E5EF /* StartButton.swift in Sources */,
 				2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */,
 				2C704F69254BA86200C5805B /* TimerObject.swift in Sources */,
 				2C02D8DE253ABB7100D5F960 /* ProgressBarView.swift in Sources */,
@@ -1060,6 +1065,7 @@
 				2CB6249127277C25001AFA85 /* ImagePicker.swift in Sources */,
 				2C663A832720BACD0097AEFE /* AppDelegate.swift in Sources */,
 				2C2098292737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */,
+				2C0DF7572742CF580090E5EF /* StartButton.swift in Sources */,
 				2C663A73271F74470097AEFE /* timePickerView.swift in Sources */,
 				2CB6248D27277C0F001AFA85 /* ProgressBarView.swift in Sources */,
 				2CB6248A27277C01001AFA85 /* HomeScreen.swift in Sources */,

@@ -4,12 +4,18 @@ Save local data.
 */
 
 import CoreData
+//import SwiftUI
+//import Foundation
 //#if !os(macOS)
 //    import UIKit
 //#endif
+//import CloudKit
+import Foundation
 
 struct PersistenceController {
     static let shared = PersistenceController()
+
+    
     
     let container: NSPersistentCloudKitContainer
     
@@ -68,9 +74,20 @@ struct PersistenceController {
         context.delete(object)
         save(completion: completion)
     }
-    
-    
-    
+
+    //delete EVERTYING.
+    public func clearDatabase() {
+        guard let url = container.persistentStoreDescriptions.first?.url else { return }
+        let persistentStoreCoordinator = container.persistentStoreCoordinator
+        do {
+            try persistentStoreCoordinator.destroyPersistentStore(at:url, ofType: NSSQLiteStoreType, options: nil)
+            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+        } catch let error {
+            print("Attempted to clear persistent store: " + error.localizedDescription)
+        }
+    }
+
+
     /*
      container.loadPersistentStores(completionHandler: { (storeDescription, error) in
      if let error = error as NSError? {

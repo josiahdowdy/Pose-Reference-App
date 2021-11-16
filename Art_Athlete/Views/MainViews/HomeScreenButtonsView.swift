@@ -1,9 +1,6 @@
-//
-//  HomeScreenButtonsView.swift
-//  Art_Athlete
-//
+//  HomeScreenButtonsView.swift - Art_Athlete
 //  Created by josiah on 2021-11-02.
-//
+
 import SwiftUI
 import UniformTypeIdentifiers
 import Files
@@ -22,7 +19,6 @@ struct HomeScreenButtonsView: View {
     // @Binding var startSession: Bool
     @State var error = ""
 
-    @State var isRandom: Bool = true
     @State var url : URL = URL(fileURLWithPath: "nil")
 
     @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
@@ -32,14 +28,12 @@ struct HomeScreenButtonsView: View {
     //@State private var editMode: EditMode = .inactive
     //@State var cdEditMode = EditMode.inactive
 
-
-             /*\___/\ ((
-              \`@_@'/  ))
-              {_:Y:.}_//
-    ----------{_}^-'{_}----------*/
+                /*\___/\ ((
+                 \`@_@'/  ))
+                 {_:Y:.}_//
+      ----------{_}^-'{_}----------*/
 
     //MARK: - VIEW
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -49,7 +43,7 @@ struct HomeScreenButtonsView: View {
 
                 LoadFoldersButton()
 
-//                LoadFoldersButton(isImporting: true)
+                //                LoadFoldersButton(isImporting: true)
                 MultipleSelectRow(cdFolders: cdFolders)
             }
             .toolbar {
@@ -80,185 +74,94 @@ struct HomeScreenButtonsView: View {
                     }
                     .listStyle(InsetListStyle())
                 }
-
-
-                showPhotoButton
-
-                //TODO: - AsyncImage. UI.
-                if (showPhotos) {
-                   // Image(uiImage: UIImage(data: userSettings.photo) ?? UIImage(named: "/Users/josiahdowdy/Library/Mobile Documents/com~apple~CloudDocs/Screenshots") ?? UIImage())
-                    Text("Enjoy!")
-                    if #available(iOS 15.0, *) {
-                        AsyncImage(url: url)
-                            .frame(width: 100, height: 100)
-                        if !(prefs.arrayOfURLStrings.isEmpty) {
-                            AsyncImage(url: URL(string: prefs.arrayOfURLStrings[0]))
-                                .frame(width: 100, height: 100)
-                        }
-                    } else {
-                        // Fallback on earlier versions
-                    }
-                } //
-
                 //  FileImporterView()
                 Spacer().frame(maxWidth: .infinity)
 
                 countPickerView()
                 timePickerView()
-
-                Button("Start \(Image(systemName: "play.rectangle.fill"))") { //Button(" Start") {
-                    //   NavBarView().loadLocalPhotos()
-                    loadLocalPhotos()
-
-
-                }
-                .keyboardShortcut(.defaultAction)
-                .padding(20)
-                .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
+                StartButton()
             } //End VStack.
-        }
+        } //NavigationView
+    } //End UI.
 
-
-        } //End UI.
-    
        /*__/,|   (`\
      _.|o o  |_   ) )
-   -(((---(((-----*/
+     -(((---(((-----*/
 
     //MARK: - FUNCTIONS
     private func showSettings() {
         prefs.showSettings.toggle()
     }
-
-    private var showPhotoButton: some View {
-        return Button(action: showPhotoFunction) {
-            Image(systemName: "heart")
-        }
-    }
-
-
-    private func showPhotoFunction() {
-        //TODO: - Show Photo Here.
-        url = restoreFileAccess(with: userSettings.workingDirectoryBookmark)!
-
-        //FIXME: START HERE JOSIAH. GET THE BOOKMARK URL WORKING.
-        if (url.startAccessingSecurityScopedResource()) {
-            print("JD67: TRUE")
-            prefs.arrayOfURLStrings.append(String(describing: url))
-            print("JD68: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings[0])")
-        } else {
-            print("JD67: False")
-        }
-
-        if !(showPhotos) {
-            showPhotos = true
-        } else {
-            showPhotos = false
-        }
-
-        print("JD69: showPhoto - ", showPhotos)
-    }
-
-
-    private func restoreFileAccess(with bookmarkData: Data) -> URL? { //[URL: Data]) -> URL? {
-        do {
-            var isStale = false
-
-            //            for url in bookmarkData {
-            //                let url2 = try URL(resolvingBookmarkData: bookmarkData[url], relativeTo: nil, bookmarkDataIsStale: &isStale)
-            //
-            //            }
-            let url = try URL(resolvingBookmarkData: bookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
-
-            if isStale {
-                // bookmarks could become stale as the OS changes
-                print("Bookmark is stale, need to save a new one... ")
-                //    saveBookmarkData(for: url)
-            }
-            return url
-        } catch {
-            print("Error resolving bookmark:", error)
-            return nil
-        }
-    }
-
-    //Don't confuse with start timer in Timer.swift
-    private func startTimer() {
-        timeObject.isTimerRunning = true
-        timeObject.startTime = Date()
-        timeObject.progressValue = 0.0
-        timeObject.timeDouble = 0.0
-        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer() //, startSession: $startSession
-        let newSession = UserData(context: context)
-        newSession.date = Date()
-    }
-
-    func loadLocalPhotos(){
-        print("JD01 : loadLocalPhotos() : \(prefs.arrayOfURLStrings)")
-        print("JD20: \(prefs.arrayOfURLStrings.count)")
-        if (prefs.arrayOfURLStrings.count < prefs.homeManyPhotosToDraw[prefs.selectorCountTime]) {
-            prefs.sPoseCount = prefs.arrayOfURLStrings.count
-        } else {
-            prefs.sPoseCount = prefs.homeManyPhotosToDraw[prefs.selectorCountTime]
-        }
-
-        if (isRandom) {
-            prefs.arrayOfURLStrings.shuffle()
-        }
-
-        if (prefs.arrayOfURLStrings.isEmpty) {
-            prefs.error = "Error loading images..." //Error Oct16 HomeView().error
-        } else {
-            //prefs.startBoolean.toggle()
-            prefs.error = ""
-            prefs.sURL = prefs.arrayOfURLStrings[0]
-            prefs.localPhotos = true
-            prefs.disableSkip = false
-            timeObject.timeChosen = Double(prefs.time[prefs.selectorIndexTime]) //Double(prefs.time[prefs.selectorIndexTime])!
-
-            startTimer()
-            prefs.startSession = true
-        }
-    }  //End of load local photos
-
-    func saveFile (url: URL) {
-        var actualPath: URL
-
-        if (CFURLStartAccessingSecurityScopedResource(url as CFURL)) { // <- here
-
-            let fileData = try? Data.init(contentsOf: url)
-            let fileName = url.lastPathComponent
-
-            actualPath = getDocumentsDirectory().appendingPathComponent(fileName)
-
-            // print("\nactualPath = \(actualPath)\n") //Prints out the actual path.
-            do {
-                try fileData?.write(to: actualPath)
-                prefs.arrayOfURLStrings.append(String(describing: actualPath))
-                //print("\nString: arrayOfURLStrings: \n\(prefs.arrayOfURLStrings)\n")
-                if(fileData == nil){
-                    print("Permission error!")
-                }
-                else {
-                    //print("Success.")
-                }
-            } catch {
-                print("Josiah1: \(error.localizedDescription)")
-            }
-            CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
-
-        }
-        else {
-            print("Permission error!")
-        }
-
-        func getDocumentsDirectory() -> URL {
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        }
-        //---------END FUNCTIONS---------
-
-    }
 }
+
+/* IMPORTANT - WORKS. HEART BUTTON. FUNCTIONS TO LOAD PHOTO.
+ //- AsyncImage. UI.
+ if (showPhotos) {
+ // Image(uiImage: UIImage(data: userSettings.photo) ?? UIImage(named: "/Users/josiahdowdy/Library/Mobile Documents/com~apple~CloudDocs/Screenshots") ?? UIImage())
+ Text("Enjoy!")
+ if #available(iOS 15.0, *) {
+ AsyncImage(url: url)
+ .frame(width: 100, height: 100)
+ if !(prefs.arrayOfURLStrings.isEmpty) {
+ AsyncImage(url: URL(string: prefs.arrayOfURLStrings[0]))
+ .frame(width: 100, height: 100)
+ }
+ } else {
+ // Fallback on earlier versions
+ }
+ } //
+
+ private var showPhotoButton: some View {
+ return Button(action: showPhotoFunction) {
+ Image(systemName: "heart")
+ }
+ }
+
+
+ private func showPhotoFunction() {
+ //- Show Photo Here.
+ url = restoreFileAccess(with: userSettings.workingDirectoryBookmark)!
+
+ //BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
+ if (url.startAccessingSecurityScopedResource()) {
+ print("JD67: TRUE")
+ prefs.arrayOfURLStrings.append(String(describing: url))
+ print("JD68: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings[0])")
+ } else {
+ print("JD67: False")
+ }
+
+ if !(showPhotos) {
+ showPhotos = true
+ } else {
+ showPhotos = false
+ }
+
+ print("JD69: showPhoto - ", showPhotos)
+ }
+
+
+ private func restoreFileAccess(with bookmarkData: Data) -> URL? { //[URL: Data]) -> URL? {
+ do {
+ var isStale = false
+
+ //            for url in bookmarkData {
+ //                let url2 = try URL(resolvingBookmarkData: bookmarkData[url], relativeTo: nil, bookmarkDataIsStale: &isStale)
+ //
+ //            }
+ let url = try URL(resolvingBookmarkData: bookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
+
+ if isStale {
+ // bookmarks could become stale as the OS changes
+ print("Bookmark is stale, need to save a new one... ")
+ //    saveBookmarkData(for: url)
+ }
+ return url
+ } catch {
+ print("Error resolving bookmark:", error)
+ return nil
+ }
+ } */
 
 
 /*
@@ -385,6 +288,42 @@ struct HomeScreenButtonsView: View {
  //            Text("Only shows on iPhone.")
  //        }
 
+ /*
+  func saveFile (url: URL) {
+  var actualPath: URL
+
+  if (CFURLStartAccessingSecurityScopedResource(url as CFURL)) { // <- here
+
+  let fileData = try? Data.init(contentsOf: url)
+  let fileName = url.lastPathComponent
+
+  actualPath = getDocumentsDirectory().appendingPathComponent(fileName)
+
+  // print("\nactualPath = \(actualPath)\n") //Prints out the actual path.
+  do {
+  try fileData?.write(to: actualPath)
+  prefs.arrayOfURLStrings.append(String(describing: actualPath))
+  //print("\nString: arrayOfURLStrings: \n\(prefs.arrayOfURLStrings)\n")
+  if(fileData == nil){
+  print("Permission error!")
+  }
+  else {
+  //print("Success.")
+  }
+  } catch {
+  print("Josiah1: \(error.localizedDescription)")
+  }
+  CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
+
+  }
+  else {
+  print("Permission error!")
+  }
+
+  func getDocumentsDirectory() -> URL {
+  return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+  }
+  */
 
 
 
@@ -426,18 +365,18 @@ struct HomeScreenButtonsView: View {
  //
  //        UINavigationBar.appearance().tintColor = .white
  //    }
-    //-----END VARIABLES------
-    //    init() {
-    //        let coloredAppearance = UINavigationBarAppearance()
-    //        coloredAppearance.configureWithOpaqueBackground()
-    //        coloredAppearance.backgroundColor = .systemBrown
-    //        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    //        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-    //
-    //        UINavigationBar.appearance().standardAppearance = coloredAppearance
-    //        UINavigationBar.appearance().compactAppearance = coloredAppearance
-    //        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-    //
-    //        UINavigationBar.appearance().tintColor = .white
-    //    }
+ //-----END VARIABLES------
+ //    init() {
+ //        let coloredAppearance = UINavigationBarAppearance()
+ //        coloredAppearance.configureWithOpaqueBackground()
+ //        coloredAppearance.backgroundColor = .systemBrown
+ //        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+ //        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+ //
+ //        UINavigationBar.appearance().standardAppearance = coloredAppearance
+ //        UINavigationBar.appearance().compactAppearance = coloredAppearance
+ //        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+ //
+ //        UINavigationBar.appearance().tintColor = .white
+ //    }
  */

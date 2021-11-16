@@ -19,8 +19,7 @@ class GlobalVariables: ObservableObject {
     @Published var homeManyPhotosToDraw = [5, 10, 20, 60, 90]
     @Published var arrayOfFolders = [String]()
 
-    
-
+    //----------INTS------------------------
     @Published var currentIndex = 0
     @Published var selectorIndexTime = 2
     @Published var selectorCountTime = 2
@@ -44,6 +43,14 @@ class GlobalVariables: ObservableObject {
     @Published var introIsFinished = true
     @Published var showSettings = false
     @Published var addFolder = false
+
+    @Published var selectedItems: Set<String> //Set<PhotoFolders>
+    @Published var items: Array<String>
+
+    init() {
+        self.items = ["A","B","C"]
+        self.selectedItems = ["A"]
+    }
     
     
 

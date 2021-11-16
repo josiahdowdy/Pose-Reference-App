@@ -45,6 +45,10 @@ struct DrawingView: View {
                         .font(.caption)
                         .background(Color.black)
                         .foregroundColor(.white)
+
+
+                    NavBar(prefs: _prefs, testData: testData) //.padding(.bottom, 5)
+
                     HStack {
                         if !(prefs.hideTimer) {
                             if (prefs.numberTimer) {
@@ -57,24 +61,9 @@ struct DrawingView: View {
                 } //End VStack.
             } //End ZStack
         } //End Group
-        
-        Group {
-            HStack(){
-                
-                NavBar(prefs: _prefs, testData: testData).padding(.bottom, 5) //, startSession: $startSession, photoData: photoData, folderData: folderData
-            }
-            .padding(.bottom, 30)
-        }
-        //Set which view opens when timer runs out on last image.
-        /*
-         .sheet(isPresented: $prefs.showMainMenu) { //$showingSheet
-         //HomeScreen(prefs: _prefs, userObject: _userObject, name: "Artist")
-         return HomeScreen() //Josiah Oct16 isPresented: $showingSheet
-         .environmentObject(self.userObject)
-         .environmentObject(self.prefs)
-         .environmentObject(self.timeObject)
-         */
-    }
+    } //End View.
+
+    //Start Functions
 }
 
 ///Create the user data before launching app (if no user data)
