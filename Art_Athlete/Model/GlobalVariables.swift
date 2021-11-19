@@ -43,16 +43,18 @@ class GlobalVariables: ObservableObject {
     @Published var sessionFirstStarted = false
     @Published var introIsFinished = true
     @Published var showSettings = false
+    @Published var showStats = false
+
     @Published var addFolder = false
-
-    @Published var selectedItems: Set<String> //Set<PhotoFolders>
-    @Published var items: Array<String>
-
-    init() {
-        self.items = ["A","B","C"]
-        self.selectedItems = ["A"]
-    }
-    
+//
+//    @Published var selectedItems: Set<String> //Set<PhotoFolders>
+//    @Published var items: Array<String>
+//
+//    init() {
+//        self.items = ["A","B","C"]
+//        self.selectedItems = ["A"]
+//    }
+//
     
 
     

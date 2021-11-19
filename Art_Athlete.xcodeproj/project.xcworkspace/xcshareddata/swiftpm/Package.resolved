@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "CheckDevice",
-        "repositoryURL": "https://github.com/ugurethemaydin/CheckDevice.git",
-        "state": {
-          "branch": null,
-          "revision": "537377852502f7cc394e4d55ae65fc5da7708e6d",
-          "version": "1.0.5"
-        }
-      },
-      {
         "package": "Files",
         "repositoryURL": "https://github.com/JohnSundell/Files",
         "state": {

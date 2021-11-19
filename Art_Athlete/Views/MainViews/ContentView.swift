@@ -77,9 +77,13 @@ struct ContentView: View {
                     ArtAthleteSettings(notifyMeAbout: $notifyMeAbout, playNotificationSounds: $playNotificationSounds, profileImageSize: $profileImageSize, sendReadReceipts: $sendReadReceipts)
                 }
             }
+
+            if (prefs.showStats) {
+                SlideOverCard($position, backgroundStyle: $background) {
+                    StatsView(userStats: testData)
+                }
+            }
         }
-
-
     }
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 

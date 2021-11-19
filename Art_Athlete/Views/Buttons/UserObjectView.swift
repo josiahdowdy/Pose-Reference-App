@@ -24,7 +24,7 @@ struct UserObjectView: View {
             }
         }
         .onAppear(perform: {
-            self.itemName = self.userObject.name
+            self.itemName = self.userObject.name ?? "nin"
         })
     }
 }

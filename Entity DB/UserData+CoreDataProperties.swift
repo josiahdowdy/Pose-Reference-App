@@ -22,6 +22,12 @@ extension UserData {
     @NSManaged public var userName: String?
     @NSManaged public var id: UUID?
     @NSManaged public var countPoses: Int16
+    @NSManaged public var timeDrawn: Int16
+
+//    public var wrappedTimeDrawn: Int16 {
+//        timeDrawn ?? 0
+//    }
+
     
    // @NSManaged public var status: String
     

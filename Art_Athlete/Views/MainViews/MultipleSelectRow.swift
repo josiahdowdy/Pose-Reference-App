@@ -88,10 +88,8 @@ struct MultipleSelectRow : View {
                 HStack {
                     //self.cdArraySave
                     self.cdDeleteButton
+                    StatsButton()
                 }
-            }
-
-            ToolbarItem(placement: .navigationBarTrailing) {
             }
         }
     }

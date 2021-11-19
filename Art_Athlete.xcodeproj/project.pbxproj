@@ -32,7 +32,6 @@
 		2C0DF7572742CF580090E5EF /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DF7552742CF580090E5EF /* StartButton.swift */; };
 		2C131571273391B7001019BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C131570273391B7001019BA /* Kingfisher */; };
 		2C13157527339B41001019BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13157427339B41001019BA /* Kingfisher */; };
-		2C13157827344E65001019BA /* CheckDevice in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13157727344E65001019BA /* CheckDevice */; };
 		2C13157B27346941001019BA /* SettingsSlideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13157A27346941001019BA /* SettingsSlideCard.swift */; };
 		2C13157C27346941001019BA /* SettingsSlideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13157A27346941001019BA /* SettingsSlideCard.swift */; };
 		2C13158227346ECF001019BA /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13158127346ECF001019BA /* SlideOverCard */; };
@@ -170,6 +169,10 @@
 		2CED7E112727531B00B99CAD /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED7E0F2727531B00B99CAD /* SettingsRow.swift */; };
 		2CED7E142727534100B99CAD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED7E132727534100B99CAD /* Color.swift */; };
 		2CED7E152727534100B99CAD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED7E132727534100B99CAD /* Color.swift */; };
+		2CF9E3652747BBF8009F77E1 /* StatsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3642747BBF8009F77E1 /* StatsButton.swift */; };
+		2CF9E3662747BBF8009F77E1 /* StatsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3642747BBF8009F77E1 /* StatsButton.swift */; };
+		2CF9E3682747BEDC009F77E1 /* settingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3672747BEDC009F77E1 /* settingsButton.swift */; };
+		2CF9E3692747BEDC009F77E1 /* settingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3672747BEDC009F77E1 /* settingsButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -332,6 +335,8 @@
 		2CEB6EDA27336E12001C6FEB /* macOS.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		2CED7E0F2727531B00B99CAD /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
 		2CED7E132727534100B99CAD /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		2CF9E3642747BBF8009F77E1 /* StatsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsButton.swift; sourceTree = "<group>"; };
+		2CF9E3672747BEDC009F77E1 /* settingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,7 +348,6 @@
 				2C131571273391B7001019BA /* Kingfisher in Frameworks */,
 				2C209830273C8F7100D5B5FC /* Files in Frameworks */,
 				2C663A64271E20130097AEFE /* CloudKit.framework in Frameworks */,
-				2C13157827344E65001019BA /* CheckDevice in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +621,8 @@
 				2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */,
 				2C209831273CD9D100D5B5FC /* countPickerView.swift */,
 				2C0DF7552742CF580090E5EF /* StartButton.swift */,
+				2CF9E3642747BBF8009F77E1 /* StatsButton.swift */,
+				2CF9E3672747BEDC009F77E1 /* settingsButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -645,12 +651,13 @@
 			isa = PBXGroup;
 			children = (
 				2CAC6636271CA435005066B5 /* ContentView.swift */,
+				2C614DA62731CE8A0037BFA1 /* HomeScreenButtonsView.swift */,
 				2C2EA837253CEC6500D9A8C7 /* HomeScreen.swift */,
+				2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */,
+				2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */,
 				2C614DA027319BC30037BFA1 /* NavBarView.swift */,
 				2C147D1B272DA15600AF1E71 /* FoldersView.swift */,
-				2C614DA62731CE8A0037BFA1 /* HomeScreenButtonsView.swift */,
 				2C02D8C3253A50E300D5F960 /* DrawingView.swift */,
-				2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */,
 				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
 				2CEB2EF3253F7A590087D696 /* TimerView.swift */,
 				2C02D8DD253ABB7100D5F960 /* ProgressBarView.swift */,
@@ -658,7 +665,6 @@
 				2C214148271B5DCC00493E4E /* FileImporterView.swift */,
 				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
 				2C13157A27346941001019BA /* SettingsSlideCard.swift */,
-				2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */,
 				2C28F3F92740112000BB7405 /* NoteListCell.swift */,
 				2C28F3FC2740151800BB7405 /* AddButton.swift */,
 			);
@@ -708,7 +714,6 @@
 			name = "ArtAthlete (iOS)";
 			packageProductDependencies = (
 				2C131570273391B7001019BA /* Kingfisher */,
-				2C13157727344E65001019BA /* CheckDevice */,
 				2C13158127346ECF001019BA /* SlideOverCard */,
 				2C20982F273C8F7100D5B5FC /* Files */,
 			);
@@ -858,7 +863,6 @@
 			packageReferences = (
 				2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */,
 				2C13156F273391B7001019BA /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				2C13157627344E65001019BA /* XCRemoteSwiftPackageReference "CheckDevice" */,
 				2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */,
 			);
 			productRefGroup = 2C02D879253A2C5700D5F960;
@@ -939,6 +943,7 @@
 				2CED7E102727531B00B99CAD /* SettingsRow.swift in Sources */,
 				2CAA8BD22593830200B39793 /* saveUserData.swift in Sources */,
 				2C663A72271F74470097AEFE /* timePickerView.swift in Sources */,
+				2CF9E3682747BEDC009F77E1 /* settingsButton.swift in Sources */,
 				2C943EEA25B9F4790010FA24 /* CollectionButtons.swift in Sources */,
 				2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */,
 				2C02D8C4253A50E300D5F960 /* DrawingView.swift in Sources */,
@@ -989,6 +994,7 @@
 				2C064303272B9806001DF985 /* ListRowsView.swift in Sources */,
 				2CEB2EF9253F86DD0087D696 /* GlobalVariables.swift in Sources */,
 				2CC05E8A25406DE8007C733D /* Cache.swift in Sources */,
+				2CF9E3652747BBF8009F77E1 /* StatsButton.swift in Sources */,
 				2C943ED825B7910C0010FA24 /* DotMenuView.swift in Sources */,
 				2C614DB62733370E0037BFA1 /* BaseView.swift in Sources */,
 				2C06430A272C4579001DF985 /* iOSSettingsBarView.swift in Sources */,
@@ -1037,6 +1043,7 @@
 				2C147D11272C985500AF1E71 /* LoadFoldersButton.swift in Sources */,
 				2C064315272C6612001DF985 /* ViewModel.swift in Sources */,
 				2C663A92272327010097AEFE /* UserSessionStats.swift in Sources */,
+				2CF9E3692747BEDC009F77E1 /* settingsButton.swift in Sources */,
 				2C663A9927238C820097AEFE /* UserData+CoreDataProperties.swift in Sources */,
 				2CB6249627277C35001AFA85 /* SignIn.swift in Sources */,
 				2CB6248B27277C07001AFA85 /* DrawingView.swift in Sources */,
@@ -1087,6 +1094,7 @@
 				2CED7E112727531B00B99CAD /* SettingsRow.swift in Sources */,
 				2CB6248F27277C1E001AFA85 /* MessageDocument.swift in Sources */,
 				2CB624842727728D001AFA85 /* UserObject.swift in Sources */,
+				2CF9E3662747BBF8009F77E1 /* StatsButton.swift in Sources */,
 				2CB6249E27277C52001AFA85 /* AdvancedSettingsView.swift in Sources */,
 				2C064312272C6587001DF985 /* PrivateSyncApp.swift in Sources */,
 				2C663A9727238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
@@ -1678,14 +1686,6 @@
 				kind = branch;
 			};
 		};
-		2C13157627344E65001019BA /* XCRemoteSwiftPackageReference "CheckDevice" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ugurethemaydin/CheckDevice.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/moifort/swiftUI-slide-over-card.git";
@@ -1714,11 +1714,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2C13156F273391B7001019BA /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		2C13157727344E65001019BA /* CheckDevice */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2C13157627344E65001019BA /* XCRemoteSwiftPackageReference "CheckDevice" */;
-			productName = CheckDevice;
 		};
 		2C13158127346ECF001019BA /* SlideOverCard */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -12,19 +12,11 @@ struct NavBar: View {
     //@Environment(\.presentationMode) var presentationMode //Oct17
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
-    
-    //    var photoData : FetchedResults<PhotoFolders>
-    //    var folderData : FetchedResults<PhotoFolders>
-    
-    
+
     var testData : FetchedResults<UserData>
     
     @State private var showingSheet = false
-    
-    
-    //@Binding var localPhotos: Bool
-    //@Binding var unsplashPhotos = false
-    
+
     @State var skip = false
     @State var pause = false
     @State var blur = false
@@ -96,9 +88,6 @@ struct NavBar: View {
                         // stop UI updates
                         pause.toggle()
                         TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer() //, startSession: $startSession
-                        //Timer().invalidate() //stop the timer,
-                        //TimerView(timeObject: _timeObject, prefs: _prefs).pauseTimer()
-                        //self.timeObject.isTimerRunning = false
                     } else {
                         pause.toggle()
                         // start UI updates
@@ -148,24 +137,6 @@ struct NavBar: View {
                 }.buttonStyle(BorderlessButtonStyle())
             }
 
-            /*
-             .sheet(isPresented: $showingSheet) {
-             HomeScreen(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
-             }.buttonStyle(BorderlessButtonStyle())
-             */
-            //.buttonStyle(bounceButtonStyle())
-            //.keyboardShortcut(.escape)
-            //Photo counter x /30
-            /*
-             Button(action: {
-             //action open all photos
-             }) {
-             Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
-             }.buttonStyle(BorderlessButtonStyle())
-             */
-            
-
-            
             //  Spacer()
         } //End HStack.
         .padding()
@@ -189,3 +160,23 @@ struct NavBar: View {
         prefs.startSession = false
     }
 }
+
+
+
+/*
+ .sheet(isPresented: $showingSheet) {
+ HomeScreen(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
+ }.buttonStyle(BorderlessButtonStyle())
+ */
+//.buttonStyle(bounceButtonStyle())
+//.keyboardShortcut(.escape)
+//Photo counter x /30
+/*
+ Button(action: {
+ //action open all photos
+ }) {
+ Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
+ }.buttonStyle(BorderlessButtonStyle())
+ */
+
+

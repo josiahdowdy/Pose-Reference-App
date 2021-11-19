@@ -21,7 +21,7 @@ struct CertificateView: View {
         VStack(alignment: .leading) {
             Group {
                 Text("Certificates").font(.largeTitle)
-                Text("\(userObject.userName)").font(.headline).padding(.top, 10)
+                Text("\(userObject.wrappedUserName)").font(.headline).padding(.top, 10)
                 HStack {
                     Text("\(Image(systemName: "tortoise"))   Beginner: \(userObject.totalTimeDrawn)/25").padding(.top, 10)
                     Spacer()

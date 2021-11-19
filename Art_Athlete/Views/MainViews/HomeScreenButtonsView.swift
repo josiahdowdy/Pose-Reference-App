@@ -4,6 +4,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import Files
+import SlideOverCard
 
 
 struct HomeScreenButtonsView: View {
@@ -37,28 +38,22 @@ struct HomeScreenButtonsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // FileImporterView() //This loads in photos MARK: [BLUE BOX]
-                //LoadFoldersButton()
-                //FoldersView(folderData: cdFolders)
+                //FileImporterView() //This loads in photos MARK: [BLUE BOX]
 
                 LoadFoldersButton()
 
-                //                LoadFoldersButton(isImporting: true)
+                //LoadFoldersButton(isImporting: true)
                 MultipleSelectRow(cdFolders: cdFolders)
 
-                if UIDevice.current.userInterfaceIdiom == (.phone) {
-                    StartButton()
-                }
+                if UIDevice.current.userInterfaceIdiom == (.phone) { StartButton() }
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(action: {
-                        // imageData[current].description = description
-                        showSettings()
-                        // showSheet = false
-                    }, label: {
-                        Image(systemName: "gearshape")
-                    })
+                    settingsButton()
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    LoadFoldersButton()
                 }
             }
 
@@ -85,6 +80,7 @@ struct HomeScreenButtonsView: View {
                 timePickerView()
                 StartButton()
             } //End VStack.
+
         } //NavigationView
     } //End UI.
 
@@ -93,9 +89,6 @@ struct HomeScreenButtonsView: View {
      -(((---(((-----*/
 
     //MARK: - FUNCTIONS
-    private func showSettings() {
-        prefs.showSettings.toggle()
-    }
 }
 
 /* IMPORTANT - WORKS. HEART BUTTON. FUNCTIONS TO LOAD PHOTO.

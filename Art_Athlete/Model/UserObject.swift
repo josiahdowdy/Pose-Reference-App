@@ -2,7 +2,7 @@
 import CoreData
 
 class UserObject: NSManagedObject {
-    @NSManaged var name: String
+    @NSManaged var name: String?
     @NSManaged var order: Int
     @NSManaged var posesDrawn: Int
    //@NSManaged var date: Date = Date()
@@ -20,9 +20,13 @@ class UserObject: NSManagedObject {
     @NSManaged var advancedCert: Bool
     @NSManaged var masterCert: Bool
     
-    @NSManaged var userName: String
-    @NSManaged var lastUsedSearch: String
-    @NSManaged var favoriteQuote: String
+    @NSManaged var userName: String?
+    @NSManaged var lastUsedSearch: String?
+    @NSManaged var favoriteQuote: String?
+
+    public var wrappedUserName: String {
+        userName ?? "empty name"
+    }
     
 
 }

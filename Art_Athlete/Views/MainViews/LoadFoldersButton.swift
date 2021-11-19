@@ -15,7 +15,7 @@ struct LoadFoldersButton: View {
     
     @Environment(\.managedObjectContext) var context
 
-    @State var images = [UIImage(), UIImage()]
+   // @State var images = [UIImage(), UIImage()]
     
     
     //  var folderData : FetchedResults<PhotoFolders>
@@ -42,49 +42,50 @@ struct LoadFoldersButton: View {
             })
             //  if (prefs.localPhotosView) { }
         }
-        .fileImporter(isPresented: $isImporting, allowedContentTypes: [UTType.folder, UTType.png, UTType.image, UTType.jpeg, UTType.pdf], allowsMultipleSelection: true, onCompletion: importImage)
-        //
-    } //------------------------END VIEW---------
+        .fileImporter(isPresented: $isImporting, allowedContentTypes: [UTType.png, UTType.image, UTType.jpeg, UTType.pdf, UTType.tiff], allowsMultipleSelection: true, onCompletion: importImage)
+        //UTType.folder,
+    } //------------------------END VIEW---------------------------
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - FUNCTIONS
     func importImage(_ result: Result<[URL], Error>) {
         do{
-            userSettings.arrayWorkingDirectoryBookmark.removeAll()
+           //userSettings.arrayWorkingDirectoryBookmark.removeAll() //MARK: - TURN OFF to keep all files.
             prefs.arrayOfURLStringsTEMP.removeAll()
             let selectedFiles = try result.get()//let selectedFiles = try res.get()
             print("JD40: ", selectedFiles)
 
+            let folderNameArray = selectedFiles[0].pathComponents.suffix(2) //Get the folder and photo name.
+            let newArray = Array(folderNameArray) //Convert it so you can just grab the folder name.
+
             let newFolder = PhotoFolders(context: context)
             newFolder.id = UUID()
+            newFolder.folderName = newArray[0]//folderNameArray[1]
+            //newFolder.folderURL = selectedFiles[i].downloadURL
+            //newFolder.photo = selectedFiles[i].dataRepresentation
+            print("JD80: \(String(describing: newFolder.folderName))")
            // newFolder.folderURL = selectedFiles.description.pathExtension //Save the folder URL.
-          //  newFolder.folderName = folderName
             newFolder.tag = "Human Poses"
 
       //      newFolder.addToPhotosArray(selectedFiles)
 
-            for i in 0...(selectedFiles.count-1) { //selectedFiles.count
+            for i in 0...(selectedFiles.count-1) {
                 prefs.arrayOfURLStringsTEMP.append(selectedFiles[i])
-
                 saveFile(url: selectedFiles[i])
-               // saveFile(url: selectedFiles[i])
-
-                userSettings.photoArray.append(selectedFiles[i].dataRepresentation)
-                newFolder.folderURL = selectedFiles[i].downloadURL
-                newFolder.photo = selectedFiles[i].dataRepresentation
-                newFolder.folderName = selectedFiles[i].lastPathComponent
+                //userSettings.photoArray.append(selectedFiles[i].dataRepresentation)
             }
+
+            //saveFileArray(url: prefs.arrayOfURLStringsTEMP)
 
             try? self.context.save()
 
-            print("JD11: \(prefs.arrayOfURLStrings)")
-            print("JD41: userSettings.photoArray \(userSettings.photoArray.description)")
-            print("JD42: newFolder.photo \(String(describing: newFolder.photo?.description))")
+           // print("JD11: \(prefs.arrayOfURLStrings)")
+            //print("JD41: userSettings.photoArray \(userSettings.photoArray.description)")
+          //  print("JD42: newFolder.photo \(String(describing: newFolder.photo?.description))")
 
           //  selectedFiles.stopAccessingSecurityScopedResource()
         } catch{
-            print ("error reading")
-            print (error.localizedDescription)
+            print ("JD82: ", error.localizedDescription)
         }
     }
 
@@ -94,11 +95,11 @@ struct LoadFoldersButton: View {
             let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
 
             // save in UserDefaults
-            userSettings.workingDirectoryBookmark = bookmarkData
+            //userSettings.workingDirectoryBookmark = bookmarkData
 
             userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
 
-            print("JD22: userSettings.arrayWorkingDirectoryBookmark \(userSettings.arrayWorkingDirectoryBookmark)")
+           // print("JD22: userSettings.arrayWorkingDirectoryBookmark \(userSettings.arrayWorkingDirectoryBookmark)")
         } catch {
             print("Failed to save bookmark data for \(workDir)", error)
         }
@@ -143,11 +144,62 @@ struct LoadFoldersButton: View {
         }
     } //End of FUNC.
 
+    /*
+    func saveFileArray (url: [URL]) {
+        var actualPath: [URL]
+
+       // if (CFURLStartAccessingSecurityScopedResource([url] as CFURL)) { // <- here
+            //BOOKMARK IT!
+            // prefs.arrayOfURLStringsTEMP.append(url)
+            saveBookmarkDataArray(for: actualPath)
+
+            let fileData = try? Data.init(contentsOf: actualPath[0])
+            let fileName = url.lastPathComponent
+
+            actualPath = getDocumentsDirectory().appendingPathComponent(fileName)
+
+            do {
+                try fileData?.write(to: actualPath)
+                prefs.arrayOfURLStrings.append(String(describing: actualPath))
+
+                if(fileData == nil){
+                    print("Permission error!")
+                }
+                else {
+                    //print("Success.")
+                }
+            } catch {
+                print("Josiah1: \(error.localizedDescription)")
+            }
+//            CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
+//        }
+//        else {
+//            print("Permission error!")
+//        }
+
+        func getDocumentsDirectory() -> URL {
+            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
+    } //End of FUNC.
+
+    private func saveBookmarkDataArray(for workDir: [URL]) { //URL //for workDir: URL //[URL: Data]
+        // resourceValues(forKeys:fromBookmarkData:)
+        do {
+           // let bookmarkDataArray = try workDir.bookmarkData(options: workDir.BookmarkCreationOptions.insert(self), includingResourceValuesForKeys: <#T##Set<Foundation.URLResourceKey>?#>, relativeTo: <#T##Foundation.URL?#>)
+            let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
+
+            // save in UserDefaults
+            userSettings.workingDirectoryBookmark = bookmarkData
+
+            userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
+
+            print("JD22: userSettings.arrayWorkingDirectoryBookmark \(userSettings.arrayWorkingDirectoryBookmark)")
+        } catch {
+            print("Failed to save bookmark data for \(workDir)", error)
+        }
+    } //End func. */
+
 } //END OF STRUCT.
-    
-
-
-
 
 /*
 

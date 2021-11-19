@@ -19,7 +19,7 @@ struct StartButton: View {
     var body: some View {
             Button("Start \(Image(systemName: "play.rectangle.fill"))") {
                 loadBookmarkedPhotos()
-                 loadLocalPhotos()
+                loadLocalPhotos()
             }
             .keyboardShortcut(.defaultAction)
             .padding(20)
@@ -105,12 +105,9 @@ struct StartButton: View {
     }
 
     private func loadBookmarkedPhotos() {
-        //MARK:
-        //--> WORKING FOR SINGLE PHOTOURL -->  url = restoreFileAccess(with: userSettings.workingDirectoryBookmark)!
-
-        //prefs.arrayOfURLStringsTEMP.removeAll()
-
         //for photo in userSettings.arrayWorkingDirectoryBookmark {
+
+        //MARK: - Loads in array of photos.
         for i in 0..<userSettings.arrayWorkingDirectoryBookmark.count {
             url = restoreFileAccess(with: userSettings.arrayWorkingDirectoryBookmark[i])!
 
@@ -118,11 +115,12 @@ struct StartButton: View {
             if (url.startAccessingSecurityScopedResource()) {
                 print("JD67: TRUE")
                 prefs.arrayOfURLStrings.append(String(describing: url))
-                print("JD68: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings)")
+                print("JD68: LOADING BOOKMARK. \(prefs.arrayOfURLStrings)")
             } else {
                 print("JD67: False")
             }
         }
+        print("\nLOADING BOOKMARK DONE ------------------------------------")
     }
 }
 
