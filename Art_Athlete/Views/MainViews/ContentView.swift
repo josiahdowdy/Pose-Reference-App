@@ -10,6 +10,7 @@ import UniformTypeIdentifiers
 
 //TODO: - Selected down form the dropdown.
 
+
 //FIXME: - CAN ADD these lines to view.
 
 
@@ -88,7 +89,7 @@ struct ContentView: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 
     //MARK: - FUNCTIONS
-}
+} //End Struct.
 
 
 /*

@@ -5,6 +5,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 import Files
 import SlideOverCard
+import Laden
 
 
 struct HomeScreenButtonsView: View {
@@ -15,6 +16,13 @@ struct HomeScreenButtonsView: View {
     @Environment(\.managedObjectContext) var context
     @State var isAddingPhotos: Bool = false
     @State var showPhotos: Bool = false
+    @State private var isLoading = true
+    @State private var isloadingPhotos = false
+
+    @State public var totalPhotosLoaded = 0
+
+
+
 
     //@State var isImporting: Bool = false
     // @Binding var startSession: Bool
@@ -25,9 +33,25 @@ struct HomeScreenButtonsView: View {
     @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
     ) var cdFolders : FetchedResults<PhotoFolders>
 
+    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
+    ) var fetchFolderNameOnce : FetchedResults<PhotoFolders>
+
+    @FetchRequest(entity: PhotosArray.entity(), sortDescriptors:[])
+    var cdPhotos: FetchedResults<PhotosArray>
+
     @State var cdSelection = Set<PhotoFolders>()
     //@State private var editMode: EditMode = .inactive
     //@State var cdEditMode = EditMode.inactive
+
+    @State private var shouldLoadingView = true
+
+
+    //MARK: - VIEW FOR ANIMATION
+    var laden: some View {
+        Laden.CircleLoadingView(
+            color: .white, size: CGSize(width: 30, height: 30), strokeLineWidth: 3
+        )
+    }
 
                 /*\___/\ ((
                  \`@_@'/  ))
@@ -40,47 +64,57 @@ struct HomeScreenButtonsView: View {
             VStack {
                 //FileImporterView() //This loads in photos MARK: [BLUE BOX]
 
-                LoadFoldersButton()
+                HStack {
+                    
+
+                    LoadFoldersButton(totalPhotosLoaded: $totalPhotosLoaded, isloadingPhotos: $isloadingPhotos)
+
+                    Button(action: {
+                        userSettings.arrayWorkingDirectoryBookmark.removeAll()
+                    }, label: {
+                        Image(systemName: "folder.fill.badge.minus")
+                    })
+
+                    Text(String(totalPhotosLoaded))
+
+
+                }
 
                 //LoadFoldersButton(isImporting: true)
-                MultipleSelectRow(cdFolders: cdFolders)
+                MultipleSelectRow(totalPhotosLoaded: $totalPhotosLoaded, cdFolders: cdFolders, cdPhotos: cdPhotos)
 
-                if UIDevice.current.userInterfaceIdiom == (.phone) { StartButton() }
+                if UIDevice.current.userInterfaceIdiom == (.phone) { StartButton(cdFolders: cdFolders) }
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     settingsButton()
                 }
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    LoadFoldersButton()
-                }
+                //ToolbarItem(placement: .navigationBarTrailing) { HStack{ } }
             }
 
             VStack {  // MARK: - Shows the main screen (right side).
                 VStack {
-                    Text("PhotoFolders Data.").font(.title)
-                    //      List(cdFolders, id: \.self, selection: $rowSelection){ name in //*this works*
-                    List() {
-                        ForEach(cdFolders, id: \.self) { name in
-                            HStack {
-                                Text(name.wrappedFolderName)
-                                Text(name.wrappedFolderURL.path).font(.caption2)
-                                Text("Photo Data: \(name.wrappedPhoto.description)")
-                            }
-                        }
+                    //  FileImporterView()
+                    if !(isloadingPhotos) {
+                       // laden.hidden()
+                        Text(prefs.error)
+                        Text(String("Array Bookmarks: \(userSettings.arrayWorkingDirectoryBookmark.count)"))
 
+                        Spacer().frame(maxWidth: .infinity)
+
+                        countPickerView()
+                        timePickerView()
+                        StartButton(cdFolders: cdFolders)
+
+
+                    } else {
+                       // laden
+                        Text("Loading Photos...please wait...")
                     }
-                    .listStyle(InsetListStyle())
-                }
-                //  FileImporterView()
-                Spacer().frame(maxWidth: .infinity)
-
-                countPickerView()
-                timePickerView()
-                StartButton()
-            } //End VStack.
-
+                } //End VStack.
+            }
+            .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
         } //NavigationView
     } //End UI.
 
@@ -89,6 +123,15 @@ struct HomeScreenButtonsView: View {
      -(((---(((-----*/
 
     //MARK: - FUNCTIONS
+}
+
+//MARK: - Extension
+extension View {
+    @ViewBuilder
+    func `if`<Transform: View>(_ condition: Bool, transform: (Self) -> Transform) -> some View {
+        if condition { transform(self) }
+        else { self }
+    }
 }
 
 /* IMPORTANT - WORKS. HEART BUTTON. FUNCTIONS TO LOAD PHOTO.

@@ -10,8 +10,13 @@ import Combine
 
 class StoredUserData: ObservableObject {
 
+    @Published var arrayWorkingDirectoryBookmark : [Data] {
+        didSet {
+            UserDefaults.standard.set(arrayWorkingDirectoryBookmark, forKey: "arrayWorkingDirectoryBookmark")
+        }
+    }
 
-    @Published var recoveredURL : URL
+    //@Published var recoveredURL : URL
 
     @Published var showPhoto : Bool = false
     @Published var storedFolderData : Data = Data()
@@ -20,7 +25,7 @@ class StoredUserData: ObservableObject {
     @Published var storedFolderURL : URL//[URL]()
 
     @Published var arrayPhotoNames: [String] = []
-    @Published var arrayPhotoURLs: [URL] = []  //
+    @Published var savedFileURLs: [URL] = []  //
     @Published var arrayPhotoDownloadPath: [URL] = []
     @Published var photo : Data = Data() //= UIImage()
     @Published var photoArray : [Data] = [] //= UIImage()
@@ -53,11 +58,7 @@ class StoredUserData: ObservableObject {
         }
     }
 
-    @Published var arrayWorkingDirectoryBookmark : [Data] {
-        didSet {
-            UserDefaults.standard.set(arrayWorkingDirectoryBookmark, forKey: "arrayWorkingDirectoryBookmark")
-        }
-    }
+
 
     @Published var username: String {
         didSet {
@@ -94,7 +95,7 @@ class StoredUserData: ObservableObject {
         self.url = UserDefaults.standard.object(forKey: "url") as? URL ?? URL(string: "n")!
         self.storedFolderURL = UserDefaults.standard.object(forKey: "storedFolderURL") as? URL ?? URL(string: "nope")!
 
-        self.recoveredURL = UserDefaults.standard.object(forKey: "recoveredURL") as? URL ?? URL(string: "nope")!
+       // self.recoveredURL = UserDefaults.standard.object(forKey: "recoveredURL") as? URL ?? URL(string: "nope")!
 
         self.storedFolderData = UserDefaults.standard.object(forKey: "storedFolderData") as? Data ?? Data()
         self.photo = UserDefaults.standard.object(forKey: "photo") as? Data ?? Data()

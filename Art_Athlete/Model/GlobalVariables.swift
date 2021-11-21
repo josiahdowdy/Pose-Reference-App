@@ -6,7 +6,7 @@ import Foundation
 class GlobalVariables: ObservableObject {
     //----------STRINGS---------------------------------------------------------------
     @Published var sPose = ""
-    @Published var sPoseCount = 30
+
     @Published var tag = ""
     @Published var sURL = ""
     @Published var error = ""
@@ -15,6 +15,9 @@ class GlobalVariables: ObservableObject {
     //----------ARRAYS---------------------------
     @Published var arrayOfURLStrings = [String]()
     @Published var arrayOfURLStringsTEMP = [URL]()
+    @Published var currentlySelectedFolders = [URL]()
+   // @Published var nsarrayURLS: CFArray = ["hi"]
+
     @Published var randomImages = UnsplashData() //Still needed till I update...
     @Published var time = [5, 30, 60, 120, 300]
     @Published var homeManyPhotosToDraw = [5, 10, 20, 60, 90]
@@ -25,12 +28,19 @@ class GlobalVariables: ObservableObject {
     @Published var selectorIndexTime = 2
     @Published var selectorCountTime = 2
     @Published var userSessionPoseCount = 0
+    @Published var totalFilesSelected = 0
+    @Published var sPoseCount = 30
+    @Published var totalPhotosLoaded = 0
     
     //----------BOOLS----------------------------------------------------------------
     @Published var startSession = false
     @Published var showMainScreen = true
     @Published var showHomeView = false
     @Published var falseBool = false
+    @Published var showLoadingAnimation = false
+    @Published var isBookmarkDeletePending = false
+
+
 
     //@Published var localPhotosView = true
     @Published var disableSkip = true

@@ -4,19 +4,11 @@ Save local data.
 */
 
 import CoreData
-//import SwiftUI
-//import Foundation
-//#if !os(macOS)
-//    import UIKit
-//#endif
-//import CloudKit
 import Foundation
 
 struct PersistenceController {
     static let shared = PersistenceController()
 
-    
-    
     let container: NSPersistentCloudKitContainer
     
     init(inMemory: Bool = false) {
@@ -27,7 +19,6 @@ struct PersistenceController {
 //            }
 //        }
 //        
-        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -44,15 +35,12 @@ struct PersistenceController {
                 fatalError("Note: Unresolved error \(error), \(error.userInfo)")
             }
         })
- 
-        
+
         /*
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         } */
-        
-        
-        
+
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
@@ -112,7 +100,6 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         do {
             try viewContext.save()
-            print("Josiah5: Data saved.")
         } catch {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

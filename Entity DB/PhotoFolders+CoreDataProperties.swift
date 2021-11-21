@@ -21,12 +21,15 @@ extension PhotoFolders : Identifiable { //, SelectableRow
     @NSManaged public var id: UUID?
     @NSManaged public var folderURL: URL?
 
-    @NSManaged public var isSelected: Bool
-    @NSManaged public var photosArray: NSSet? //An NSSet can contain ANYTHING.
+    //@NSManaged public var folderURLArray: [URL]?
 
-    @NSManaged public var workingDirectoryBookmark: NSSet?
+
+    @NSManaged public var isSelected: Bool
+    @NSManaged public var photos: NSSet? //An NSSet can contain ANYTHING.
+
+    //@NSManaged public var workingDirectoryBookmark: NSSet?
     @NSManaged public var photo: Data?
-    @NSManaged public var photoDataArray: Data?
+   // @NSManaged public var photoDataArray: Data?
 
 
     public var wrappedPhoto: Data {
@@ -67,14 +70,22 @@ extension PhotoFolders : Identifiable { //, SelectableRow
 
    // var getSetIsSelected: Bool { get set }
 
+//    public var filesArray: [PhotosArray] {
+//        let set = photosArray as? Set<PhotosArray> ?? []
+//
+//        return set.sorted {
+//            $0.wrappedName < $1.wrappedName
+//        }
+//    }
+
     
-    public var photosArrayJosiah: [PhotosArray] {
-        let set = photosArray as? Set<PhotosArray> ?? []
-        
+    public var photosArraySorted: [PhotosArray] {
+        let set = photos as? Set<PhotosArray> ?? []  //photosArray
         //
-        return set.sorted {
-            $0.wrappedName < $1.wrappedName
-        }
+     //   return set.filter(<#T##isIncluded: (PhotosArray) throws -> Bool##(PhotosArray) throws -> Bool#>)
+        //return set.filter(isIncluded: )
+
+        return set.sorted {  $0.wrappedName < $1.wrappedName }
     }
 }
 

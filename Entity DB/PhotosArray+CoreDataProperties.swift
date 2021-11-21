@@ -23,7 +23,6 @@ extension PhotosArray {
     @NSManaged public var fileName: String?
     @NSManaged public var photo: Data?
     
-    
     public var wrappedPhotoURL: URL {
         photoURL ?? URL(string: "n")!
     }

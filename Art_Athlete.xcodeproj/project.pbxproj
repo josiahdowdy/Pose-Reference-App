@@ -173,6 +173,9 @@
 		2CF9E3662747BBF8009F77E1 /* StatsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3642747BBF8009F77E1 /* StatsButton.swift */; };
 		2CF9E3682747BEDC009F77E1 /* settingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3672747BEDC009F77E1 /* settingsButton.swift */; };
 		2CF9E3692747BEDC009F77E1 /* settingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3672747BEDC009F77E1 /* settingsButton.swift */; };
+		2CF9E36C2748641D009F77E1 /* CircleGradual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E36B2748641D009F77E1 /* CircleGradual.swift */; };
+		2CF9E36D2748641D009F77E1 /* CircleGradual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E36B2748641D009F77E1 /* CircleGradual.swift */; };
+		2CF9E3702748660C009F77E1 /* Laden in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF9E36F2748660C009F77E1 /* Laden */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -337,6 +340,7 @@
 		2CED7E132727534100B99CAD /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2CF9E3642747BBF8009F77E1 /* StatsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsButton.swift; sourceTree = "<group>"; };
 		2CF9E3672747BEDC009F77E1 /* settingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsButton.swift; sourceTree = "<group>"; };
+		2CF9E36B2748641D009F77E1 /* CircleGradual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGradual.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +350,7 @@
 			files = (
 				2C13158227346ECF001019BA /* SlideOverCard in Frameworks */,
 				2C131571273391B7001019BA /* Kingfisher in Frameworks */,
+				2CF9E3702748660C009F77E1 /* Laden in Frameworks */,
 				2C209830273C8F7100D5B5FC /* Files in Frameworks */,
 				2C663A64271E20130097AEFE /* CloudKit.framework in Frameworks */,
 			);
@@ -480,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				2CAA8BD62593835600B39793 /* MainViews */,
+				2CF9E36A27486412009F77E1 /* Animations */,
 				2C614DB4273336EE0037BFA1 /* SideBar */,
 				2C663A6D271F71220097AEFE /* Buttons */,
 				2C064308272C454C001DF985 /* iOSSettingsView */,
@@ -695,6 +701,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2CF9E36A27486412009F77E1 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				2CF9E36B2748641D009F77E1 /* CircleGradual.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -716,6 +730,7 @@
 				2C131570273391B7001019BA /* Kingfisher */,
 				2C13158127346ECF001019BA /* SlideOverCard */,
 				2C20982F273C8F7100D5B5FC /* Files */,
+				2CF9E36F2748660C009F77E1 /* Laden */,
 			);
 			productName = "pose-reference";
 			productReference = 2C614D9A272DE7100037BFA1 /* ArtAthlete (iOS).app */;
@@ -864,6 +879,7 @@
 				2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */,
 				2C13156F273391B7001019BA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */,
+				2CF9E36E2748660C009F77E1 /* XCRemoteSwiftPackageReference "Laden" */,
 			);
 			productRefGroup = 2C02D879253A2C5700D5F960;
 			projectDirPath = "";
@@ -982,6 +998,7 @@
 				2C2BDF432543225400D2434E /* StatsView.swift in Sources */,
 				2C20982A2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2C614DAE2732118F0037BFA1 /* IntroScreen.swift in Sources */,
+				2CF9E36C2748641D009F77E1 /* CircleGradual.swift in Sources */,
 				2C663A822720BACD0097AEFE /* AppDelegate.swift in Sources */,
 				2C614DA127319BC30037BFA1 /* NavBarView.swift in Sources */,
 				2C147D2A272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */,
@@ -1082,6 +1099,7 @@
 				2CB6249B27277C47001AFA85 /* MenuPicker.swift in Sources */,
 				2C20982B2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */,
+				2CF9E36D2748641D009F77E1 /* CircleGradual.swift in Sources */,
 				2C614DAF2732118F0037BFA1 /* IntroScreen.swift in Sources */,
 				2CB6249827277C3F001AFA85 /* PhotoView.swift in Sources */,
 				2CB624872727729B001AFA85 /* Model.swift in Sources */,
@@ -1702,6 +1720,14 @@
 				kind = branch;
 			};
 		};
+		2CF9E36E2748660C009F77E1 /* XCRemoteSwiftPackageReference "Laden" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vinhnx/Laden";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1734,6 +1760,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
+		};
+		2CF9E36F2748660C009F77E1 /* Laden */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CF9E36E2748660C009F77E1 /* XCRemoteSwiftPackageReference "Laden" */;
+			productName = Laden;
 		};
 /* End XCSwiftPackageProductDependency section */
 
