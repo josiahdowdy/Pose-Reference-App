@@ -92,6 +92,7 @@ struct LoadFoldersButton: View {
                 prefs.arrayOfURLStringsTEMP.append(selectedFiles[i])
                 updateLoadingCount()
                 saveFile(url: selectedFiles[i])
+               // saveBookmarkTest(item: selectedFiles[i])
                 //storedUserData.photoArray.append(selectedFiles[i].dataRepresentation)
             }
 
@@ -125,6 +126,7 @@ struct LoadFoldersButton: View {
         }
         isloadingPhotos = false
     }
+
 
     func saveFile (url: URL) {
         var actualPath: URL
@@ -171,8 +173,10 @@ struct LoadFoldersButton: View {
 
     private func saveBookmarkData(for workDir: URL) { //URL //for workDir: URL //[URL: Data]
         // resourceValues(forKeys:fromBookmarkData:)
+    //    let myKey = URLResourceKey.init(rawValue: "test") //
+
         do {
-            let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil) //(options: .minimalBookmark)
+            let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: workDir) //(options: .minimalBookmark)
 //            guard workDir.startAccessingSecurityScopedResource() else { return }
 //                print("JD110: Access granted.")
 
@@ -184,6 +188,22 @@ struct LoadFoldersButton: View {
             print("JD102: Failed to save bookmark data for \(workDir)", error)
         }
     }
+
+ /*   func saveBookmarkTest(item: Data) { //ShortcutItem
+        guard let url = item.absoluteURL else { return  } //item.fileUrl
+        do {
+            let bookmarkData = try url.bookmarkData(
+                //options: .withSecurityScope,
+                includingResourceValuesForKeys: nil,
+                relativeTo: item.absoluteURL
+            )
+
+
+            item.bookmark = bookmarkData
+        } catch {
+            print("Failed to save bookmark data for \(url)", error)
+        }
+    } */
 
     func updateLoadingCount() {
         self.totalPhotosLoaded += 1

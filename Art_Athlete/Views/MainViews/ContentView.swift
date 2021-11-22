@@ -4,6 +4,7 @@
 import SwiftUI
 import CoreData
 //import CheckDevice
+import Files
 import SlideOverCard
 import UniformTypeIdentifiers
 //import CoreLocation
@@ -85,7 +86,6 @@ struct ContentView: View {
                 }
             }
         }
-
        // .onAppear(perform: loadBookmarkedPhotos())
     }
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/

@@ -105,6 +105,7 @@ struct StartButton: View {
                    // if (url.startAccessingSecurityScopedResource()) {
                         //prefs.arrayOfURLStrings.append(String(describing: storedFileURLs[index!][y]))
                     prefs.arrayOfURLStrings.append(String(describing: url))
+                    prefs.arrayOfURLStringsTEMP.append(url.absoluteURL)
                  //   }
                  //   url.stopAccessingSecurityScopedResource()
                 }
@@ -121,6 +122,26 @@ struct StartButton: View {
         print("JD403: ", prefs.arrayOfURLStrings)
     }
 
+ /*   private func restoreFileAccessArray(with bookmarkData: [Data], relativeTo: URL) -> [URL]? {
+        var arrayLoadedURLs: [URL]
+        do {
+
+
+            var isStale = false
+            arrayLoadedURLs.append(try URL(resolvingBookmarkData: bookmarkData[0], relativeTo: nil, bookmarkDataIsStale: &isStale))
+            //let url
+            if isStale {
+                // bookmarks could become stale as the OS changes
+                print("Bookmark is stale, need to save a new one... ")
+                saveBookmarkData(for: url)
+            }
+            return [url]
+        } catch {
+            print("Error resolving bookmark:", error)
+            return nil
+        }
+    } */ //End func.
+
 
     private func loadBookmarkedPhotos() {
         //for photo in storedUserData.arrayWorkingDirectoryBookmark {
@@ -131,8 +152,19 @@ struct StartButton: View {
         print("I can store about 5,000 photos safely, that will equal about 512kb of data. Otherwise may slow down app. But I can also add a loading button dial on start click. Assuming this is stored locally?")
         print("JD1000: arrayWorkingDirectoryBookmark SIZE --> ", storedUserData.arrayWorkingDirectoryBookmark)
 
+//        var testArray: [URL]
+//        var x = 0
+//
+//        for i in prefs.arrayOfURLStringsTEMP {
+//            testArray = restoreFileAccessArray(with: storedUserData.arrayWorkingDirectoryBookmark, relativeTo: prefs.arrayOfURLStringsTEMP[x])!
+//            x += 1
+//        }
+
+
         //MARK: - Loads in array of photos.
         for i in 0..<storedUserData.arrayWorkingDirectoryBookmark.count {
+         //   storedUserData.arrayWorkingDirectoryBookmark. //kCFURLPathKey
+
             print("JD410: ", storedUserData.arrayWorkingDirectoryBookmark[i])
 
             url = restoreFileAccess(with: storedUserData.arrayWorkingDirectoryBookmark[i])!
@@ -149,7 +181,7 @@ struct StartButton: View {
         print("\nLOADING BOOKMARK DONE ------------------------------------")
     } //End func.
 
-    private func restoreFileAccess(with bookmarkData: Data) -> URL? {
+    private func restoreFileAccess(with bookmarkData: Data) -> URL? { //, relativeTo: URL
         do {
             var isStale = false
             let url = try URL(resolvingBookmarkData: bookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
