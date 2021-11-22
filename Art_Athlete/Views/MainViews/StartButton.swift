@@ -8,30 +8,33 @@
 import SwiftUI
 
 struct StartButton: View {
-    @ObservedObject var userSettings = StoredUserData()
+    @ObservedObject var storedUserData = StoredUserData()
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
-
-    var cdFolders: FetchedResults<PhotoFolders>
+    @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
+    @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
 
     @State var url : URL = URL(fileURLWithPath: "nil")
     @State var isRandom: Bool = true
 
     @State var testUrlResourceKey = Set<URLResourceKey>()
+    @Binding var rowSelection: Set<String>
     
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
+    //MARK: VIEW
     var body: some View {
             Button("Start \(Image(systemName: "play.rectangle.fill"))") {
+             //   async { await ... }
                 loadBookmarkedPhotos()
-                //MultipleSelectRow(cdFolders: cdFolders).loadSelectedPhotos() //loadSelectedBookmarkedPhotos()
+
+                onlyLoadSelectedPhotos()
                 startSession()
             }
             .keyboardShortcut(.defaultAction)
             .padding(20)
             .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
     } //END UI View.
-
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - Functions
@@ -49,6 +52,7 @@ struct StartButton: View {
     func startSession(){
         print("JD01 : loadLocalPhotos() : \(prefs.arrayOfURLStrings)")
         print("JD20: \(prefs.arrayOfURLStrings.count)")
+
         if (prefs.arrayOfURLStrings.count < prefs.homeManyPhotosToDraw[prefs.selectorCountTime]) {
             prefs.sPoseCount = prefs.arrayOfURLStrings.count
         } else {
@@ -74,7 +78,76 @@ struct StartButton: View {
         }
     }
 
+    func onlyLoadSelectedPhotos() {
+        /// 1. Take the array of selected photos.
+        ///     - Get it from "MultipleSelectRow"
+        ///         - Get the array # 
+        ///      - Theoretically, permission is already granted to files? Do I need to still pull it from another array?
+        ///
+        /// 2a. If I need permission:
+        ///     - Scan the stored array for the matching selected photo URLs
+        ///
+        /// 2b. If I don't need permssion:
+        /// 3. Append it to prefs.arrayOfURLStrings
+        print("JD402: ", storedFileURLs)
 
+  //     if !(storedFileURLs.isEmpty) { prefs.arrayOfURLStrings.append(String(describing: url)) }
+
+        for selectedItem in self.rowSelection{
+            if arrayOfFolderNames.contains(selectedItem) {
+                let index = arrayOfFolderNames.firstIndex(of: selectedItem)
+
+                print("\n •••••••••••• Next row in array.")
+
+                for y in 0..<storedFileURLs[index!].count {
+                    let url = storedFileURLs[index!][y]
+                    print("JD406: ", storedFileURLs[index!][y])
+                   // if (url.startAccessingSecurityScopedResource()) {
+                        //prefs.arrayOfURLStrings.append(String(describing: storedFileURLs[index!][y]))
+                    prefs.arrayOfURLStrings.append(String(describing: url))
+                 //   }
+                 //   url.stopAccessingSecurityScopedResource()
+                }
+
+                ///Loop through entire 2D array.
+//                for x in 0..<storedFileURLs.count {
+//                    for y in 0..<storedFileURLs[x].count {
+//                        prefs.arrayOfURLStrings.append(String(describing: storedFileURLs[x][y]))
+//                    }
+//                   // prefs.arrayOfURLStrings.append(String(describing: storedFileURLs[i]))
+//                }
+            }
+        }
+        print("JD403: ", prefs.arrayOfURLStrings)
+    }
+
+
+    private func loadBookmarkedPhotos() {
+        //for photo in storedUserData.arrayWorkingDirectoryBookmark {
+        //prefs.arrayOfURLStringsTEMP = restoreFileAccessArray(with: (storedUserData.arrayWorkingDirectoryBookmark))!
+
+        //print("JD84:", prefs.arrayOfURLStringsTEMP)
+
+        print("I can store about 5,000 photos safely, that will equal about 512kb of data. Otherwise may slow down app. But I can also add a loading button dial on start click. Assuming this is stored locally?")
+        print("JD1000: arrayWorkingDirectoryBookmark SIZE --> ", storedUserData.arrayWorkingDirectoryBookmark)
+
+        //MARK: - Loads in array of photos.
+        for i in 0..<storedUserData.arrayWorkingDirectoryBookmark.count {
+            print("JD410: ", storedUserData.arrayWorkingDirectoryBookmark[i])
+
+            url = restoreFileAccess(with: storedUserData.arrayWorkingDirectoryBookmark[i])!
+
+            //MARK: IS NEEDED.
+              if (url.startAccessingSecurityScopedResource()) {
+               // prefs.arrayOfURLStrings.append(String(describing: url))
+                //print("JD68: LOADING BOOKMARK. \(prefs.arrayOfURLStrings)")
+            } else {
+                print("JD67: False")
+            }
+        }
+        url.stopAccessingSecurityScopedResource()
+        print("\nLOADING BOOKMARK DONE ------------------------------------")
+    } //End func.
 
     private func restoreFileAccess(with bookmarkData: Data) -> URL? {
         do {
@@ -91,43 +164,21 @@ struct StartButton: View {
             print("Error resolving bookmark:", error)
             return nil
         }
-    }
+    } //End func.
 
     private func saveBookmarkData(for workDir: URL) { //URL //for workDir: URL //[URL: Data]
 //        testUrlResourceKey
         do {
             let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: testUrlResourceKey, relativeTo: nil)
-            //userSettings.workingDirectoryBookmark = bookmarkData
-            userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
+            //storedUserData.workingDirectoryBookmark = bookmarkData
+            storedUserData.arrayWorkingDirectoryBookmark.append(bookmarkData)
         } catch {
             print("Failed to save bookmark data for \(workDir)", error)
         }
     }
 
 
-    private func loadBookmarkedPhotos() {
-        //for photo in userSettings.arrayWorkingDirectoryBookmark {
-        //prefs.arrayOfURLStringsTEMP = restoreFileAccessArray(with: (userSettings.arrayWorkingDirectoryBookmark))!
 
-        print("JD84:", prefs.arrayOfURLStringsTEMP)
-
-        //MARK: - Loads in array of photos.
-        for i in 0..<userSettings.arrayWorkingDirectoryBookmark.count {
-
-            url = restoreFileAccess(with: userSettings.arrayWorkingDirectoryBookmark[i])!
-
-            //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
-            if (url.startAccessingSecurityScopedResource()) {
-                prefs.arrayOfURLStrings.append(String(describing: url))
-                //print("JD68: LOADING BOOKMARK. \(prefs.arrayOfURLStrings)")
-            } else {
-                print("JD67: False")
-            }
-        }
-        url.stopAccessingSecurityScopedResource()
-
-        print("\nLOADING BOOKMARK DONE ------------------------------------")
-    } //End func.
   
 
     //MARK: - Array Bookmarks.
@@ -162,10 +213,10 @@ struct StartButton: View {
             let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
 
             // save in UserDefaults
-          //  userSettings.workingDirectoryBookmark = bookmarkData
-            //print("JD22: \(userSettings.workingDirectoryBookmark)")
+          //  storedUserData.workingDirectoryBookmark = bookmarkData
+            //print("JD22: \(storedUserData.workingDirectoryBookmark)")
 
-            userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
+            storedUserData.arrayWorkingDirectoryBookmark.append(bookmarkData)
 
         } catch {
             print("Failed to save bookmark data for \(workDir)", error)

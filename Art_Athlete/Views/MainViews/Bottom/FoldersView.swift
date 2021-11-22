@@ -12,31 +12,12 @@ struct FoldersView: View {
     @State var trimVal : CGFloat = 0
     @State var checked = false
 
-    @ObservedObject var observedFolder = PhotoFolders()
-
-    var folderData : FetchedResults<PhotoFolders>
-
-    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
-    ) var photoFoldersTest : FetchedResults<PhotoFolders>
-
-    @State private var AllData = PhotoFolders()
 
     @State var selectedItems = Set<UUID>()
 
     // Core Data variables
-    @State var cdSelection = Set<PhotoFolders>()
+   // @State var cdSelection = Set<PhotoFolders>()
     @State var cdEditMode = EditMode.inactive
-
-    //let dataProvider: DataProvider
-
-    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors:[]) var cdNumbers: FetchedResults<PhotoFolders>
-
-  //  let note: Note
-    //  @FetchRequest(entity: MyNumber.entity(), sortDescriptors:[]) var cdNumbers: FetchedResults<MyNumber>
-
-
-    //@State var fruits = [Bool](repeating: false, count: PhotoFolders.fetchRequest()..allCases.count)
-
 
     var body: some View {
 

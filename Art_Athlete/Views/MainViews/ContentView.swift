@@ -17,6 +17,8 @@ import UniformTypeIdentifiers
 struct ContentView: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
+    @EnvironmentObject var storedUserData: StoredUserData
+
 
     @State private var position = CardPosition.top
     @State private var background = BackgroundStyle.blur
@@ -25,6 +27,10 @@ struct ContentView: View {
     
     @State var pause = false
 
+    @State var url : URL = URL(fileURLWithPath: "nil")
+    @State var testUrlResourceKey = Set<URLResourceKey>() //FIXME: Not sure how to use this yet...
+
+
     //Settings vars.
     @State var notifyMeAbout : Bool = true
     @State var playNotificationSounds : Bool = false
@@ -32,21 +38,15 @@ struct ContentView: View {
     @State var sendReadReceipts : Bool = true
 
     @Environment(\.managedObjectContext) var context
-    @FetchRequest(
-        entity: UserData.entity(), sortDescriptors: []
+    @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var testData: FetchedResults<UserData>
         //sortDescriptors: [NSSortDescriptor(keyPath: \UserData.countPoses, ascending: true)]
-    ) var testData: FetchedResults<UserData> //Memory
+     //Memory
     
     //@FetchRequest(entity: UserEntity.entity(), sortDescriptors: [])
     //var userObject: FetchedResults<UserEntity>
     //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
     
-    @FetchRequest(
-        entity: PhotoFolders.entity(), sortDescriptors: []
-    ) var photoData : FetchedResults<PhotoFolders>
     
-    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
-    ) var folderData : FetchedResults<PhotoFolders>
 
     //@State private var startSession = false
     @State var startSession = false
@@ -85,42 +85,71 @@ struct ContentView: View {
                 }
             }
         }
+
+       // .onAppear(perform: loadBookmarkedPhotos())
     }
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 
     //MARK: - FUNCTIONS
+
+
+    @available(iOS 15.0.0, *)
+    private func loadBookmarkedPhotos() {
+        //for photo in storedUserData.arrayWorkingDirectoryBookmark {
+        //prefs.arrayOfURLStringsTEMP = restoreFileAccessArray(with: (storedUserData.arrayWorkingDirectoryBookmark))!
+
+        prefs.arrayOfURLStringsTEMP.removeAll()
+
+        ///I can store about 5,000 photos safely, that will equal about 512kb of data. Assuming this is stored locally?
+        print("JD1000: arrayWorkingDirectoryBookmark SIZE --> ", storedUserData.arrayWorkingDirectoryBookmark)
+
+        //MARK: - Loads in array of photos.
+        for i in 0..<storedUserData.arrayWorkingDirectoryBookmark.count {
+            url = restoreFileAccess(with: storedUserData.arrayWorkingDirectoryBookmark[i])!
+
+            //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
+            if (url.startAccessingSecurityScopedResource()) {
+//                prefs.arrayOfURLStringsTEMP.append(url)
+//            //    prefs.arrayOfURLStrings.append(String(describing: url))
+//                //print("JD68: LOADING BOOKMARK. \(prefs.arrayOfURLStrings)")
+            } else {
+                print("JD67: False")
+           }
+        }
+        url.stopAccessingSecurityScopedResource()
+        
+        print("\nLOADING BOOKMARK DONE ------------------------------------")
+    } //End func.
+
+    @available(iOS 15.0.0, *)
+    private func restoreFileAccess(with bookmarkData: Data) -> URL? {
+        do {
+            var isStale = false
+            let url = try URL(resolvingBookmarkData: bookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
+
+            if isStale {
+                // bookmarks could become stale as the OS changes
+                print("Bookmark is stale, need to save a new one... ")
+                saveBookmarkData(for: url)
+            }
+            return url
+        } catch {
+            print("Error resolving bookmark:", error)
+            return nil
+        }
+    }
+
+    private func saveBookmarkData(for workDir: URL) {
+        do {
+            let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: testUrlResourceKey, relativeTo: nil)
+            storedUserData.arrayWorkingDirectoryBookmark.append(bookmarkData)
+        } catch {
+            print("Failed to save bookmark data for \(workDir)", error)
+        }
+    }
 } //End Struct.
 
 
-/*
- VStack{
- if (!prefs.startSession) {//!startSession {
- NavBarView(photoData: photoData, folderData: folderData) //startSession: $startSession,
- //   .frame(maxWidth: .infinity, maxHeight: .infinity)
- // .background(Color.blue)
- .transition(AnyTransition.move(edge: .leading)).animation(.default)
-
- }
- if prefs.startSession {//prefs.startSession {
- DrawingView(testData: testData, startSession: $startSession)
- // .frame(maxWidth: .infinity, maxHeight: .infinity)
- //.background(Color.green)
- //   .transition(AnyTransition.move(edge: .trailing)).animation(.default)
- }
- } */
-//    func endSession(){
-//        self.startSession = false
-//        pause = false
-//        //self.timeObject.endSessionBool.toggle()
-//        prefs.disableSkip.toggle()
-//        TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer() //, startSession: $startSession
-//        //prefs.startBoolean.toggle()
-//        prefs.randomImages.photoArray.removeAll()
-//        prefs.currentIndex = 0
-//
-//        prefs.localPhotos = false
-//        prefs.arrayOfURLStrings.removeAll()
-//    }
 
 
 

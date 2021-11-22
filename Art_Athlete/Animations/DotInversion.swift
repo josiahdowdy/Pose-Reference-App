@@ -223,11 +223,11 @@ struct DotInversion: View {
     }
 }
 
-struct DotInversion_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct DotInversion_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
 
 // Enum for current Dot State...
 enum DotState{

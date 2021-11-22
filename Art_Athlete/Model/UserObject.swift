@@ -11,6 +11,8 @@ class UserObject: NSManagedObject {
     @NSManaged var totalTimeDrawn: Int
     @NSManaged var totalPosesDrawn: Int
     @NSManaged var totalPosesDrawnToday: Int
+
+    @NSManaged var arrayOfFolderNames : [String] 
     
     //Certificates
     //Make an array with the certs.

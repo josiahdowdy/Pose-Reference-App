@@ -19,14 +19,16 @@ import CoreData
 
 @main
 struct pose_referenceApp: App {
-    @ObservedObject var userSettings = StoredUserData()
+    @ObservedObject var storedUserData = StoredUserData()
     @ObservedObject var prefs = GlobalVariables()
     @ObservedObject var timeObject = TimerObject()
-    //@ObservedObject var userObject = UserObject()
+    @ObservedObject var userObject = UserObject()
 
     @State var url : URL = URL(fileURLWithPath: "nil")
 
     let persistenceController = PersistenceController.shared
+    //let persistenceControllerCoreData = PersistenceControllerCoreData.shared
+
     @Environment(\.scenePhase) var scenePhase
 
     //@NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -42,9 +44,9 @@ struct pose_referenceApp: App {
             ContentView() //isPresented: $prefs.showMainScreen
                 .environmentObject(prefs)
                 .environmentObject(timeObject)
-               // .environmentObject(userObject)
+                .environmentObject(storedUserData)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext) //Shares data in WHOLE project.
-
+              //  .environment(\.managedObjectContext, persistenceControllerCoreData.container.viewContext)
             //Storing data.
 
                 //.environmentObject(persistenceController.container.viewContext)
@@ -58,6 +60,7 @@ struct pose_referenceApp: App {
             case .background:
                 print("Scene is in background")
                 persistenceController.save()
+                //persistenceControllerCoreData.saveCoreData()
             case .inactive:
                 print("Scene is inactive")
             case .active:
@@ -78,16 +81,35 @@ struct pose_referenceApp: App {
 //        #endif
     }
 
-    //MARK: - FUNCS
+
+    // MARK: - Core Data Saving support
+
+//    func saveContext () {
+//        let context = persistentContainer.viewContext
+//        if context.hasChanges {
+//            do {
+//                try context.save()
+//            } catch {
+//                // Replace this implementation with code to handle the error appropriately.
+//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                let nserror = error as NSError
+//                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+//            }
+//        }
+//    }
+
+
+
+        //MARK: - FUNCS
     private func loadBookmarkedPhotos() {
-        //for photo in userSettings.arrayWorkingDirectoryBookmark {
-        //prefs.arrayOfURLStringsTEMP = restoreFileAccessArray(with: (userSettings.arrayWorkingDirectoryBookmark))!
+        //for photo in storedUserData.arrayWorkingDirectoryBookmark {
+        //prefs.arrayOfURLStringsTEMP = restoreFileAccessArray(with: (storedUserData.arrayWorkingDirectoryBookmark))!
 
         print("JD84:", prefs.arrayOfURLStringsTEMP)
 
         //MARK: - Loads in array of photos.
-        for i in 0..<userSettings.arrayWorkingDirectoryBookmark.count {
-            url = restoreFileAccess(with: userSettings.arrayWorkingDirectoryBookmark[i])!
+        for i in 0..<storedUserData.arrayWorkingDirectoryBookmark.count {
+            url = restoreFileAccess(with: storedUserData.arrayWorkingDirectoryBookmark[i])!
 
             //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
             if (url.startAccessingSecurityScopedResource()) {
@@ -121,8 +143,8 @@ struct pose_referenceApp: App {
     private func saveBookmarkData(for workDir: URL) { //URL //for workDir: URL //[URL: Data]
         do {
             let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
-            //userSettings.workingDirectoryBookmark = bookmarkData
-            userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
+            //storedUserData.workingDirectoryBookmark = bookmarkData
+            storedUserData.arrayWorkingDirectoryBookmark.append(bookmarkData)
         } catch {
             print("Failed to save bookmark data for \(workDir)", error)
         }

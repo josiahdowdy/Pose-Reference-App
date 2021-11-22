@@ -8,13 +8,7 @@ struct DrawingView: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var userObject: UserObject
-    
-    //User Data saving
-//    @Environment(\.managedObjectContext) private var viewContext //UserData
-//    @FetchRequest(entity: UserData.entity(), sortDescriptors: [], predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)) //
-//    var userData: FetchedResults<UserData>
-    //End UserData saving
-    
+
     var testData : FetchedResults<UserData>
     
     @State var isImporting: Bool = false

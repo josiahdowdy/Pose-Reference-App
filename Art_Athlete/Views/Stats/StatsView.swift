@@ -38,6 +38,8 @@ struct StatsView: View {
 
     var sumTimeDrawn: Int16 {
         fetchTotalTimeDrawn.reduce(0) { $0 + $1.timeDrawn }
+        
+
     }
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/

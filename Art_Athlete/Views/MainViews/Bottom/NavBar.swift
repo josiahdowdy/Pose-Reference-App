@@ -13,6 +13,8 @@ struct NavBar: View {
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
 
+    let persistenceController = PersistenceController.shared
+
     var testData : FetchedResults<UserData>
     
     @State private var showingSheet = false
@@ -158,6 +160,7 @@ struct NavBar: View {
         prefs.arrayOfURLStrings.removeAll()
         
         prefs.startSession = false
+        persistenceController.save()
     }
 }
 

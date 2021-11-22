@@ -8,11 +8,6 @@ import UniformTypeIdentifiers
 //@State private var showStats = false
 //@State private var showSettings = false
 
-//    @FetchRequest(entity: UserEntity.entity(), sortDescriptors: []) //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
-//    var resultObject: FetchedResults<UserEntity>
-
-//@FetchRequest(entity: Memory.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memory.timestamp, ascending: false)], animation: .easeInOut) var results : FetchedResults<Memory>
-
 struct HomeScreen: View {
     //@Environment(\.presentationMode) var presentationMode //This was on in 1st draft.
     @EnvironmentObject var prefs: GlobalVariables
@@ -58,12 +53,6 @@ struct HomeScreen: View {
         entity: UserData.entity(), sortDescriptors: []
     ) var testData : FetchedResults<UserData>
     
-    @FetchRequest(
-        entity: PhotoFolders.entity(), sortDescriptors: []
-    ) var photoData : FetchedResults<PhotoFolders>
-
-    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
-    ) var folderData : FetchedResults<PhotoFolders>
 
     
     

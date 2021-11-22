@@ -42,10 +42,6 @@
 		2C147D14272C9A0600AF1E71 /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 2C147D13272C9A0600AF1E71 /* Files */; };
 		2C147D1C272DA15600AF1E71 /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D1B272DA15600AF1E71 /* FoldersView.swift */; };
 		2C147D1D272DA15600AF1E71 /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D1B272DA15600AF1E71 /* FoldersView.swift */; };
-		2C147D28272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D24272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift */; };
-		2C147D29272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D24272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift */; };
-		2C147D2A272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */; };
-		2C147D2B272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */; };
 		2C15680F273F3CD8001D5ED9 /* StoredUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */; };
 		2C156810273F3CD8001D5ED9 /* StoredUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */; };
 		2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */; };
@@ -53,10 +49,6 @@
 		2C2097C92735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */; };
 		2C2097D72737543A00D5B5FC /* SelectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097D62737543A00D5B5FC /* SelectionHandler.swift */; };
 		2C2097D82737543A00D5B5FC /* SelectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097D62737543A00D5B5FC /* SelectionHandler.swift */; };
-		2C2098282737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2098262737869900D5B5FC /* PhotoFolders+CoreDataClass.swift */; };
-		2C2098292737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2098262737869900D5B5FC /* PhotoFolders+CoreDataClass.swift */; };
-		2C20982A2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */; };
-		2C20982B2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */; };
 		2C20982D2737921900D5B5FC /* MultipleSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */; };
 		2C20982E2737921900D5B5FC /* MultipleSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */; };
 		2C209830273C8F7100D5B5FC /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 2C20982F273C8F7100D5B5FC /* Files */; };
@@ -74,8 +66,6 @@
 		2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */; };
 		2C2EA838253CEC6500D9A8C7 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA837253CEC6500D9A8C7 /* HomeScreen.swift */; };
 		2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F914253FC86E000B6AFC /* NavBar.swift */; };
-		2C614DA127319BC30037BFA1 /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C614DA027319BC30037BFA1 /* NavBarView.swift */; };
-		2C614DA227319BC30037BFA1 /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C614DA027319BC30037BFA1 /* NavBarView.swift */; };
 		2C614DA72731CE8A0037BFA1 /* HomeScreenButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C614DA62731CE8A0037BFA1 /* HomeScreenButtonsView.swift */; };
 		2C614DA82731CE8A0037BFA1 /* HomeScreenButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C614DA62731CE8A0037BFA1 /* HomeScreenButtonsView.swift */; };
 		2C614DAB273211010037BFA1 /* DotInversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C614DAA273211010037BFA1 /* DotInversion.swift */; };
@@ -176,6 +166,18 @@
 		2CF9E36C2748641D009F77E1 /* CircleGradual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E36B2748641D009F77E1 /* CircleGradual.swift */; };
 		2CF9E36D2748641D009F77E1 /* CircleGradual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E36B2748641D009F77E1 /* CircleGradual.swift */; };
 		2CF9E3702748660C009F77E1 /* Laden in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF9E36F2748660C009F77E1 /* Laden */; };
+		2CF9E376274AEE4F009F77E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E375274AEE4F009F77E1 /* SceneDelegate.swift */; };
+		2CF9E377274AEE4F009F77E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E375274AEE4F009F77E1 /* SceneDelegate.swift */; };
+		2CF9E380274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E37C274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift */; };
+		2CF9E381274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E37C274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift */; };
+		2CF9E382274AF9A8009F77E1 /* FoldersEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E37D274AF9A8009F77E1 /* FoldersEntity+CoreDataProperties.swift */; };
+		2CF9E383274AF9A8009F77E1 /* FoldersEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E37D274AF9A8009F77E1 /* FoldersEntity+CoreDataProperties.swift */; };
+		2CF9E384274AF9A8009F77E1 /* PhotosEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E37E274AF9A8009F77E1 /* PhotosEntity+CoreDataClass.swift */; };
+		2CF9E385274AF9A8009F77E1 /* PhotosEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E37E274AF9A8009F77E1 /* PhotosEntity+CoreDataClass.swift */; };
+		2CF9E386274AF9A8009F77E1 /* PhotosEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E37F274AF9A8009F77E1 /* PhotosEntity+CoreDataProperties.swift */; };
+		2CF9E387274AF9A8009F77E1 /* PhotosEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E37F274AF9A8009F77E1 /* PhotosEntity+CoreDataProperties.swift */; };
+		2CF9E38A274B01A5009F77E1 /* PersistenceControllerCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E389274B01A5009F77E1 /* PersistenceControllerCoreData.swift */; };
+		2CF9E38B274B01A5009F77E1 /* PersistenceControllerCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E389274B01A5009F77E1 /* PersistenceControllerCoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -268,15 +270,11 @@
 		2C142B912593D71A00A7DC54 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFoldersButton.swift; sourceTree = "<group>"; };
 		2C147D1B272DA15600AF1E71 /* FoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersView.swift; sourceTree = "<group>"; };
-		2C147D24272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosArray+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosArray+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredUserData.swift; sourceTree = "<group>"; };
 		2C16EDA02575E9EB00ABF18D /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportBackup.swift; sourceTree = "<group>"; };
 		2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCheckBoxView.swift; sourceTree = "<group>"; };
 		2C2097D62737543A00D5B5FC /* SelectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionHandler.swift; sourceTree = "<group>"; };
-		2C2098262737869900D5B5FC /* PhotoFolders+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoFolders+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectRow.swift; sourceTree = "<group>"; };
 		2C209831273CD9D100D5B5FC /* countPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countPickerView.swift; sourceTree = "<group>"; };
 		2C214148271B5DCC00493E4E /* FileImporterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImporterView.swift; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 		2C614D9D272DE7100037BFA1 /* ArtAthlete (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArtAthlete (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C614D9E272DE7100037BFA1 /* Art_AthleteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Art_AthleteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C614D9F272DE7100037BFA1 /* Art_AthleteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Art_AthleteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C614DA027319BC30037BFA1 /* NavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
 		2C614DA62731CE8A0037BFA1 /* HomeScreenButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenButtonsView.swift; sourceTree = "<group>"; };
 		2C614DAA273211010037BFA1 /* DotInversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotInversion.swift; sourceTree = "<group>"; };
 		2C614DAD2732118F0037BFA1 /* IntroScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroScreen.swift; sourceTree = "<group>"; };
@@ -341,6 +338,12 @@
 		2CF9E3642747BBF8009F77E1 /* StatsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsButton.swift; sourceTree = "<group>"; };
 		2CF9E3672747BEDC009F77E1 /* settingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsButton.swift; sourceTree = "<group>"; };
 		2CF9E36B2748641D009F77E1 /* CircleGradual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGradual.swift; sourceTree = "<group>"; };
+		2CF9E375274AEE4F009F77E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		2CF9E37C274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldersEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2CF9E37D274AF9A8009F77E1 /* FoldersEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldersEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2CF9E37E274AF9A8009F77E1 /* PhotosEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2CF9E37F274AF9A8009F77E1 /* PhotosEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2CF9E389274B01A5009F77E1 /* PersistenceControllerCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceControllerCoreData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -466,17 +469,19 @@
 		2C02D8B3253A2C8B00D5F960 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2C28F3F627400F0800BB7405 /* DataProvider.swift */,
-				2CAA8BCD259382B500B39793 /* PersistenceController.swift */,
-				2C02D8B4253A2CA100D5F960 /* Model.swift */,
+				2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */,
 				2CEB2EF8253F86DD0087D696 /* GlobalVariables.swift */,
+				2CAA8BCD259382B500B39793 /* PersistenceController.swift */,
+				2C704F6C254BA93D00C5805B /* UserObject.swift */,
+				2C02D8B4253A2CA100D5F960 /* Model.swift */,
 				2C704F68254BA86200C5805B /* TimerObject.swift */,
 				2CC05E8925406DE8007C733D /* Cache.swift */,
-				2C704F6C254BA93D00C5805B /* UserObject.swift */,
+				2C28F3F627400F0800BB7405 /* DataProvider.swift */,
 				2C663A7A27209ABF0097AEFE /* UserDataEntity.swift */,
 				2C663A812720BACD0097AEFE /* AppDelegate.swift */,
 				2C2097D62737543A00D5B5FC /* SelectionHandler.swift */,
-				2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */,
+				2CF9E375274AEE4F009F77E1 /* SceneDelegate.swift */,
+				2CF9E389274B01A5009F77E1 /* PersistenceControllerCoreData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -626,7 +631,6 @@
 				2C064305272C43EC001DF985 /* ButtonsTestView.swift */,
 				2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */,
 				2C209831273CD9D100D5B5FC /* countPickerView.swift */,
-				2C0DF7552742CF580090E5EF /* StartButton.swift */,
 				2CF9E3642747BBF8009F77E1 /* StatsButton.swift */,
 				2CF9E3672747BEDC009F77E1 /* settingsButton.swift */,
 			);
@@ -656,23 +660,12 @@
 		2CAA8BD62593835600B39793 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				2CF9E374274AE76F009F77E1 /* Bottom */,
 				2CAC6636271CA435005066B5 /* ContentView.swift */,
 				2C614DA62731CE8A0037BFA1 /* HomeScreenButtonsView.swift */,
-				2C2EA837253CEC6500D9A8C7 /* HomeScreen.swift */,
 				2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */,
 				2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */,
-				2C614DA027319BC30037BFA1 /* NavBarView.swift */,
-				2C147D1B272DA15600AF1E71 /* FoldersView.swift */,
-				2C02D8C3253A50E300D5F960 /* DrawingView.swift */,
-				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
-				2CEB2EF3253F7A590087D696 /* TimerView.swift */,
-				2C02D8DD253ABB7100D5F960 /* ProgressBarView.swift */,
-				2C55F914253FC86E000B6AFC /* NavBar.swift */,
-				2C214148271B5DCC00493E4E /* FileImporterView.swift */,
-				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
-				2C13157A27346941001019BA /* SettingsSlideCard.swift */,
-				2C28F3F92740112000BB7405 /* NoteListCell.swift */,
-				2C28F3FC2740151800BB7405 /* AddButton.swift */,
+				2C0DF7552742CF580090E5EF /* StartButton.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -680,10 +673,7 @@
 		2CED7E0D27272A3000B99CAD /* Entity DB */ = {
 			isa = PBXGroup;
 			children = (
-				2C147D24272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift */,
-				2C147D25272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift */,
-				2C2098262737869900D5B5FC /* PhotoFolders+CoreDataClass.swift */,
-				2C2098272737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift */,
+				2CF9E388274AF9B1009F77E1 /* CoreData */,
 				2C663A9427238C820097AEFE /* UserData+CoreDataClass.swift */,
 				2C663A9527238C820097AEFE /* UserData+CoreDataProperties.swift */,
 				2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */,
@@ -707,6 +697,36 @@
 				2CF9E36B2748641D009F77E1 /* CircleGradual.swift */,
 			);
 			path = Animations;
+			sourceTree = "<group>";
+		};
+		2CF9E374274AE76F009F77E1 /* Bottom */ = {
+			isa = PBXGroup;
+			children = (
+				2CEB2EF3253F7A590087D696 /* TimerView.swift */,
+				2C147D1B272DA15600AF1E71 /* FoldersView.swift */,
+				2C02D8C3253A50E300D5F960 /* DrawingView.swift */,
+				2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */,
+				2C02D8DD253ABB7100D5F960 /* ProgressBarView.swift */,
+				2C55F914253FC86E000B6AFC /* NavBar.swift */,
+				2C214148271B5DCC00493E4E /* FileImporterView.swift */,
+				2C943ED725B7910C0010FA24 /* DotMenuView.swift */,
+				2C13157A27346941001019BA /* SettingsSlideCard.swift */,
+				2C28F3F92740112000BB7405 /* NoteListCell.swift */,
+				2C2EA837253CEC6500D9A8C7 /* HomeScreen.swift */,
+				2C28F3FC2740151800BB7405 /* AddButton.swift */,
+			);
+			path = Bottom;
+			sourceTree = "<group>";
+		};
+		2CF9E388274AF9B1009F77E1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2CF9E37C274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift */,
+				2CF9E37D274AF9A8009F77E1 /* FoldersEntity+CoreDataProperties.swift */,
+				2CF9E37E274AF9A8009F77E1 /* PhotosEntity+CoreDataClass.swift */,
+				2CF9E37F274AF9A8009F77E1 /* PhotosEntity+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -951,6 +971,7 @@
 				2C663A9827238C820097AEFE /* UserData+CoreDataProperties.swift in Sources */,
 				2C663A78272097500097AEFE /* UserObjectView.swift in Sources */,
 				2C614DB82733372E0037BFA1 /* SideMenu.swift in Sources */,
+				2CF9E380274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift in Sources */,
 				2C663A24271DAEFA0097AEFE /* MenuView.swift in Sources */,
 				2C663A6B271F6B810097AEFE /* CheckBoxView.swift in Sources */,
 				2C614DB12732125A0037BFA1 /* Tab.swift in Sources */,
@@ -962,12 +983,14 @@
 				2CF9E3682747BEDC009F77E1 /* settingsButton.swift in Sources */,
 				2C943EEA25B9F4790010FA24 /* CollectionButtons.swift in Sources */,
 				2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */,
+				2CF9E384274AF9A8009F77E1 /* PhotosEntity+CoreDataClass.swift in Sources */,
 				2C02D8C4253A50E300D5F960 /* DrawingView.swift in Sources */,
 				2C98427F258C04E40008AD1C /* ImagePicker.swift in Sources */,
 				2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */,
 				2C147D10272C985500AF1E71 /* LoadFoldersButton.swift in Sources */,
 				2C943ED425B78F460010FA24 /* SignIn.swift in Sources */,
 				2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */,
+				2CF9E386274AF9A8009F77E1 /* PhotosEntity+CoreDataProperties.swift in Sources */,
 				2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */,
 				2C15680F273F3CD8001D5ED9 /* StoredUserData.swift in Sources */,
 				2C064311272C6587001DF985 /* PrivateSyncApp.swift in Sources */,
@@ -982,30 +1005,28 @@
 				2C28F3F727400F0800BB7405 /* DataProvider.swift in Sources */,
 				2C663A7B27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2C663A9627238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
+				2CF9E38A274B01A5009F77E1 /* PersistenceControllerCoreData.swift in Sources */,
 				2C064314272C6612001DF985 /* ViewModel.swift in Sources */,
 				2C02D886253A2C5700D5F960 /* pose_referenceApp.swift in Sources */,
 				2C2097C82735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */,
-				2C147D28272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift in Sources */,
 				2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */,
-				2C2098282737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */,
 				2C0DF7562742CF580090E5EF /* StartButton.swift in Sources */,
 				2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */,
 				2C704F69254BA86200C5805B /* TimerObject.swift in Sources */,
 				2C02D8DE253ABB7100D5F960 /* ProgressBarView.swift in Sources */,
 				2C13157B27346941001019BA /* SettingsSlideCard.swift in Sources */,
 				2C663A1F271CC7DC0097AEFE /* SettingsMacView.swift in Sources */,
+				2CF9E376274AEE4F009F77E1 /* SceneDelegate.swift in Sources */,
 				2CAC6637271CA435005066B5 /* ContentView.swift in Sources */,
 				2C2BDF432543225400D2434E /* StatsView.swift in Sources */,
-				2C20982A2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2C614DAE2732118F0037BFA1 /* IntroScreen.swift in Sources */,
 				2CF9E36C2748641D009F77E1 /* CircleGradual.swift in Sources */,
 				2C663A822720BACD0097AEFE /* AppDelegate.swift in Sources */,
-				2C614DA127319BC30037BFA1 /* NavBarView.swift in Sources */,
-				2C147D2A272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */,
 				2C209832273CD9D100D5B5FC /* countPickerView.swift in Sources */,
 				2C614DBA273337700037BFA1 /* Home.swift in Sources */,
 				2C06430E272C6554001DF985 /* Config.swift in Sources */,
 				2C663A22271CC9410097AEFE /* AdvancedSettingsView.swift in Sources */,
+				2CF9E382274AF9A8009F77E1 /* FoldersEntity+CoreDataProperties.swift in Sources */,
 				2C28F3FA2740112000BB7405 /* NoteListCell.swift in Sources */,
 				2C2097D72737543A00D5B5FC /* SelectionHandler.swift in Sources */,
 				2C064303272B9806001DF985 /* ListRowsView.swift in Sources */,
@@ -1052,10 +1073,9 @@
 				2CB6249727277C38001AFA85 /* CollectionButtons.swift in Sources */,
 				2C663A68271F00370097AEFE /* SessionStats.swift in Sources */,
 				2CEB6EDC273371A4001C6FEB /* SideMenu.swift in Sources */,
+				2CF9E381274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift in Sources */,
 				2C663A79272097500097AEFE /* UserObjectView.swift in Sources */,
-				2C147D2B272DCFCE00AF1E71 /* PhotosArray+CoreDataProperties.swift in Sources */,
 				2C614DB22732125A0037BFA1 /* Tab.swift in Sources */,
-				2C147D29272DCFCE00AF1E71 /* PhotosArray+CoreDataClass.swift in Sources */,
 				2CB6249D27277C50001AFA85 /* SettingsMacView.swift in Sources */,
 				2C147D11272C985500AF1E71 /* LoadFoldersButton.swift in Sources */,
 				2C064315272C6612001DF985 /* ViewModel.swift in Sources */,
@@ -1063,12 +1083,14 @@
 				2CF9E3692747BEDC009F77E1 /* settingsButton.swift in Sources */,
 				2C663A9927238C820097AEFE /* UserData+CoreDataProperties.swift in Sources */,
 				2CB6249627277C35001AFA85 /* SignIn.swift in Sources */,
+				2CF9E385274AF9A8009F77E1 /* PhotosEntity+CoreDataClass.swift in Sources */,
 				2CB6248B27277C07001AFA85 /* DrawingView.swift in Sources */,
 				2C064307272C43EC001DF985 /* ButtonsTestView.swift in Sources */,
 				2CB6249C27277C4D001AFA85 /* GeneralSettingsView.swift in Sources */,
 				2CED7E0B27271C3F00B99CAD /* ContentView.swift in Sources */,
 				2C147D1D272DA15600AF1E71 /* FoldersView.swift in Sources */,
 				2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */,
+				2CF9E387274AF9A8009F77E1 /* PhotosEntity+CoreDataProperties.swift in Sources */,
 				2CB6248527277294001AFA85 /* Cache.swift in Sources */,
 				2C156810273F3CD8001D5ED9 /* StoredUserData.swift in Sources */,
 				2CB6248C27277C0C001AFA85 /* TimerView.swift in Sources */,
@@ -1085,19 +1107,19 @@
 				2CB6249A27277C45001AFA85 /* DotMenuView.swift in Sources */,
 				2CB6249F27277C54001AFA85 /* MenuView.swift in Sources */,
 				2CEB6EDB273371A2001C6FEB /* Home.swift in Sources */,
+				2CF9E38B274B01A5009F77E1 /* PersistenceControllerCoreData.swift in Sources */,
 				2C2097C92735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */,
 				2CB6249127277C25001AFA85 /* ImagePicker.swift in Sources */,
 				2C663A832720BACD0097AEFE /* AppDelegate.swift in Sources */,
-				2C2098292737869900D5B5FC /* PhotoFolders+CoreDataClass.swift in Sources */,
 				2C0DF7572742CF580090E5EF /* StartButton.swift in Sources */,
 				2C663A73271F74470097AEFE /* timePickerView.swift in Sources */,
 				2CB6248D27277C0F001AFA85 /* ProgressBarView.swift in Sources */,
 				2CB6248A27277C01001AFA85 /* HomeScreen.swift in Sources */,
 				2C13157C27346941001019BA /* SettingsSlideCard.swift in Sources */,
 				2C663A70271F71300097AEFE /* ToggleSwitch.swift in Sources */,
+				2CF9E377274AEE4F009F77E1 /* SceneDelegate.swift in Sources */,
 				2CB6248327277287001AFA85 /* GlobalVariables.swift in Sources */,
 				2CB6249B27277C47001AFA85 /* MenuPicker.swift in Sources */,
-				2C20982B2737869900D5B5FC /* PhotoFolders+CoreDataProperties.swift in Sources */,
 				2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */,
 				2CF9E36D2748641D009F77E1 /* CircleGradual.swift in Sources */,
 				2C614DAF2732118F0037BFA1 /* IntroScreen.swift in Sources */,
@@ -1106,7 +1128,7 @@
 				2C209833273CD9D100D5B5FC /* countPickerView.swift in Sources */,
 				2CB624882727729F001AFA85 /* PersistenceController.swift in Sources */,
 				2C06430F272C6554001DF985 /* Config.swift in Sources */,
-				2C614DA227319BC30037BFA1 /* NavBarView.swift in Sources */,
+				2CF9E383274AF9A8009F77E1 /* FoldersEntity+CoreDataProperties.swift in Sources */,
 				2C28F3FB2740112000BB7405 /* NoteListCell.swift in Sources */,
 				2C2097D82737543A00D5B5FC /* SelectionHandler.swift in Sources */,
 				2CED7E112727531B00B99CAD /* SettingsRow.swift in Sources */,

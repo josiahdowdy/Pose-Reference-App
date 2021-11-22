@@ -32,6 +32,7 @@ struct CircleGradual: View {
                 .offset(x: gradualOpacityAnimation == 0.5 ? 0 : 55)
                 .rotationEffect(.degrees(-45))
                 .animation(.easeOut(duration: 0.25).delay(0.25))
+               // .animation(animation: .easeOut, value: 0.25)
 
             Circle()
                 .frame(width: 30, height: 30, alignment: .center)

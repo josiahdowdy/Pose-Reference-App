@@ -10,7 +10,7 @@ import Laden
 
 struct HomeScreenButtonsView: View {
     //@ObservedObject var dataProvider = DataProvider.shared
-    @ObservedObject var userSettings = StoredUserData()
+    @EnvironmentObject var storedUserData: StoredUserData
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
@@ -21,6 +21,8 @@ struct HomeScreenButtonsView: View {
 
     @State public var totalPhotosLoaded = 0
 
+    @State var rowSelection = Set<String>()
+
 
 
 
@@ -30,16 +32,11 @@ struct HomeScreenButtonsView: View {
 
     @State var url : URL = URL(fileURLWithPath: "nil")
 
-    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
-    ) var cdFolders : FetchedResults<PhotoFolders>
+ 
 
-    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
-    ) var fetchFolderNameOnce : FetchedResults<PhotoFolders>
+    //@State var cdSelection = Set<PhotoFolders>()
+    @State var cdSelection = Set<FoldersEntity>()
 
-    @FetchRequest(entity: PhotosArray.entity(), sortDescriptors:[])
-    var cdPhotos: FetchedResults<PhotosArray>
-
-    @State var cdSelection = Set<PhotoFolders>()
     //@State private var editMode: EditMode = .inactive
     //@State var cdEditMode = EditMode.inactive
 
@@ -53,10 +50,10 @@ struct HomeScreenButtonsView: View {
         )
     }
 
-                /*\___/\ ((
-                 \`@_@'/  ))
-                 {_:Y:.}_//
-      ----------{_}^-'{_}----------*/
+    /*\___/\ ((
+     \`@_@'/  ))
+     {_:Y:.}_//
+     ----------{_}^-'{_}----------*/
 
     //MARK: - VIEW
     var body: some View {
@@ -65,25 +62,24 @@ struct HomeScreenButtonsView: View {
                 //FileImporterView() //This loads in photos MARK: [BLUE BOX]
 
                 HStack {
-                    
-
                     LoadFoldersButton(totalPhotosLoaded: $totalPhotosLoaded, isloadingPhotos: $isloadingPhotos)
 
                     Button(action: {
-                        userSettings.arrayWorkingDirectoryBookmark.removeAll()
+                        storedUserData.arrayWorkingDirectoryBookmark.removeAll()
                     }, label: {
                         Image(systemName: "folder.fill.badge.minus")
                     })
 
                     Text(String(totalPhotosLoaded))
-
-
                 }
 
                 //LoadFoldersButton(isImporting: true)
-                MultipleSelectRow(totalPhotosLoaded: $totalPhotosLoaded, cdFolders: cdFolders, cdPhotos: cdPhotos)
+                MultipleSelectRow(rowSelection: $rowSelection, totalPhotosLoaded: $totalPhotosLoaded)
 
-                if UIDevice.current.userInterfaceIdiom == (.phone) { StartButton(cdFolders: cdFolders) }
+                if UIDevice.current.userInterfaceIdiom == (.phone) {
+                    countPickerView()
+                    timePickerView()
+                    StartButton(rowSelection: $rowSelection) }
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -97,19 +93,19 @@ struct HomeScreenButtonsView: View {
                 VStack {
                     //  FileImporterView()
                     if !(isloadingPhotos) {
-                       // laden.hidden()
+                        // laden.hidden()
                         Text(prefs.error)
-                        Text(String("Array Bookmarks: \(userSettings.arrayWorkingDirectoryBookmark.count)"))
+                        Text(String("Array Bookmarks: \(storedUserData.arrayWorkingDirectoryBookmark.count)"))
 
                         Spacer().frame(maxWidth: .infinity)
 
                         countPickerView()
                         timePickerView()
-                        StartButton(cdFolders: cdFolders)
+                        StartButton(rowSelection: $rowSelection)
 
 
                     } else {
-                       // laden
+                        // laden
                         Text("Loading Photos...please wait...")
                     }
                 } //End VStack.
@@ -118,7 +114,7 @@ struct HomeScreenButtonsView: View {
         } //NavigationView
     } //End UI.
 
-       /*__/,|   (`\
+    /*__/,|   (`\
      _.|o o  |_   ) )
      -(((---(((-----*/
 
@@ -137,7 +133,7 @@ extension View {
 /* IMPORTANT - WORKS. HEART BUTTON. FUNCTIONS TO LOAD PHOTO.
  //- AsyncImage. UI.
  if (showPhotos) {
- // Image(uiImage: UIImage(data: userSettings.photo) ?? UIImage(named: "/Users/josiahdowdy/Library/Mobile Documents/com~apple~CloudDocs/Screenshots") ?? UIImage())
+ // Image(uiImage: UIImage(data: storedUserData.photo) ?? UIImage(named: "/Users/josiahdowdy/Library/Mobile Documents/com~apple~CloudDocs/Screenshots") ?? UIImage())
  Text("Enjoy!")
  if #available(iOS 15.0, *) {
  AsyncImage(url: url)
@@ -160,7 +156,7 @@ extension View {
 
  private func showPhotoFunction() {
  //- Show Photo Here.
- url = restoreFileAccess(with: userSettings.workingDirectoryBookmark)!
+ url = restoreFileAccess(with: storedUserData.workingDirectoryBookmark)!
 
  //BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
  if (url.startAccessingSecurityScopedResource()) {
@@ -206,8 +202,8 @@ extension View {
 
 /*
 
- //           let bookmarkedData = userSettings.workingDirectoryBookmark//URL(string: userSettings.workingDirectoryBookmark)
- // let imageData = UIImage(data: bookmarkedData)// try Data(contentsOf: bookmarkedData) //userSettings.recoveredURL.downloadURL)//cdFolders[0].wrappedFolderURL)
+ //           let bookmarkedData = storedUserData.workingDirectoryBookmark//URL(string: storedUserData.workingDirectoryBookmark)
+ // let imageData = UIImage(data: bookmarkedData)// try Data(contentsOf: bookmarkedData) //storedUserData.recoveredURL.downloadURL)//cdFolders[0].wrappedFolderURL)
 
  //      print("JD44: bookmarkedData \(bookmarkedData)")
 
@@ -215,13 +211,13 @@ extension View {
  //    print("JD45: img \(String(describing: img))")
 
 
- //   userSettings.photo = (img?.pngData())!
- //let imageData = try Data(contentsOf: bookmarkedData ) //userSettings.recoveredURL
+ //   storedUserData.photo = (img?.pngData())!
+ //let imageData = try Data(contentsOf: bookmarkedData ) //storedUserData.recoveredURL
  //            print("JD44: imageData \(String(describing: imageData))")
  //       let img = UIImage(data: bookmarkedData)
  //        print("JD45: img \(String(describing: img))")
  //
- //       userSettings.photo = (img?.jpegData(compressionQuality: 1.0))! //img?.pngData()
+ //       storedUserData.photo = (img?.jpegData(compressionQuality: 1.0))! //img?.pngData()
 
  */
 //
@@ -295,10 +291,10 @@ extension View {
 
  //  DataProvider.shared.create(note: note)
 
- //                    userSettings.storedFolderURL = selectedFolder
+ //                    storedUserData.storedFolderURL = selectedFolder
 
- //                    userSettings.arrayOfFolderURLs.append(selectedFolder.path)
- //  userSettings.workingDirectoryBookmark = selectedFolder
+ //                    storedUserData.arrayOfFolderURLs.append(selectedFolder.path)
+ //  storedUserData.workingDirectoryBookmark = selectedFolder
 
  //Store photo urls in array.
  var arrayFiles = [String]()
@@ -307,10 +303,10 @@ extension View {
  }
 
  //  for file in try Folder(path: selectedFolder.path).files {
- //userSettings.arrayPhotoURLs = [file]
- //                        userSettings.arrayOfFolderNames.append(file.name)
- //                        userSettings.arrayOfFolderURLs.append(file.path)
- //                        userSettings.arrayPhotoDownloadPath.append(file.url.downloadURL)
+ //storedUserData.arrayPhotoURLs = [file]
+ //                        storedUserData.arrayOfFolderNames.append(file.name)
+ //                        storedUserData.arrayOfFolderURLs.append(file.path)
+ //                        storedUserData.arrayPhotoDownloadPath.append(file.url.downloadURL)
  //     }
  } catch { print("failed") }
  })

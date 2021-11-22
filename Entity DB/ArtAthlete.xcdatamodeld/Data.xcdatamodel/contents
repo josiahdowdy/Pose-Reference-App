@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="PhotoFolders" representedClassName="PhotoFolders" syncable="YES">
+    <entity name="FoldersEntity" representedClassName="FoldersEntity" syncable="YES">
         <attribute name="folderName" optional="YES" attributeType="String"/>
         <attribute name="folderURL" optional="YES" attributeType="URI"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="isSelected" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="photo" optional="YES" attributeType="Binary"/>
-        <attribute name="tag" optional="YES" attributeType="String"/>
-        <attribute name="workingDirectoryBookmark" optional="YES" attributeType="Binary"/>
-        <relationship name="photosArray" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotosArray" inverseName="photoFolders" inverseEntity="PhotosArray"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="folderName"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
+        <relationship name="photoRel" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotosEntity" inverseName="folderRel" inverseEntity="PhotosEntity"/>
     </entity>
-    <entity name="PhotosArray" representedClassName="PhotosArray" syncable="YES">
+    <entity name="PhotosEntity" representedClassName="PhotosEntity" syncable="YES">
         <attribute name="fileName" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
-        <attribute name="photoURL" optional="YES" attributeType="URI" defaultValueString="duckduckgo.com"/>
-        <attribute name="photoURLString" optional="YES" attributeType="String"/>
-        <relationship name="photoFolders" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoFolders" inverseName="photosArray" inverseEntity="PhotoFolders"/>
+        <attribute name="photoURL" optional="YES" attributeType="URI"/>
+        <relationship name="folderRel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FoldersEntity" inverseName="photoRel" inverseEntity="FoldersEntity"/>
     </entity>
     <entity name="UserData" representedClassName="UserData" syncable="YES">
         <attribute name="countPoses" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -31,8 +20,8 @@
         <attribute name="userName" optional="YES" attributeType="String" defaultValueString="Poop"/>
     </entity>
     <elements>
-        <element name="PhotoFolders" positionX="-54" positionY="54" width="128" height="149"/>
-        <element name="PhotosArray" positionX="-45" positionY="63" width="128" height="119"/>
+        <element name="FoldersEntity" positionX="-36" positionY="126" width="128" height="89"/>
+        <element name="PhotosEntity" positionX="-18" positionY="135" width="128" height="89"/>
         <element name="UserData" positionX="-54" positionY="72" width="128" height="104"/>
     </elements>
 </model>

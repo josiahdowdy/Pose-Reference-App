@@ -4,6 +4,10 @@
 import Foundation
 
 class GlobalVariables: ObservableObject {
+    init() {
+        sPose = "hi"
+    }
+
     //----------STRINGS---------------------------------------------------------------
     @Published var sPose = ""
 
@@ -39,8 +43,7 @@ class GlobalVariables: ObservableObject {
     @Published var falseBool = false
     @Published var showLoadingAnimation = false
     @Published var isBookmarkDeletePending = false
-
-
+    @Published var doesFolderAlreadyExist = false
 
     //@Published var localPhotosView = true
     @Published var disableSkip = true

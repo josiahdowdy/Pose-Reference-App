@@ -11,36 +11,35 @@ import UniformTypeIdentifiers
 
 struct MultipleSelectRow : View {
     // MARK: - VARIABLES
+    @Environment(\.managedObjectContext) var context
+    @EnvironmentObject var storedUserData: StoredUserData
+    @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
+    @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
+    //@AppStorage("fileName") var fileName: [[String]] = [[]]
     
-    @ObservedObject var userSettings = StoredUserData()
     //@ObservedObject var dataProvider = DataProvider.shared
     @EnvironmentObject var prefs: GlobalVariables
     
     @State private var alertShowing = false
     @State private var editMode: EditMode = .inactive
     
-    @Environment(\.managedObjectContext) var context
 
-    @State var rowSelection = Set<PhotoFolders>()
+    //@State var rowSelection = Set<FoldersEntity>()
+    @Binding var rowSelection: Set<String>
 
-    @State var testUrlResourceKey = Set<URLResourceKey>()
-
-
-
+    //@State var testUrlResourceKey = Set<URLResourceKey>()
     @State var url : URL = URL(fileURLWithPath: "nil")
     @State var selectAll = false
 
-    //@State public var totalPhotosLoaded = 0
     @Binding var totalPhotosLoaded: Int
 
-    var cdFolders: FetchedResults<PhotoFolders>
+    @FetchRequest(entity: FoldersEntity.entity(), sortDescriptors:[])
+    var fetchFolders: FetchedResults<FoldersEntity>
 
-    var cdPhotos: FetchedResults<PhotosArray>
+    @FetchRequest(entity: PhotosEntity.entity(), sortDescriptors:[])
+    var fetchPhotos: FetchedResults<PhotosEntity>
 
-
-    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
-    ) var fetchFolderNameOnce : FetchedResults<PhotoFolders>
-
+    //@FetchRequest(entity: FoldersEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FoldersEntity.folderName, ascending: false)]) var fetchFolderNameOnce : FetchedResults<FoldersEntity>
 
     // @State var cdEditMode = EditMode.active
 
@@ -67,46 +66,60 @@ struct MultipleSelectRow : View {
         }
 
         VStack {
+            Text("Rows")
             //      List(cdFolders, id: \.self, selection: $rowSelection){ name in //*this works*
 
            //TODO: - Working list.
             List(selection: $rowSelection) {
-                ForEach(cdFolders, id: \.self) { name in
+                ForEach(arrayOfFolderNames, id: \.self) {
+                    Text($0)
+                }
+               // .onDelete(perform: self.deleteItem)
+                .onDelete(perform: cdOnSwipeDelete)
+            }
+            .listStyle(InsetListStyle())
+
+              // //
+
+          //  Form {
+               // ForEach(0..<$storedUserData.arrayOfFolderNames.count) { number in
+               // ForEach(storedUserData.arrayOfFolderNames, id: \.self) {
+
+//                    ForEach(fileName), id: \.self) {
+//                        Text($0)
+//                    }
+                   // Text(storedUserData.arrayOfFolderNames[number])
+                       // .onReceive(storedUserData.$arrayOfFolderNames, perform: UIBackgroundRefreshStatus)
+
+
+                
+
+
+           
+            /*
+            List(selection: $rowSelection) {
+                ForEach(fetchPhotos, id: \.self) { name in //cdFolders
                     HStack {
-                        Text(name.wrappedFolderName)
+                        Text(name.folderRel!.wrappedFolderName)
                         //Text(" - \(name.wrappedFolderURL.path)").font(.caption2)
                        // Text(" - \(name.wrappedFolderURL)").font(.caption2)
                     }
-                    .onTapGesture {
-                        loadFolderArray(folderURL: name.wrappedFolderURL)
-                    }
+               //     .onTapGesture {  loadFolderArray(folderURL: name.wrappedFolderURL) }
                 }
                 .onDelete(perform: cdOnSwipeDelete)
             }
             .listStyle(InsetListStyle())
 
-     /*       List(selection: $rowSelection) {
-                ForEach(fetchFolderNameOnce, id: \.self) { folder in
+            List() {  //selection: $rowSelection
+                ForEach(fetchFolders, id: \.self) { folder in
                     Section(header: Text(folder.wrappedFolderName)) {
-                        ForEach(folder.photosArraySorted, id: \.self) { photo in
-                            Text(photo.wrappedName)
-                        } //FIXME: - I only want to show one folder name each.
-                    } */
-
-
-
-
-
-                    //     Text(photo.wrappedName)
-                    //}
-                    //
-           //     }
-                //  .onDelete(perform: cdOnSwipeDelete)
-           // }
-            
-
-         //   .navigationTitle("Photos") // Photos"
-
+                        ForEach(folder.photosArray, id: \.self) { photo in
+                            Text(photo.wrappedFolderName)
+                        }
+                    }
+                }
+            }
+            */
         }
         .environment(\.editMode, .constant(EditMode.active)) // *IMPORTANT* Allows checkbox to appear.
        // .navigationBarTitle(Text("#: \(rowSelection.count)"))
@@ -120,14 +133,14 @@ struct MultipleSelectRow : View {
                 }
             }
         }
-    }
-    /*•••••••••••••END VIEW••••••••••••*/
+    } //End view.
+    /*•••••••••••••END VIEW••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*/
 
        /*__/,|   (`\
      _.|o o  |_   ) )
      -(((---(((-----*/
 
-    /*•••••••••START FUNCTIONS•••••••••*/
+    /*•••••••••START FUNCTIONS•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*/
     private var cdDeleteButton: some View {
         //print("JD33: cdDeleteButton - Why is this getting called each time a button is pressed?")
         return Button(action: cdDeleteFolders) {
@@ -141,25 +154,24 @@ struct MultipleSelectRow : View {
         }.disabled(rowSelection.count <= 0)
     }
 
-    private func deletePrefsSavedURLs() {
-
-    }
-
     private func cdDeleteFolders() {
+        //Remove selected items from the array.
         for selectedItem in self.rowSelection{
-            self.context.delete(selectedItem)
-            totalPhotosLoaded -= rowSelection.count
-            //selectedItem.
-            //selectedItem.workingDirectoryBookmark
-            //userSettings.arrayWorkingDirectoryBookmark.remove[0]
-
-            // print("JD90: ", selectedItem.workingDirectoryBookmark!)
+            if arrayOfFolderNames.contains(selectedItem) {
+                let index = arrayOfFolderNames.firstIndex(of: selectedItem)
+                arrayOfFolderNames.remove(at: index!)
+                storedFileURLs.remove(at: index!)
+                print("JD401: ", arrayOfFolderNames)
+            }
         }
        // deleteBookmarkURLs()
         try? self.context.save()
-        rowSelection = Set<PhotoFolders>()
+        rowSelection = Set<String>()
+//        rowSelection = Set<FoldersEntity>()
 
         loadCurrentFileURLs()
+
+        print("JD404: ", storedFileURLs)
     }
 
     private func loadCurrentFileURLs() {
@@ -172,121 +184,15 @@ struct MultipleSelectRow : View {
     }
 
 
- /*   private func deleteBookmarkURLs() {
-        var actualPath: URL
-        //var filesToDelete: [URL]
-      //  var urlTest: Data
-      //  var fileData: [Data]
-
-
-        for selectedItem in self.rowSelection{
-            let fileData = try? Data.init(contentsOf: selectedItem.folderURL!)
-            print("JD150: ", fileData)
-        let fileName = url.lastPathComponent
-
-        actualPath = getDocumentsDirectory().appendingPathComponent(fileName)
-
-            //fileData.append(restoreFileAccess(with: userSettings.arrayWorkingDirectoryBookmark.contains(putThePhotoDataHere)))
-
-
-           // try fileData?.write(to: actualPath)
-
-           // filesToDelete.append(actualPath)
-          //  prefs.arrayOfURLStrings.append(String(describing: actualPath))
-
-            if(fileData == nil){
-                print("Permission error!")
-            }
-            else {
-                print("Success.")
-            }
-        }
-
-        func getDocumentsDirectory() -> URL {
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        }
-
-
-
-
-        print("JD121: delete bookmarks.")
-    /*    for selectedItem in self.rowSelection{
-            //print("JD140: ", selectedItem.folderURL) //This gets the folder URL.
-            do {
-
-                for i in 0..<userSettings.arrayWorkingDirectoryBookmark.count {
-                    print("JD141: Now looping saved bookmark array.")
-
-                    url = restoreFileAccess(with: userSettings.arrayWorkingDirectoryBookmark[i])!
-
-                    //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
-                    if (url.startAccessingSecurityScopedResource()) {
-                        print("JD142: Access granted. Working yes.")
-
-                        //TODO: - If the files have the same parent folder name as selectedItem, then delete it.
-                       // if (selectedItem.folderURL == userSettings.arrayWorkingDirectoryBookmark.remove(at: <#T##Int#>))
-                        userSettings.arrayWorkingDirectoryBookmark.remove(at: i)
-
-                        if let index = userSettings.arrayWorkingDirectoryBookmark.firstIndex(of: url.dataRepresentation) {
-                            userSettings.arrayWorkingDirectoryBookmark.remove(at: index)
-                            print("JD122: \(userSettings.arrayWorkingDirectoryBookmark.count)")
-                            // testUrlResourceKey.remove(at: index) // Set<URLResourceKey>.Index
-                            //self.context.delete(selectedItem)
-                        }
-                        //print("JD68: LOADING BOOKMARK. \(prefs.arrayOfURLStrings)")
-                    } else {
-                        print("JD67: False")
-                    }
-                }
-                url.stopAccessingSecurityScopedResource()
-
-               // let url = try URL(resolvingBookmarkData: bookmarkData[0], bookmarkDataIsStale: &isStale)
-
-
-                //let url = selectedItem.wrappedFolderURL
-
-                //                    if (CFURLStartAccessingSecurityScopedResource(url as CFURL)) {
-                //                        print("JD126: Access Granted.")
-                //                        // if url.startAccessingSecurityScopedResource() {
-                //
-                //
-                //                     //   let data = try Data(contentsOf: selectedItem.folderURL!)
-                //
-                //                        if let index = userSettings.arrayWorkingDirectoryBookmark.firstIndex(of: data) {
-                //                            userSettings.arrayWorkingDirectoryBookmark.remove(at: index)
-                //                            print("JD122: \(userSettings.arrayWorkingDirectoryBookmark.count)")
-                //                            // testUrlResourceKey.remove(at: index) // Set<URLResourceKey>.Index
-                //                            //self.context.delete(selectedItem)
-                //                        }
-                //
-                //                        //guard let message = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
-                //
-                //                        //guard
-                //                        //let data = try Data(contentsOf: selectedItem.folderURL!) //else { return }
-                //
-                //
-                //                        print("JD120: \(userSettings.arrayWorkingDirectoryBookmark.count)")
-                //
-                //
-                //                        //done accessing the url
-                //                        CFURLStopAccessingSecurityScopedResource(selectedItem.wrappedFolderURL as CFURL)
-
-
-            //selectedItem.folderURL!.dataRepresentation
-        } catch {
-            print("JD110: ", error)
-        }
-        }   */
-        try? self.context.save()
-        rowSelection = Set<PhotoFolders>()
-        print("JD131: deleteBookmarkURLs done")
-    }//End Func. */
 
 
     private func deleteAllRows() {
+        arrayOfFolderNames.removeAll()
+        storedFileURLs.removeAll()
         PersistenceController.shared.clearDatabase()
         try? self.context.save()
-        rowSelection = Set<PhotoFolders>()
+        rowSelection = Set<String>()
+        //rowSelection = Set<FoldersEntity>()
     }
 
     // #####################################################################
@@ -297,7 +203,7 @@ struct MultipleSelectRow : View {
     private func cdOnSwipeDelete(with indexSet: IndexSet) {
 
         indexSet.forEach { index in
-            let number = cdFolders[index]
+            let number = fetchFolders[index]
             self.context.delete(number)
         }
         try? self.context.save()
@@ -320,9 +226,9 @@ struct MultipleSelectRow : View {
 //        }
     }
 
-    public func loadSelectedBookmarkedPhotos() {
-        //for photo in userSettings.arrayWorkingDirectoryBookmark {
-        //prefs.arrayOfURLStringsTEMP = restoreFileAccessArray(with: (userSettings.arrayWorkingDirectoryBookmark))!
+ /*   public func loadSelectedBookmarkedPhotos() {
+        //for photo in storedUserData.arrayWorkingDirectoryBookmark {
+        //prefs.arrayOfURLStringsTEMP = restoreFileAccessArray(with: (storedUserData.arrayWorkingDirectoryBookmark))!
 
         //print("JD84:", prefs.arrayOfURLStringsTEMP)
         print("JD105")
@@ -330,19 +236,20 @@ struct MultipleSelectRow : View {
         for selectedItem in self.rowSelection{
             print("JD104")
         //MARK: - Loads in array of photos.
-            for i in 0..<userSettings.arrayWorkingDirectoryBookmark.count {
+            for i in 0..<storedUserData.arrayWorkingDirectoryBookmark.count {
                 print("JD103")
                 
                 do {
                     //var error: NSError? = nil
-                    print("JD102:", selectedItem.wrappedFolderURL.path)
+                    //print("JD102:", selectedItem.wrappedFolderURL.path)
                     var isStale = false
 
                     if (selectedItem.wrappedFolderURL.startAccessingSecurityScopedResource()) {
+                    //if (selectedItem.)
                         for file in try Folder(path: selectedItem.wrappedFolderURL.path).files {
                             print("JD101")
-                        if userSettings.arrayWorkingDirectoryBookmark.contains(file.url.dataRepresentation) { // //selectedItem.folderURL!.dataRepresentation
-                                let url = try URL.init(resolvingBookmarkData: userSettings.arrayWorkingDirectoryBookmark[i],   relativeTo: nil, bookmarkDataIsStale: &isStale)
+                        if storedUserData.arrayWorkingDirectoryBookmark.contains(file.url.dataRepresentation) { // //selectedItem.folderURL!.dataRepresentation
+                                let url = try URL.init(resolvingBookmarkData: storedUserData.arrayWorkingDirectoryBookmark[i],   relativeTo: nil, bookmarkDataIsStale: &isStale)
 
                                 print("JD100")
                                // if (url.startAccessingSecurityScopedResource()) {
@@ -356,7 +263,7 @@ struct MultipleSelectRow : View {
                    // return nil
                 }
 
-                //            url = restoreFileAccess(with: userSettings.arrayWorkingDirectoryBookmark[i])!
+                //            url = restoreFileAccess(with: storedUserData.arrayWorkingDirectoryBookmark[i])!
                 //
                 //            //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
                 //            if (url.startAccessingSecurityScopedResource()) {
@@ -370,7 +277,7 @@ struct MultipleSelectRow : View {
         print("\n•••••••••••••••••••••• JD68 LOADING BOOKMARK DONE ••••••••••••••••••••••------------------------------------")
         //print("JD99:  \(prefs.arrayOfURLStrings)")
         url.stopAccessingSecurityScopedResource()
-    } //End func.
+    } //End func. */
 
     private func restoreFileAccess(with bookmarkData: Data) -> URL? {
         do {
@@ -399,15 +306,16 @@ struct MultipleSelectRow : View {
 
             let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
 
-            //userSettings.workingDirectoryBookmark = bookmarkData
-            userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
+            //storedUserData.workingDirectoryBookmark = bookmarkData
+            storedUserData.arrayWorkingDirectoryBookmark.append(bookmarkData)
         } catch {
             print("Failed to save bookmark data for \(workDir)", error)
         }
     }
 
-    public func loadSelectedPhotos() { //with bookmarkData: Data
-        //FIXME: - Will only work if a folder is a selected, NOT a photo.
+    //FIXME: - Will only work if a folder is a selected, NOT a photo.
+ /*   public func loadSelectedPhotos() { //with bookmarkData: Data
+
         print("JD89: loadSelectedPHotos started")
         for selectedItem in self.rowSelection{
             print("JD90: loadSelectedPHotos started")
@@ -422,16 +330,128 @@ struct MultipleSelectRow : View {
                 for file in try Folder(path: selectedItem.wrappedFolderURL.path).files {
                     print("JD63: \(file.url.downloadURL) - \(file.name) - \(file.path)")
                     prefs.arrayOfURLStrings.append(String(describing: file.url.downloadURL))
-                    //userSettings.arrayPhotoURLs.append(file.url.downloadURL) //(String(describing: file.url))
+                    //storedUserData.arrayPhotoURLs.append(file.url.downloadURL) //(String(describing: file.url))
                 }
             }  catch {
                 print("JD19: Catch Error", error)
             }
         }
 
-       // print("JD00: userSettings.arrayPhotoURLs: \(userSettings.arrayPhotoURLs)")
+       // print("JD00: storedUserData.arrayPhotoURLs: \(storedUserData.arrayPhotoURLs)")
         //prefs.arrayOfFolders.removeAll()
-    }
+    } */
+
+
+
+    /*   private func deleteBookmarkURLs() {
+     var actualPath: URL
+     //var filesToDelete: [URL]
+     //  var urlTest: Data
+     //  var fileData: [Data]
+
+
+     for selectedItem in self.rowSelection{
+     let fileData = try? Data.init(contentsOf: selectedItem.folderURL!)
+     print("JD150: ", fileData)
+     let fileName = url.lastPathComponent
+
+     actualPath = getDocumentsDirectory().appendingPathComponent(fileName)
+
+     //fileData.append(restoreFileAccess(with: storedUserData.arrayWorkingDirectoryBookmark.contains(putThePhotoDataHere)))
+
+
+     // try fileData?.write(to: actualPath)
+
+     // filesToDelete.append(actualPath)
+     //  prefs.arrayOfURLStrings.append(String(describing: actualPath))
+
+     if(fileData == nil){
+     print("Permission error!")
+     }
+     else {
+     print("Success.")
+     }
+     }
+
+     func getDocumentsDirectory() -> URL {
+     return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+     }
+
+
+
+
+     print("JD121: delete bookmarks.")
+     /*    for selectedItem in self.rowSelection{
+      //print("JD140: ", selectedItem.folderURL) //This gets the folder URL.
+      do {
+
+      for i in 0..<storedUserData.arrayWorkingDirectoryBookmark.count {
+      print("JD141: Now looping saved bookmark array.")
+
+      url = restoreFileAccess(with: storedUserData.arrayWorkingDirectoryBookmark[i])!
+
+      //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
+      if (url.startAccessingSecurityScopedResource()) {
+      print("JD142: Access granted. Working yes.")
+
+      //TODO: - If the files have the same parent folder name as selectedItem, then delete it.
+      // if (selectedItem.folderURL == storedUserData.arrayWorkingDirectoryBookmark.remove(at: <#T##Int#>))
+      storedUserData.arrayWorkingDirectoryBookmark.remove(at: i)
+
+      if let index = storedUserData.arrayWorkingDirectoryBookmark.firstIndex(of: url.dataRepresentation) {
+      storedUserData.arrayWorkingDirectoryBookmark.remove(at: index)
+      print("JD122: \(storedUserData.arrayWorkingDirectoryBookmark.count)")
+      // testUrlResourceKey.remove(at: index) // Set<URLResourceKey>.Index
+      //self.context.delete(selectedItem)
+      }
+      //print("JD68: LOADING BOOKMARK. \(prefs.arrayOfURLStrings)")
+      } else {
+      print("JD67: False")
+      }
+      }
+      url.stopAccessingSecurityScopedResource()
+
+      // let url = try URL(resolvingBookmarkData: bookmarkData[0], bookmarkDataIsStale: &isStale)
+
+
+      //let url = selectedItem.wrappedFolderURL
+
+      //                    if (CFURLStartAccessingSecurityScopedResource(url as CFURL)) {
+      //                        print("JD126: Access Granted.")
+      //                        // if url.startAccessingSecurityScopedResource() {
+      //
+      //
+      //                     //   let data = try Data(contentsOf: selectedItem.folderURL!)
+      //
+      //                        if let index = storedUserData.arrayWorkingDirectoryBookmark.firstIndex(of: data) {
+      //                            storedUserData.arrayWorkingDirectoryBookmark.remove(at: index)
+      //                            print("JD122: \(storedUserData.arrayWorkingDirectoryBookmark.count)")
+      //                            // testUrlResourceKey.remove(at: index) // Set<URLResourceKey>.Index
+      //                            //self.context.delete(selectedItem)
+      //                        }
+      //
+      //                        //guard let message = String(data: try Data(contentsOf: selectedFile), encoding: .utf8) else { return }
+      //
+      //                        //guard
+      //                        //let data = try Data(contentsOf: selectedItem.folderURL!) //else { return }
+      //
+      //
+      //                        print("JD120: \(storedUserData.arrayWorkingDirectoryBookmark.count)")
+      //
+      //
+      //                        //done accessing the url
+      //                        CFURLStopAccessingSecurityScopedResource(selectedItem.wrappedFolderURL as CFURL)
+
+
+      //selectedItem.folderURL!.dataRepresentation
+      } catch {
+      print("JD110: ", error)
+      }
+      }   */
+     try? self.context.save()
+     rowSelection = Set<PhotoFolders>()
+     print("JD131: deleteBookmarkURLs done")
+     }//End Func. */
 } //End Struct.
 
 
@@ -448,23 +468,23 @@ struct MultipleSelectRow : View {
      /*
       for selectedItem in self.rowSelection{
       let url = selectedItem.wrappedFolderURL
-      userSettings.storedFolderURL = url
+      storedUserData.storedFolderURL = url
 
-      print("JD60: \(userSettings.storedFolderURL.downloadURL)")
+      print("JD60: \(storedUserData.storedFolderURL.downloadURL)")
       // saveBookmarkData(for: url)
 
       //FIXME: - Is restoreFileAccess working? No.
       //It does load in the URL correctly, but the image does not show.
-      let savedURL = restoreFileAccess(with: userSettings.workingDirectoryBookmark)
+      let savedURL = restoreFileAccess(with: storedUserData.workingDirectoryBookmark)
 
 
-      userSettings.recoveredURL = savedURL//!.downloadURL
+      storedUserData.recoveredURL = savedURL//!.downloadURL
 
-      prefs.arrayOfURLStrings.append(userSettings.recoveredURL.path)
+      prefs.arrayOfURLStrings.append(storedUserData.recoveredURL.path)
       print("JD65: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings)")
-      print("JD61: userSettings.recoveredURL \(userSettings.recoveredURL)")
+      print("JD61: storedUserData.recoveredURL \(storedUserData.recoveredURL)")
 
-      //  CFURLCreateBookmarkData(nil, userSettings.storedFolderURL.downloadURL as CFURL, options: [userSettings.storedFolderURL], nil, nil, nil)
+      //  CFURLCreateBookmarkData(nil, storedUserData.storedFolderURL.downloadURL as CFURL, options: [storedUserData.storedFolderURL], nil, nil, nil)
 
       print("JD36: cdFolders.count", cdFolders.count)
 
@@ -478,16 +498,16 @@ struct MultipleSelectRow : View {
 
       do {
       //LOAD AND SAVE URLS FOR IMAGES IN FOLDERS.
-      //     userSettings.url = selectedItem.wrappedFolderURL
+      //     storedUserData.url = selectedItem.wrappedFolderURL
 
 
-      //userSettings.storedFolderURL = selectedItem.wrappedFolderURL
+      //storedUserData.storedFolderURL = selectedItem.wrappedFolderURL
       //TODO: - FOR loop in Security Access
       do {
       var error: NSError? = nil
 
       //                        //FIXME: - Will only work if a folder is a selected, NOT a photo.
-      //                        for file in try Folder(path: selectedItem.wrappedFolderURL.path).files {  //userSettings.url.path
+      //                        for file in try Folder(path: selectedItem.wrappedFolderURL.path).files {  //storedUserData.url.path
       //                            print("JD63: \(file.url.downloadURL) - \(file.name) - \(file.path)")
       //
       //                            prefs.arrayOfURLStrings.append(String(describing: file.url.downloadURL))
@@ -496,18 +516,18 @@ struct MultipleSelectRow : View {
       //                            print("JD62: file.url \(file.url)")
       //                            let imageData = try Data(contentsOf: file.url)
       //                            let img = UIImage(data: imageData)
-      //                            //  userSettings.photo = (img?.pngData())! //?? img?.jpegData(compressionQuality: 1)
+      //                            //  storedUserData.photo = (img?.pngData())! //?? img?.jpegData(compressionQuality: 1)
       //
-      //                            userSettings.photo = (img?.jpegData(compressionQuality: 1))!//.append(img)
+      //                            storedUserData.photo = (img?.jpegData(compressionQuality: 1))!//.append(img)
       //                            //Image(uiImage: UIImage(data: student.picture ?? Data()) ?? UIImage())
       //
-      //                            //userSettings.arrayPhotoURLs.append(file.url.downloadURL) //(String(describing: file.url))
+      //                            //storedUserData.arrayPhotoURLs.append(file.url.downloadURL) //(String(describing: file.url))
       //                        }
       } catch {
       print("JD19: Catch Error", error)
       }
       //  saveBookmarkData(for: selectedItem.wrappedFolderURL)
-      // saveBookmarkData(for: userSettings.storedFolderURL)
+      // saveBookmarkData(for: storedUserData.storedFolderURL)
       CFURLStopAccessingSecurityScopedResource(url as CFURL?) // <- and here
       }
       try? self.context.save()
@@ -517,10 +537,10 @@ struct MultipleSelectRow : View {
 
       // print("JD04: prefs.arrayOfFolders : \(prefs.arrayOfFolders)")
       //  print("JD05: prefs.arrayOfURLStrings : \(prefs.arrayOfURLStrings)")
-      // print("JD06: userSettings.arrayPhotoURLs: \(userSettings.arrayPhotoURLs)")
+      // print("JD06: storedUserData.arrayPhotoURLs: \(storedUserData.arrayPhotoURLs)")
       } */
 
-     //userSettings.url.path
+     //storedUserData.url.path
      //print("JD63: \(file.url.downloadURL) - \(file.name) - \(file.path)")
 
      //If the URL is in the bookmarkArray, then load it and append it.
@@ -547,7 +567,7 @@ struct MultipleSelectRow : View {
 
     private func showPhotoFunction() {
         //TODO: - Show Photo Here.
-        url = restoreFileAccess(with: userSettings.workingDirectoryBookmark)!
+        url = restoreFileAccess(with: storedUserData.workingDirectoryBookmark)!
 
         //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
         if (url.startAccessingSecurityScopedResource()) {
@@ -560,26 +580,26 @@ struct MultipleSelectRow : View {
     }
     
     private func cdSaveArray() {
-        print("JD00: userSettings.arrayPhotoURLs: \(userSettings.arrayPhotoURLs)")
+        print("JD00: storedUserData.arrayPhotoURLs: \(storedUserData.arrayPhotoURLs)")
         //prefs.arrayOfFolders.removeAll()
         for selectedItem in self.rowSelection{
             let url = selectedItem.wrappedFolderURL
-            userSettings.storedFolderURL = url
+            storedUserData.storedFolderURL = url
 
-            print("JD60: \(userSettings.storedFolderURL.downloadURL)")
+            print("JD60: \(storedUserData.storedFolderURL.downloadURL)")
            // saveBookmarkData(for: url)
 
             //FIXME: - Is restoreFileAccess working? No.
             //It does load in the URL correctly, but the image does not show.
-            let savedURL = restoreFileAccess(with: userSettings.workingDirectoryBookmark)
+            let savedURL = restoreFileAccess(with: storedUserData.workingDirectoryBookmark)
 
-            userSettings.recoveredURL = savedURL!//!.downloadURL
+            storedUserData.recoveredURL = savedURL!//!.downloadURL
 
-            prefs.arrayOfURLStrings.append(userSettings.recoveredURL.path)
+            prefs.arrayOfURLStrings.append(storedUserData.recoveredURL.path)
             print("JD65: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings)")
-            print("JD61: userSettings.recoveredURL \(userSettings.recoveredURL)")
+            print("JD61: storedUserData.recoveredURL \(storedUserData.recoveredURL)")
 
-            //  CFURLCreateBookmarkData(nil, userSettings.storedFolderURL.downloadURL as CFURL, options: [userSettings.storedFolderURL], nil, nil, nil)
+            //  CFURLCreateBookmarkData(nil, storedUserData.storedFolderURL.downloadURL as CFURL, options: [storedUserData.storedFolderURL], nil, nil, nil)
 
             print("JD36: cdFolders.count", cdFolders.count)
 
@@ -593,16 +613,16 @@ struct MultipleSelectRow : View {
 
                 do {
                     //LOAD AND SAVE URLS FOR IMAGES IN FOLDERS.
-                    //     userSettings.url = selectedItem.wrappedFolderURL
+                    //     storedUserData.url = selectedItem.wrappedFolderURL
 
 
-                    //userSettings.storedFolderURL = selectedItem.wrappedFolderURL
+                    //storedUserData.storedFolderURL = selectedItem.wrappedFolderURL
                     //TODO: - FOR loop in Security Access
                     do {
                         var error: NSError? = nil
 
                         //FIXME: - Will only work if a folder is a selected, NOT a photo.
-                        for file in try Folder(path: selectedItem.wrappedFolderURL.path).files {  //userSettings.url.path
+                        for file in try Folder(path: selectedItem.wrappedFolderURL.path).files {  //storedUserData.url.path
                             print("JD63: \(file.url.downloadURL) - \(file.name) - \(file.path)")
 
                             prefs.arrayOfURLStrings.append(String(describing: file.url.downloadURL))
@@ -611,18 +631,18 @@ struct MultipleSelectRow : View {
                             print("JD62: file.url \(file.url)")
                             let imageData = try Data(contentsOf: file.url)
                             let img = UIImage(data: imageData)
-                                //  userSettings.photo = (img?.pngData())! //?? img?.jpegData(compressionQuality: 1)
+                                //  storedUserData.photo = (img?.pngData())! //?? img?.jpegData(compressionQuality: 1)
 
-                            userSettings.photo = (img?.jpegData(compressionQuality: 1))!//.append(img)
+                            storedUserData.photo = (img?.jpegData(compressionQuality: 1))!//.append(img)
                             //Image(uiImage: UIImage(data: student.picture ?? Data()) ?? UIImage())
 
-                            //userSettings.arrayPhotoURLs.append(file.url.downloadURL) //(String(describing: file.url))
+                            //storedUserData.arrayPhotoURLs.append(file.url.downloadURL) //(String(describing: file.url))
                         }
                     } catch {
                         print("JD19: Catch Error", error)
                     }
                     //  saveBookmarkData(for: selectedItem.wrappedFolderURL)
-                    // saveBookmarkData(for: userSettings.storedFolderURL)
+                    // saveBookmarkData(for: storedUserData.storedFolderURL)
                     CFURLStopAccessingSecurityScopedResource(url as CFURL?) // <- and here
                 }
                 try? self.context.save()
@@ -631,7 +651,7 @@ struct MultipleSelectRow : View {
             }
             print("JD04: prefs.arrayOfFolders : \(prefs.arrayOfFolders)")
             print("JD05: prefs.arrayOfURLStrings : \(prefs.arrayOfURLStrings)")
-            print("JD06: userSettings.arrayPhotoURLs: \(userSettings.arrayPhotoURLs)")
+            print("JD06: storedUserData.arrayPhotoURLs: \(storedUserData.arrayPhotoURLs)")
         }
     }
 
@@ -640,8 +660,8 @@ struct MultipleSelectRow : View {
             let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
             
             // save in UserDefaults
-            userSettings.workingDirectoryBookmark = bookmarkData
-            print("JD22: \(userSettings.workingDirectoryBookmark)")
+            storedUserData.workingDirectoryBookmark = bookmarkData
+            print("JD22: \(storedUserData.workingDirectoryBookmark)")
         } catch {
             print("Failed to save bookmark data for \(workDir)", error)
         }
@@ -799,15 +819,15 @@ struct MultipleSelectRow : View {
  //for selectedItem in dataProvider.allNotes {
  //    if (selectedItem.isFolderSelected) {
 
- //userSettings.storedFolderData = try! Data.init(contentsOf: url)
+ //storedUserData.storedFolderData = try! Data.init(contentsOf: url)
  //    selectedItem. = try! Data.init(contentsOf: url)
- //userSettings.storedFolderURL) //selectedItem.wrappedURL
+ //storedUserData.storedFolderURL) //selectedItem.wrappedURL
 
- // print("JD31: userSettings.storedFolderData: ", userSettings.storedFolderData)
+ // print("JD31: storedUserData.storedFolderData: ", storedUserData.storedFolderData)
 
- // userSettings.workingDirectoryBookmark)//userSettings.workingDirectoryBookmark)
+ // storedUserData.workingDirectoryBookmark)//storedUserData.workingDirectoryBookmark)
 
- //    CFURLCreateBookmarkData(nil, userSettings.storedFolderURL.downloadURL as CFURL, options: [userSettings.storedFolderURL], nil, nil, nil)
+ //    CFURLCreateBookmarkData(nil, storedUserData.storedFolderURL.downloadURL as CFURL, options: [storedUserData.storedFolderURL], nil, nil, nil)
 
  //    let url = selectedItem.wrappedFolderURL
  */

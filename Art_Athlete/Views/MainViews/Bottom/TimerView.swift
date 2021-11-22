@@ -12,6 +12,8 @@ import SwiftUI
 struct TimerView: View{
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
+
+    let persistenceController = PersistenceController.shared
     
    // private var sourceTimer: DispatchSourceTimer?
     
@@ -25,6 +27,7 @@ struct TimerView: View{
     
     //SAVE DATA...
     @Environment(\.managedObjectContext) var context
+
     @FetchRequest(
         entity: UserData.entity(), sortDescriptors: []
         //sortDescriptors: [NSSortDescriptor(keyPath: \UserData.countPoses, ascending: true)]
@@ -169,6 +172,9 @@ struct TimerView: View{
         prefs.disableSkip.toggle()
         
         prefs.startSession = false
+
+        persistenceController.save()
+        //persistenceControllerCoreData.saveCoreData()
         
        // ContentView().endSession()
       //  NavBar(timeObject: _timeObject, prefs: _prefs, testData: testData, startSession: $startSession, photoData: photoData, folderData: folderData).endSession()

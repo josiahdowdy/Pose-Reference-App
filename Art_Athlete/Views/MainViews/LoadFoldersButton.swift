@@ -3,54 +3,31 @@ import SwiftUI
 import Files
 import UniformTypeIdentifiers
 
-extension Array where Element: Equatable {
-    mutating func removeDuplicates() {
-        var result = [Element]()
-        for value in self {
-            if !result.contains(value) {
-                result.append(value)
-            }
-        }
-        self = result
-    }
-}
+
 
 struct LoadFoldersButton: View {
     // MARK: - Properties
-  //  let note: Note
-
+    @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
-    @ObservedObject var userSettings = StoredUserData()
+    @EnvironmentObject var storedUserData: StoredUserData //= StoredUserData()   //@AppStorage
+    @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
+
+    @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
+    @AppStorage("fileName") var fileName: [[String]] = [[]]
+
    // @ObservedObject var dataProvider = DataProvider.shared
+    //@AppStorage(storedUserData.arrayOfFolderNames)
 
     @State var isImporting: Bool = false
     @Binding var totalPhotosLoaded: Int
-
-    @State var intToString: String = ""
-
-    
-    @Environment(\.managedObjectContext) var context
-
     @Binding var isloadingPhotos: Bool
 
-   // @State var images = [UIImage(), UIImage()]
-    
-    
-    //  var folderData : FetchedResults<PhotoFolders>
-
-//    @FetchRequest(entity: PhotoFolders.entity(), sortDescriptors: []
-//    ) var folderData : FetchedResults<PhotoFolders>
-//
-//    @FetchRequest(entity: PhotosArray.entity(), sortDescriptors: []
-//    ) var photosArray : FetchedResults<PhotosArray>
     //MARK: END VARIABLES
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._*/
     //MARK: VIEW
     var body: some View {
         VStack(alignment: .trailing) {
-
-            
             Button(action: {
                 //prefs.showLoadingAnimation = true
                 isImporting = false
@@ -64,8 +41,6 @@ struct LoadFoldersButton: View {
                         isImporting = true
                     }
                 }
-
-
             }, label: {
                 Image(systemName: "folder.badge.plus")
             })
@@ -76,79 +51,72 @@ struct LoadFoldersButton: View {
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - FUNCTIONS
-    func updateLoadingCount() {
-        self.totalPhotosLoaded += 1
-
-        /*
-        if #available(iOS 15.0, *) {
-            Task {
-                self.totalPhotosLoaded += 1
-            }
-        } else {
-            // Fallback on earlier versions
-            DispatchQueue.main.async {
-                self.totalPhotosLoaded += 1
-            }
-        } */
-    }
-
     func importImage(_ result: Result<[URL], Error>) {
         isloadingPhotos = true
         do{
-           //userSettings.arrayWorkingDirectoryBookmark.removeAll() //MARK: - TURN OFF to keep all files.
+           //storedUserData.arrayWorkingDirectoryBookmark.removeAll() //MARK: - TURN OFF to keep all files.
             prefs.arrayOfURLStringsTEMP.removeAll()
+
             let selectedFiles = try result.get()//let selectedFiles = try res.get()
-            print("JD40: ", selectedFiles)
+            //print("JD40: ", selectedFiles)
 
             prefs.totalFilesSelected = selectedFiles.count
 
-            let folderNameArray = selectedFiles[0].pathComponents.suffix(2) //Get the folder and photo name.
-            let newArray = Array(folderNameArray) //Convert it so you can just grab the folder name.
+            let folderName = Array(selectedFiles[0].pathComponents.suffix(2))
+            arrayOfFolderNames.append(folderName[0])
 
-//            let newFolder = PhotoFolders(context: context)
-//            newFolder.id = UUID()
-//            newFolder.folderName = newArray[0]//folderNameArray[1]
-//            newFolder.folderURL = selectedFiles[0].deletingLastPathComponent()
+            //TODO: Duplicates in Array.
+            if (prefs.doesFolderAlreadyExist) {
+                arrayOfFolderNames.removeDuplicates()
+              //  storedFileURLs.remove(at: <#T##Int#>)
+            }
 
-            //newFolder.photo = selectedFiles[i].dataRepresentation
-            //print("JD80: \(String(describing: newFolder.folderName))")
-           // newFolder.folderURL = selectedFiles.description.pathExtension //Save the folder URL.
-           // newFolder.tag = "Human Poses"
+            print("JD300: ", arrayOfFolderNames.count, " - ", arrayOfFolderNames)
 
       //      newFolder.addToPhotosArray(selectedFiles)
+            var newRowIn2DArray = [URL]()
 
             for i in 0...(selectedFiles.count-1) {
-                let newPhoto = PhotosArray(context: context)
-                newPhoto.id = UUID()
-                newPhoto.fileName = selectedFiles[i].lastPathComponent
-                newPhoto.photoURL = selectedFiles[i]
-                newPhoto.photoFolders = PhotoFolders(context: self.context)
+                newRowIn2DArray.append(selectedFiles[i])
 
-                let getFolderName = Array(selectedFiles[0].pathComponents.suffix(2))
-                newPhoto.photoFolders?.folderName = getFolderName[0]
-                newPhoto.photoFolders?.folderURL = selectedFiles[i].deletingLastPathComponent()
+//                let newPhoto = PhotosEntity(context: context)//PhotosArray(context: context)
+//                newPhoto.id = UUID()
+//                newPhoto.fileName = selectedFiles[i].lastPathComponent
+//                newPhoto.photoURL = selectedFiles[i]
+//                newPhoto.folderRel = FoldersEntity(context: self.context)
+//
+//                let getFolderName = Array(selectedFiles[0].pathComponents.suffix(2))
+//                newPhoto.folderRel?.folderName = getFolderName[0]
+//                newPhoto.folderRel?.folderURL = selectedFiles[i].deletingLastPathComponent()
 
                 prefs.arrayOfURLStringsTEMP.append(selectedFiles[i])
                 updateLoadingCount()
                 saveFile(url: selectedFiles[i])
-                //userSettings.photoArray.append(selectedFiles[i].dataRepresentation)
+                //storedUserData.photoArray.append(selectedFiles[i].dataRepresentation)
             }
+
+            storedFileURLs.append(newRowIn2DArray) //Adds a new Row.
+            newRowIn2DArray.removeAll()
+
+            print("JD301: \(storedFileURLs)")
 
             //Also save the folder itself. Not sure if needed?
            // saveFile(url: newPhoto.photoFolders?.folderURL)
 
-            userSettings.arrayWorkingDirectoryBookmark.removeDuplicates()
-            print("JD140: bookmarkcount: \(userSettings.arrayWorkingDirectoryBookmark.count)")
+            storedUserData.arrayWorkingDirectoryBookmark.removeDuplicates()
+            print("JD140: bookmarkcount: \(storedUserData.arrayWorkingDirectoryBookmark.count)")
 
-            do {
-                try? self.context.save()  //try?
-            } catch {
-                print ("JD150: ", error.localizedDescription)
-            }
+            try? self.context.save()
+
+//            do {
+//                try? self.context.save()  //try?
+//            } catch {
+//                print ("JD150: ", error.localizedDescription)
+//            }
 
 
            // print("JD11: \(prefs.arrayOfURLStrings)")
-            //print("JD41: userSettings.photoArray \(userSettings.photoArray.description)")
+            //print("JD41: storedUserData.photoArray \(storedUserData.photoArray.description)")
           //  print("JD42: newFolder.photo \(String(describing: newFolder.photo?.description))")
 
           //  selectedFiles.stopAccessingSecurityScopedResource()
@@ -176,7 +144,7 @@ struct LoadFoldersButton: View {
 
             do {
                 try fileData?.write(to: actualPath)
-                prefs.arrayOfURLStrings.append(String(describing: actualPath))
+                //prefs.arrayOfURLStrings.append(String(describing: actualPath))
 
 
                 if(fileData == nil){
@@ -208,20 +176,36 @@ struct LoadFoldersButton: View {
 //            guard workDir.startAccessingSecurityScopedResource() else { return }
 //                print("JD110: Access granted.")
 
-                userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
+                storedUserData.arrayWorkingDirectoryBookmark.append(bookmarkData)
             workDir.stopAccessingSecurityScopedResource()
-            print("JD103: Saved bookmark data.\(userSettings.arrayWorkingDirectoryBookmark)")
-           // print("JD22: userSettings.arrayWorkingDirectoryBookmark \(userSettings.arrayWorkingDirectoryBookmark)")
+            print("JD103: Saved bookmark data.\(storedUserData.arrayWorkingDirectoryBookmark)")
+           // print("JD22: storedUserData.arrayWorkingDirectoryBookmark \(storedUserData.arrayWorkingDirectoryBookmark)")
         } catch {
             print("JD102: Failed to save bookmark data for \(workDir)", error)
         }
+    }
+
+    func updateLoadingCount() {
+        self.totalPhotosLoaded += 1
+
+        /*
+         if #available(iOS 15.0, *) {
+         Task {
+         self.totalPhotosLoaded += 1
+         }
+         } else {
+         // Fallback on earlier versions
+         DispatchQueue.main.async {
+         self.totalPhotosLoaded += 1
+         }
+         } */
     }
 
 
 
     //FIXME: - Not used right now.
     func saveFileArray (url: [URL]) {
-        var actualPath: [URL]
+        //var actualPath: [URL]
 
        // if (CFURLStartAccessingSecurityScopedResource([url] as CFURL)) { // <- here
             //BOOKMARK IT!
@@ -264,415 +248,51 @@ struct LoadFoldersButton: View {
             //, relativeTo: nil
 
             // save in UserDefaults
-            //userSettings.workingDirectoryBookmark = bookmarkData
+            //storedUserData.workingDirectoryBookmark = bookmarkData
 
             //let testPoo = try workDir.bookm
 
-         //   userSettings.savedFileURLs.bookmarkData(includingResourceValuesForKeys: workDir)
+         //   storedUserData.savedFileURLs.bookmarkData(includingResourceValuesForKeys: workDir)
 
-          //  userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
+          //  storedUserData.arrayWorkingDirectoryBookmark.append(bookmarkData)
             print("JD103: Saved bookmark data.")
-            // print("JD22: userSettings.arrayWorkingDirectoryBookmark \(userSettings.arrayWorkingDirectoryBookmark)")
-        } catch {
-            print("JD102: Failed to save bookmark data for \(workDir)", error)
-        }
+            // print("JD22: storedUserData.arrayWorkingDirectoryBookmark \(storedUserData.arrayWorkingDirectoryBookmark)")
+        }// catch { print("JD102: Failed to save bookmark data for \(workDir)", error) }
     }
-
-/*    private func saveBookmarkDataArray(for workDir: [URL]) { //URL //for workDir: URL //[URL: Data]
-        // resourceValues(forKeys:fromBookmarkData:)
-        do {
-           // let bookmarkDataArray = try workDir.bookmarkData(options: workDir.BookmarkCreationOptions.insert(self), includingResourceValuesForKeys: <#T##Set<Foundation.URLResourceKey>?#>, relativeTo: <#T##Foundation.URL?#>)
-            let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: nil, relativeTo: nil)
-
-            // save in UserDefaults
-            userSettings.workingDirectoryBookmark = bookmarkData
-
-            userSettings.arrayWorkingDirectoryBookmark.append(bookmarkData)
-
-            print("JD22: userSettings.arrayWorkingDirectoryBookmark \(userSettings.arrayWorkingDirectoryBookmark)")
-        } catch {
-            print("Failed to save bookmark data for \(workDir)", error)
-        }
-    } //End func. */
-
-} //END OF STRUCT.
-
-/*
+}
 
 
- // guard let selectedFolder = try res.get() else { return }//try result.get() else { return }
+//MARK: - extensions.
+extension Array where Element: Equatable {
+    mutating func removeDuplicates() {
+        var result = [Element]()
 
- // userSettings.storedFolderData = selectedFolder
- //userSettings.storedFolderURL = selectedFolder
- //  userSettings.arrayOfFolderURLs.append(selectedFolder.path)
+        for value in self {
+            if !result.contains(value) {
+                result.append(value)
 
- /*
-  guard selectedFiles.startAccessingSecurityScopedResource() else { return }
-  print("Access granted.")
-  let  selectedFolder = selectedFiles
-
-
-  let folderName: String = selectedFolder.lastPathComponent
-
-  print("JD31: \(selectedFolder)")
-  let newFolder = PhotoFolders(context: context)
-  newFolder.id = UUID()
-  newFolder.folderURL = selectedFolder //Save the folder URL.
-  newFolder.folderName = folderName
-  newFolder.tag = "Human Poses"
-  */
- // print("JD32: \(newFolder.folderURL)")
-
-
- /*
-  for file in try Folder(path: selectedFolder.path).files {
-  prefs.arrayOfURLStrings.append(file.path)
-
-  }
-  */
-
- //            if let imageData = try? Data(contentsOf: selectedFiles),
- //               let image = UIImage(data: imageData) {
- //                self.images[index] = image
- //            }
-
-
-
-
-
-
-    func saveFile (url: URL) {
-        var actualPath: URL
-        
-        if (CFURLStartAccessingSecurityScopedResource(url as CFURL)) { // <- here
-            
-            let fileData = try? Data.init(contentsOf: url)
-            let fileName = url.lastPathComponent
-            
-            actualPath = getDocumentsDirectory().appendingPathComponent(fileName)
-            
-            // print("\nactualPath = \(actualPath)\n") //Prints out the actual path.
-            do {
-                try fileData?.write(to: actualPath)
-                prefs.arrayOfURLStrings.append(String(describing: actualPath))
-
-                if(fileData == nil){
-                    print("Permission error!")
-                }
-                else {
-                    //print("Success.")
-                }
-            } catch {
-                print(error.localizedDescription)
             }
-            CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
-            
         }
-        else {
-            print("Permission error!")
-        }
-        
-        func getDocumentsDirectory() -> URL {
-            return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        }
-        
+        self = result
     }
- */
-    //----------------------END FUNCTIONS------------------------------------------
-
-
-
-
-/*
- .fileImporter(
- isPresented: $isImporting, allowedContentTypes: [UTType.folder], //, UTType.png, UTType.image, UTType.jpeg, UTType.pdf],
- allowsMultipleSelection: false,
- onCompletion: { result in
- do {
- guard let selectedFolder: URL = try result.get().first else { return }
-
-
- let folderName: String = selectedFolder.lastPathComponent
-
- let newFolder = PhotoFolders(context: context)
- newFolder.id = UUID()
- newFolder.folderURL = selectedFolder //Save the folder URL.
- newFolder.folderName = folderName
- newFolder.tag = "Human Poses"
-
-
- userSettings.storedFolderURL = selectedFolder
-
- print("JD32: \(userSettings.storedFolderURL)")
-
- userSettings.arrayOfFolderURLs.append(selectedFolder.path)
- // userSettings.workingDirectoryBookmark = selectedFolder
-
- //Store photo urls in array.
- var arrayFiles = [String]()
- for i in try Folder(path: selectedFolder.path).files {
- arrayFiles.append(i.path) //Save the photo urls into the array.
- }
-
- for file in try Folder(path: selectedFolder.path).files {
- //userSettings.arrayPhotoURLs = [file]
- userSettings.arrayOfFolderNames.append(file.name)
- userSettings.arrayOfFolderURLs.append(file.path)
- userSettings.arrayPhotoDownloadPath.append(file.url.downloadURL)
- }
-
-
-
-
- /*
-  print("JD11: \(selectedFolder.lastPathComponent)")
-
-  // let newFolder = PhotoFolders(context: context)
-  let newPhoto = PhotosArray(context: context)
-
-  for file in try Folder(path: selectedFolder.path).files {
-  print(file.name)
-
-  print("JD15:", file.path)
-
-  //  let data = file.jpegData(compressionQuality: 1.0)
-
-  let imageData = try? file.read()
-
-  //newPhoto.photosArrayJosiah.append(contentsOf: imageData)
-
-  newPhoto.id = UUID()
-  newPhoto.photo = imageData
-  newPhoto.photoURL = URL(string: file.path)
-  newPhoto.photoURLString = file.path
-  newPhoto.fileName = file.name
-  //newPhoto2.photoFolders. = selectedFolder.lastPathComponent
-  newPhoto.photoFolders?.folderName = selectedFolder.lastPathComponent
-
-  newFolder.photosArray?.addingObjects(from: [newPhoto])
-
-  // prefs.arrayOfObjects
-
-  print("JD13: \(newPhoto)")
-
-  }
-
-  print("JD14: \(newFolder)")
-
-
-  try? self.context.save()
-
-  //                    if let imageData = selectedFolder.image?.pngData() {
-  //                        DataBaseHelper.shareInstance.saveImage(data: imageData)
-  //                    }
-
-
-
-
-
-  //                    if let photosArray = newPhoto.photosArray {
-  //                        newPhoto.photosArray = photosArray.addingObjects(from: file.name) as NSSet
-  //                    }
-
-
-  /*¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
-   STORE THE PHOTO URL TO THE DATABASE.
-   i am not saving the photo, but the link to it, so I have permission in the future.
-   ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡*/
-
-
-  //                    for file in try Folder(path: selectedFolder.path).files {
-  //                        if let photosArray = newPhoto.photosArray {
-  //                            newPhoto.photosArray = photosArray.addingObjects(from: self.files)
-  //                        }
-  //
-  //                    }
-
-  /*
-   if let categoriesToSAve = newQuestion.categories {                             newQuestion.categories = categoriesToSAve.addingObjects(from: self.selections) as NSSet
-   }
-   else {
-   newQuestion.categories = Set(self.selections) as NSSet
-   }
-   */
-
-
-  //••••••••••••••••••••••••••••••••••••••••••••••••••
-  //Now save the URLs of the files in the folder.
-  //   guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-  //   let arrayURLs : [String]//= selectedFolder.path
-
-  //                    selectedFolder.appendPathComponent("/")
-  //                    print("josiah selectedFolder", selectedFolder.appendingPathComponent("/")) //selectedFolder.path)
-  //                    print("Josiah documentsDirectory", documentsDirectory)
-
-  */
-
- } catch { print("failed") }
- }) */
-// .toolbar { Menu("Action") {  } }
-
-
-//
-//        Button(action: {
-//            print("button")
-//            for file in try Folder(path: "/downloads").files {
-//                print(file.name)
-//            }
-//           // let folder = try Folder(path: "/users/josiahdowdy/folder")
-//            //let file = try folder.createFile(named: "file.json")
-//           // try file.write("{\"hello\": \"world\"}")
-//          //  try file.delete()
-//          //  try folder.delete()
-//        }) {
-//            Image(systemName: "folder.badge.plus")
-//        } //.keyboardShortcut(.downArrow)
-//
-
-//        for file in try Folder(path: "MyFolder").files {
-//            print(file.name)
-//        }
-
-
-/*
- struct LoadFoldersView_Previews: PreviewProvider {
- static var previews: some View {
- LoadFoldersView()
- }
- }
- */
-
-
-
-    /*
-     .fileImporter(
-     //isPresented: $isImporting, allowedContentTypes: [UTType.png, UTType.image, UTType.jpeg, UTType.pdf],
-     isPresented: $isImporting, allowedContentTypes: [UTType.folder], //, UTType.png, UTType.image, UTType.jpeg, UTType.pdf],
-     allowsMultipleSelection: false, //set to true to select multiple folders. But then I need to put them in an array.
-     onCompletion: { result in
-     do {
-     //What to do with the File import. - I just want to save the folder name and location.
-     guard var selectedFolder: URL = try result.get().first else { return }
-     //guard let filesInFolder: [URL]? = try result.get() else { return }
-
-     //••••••••••TEST••••••••••••••••••••••••••••••••••••••••
-     //                    guard let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first else { return }
-     //                    if let pathURL = URL.init(string: path) {
-     //                        let dataURL = pathURL.appendingPathComponent("JosiahsFolder")
-     //                        print("JP2, \(dataURL)")
-     //                        //dataURL creates a folder in this directory:
-     //                        /// /Users/josiahdowdy/Library/Containers/josiahdowdy.artathlete/Data/Documents/JosiahsFolder
-     //                        do {
-     //                            try FileManager.default.createDirectory(atPath: dataURL.absoluteString, withIntermediateDirectories: true, attributes: nil)
-     //
-     //                            let originFolder = dataURL
-     //                            let targetFolder = dataURL
-     //                            try originFolder.files.move(to: targetFolder)
-     //                        } catch let error as NSError {
-     //                            print(error.localizedDescription);
-     //
-     //                        }
-     //                    }
-     //                    else {
-     //                        print("Error in URL path");
-     //                    }
-     //•••TEST 2•••••••••••••••••••••••••••••••••••••••••••••••
-     //•••Works to create a folder in the container of the app. •••
-     /*
-      let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-      let documentsDirectory = paths[0]
-      let docURL = URL(string: documentsDirectory)!
-      let dataPath = docURL.appendingPathComponent("HarryJosiah")
-      if !FileManager.default.fileExists(atPath: dataPath.path) {
-      do {
-      try FileManager.default.createDirectory(atPath: dataPath.path, withIntermediateDirectories: true, attributes: nil)
-      } catch {
-      print(error.localizedDescription)
-      }
-      } */
-
-
-     for file in try Folder(path: selectedFolder.path).files {
-     print(file.name)
-     }
-
-     /*
-      let originFolder = try Folder(path: selectedFolder.path)
-
-      //iCloud Folder for app.
-      let driveURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents")
-
-      let targetFolder = try Folder(path: driveURL!.path)
-
-      do {
-      try originFolder.copy(to: targetFolder)
-      print("JD01: \(targetFolder)")
-
-      } catch {
-      print(error.localizedDescription)
-      }
-      */
-
-
-
-     //
-     //                    let targetFolder = try Folder(path: dataPath.path)
-     //                  try originFolder.files.move(to: targetFolder)
-
-     // ••• Copies files to another folder. •••
-     //                    do {
-     //                        try originFolder.copy(to: originFolder)
-     //
-     //                    } catch {
-     //                        print(error.localizedDescription)
-     //                    }
-
-     let downloadsFolder = Folder.documents
-
-     print("BUG03: \(String(describing: downloadsFolder))")
-     //••••••••••••••••••••••••••••••••••••••••••••••••••
-     //Now save the URLs of the files in the folder.
-     guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-     //   let arrayURLs : [String]//= selectedFolder.path
-
-     selectedFolder.appendPathComponent("/")
-     print("josiah selectedFolder", selectedFolder.appendingPathComponent("/")) //selectedFolder.path)
-     print("Josiah documentsDirectory", documentsDirectory)
-
-     let newFolder = PhotoFolders(context: context)
-     newFolder.folderURL = selectedFolder //Save the folder URL.
-     print("Josiah Fart Photos: \(newFolder.photosArrayJosiah)")
-     newFolder.id = UUID()
-
-     let folderName: String = selectedFolder.lastPathComponent
-
-     newFolder.folderName = folderName//newFolder.folderURL(newFolder.folderURL as NSString).lastPathComponent
-
-     //print("josiah: \(newFolder.folderName)")
-
-     // *IMPORTANT* : Make sure I move this to be done on Start of session.
-     // ...for when user updates the folder contents!
-     //let contentsInFolder = PhotosArray(context: context)
-
-
-     //   newFolder.PhotoFolders.
-
-     // contentsInFolder.photoFolders?.folderURL =
-
-     //
-     // contentsInFolder.photosString = selectedFolder.pathComponents //Save the contents in folderURLs into array.
-
-
-     //print("\n newFolder.folderURL: \(newFolder.folderURL) \n")
-
-     /* let selectedFiles = try result.get()
-      prefs.sPoseCount = selectedFiles.count
-
-      for i in 0...(selectedFiles.count-1) { //selectedFiles.count
-      //print("\n\(i)") //This prints out the photo data
-      saveFile(url: selectedFiles[i])
-      } */
-     // self.error = ""
-     } catch { print("failed") }
-     })
-     */
+}
+
+extension Array: RawRepresentable where Element: Codable {
+    public init?(rawValue: String) {
+        guard let data = rawValue.data(using: .utf8),
+              let result = try? JSONDecoder().decode([Element].self, from: data)
+        else {
+            return nil
+        }
+        self = result
+    }
+
+    public var rawValue: String {
+        guard let data = try? JSONEncoder().encode(self),
+              let result = String(data: data, encoding: .utf8)
+        else {
+            return "[]"
+        }
+        return result
+    }
+}

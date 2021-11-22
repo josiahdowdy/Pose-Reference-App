@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FoldersEntity" representedClassName="FoldersEntity" syncable="YES">
+        <attribute name="folderName" optional="YES" attributeType="String"/>
+        <attribute name="folderURL" optional="YES" attributeType="URI"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="photosRel" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PhotosEntity" inverseName="folderRel" inverseEntity="PhotosEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="folderName"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="PhotosEntity" representedClassName="PhotosEntity" syncable="YES">
+        <attribute name="fileName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="photoURL" optional="YES" attributeType="URI"/>
+        <relationship name="folderRel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FoldersEntity" inverseName="photosRel" inverseEntity="FoldersEntity"/>
+    </entity>
+    <elements>
+        <element name="FoldersEntity" positionX="-54" positionY="-9" width="128" height="89"/>
+        <element name="PhotosEntity" positionX="-63" positionY="-18" width="128" height="89"/>
+    </elements>
+</model>
