@@ -10,7 +10,7 @@ import Laden
 
 struct HomeScreenButtonsView: View {
     //@ObservedObject var dataProvider = DataProvider.shared
-    @EnvironmentObject var storedUserData: StoredUserData
+    
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
@@ -23,7 +23,7 @@ struct HomeScreenButtonsView: View {
 
     @State var rowSelection = Set<String>()
 
-
+   
 
 
     //@State var isImporting: Bool = false
@@ -64,13 +64,13 @@ struct HomeScreenButtonsView: View {
                 HStack {
                     LoadFoldersButton(totalPhotosLoaded: $totalPhotosLoaded, isloadingPhotos: $isloadingPhotos)
 
-                    Button(action: {
-                        storedUserData.arrayWorkingDirectoryBookmark.removeAll()
-                    }, label: {
-                        Image(systemName: "folder.fill.badge.minus")
-                    })
+//                    Button(action: {
+//                        storedUserData.arrayWorkingDirectoryBookmark.removeAll()
+//                    }, label: {
+//                        Image(systemName: "folder.fill.badge.minus")
+//                    })
 
-                    Text(String(totalPhotosLoaded))
+                 //   Text(String(totalPhotosLoaded))
                 }
 
                 //LoadFoldersButton(isImporting: true)
@@ -95,7 +95,7 @@ struct HomeScreenButtonsView: View {
                     if !(isloadingPhotos) {
                         // laden.hidden()
                         Text(prefs.error)
-                        Text(String("Array Bookmarks: \(storedUserData.arrayWorkingDirectoryBookmark.count)"))
+                       // Text(String("Array Bookmarks: \(storedUserData.arrayWorkingDirectoryBookmark.count)"))
 
                         Spacer().frame(maxWidth: .infinity)
 

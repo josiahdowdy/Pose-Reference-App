@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Files
 
 struct StartButton: View {
     @ObservedObject var storedUserData = StoredUserData()
@@ -26,9 +27,8 @@ struct StartButton: View {
     var body: some View {
             Button("Start \(Image(systemName: "play.rectangle.fill"))") {
              //   async { await ... }
-                loadBookmarkedPhotos()
-
-                onlyLoadSelectedPhotos()
+               // loadBookmarkedPhotos()
+              //  onlyLoadSelectedPhotos()
                 startSession()
             }
             .keyboardShortcut(.defaultAction)

@@ -4,7 +4,6 @@
 //
 //  Created by josiah on 2021-11-06.
 //
-
 import SwiftUI
 import Files
 import UniformTypeIdentifiers
@@ -12,17 +11,17 @@ import UniformTypeIdentifiers
 struct MultipleSelectRow : View {
     // MARK: - VARIABLES
     @Environment(\.managedObjectContext) var context
-    @EnvironmentObject var storedUserData: StoredUserData
-    @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
+    @EnvironmentObject var prefs: GlobalVariables
+    //@EnvironmentObject var storedUserData: StoredUserData
+    @ObservedObject var storedUserData = StoredUserData()
+    //@AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
     @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
     //@AppStorage("fileName") var fileName: [[String]] = [[]]
     
     //@ObservedObject var dataProvider = DataProvider.shared
-    @EnvironmentObject var prefs: GlobalVariables
     
     @State private var alertShowing = false
     @State private var editMode: EditMode = .inactive
-    
 
     //@State var rowSelection = Set<FoldersEntity>()
     @Binding var rowSelection: Set<String>
@@ -30,6 +29,8 @@ struct MultipleSelectRow : View {
     //@State var testUrlResourceKey = Set<URLResourceKey>()
     @State var url : URL = URL(fileURLWithPath: "nil")
     @State var selectAll = false
+
+    //@State var arrayOfFolderNames: [String] = []
 
     @Binding var totalPhotosLoaded: Int
 
@@ -39,6 +40,13 @@ struct MultipleSelectRow : View {
     @FetchRequest(entity: PhotosEntity.entity(), sortDescriptors:[])
     var fetchPhotos: FetchedResults<PhotosEntity>
 
+   // @State var folderArray = [FoldersModel].String
+
+  //  @ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: folderArray)
+
+
+  //  @State var foldersModel = FoldersModel(name: "folder")
+    @ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: [FoldersModel(name: "")]) //<#[FoldersModel]#>
     //@FetchRequest(entity: FoldersEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FoldersEntity.folderName, ascending: false)]) var fetchFolderNameOnce : FetchedResults<FoldersEntity>
 
     // @State var cdEditMode = EditMode.active
@@ -65,19 +73,21 @@ struct MultipleSelectRow : View {
             Text("Photos").font(.title)
         }
 
+        FolderRowsView(folderArrayModel: folderArrayModel)
+
         VStack {
             Text("Rows")
             //      List(cdFolders, id: \.self, selection: $rowSelection){ name in //*this works*
 
            //TODO: - Working list.
-            List(selection: $rowSelection) {
-                ForEach(arrayOfFolderNames, id: \.self) {
-                    Text($0)
-                }
-               // .onDelete(perform: self.deleteItem)
-                .onDelete(perform: cdOnSwipeDelete)
-            }
-            .listStyle(InsetListStyle())
+//            List(selection: $rowSelection) {
+//                ForEach(folderArrayModel, id: \.name) { folder in
+//                    Text(folder.folderName)
+//                    //...
+//                }
+//                .onDelete(perform: cdOnSwipeDelete)
+//            }
+//            .listStyle(InsetListStyle())
 
               // //
 
@@ -91,11 +101,6 @@ struct MultipleSelectRow : View {
                    // Text(storedUserData.arrayOfFolderNames[number])
                        // .onReceive(storedUserData.$arrayOfFolderNames, perform: UIBackgroundRefreshStatus)
 
-
-                
-
-
-           
             /*
             List(selection: $rowSelection) {
                 ForEach(fetchPhotos, id: \.self) { name in //cdFolders
@@ -120,7 +125,7 @@ struct MultipleSelectRow : View {
                 }
             }
             */
-        }
+        }.onAppear(perform: scanAllFolders)
         .environment(\.editMode, .constant(EditMode.active)) // *IMPORTANT* Allows checkbox to appear.
        // .navigationBarTitle(Text("#: \(rowSelection.count)"))
         //.navigationBarItems( leading: cdArraySave )
@@ -141,6 +146,60 @@ struct MultipleSelectRow : View {
      -(((---(((-----*/
 
     /*•••••••••START FUNCTIONS•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*/
+    private func scanAllFolders() {
+        print("JD451: scanAllFolders() started MULTIPLESELECTROW")
+        if (UIDevice.current.userInterfaceIdiom == .mac) {
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                print("JD451: Name : \(folder.name), parent: \(String(describing: folder.parent))")
+
+                let newFolder = FoldersModel(name: folder.name)
+                folderArrayModel.folderArray.append(newFolder)
+                
+                //folderArrayModel
+
+               // prefs.arrayOfFolderNames.append(folder.name)
+//                storedUserData.arrayOfFolderNames.append(folder.name)
+//                let newFolder = foldersStruct
+//                foldersStruct.folderName
+//
+//                storedUserData.arrayOfFolderNames.removeDuplicates()
+
+                for file in folder.files {
+                    print("JD451: ", file.name)
+
+                    prefs.arrayOfURLStrings.append(file.url.absoluteString)
+                }
+            }
+        }
+
+        if !(UIDevice.current.userInterfaceIdiom == .mac) {
+     //       storedUserData.arrayOfFolderNames.removeDuplicates()
+
+            for file in Folder.documents!.files { //
+                print("JD451: ", file.name)
+
+                prefs.arrayOfURLStrings.append(file.url.absoluteString)
+            }
+        }
+    }
+
+    private func deleteAllPhotosInSandbox() {
+        Folder.documents!.subfolders.recursive.forEach { folder in
+            print("JD451: Name : \(folder.name), parent: \(String(describing: folder.parent))")
+            do {
+                try folder.delete()
+            } catch {
+                print("error in delete sandbox")
+            }
+
+//            for file in folder.files {
+//                print("JD451: ", file.name)
+//
+//                file.delete()
+//            }
+        }
+    }
+
     private var cdDeleteButton: some View {
         //print("JD33: cdDeleteButton - Why is this getting called each time a button is pressed?")
         return Button(action: cdDeleteFolders) {
@@ -156,20 +215,23 @@ struct MultipleSelectRow : View {
 
     private func cdDeleteFolders() {
         //Remove selected items from the array.
-        for selectedItem in self.rowSelection{
-            if arrayOfFolderNames.contains(selectedItem) {
-                let index = arrayOfFolderNames.firstIndex(of: selectedItem)
-                arrayOfFolderNames.remove(at: index!)
-                storedFileURLs.remove(at: index!)
-                print("JD401: ", arrayOfFolderNames)
-            }
-        }
+//        for selectedItem in self.rowSelection{
+//            if storedUserData.arrayOfFolderNames.contains(selectedItem) {
+//                let index = storedUserData.arrayOfFolderNames.firstIndex(of: selectedItem)
+//
+//                storedUserData.arrayOfFolderNames.remove(at: index!)
+//               // storedFileURLs.remove(at: index!)
+//                print("JD401: ", storedUserData.arrayOfFolderNames)
+//            }
+//        }
        // deleteBookmarkURLs()
         try? self.context.save()
         rowSelection = Set<String>()
 //        rowSelection = Set<FoldersEntity>()
+        deleteAllPhotosInSandbox()
 
         loadCurrentFileURLs()
+
 
         print("JD404: ", storedFileURLs)
     }
@@ -187,7 +249,7 @@ struct MultipleSelectRow : View {
 
 
     private func deleteAllRows() {
-        arrayOfFolderNames.removeAll()
+        //storedUserData.arrayOfFolderNames.removeAll()
         storedFileURLs.removeAll()
         PersistenceController.shared.clearDatabase()
         try? self.context.save()
@@ -225,6 +287,7 @@ struct MultipleSelectRow : View {
 //
 //        }
     }
+} //End Struct.
 
  /*   public func loadSelectedBookmarkedPhotos() {
         //for photo in storedUserData.arrayWorkingDirectoryBookmark {
@@ -277,7 +340,7 @@ struct MultipleSelectRow : View {
         print("\n•••••••••••••••••••••• JD68 LOADING BOOKMARK DONE ••••••••••••••••••••••------------------------------------")
         //print("JD99:  \(prefs.arrayOfURLStrings)")
         url.stopAccessingSecurityScopedResource()
-    } //End func. */
+    } //End func.
 
     private func restoreFileAccess(with bookmarkData: Data) -> URL? {
         do {
@@ -313,6 +376,7 @@ struct MultipleSelectRow : View {
         }
     }
 
+  */
     //FIXME: - Will only work if a folder is a selected, NOT a photo.
  /*   public func loadSelectedPhotos() { //with bookmarkData: Data
 
@@ -452,7 +516,7 @@ struct MultipleSelectRow : View {
      rowSelection = Set<PhotoFolders>()
      print("JD131: deleteBookmarkURLs done")
      }//End Func. */
-} //End Struct.
+
 
 
 

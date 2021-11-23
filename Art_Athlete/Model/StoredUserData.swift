@@ -9,8 +9,9 @@ import Foundation
 import Combine
 
 @MainActor
-class StoredUserData: ObservableObject {
+class StoredUserData: ObservableObject { //, Identifiable
 
+  
     @Published var arrayWorkingDirectoryBookmark : [Data] {
         didSet {
             UserDefaults.standard.set(arrayWorkingDirectoryBookmark, forKey: "arrayWorkingDirectoryBookmark")
@@ -21,9 +22,10 @@ class StoredUserData: ObservableObject {
 
     @Published var showPhoto : Bool = false
     @Published var storedFolderData : Data = Data()
-    @Published var arrayOfFolderNames : [String] = []
+   // @Published var arrayOfFolderNames : [String] = []
     @Published var arrayOfFolderURLs : [String] = []
     @Published var storedFolderURL : URL//[URL]()
+    
 
     @Published var arrayPhotoNames: [String] = []
     @Published var savedFileURLs: [URL] = []  //
@@ -87,6 +89,7 @@ class StoredUserData: ObservableObject {
 
 
 
+
     init() {
         self.username = UserDefaults.standard.object(forKey: "username") as? String ?? "sorry."
 
@@ -96,7 +99,7 @@ class StoredUserData: ObservableObject {
         self.url = UserDefaults.standard.object(forKey: "url") as? URL ?? URL(string: "n")!
         self.storedFolderURL = UserDefaults.standard.object(forKey: "storedFolderURL") as? URL ?? URL(string: "nope")!
 
-        self.arrayOfFolderNames = UserDefaults.standard.object(forKey: "arrayOfFolderNames") as? [String] ?? ["none"]
+        //self.arrayOfFolderNames = UserDefaults.standard.object(forKey: "arrayOfFolderNames") as? [String] ?? ["n"]
 
 
        // self.recoveredURL = UserDefaults.standard.object(forKey: "recoveredURL") as? URL ?? URL(string: "nope")!
