@@ -17,11 +17,13 @@ struct SimpleRowView: View {
             //Toggle(isOn: $isToggle){
             Toggle(isOn: $simple.isToggle){
                 Text(simple.name)
-                    .font(.title)
+                   // .font(.title)
+               
                     .foregroundColor(Color.white)
             }
         }.padding()
             .background(simple.isToggle ? Color.gray : Color.black)
+            
 
 
    // TextField("title", text: $simple.name)
@@ -30,9 +32,6 @@ struct SimpleRowView: View {
     //MARK: FUNCTIONS
 
 }
-
-
-
 
 struct FolderRowsView: View {
     @ObservedObject var folderArrayModel: FoldersArrayModel

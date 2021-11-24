@@ -9,6 +9,7 @@ struct LoadFoldersButton: View {
     // MARK: - Properties
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
+    @ObservedObject var folderArrayModel: FoldersArrayModel
 
  //   @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
  //   @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
@@ -70,7 +71,29 @@ struct LoadFoldersButton: View {
             print ("JD82: ", error.localizedDescription)
         }
      //   isloadingPhotos = false
+        //HomeScreenButtonsView().scanAllFolders()
+        scanAllFolders()
     }
+
+    public func scanAllFolders() {
+        folderArrayModel.folderArray.removeAll()
+        if (UIDevice.current.userInterfaceIdiom == .mac) {
+            print("JD451: mac")
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                let newFolder = FoldersModel(name: folder.name)
+                folderArrayModel.folderArray.append(newFolder)
+                //MARK: Different on mac --> folder.files vs Folder.documents!.files
+            }
+        }
+
+        //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
+        if !(UIDevice.current.userInterfaceIdiom == .mac) {
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                let newFolder = FoldersModel(name: folder.name)
+                folderArrayModel.folderArray.append(newFolder)
+            }
+        }
+    } //End func.
 
     func saveFile (url: URL) {
         var actualPath: URL

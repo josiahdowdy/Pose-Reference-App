@@ -14,7 +14,7 @@ struct HomeScreenButtonsView: View {
     @Environment(\.managedObjectContext) var context
 
     @ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: [FoldersModel(name: "")])
-
+    //@ObservedObject var location: LocationManager = LocationManager()
 
     @State var isAddingPhotos: Bool = false
     @State var showPhotos: Bool = false
@@ -55,7 +55,8 @@ struct HomeScreenButtonsView: View {
                 //FileImporterView() //This loads in photos MARK: [BLUE BOX]
 
                 HStack {
-                    LoadFoldersButton(totalPhotosLoaded: $totalPhotosLoaded, isloadingPhotos: $isloadingPhotos)
+                    LoadFoldersButton(folderArrayModel: folderArrayModel, totalPhotosLoaded: $totalPhotosLoaded, isloadingPhotos: $isloadingPhotos)
+                        //.onReceive(publisher:  folderArrayModel.folderArray.$name, perform: scanAllFolders)
                     // scanAllFolders
 
                     //                    Button(action: {
@@ -72,8 +73,8 @@ struct HomeScreenButtonsView: View {
                     countPickerView()
                     timePickerView()
                     StartButton(folderArrayModel: folderArrayModel, rowSelection: $rowSelection) }
-            }
-            .environment(\.editMode, .constant(EditMode.active))
+            }.onAppear(perform: scanAllFolders)
+           // .environment(\.editMode, .constant(EditMode.active))
 
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -114,45 +115,24 @@ struct HomeScreenButtonsView: View {
      -(((---(((-----*/
 
     //MARK: - FUNCTIONS
-    private func scanAllFolders() {
+    public func scanAllFolders() {
         folderArrayModel.folderArray.removeAll()
         if (UIDevice.current.userInterfaceIdiom == .mac) {
             print("JD451: mac")
             Folder.documents!.subfolders.recursive.forEach { folder in
                 let newFolder = FoldersModel(name: folder.name)
                 folderArrayModel.folderArray.append(newFolder)
-
                 //MARK: Different on mac --> folder.files vs Folder.documents!.files
-                for file in folder.files {
-                    print("JD451: ", file.name)
-
-                    //  if (file.extension!.contains("jpg") { //, "png", "tiff"
-                    prefs.arrayOfURLStrings.append(file.url.absoluteString)
-                    //  }
-                }
             }
         }
 
-
-                //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
-                if !(UIDevice.current.userInterfaceIdiom == .mac) {
-                    print("JD451: NOT MAC")
-                    print("JD451: \(Folder.documents!)")
-                    print("JD451: \(Folder.home)")
-                    print("JD451: \(Folder.root)")
-                    //print("JD451: \(Folder.init(storage: ))")
-
-                    //Create Art Athlete Folder in phone.
-                    
-                    Folder.documents!.subfolders.recursive.forEach { folder in
-                        let newFolder = FoldersModel(name: folder.name)
-                        folderArrayModel.folderArray.append(newFolder)
-
-                        //for file in Folder.documents!.files { //
-                            //This is different then on mac.
-                        //}
-                    }
-                }
+        //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
+        if !(UIDevice.current.userInterfaceIdiom == .mac) {
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                let newFolder = FoldersModel(name: folder.name)
+                folderArrayModel.folderArray.append(newFolder)
+            }
+        }
     } //End func.
 } //End struct.
 

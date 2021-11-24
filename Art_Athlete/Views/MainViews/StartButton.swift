@@ -82,35 +82,21 @@ struct StartButton: View {
     }
 
     func loadFolderFiles() {
-        //  for selectedItem in self.rowSelection{
-        print("JD452: loadFolderfiles ")
         do {
             for i in folderArrayModel.folderArray {
                 print("JD452: ", i.isToggle)
 
                 if (i.isToggle) {
                     let loadFolderURL = try Folder.documents!.subfolder(named: i.name)
-                    for file in try Folder(path: loadFolderURL.path).files {
 
-                        // for file in try Folder(path: Folder.documents!.path).files {
+                    for file in try Folder(path: loadFolderURL.path).files {
                         prefs.arrayOfURLStrings.append(file.url.absoluteString)
-                        //print(file.name)
                     }
                 }
-                //    print("JD452", loadFolderURL)
-                //  let url = URL(string: "https://www.hackingwithswift.com")
-                //let targetFolder = try Folder(path: "/users/john/folderB")
-
-                //                Folder.documents!.subfolders.recursive.forEach { folder in
-                //                    let newFolder = FoldersModel(name: folder.name)
-                //                    folderArrayModel.folderArray.append(newFolder)
-                //                }
             }
         } catch {
             print("JD452: error loading files from download folder.", error)
         }
-
-        print("JD452: ", prefs.arrayOfURLStrings)
     }
 
     func onlyLoadSelectedPhotos() {
