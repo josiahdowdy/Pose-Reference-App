@@ -10,78 +10,91 @@ import Files
 
 struct SimpleRowView: View {
     @ObservedObject var simple: FoldersModel
-    var body: some View {
-        TextField("title", text: $simple.name)
-    }
+    @State private var isToggle : Bool = false
 
+    var body: some View {
+        HStack {
+            //Toggle(isOn: $isToggle){
+            Toggle(isOn: $simple.isToggle){
+                Text(simple.name)
+                    .font(.title)
+                    .foregroundColor(Color.white)
+            }
+        }.padding()
+            .background(simple.isToggle ? Color.gray : Color.black)
+
+
+   // TextField("title", text: $simple.name)
+    }
+//Text(text: $simple.name)
     //MARK: FUNCTIONS
 
 }
 
+
+
+
 struct FolderRowsView: View {
     @ObservedObject var folderArrayModel: FoldersArrayModel
+    @State private var editMode: EditMode = .active
+    @Binding var rowSelection: Set<String>
+
 
     var body: some View {
-        let summary_binding = Binding<String>(
-            get: { return self.folderArrayModel.folderArray.reduce("") { $0 + $1.name } },
-            set: { _ = $0 }
-        )
+//        let summary_binding = Binding<String>(
+//            get: { return self.folderArrayModel.folderArray.reduce("") { $0 + $1.name } },
+//            set: { _ = $0 }
+//        )
 
         return VStack() {
             //TextField("summary", text: summary_binding)
-            List() {
+            List(selection: $rowSelection) {
                 ForEach(folderArrayModel.folderArray) { simple in
                     SimpleRowView(simple: simple).onReceive(simple.objectWillChange) {_ in self.folderArrayModel.objectWillChange.send()}
+//                    SimpleRowView(simple: simple) { folder in
+//                        folderArrayModel}
                 }
             }
 
+           // .onDelete(perform: )
+            //.listStyle(InsetListStyle())
+              //  .toolbar {
+              //      EditButton()
+              //  }
+
             Button(action: {
-                self.folderArrayModel.folderArray.append(FoldersModel(name: "new text"))
+                self.folderArrayModel.folderArray.append(FoldersModel(name: "Refresh"))
                 scanAllFolders()
             }) {
                 Text("Add text")
 
             }.padding()
-        }.onAppear(perform: scanAllFolders)
-
+        }//.onAppear(perform: scanAllFolders)
+       // .environment(\.editMode, .constant(EditMode.active))
+        
     }
+
 
     //MARK: FUNCTIONS
     private func scanAllFolders() {
-        print("JD451: scanAllFolders() started")
-
-        print("JD451", folderArrayModel.folderArray.debugDescription)
-        print("JD451", folderArrayModel.folderArray.count)
-
-       // FoldersArrayModel(folderArray: [FoldersModel(name: "n")])
-
-        print("JD451:", Folder.documents!)
-
+        folderArrayModel.folderArray.removeAll()
         if (UIDevice.current.userInterfaceIdiom == .mac) {
             print("JD451: mac")
-
             Folder.documents!.subfolders.recursive.forEach { folder in
-                print("JD451: Name : \(folder.name), parent: \(String(describing: folder.parent))")
-
                 let newFolder = FoldersModel(name: folder.name)
                 folderArrayModel.folderArray.append(newFolder)
-
             }
         }
 
         //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
         if !(UIDevice.current.userInterfaceIdiom == .mac) {
             print("JD451: NOT MAC")
-
             Folder.documents!.subfolders.recursive.forEach { folder in
-                print("JD451: Name : \(folder.name), parent: \(String(describing: folder.parent))")
-
                 let newFolder = FoldersModel(name: folder.name)
                 folderArrayModel.folderArray.append(newFolder)
-
             }
         }
-    }
+    } //End func.
 }
 
 

@@ -9,31 +9,25 @@ import Laden
 
 
 struct HomeScreenButtonsView: View {
-    //@ObservedObject var dataProvider = DataProvider.shared
-    
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
+
+    @ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: [FoldersModel(name: "")])
+
+
     @State var isAddingPhotos: Bool = false
     @State var showPhotos: Bool = false
     @State private var isLoading = true
     @State private var isloadingPhotos = false
-
     @State public var totalPhotosLoaded = 0
-
     @State var rowSelection = Set<String>()
-
-   
 
 
     //@State var isImporting: Bool = false
     // @Binding var startSession: Bool
     @State var error = ""
-
     @State var url : URL = URL(fileURLWithPath: "nil")
-
- 
-
     //@State var cdSelection = Set<PhotoFolders>()
     @State var cdSelection = Set<FoldersEntity>()
 
@@ -41,7 +35,6 @@ struct HomeScreenButtonsView: View {
     //@State var cdEditMode = EditMode.inactive
 
     @State private var shouldLoadingView = true
-
 
     //MARK: - VIEW FOR ANIMATION
     var laden: some View {
@@ -63,24 +56,25 @@ struct HomeScreenButtonsView: View {
 
                 HStack {
                     LoadFoldersButton(totalPhotosLoaded: $totalPhotosLoaded, isloadingPhotos: $isloadingPhotos)
+                    // scanAllFolders
 
-//                    Button(action: {
-//                        storedUserData.arrayWorkingDirectoryBookmark.removeAll()
-//                    }, label: {
-//                        Image(systemName: "folder.fill.badge.minus")
-//                    })
-
-                 //   Text(String(totalPhotosLoaded))
+                    //                    Button(action: {
+                    //                        storedUserData.arrayWorkingDirectoryBookmark.removeAll()
+                    //                    }, label: {
+                    //                        Image(systemName: "folder.fill.badge.minus")
+                    //                    })
                 }
 
                 //LoadFoldersButton(isImporting: true)
-                MultipleSelectRow(rowSelection: $rowSelection, totalPhotosLoaded: $totalPhotosLoaded)
+                MultipleSelectRow(rowSelection: $rowSelection, totalPhotosLoaded: $totalPhotosLoaded, folderArrayModel: folderArrayModel)
 
                 if UIDevice.current.userInterfaceIdiom == (.phone) {
                     countPickerView()
                     timePickerView()
-                    StartButton(rowSelection: $rowSelection) }
+                    StartButton(folderArrayModel: folderArrayModel, rowSelection: $rowSelection) }
             }
+            .environment(\.editMode, .constant(EditMode.active))
+
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     settingsButton()
@@ -95,13 +89,13 @@ struct HomeScreenButtonsView: View {
                     if !(isloadingPhotos) {
                         // laden.hidden()
                         Text(prefs.error)
-                       // Text(String("Array Bookmarks: \(storedUserData.arrayWorkingDirectoryBookmark.count)"))
+                        // Text(String("Array Bookmarks: \(storedUserData.arrayWorkingDirectoryBookmark.count)"))
 
                         Spacer().frame(maxWidth: .infinity)
 
                         countPickerView()
                         timePickerView()
-                        StartButton(rowSelection: $rowSelection)
+                        StartButton(folderArrayModel: folderArrayModel, rowSelection: $rowSelection)
 
 
                     } else {
@@ -112,6 +106,7 @@ struct HomeScreenButtonsView: View {
             }
             .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
         } //NavigationView
+        .onAppear(perform: scanAllFolders)
     } //End UI.
 
     /*__/,|   (`\
@@ -119,7 +114,47 @@ struct HomeScreenButtonsView: View {
      -(((---(((-----*/
 
     //MARK: - FUNCTIONS
-}
+    private func scanAllFolders() {
+        folderArrayModel.folderArray.removeAll()
+        if (UIDevice.current.userInterfaceIdiom == .mac) {
+            print("JD451: mac")
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                let newFolder = FoldersModel(name: folder.name)
+                folderArrayModel.folderArray.append(newFolder)
+
+                //MARK: Different on mac --> folder.files vs Folder.documents!.files
+                for file in folder.files {
+                    print("JD451: ", file.name)
+
+                    //  if (file.extension!.contains("jpg") { //, "png", "tiff"
+                    prefs.arrayOfURLStrings.append(file.url.absoluteString)
+                    //  }
+                }
+            }
+        }
+
+
+                //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
+                if !(UIDevice.current.userInterfaceIdiom == .mac) {
+                    print("JD451: NOT MAC")
+                    print("JD451: \(Folder.documents!)")
+                    print("JD451: \(Folder.home)")
+                    print("JD451: \(Folder.root)")
+                    //print("JD451: \(Folder.init(storage: ))")
+
+                    //Create Art Athlete Folder in phone.
+                    
+                    Folder.documents!.subfolders.recursive.forEach { folder in
+                        let newFolder = FoldersModel(name: folder.name)
+                        folderArrayModel.folderArray.append(newFolder)
+
+                        //for file in Folder.documents!.files { //
+                            //This is different then on mac.
+                        //}
+                    }
+                }
+    } //End func.
+} //End struct.
 
 //MARK: - Extension
 extension View {

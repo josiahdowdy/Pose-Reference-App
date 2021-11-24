@@ -38,11 +38,11 @@ struct PhotoView: View {
                      ])      */
                         .onSuccess { r in
                             // r: RetrieveImageResult
-                            print("Success loading image.") //: \(r)")
+                            print("JDERR: Success loading image.") //: \(r)")
                         }
                         .onFailure { e in
                             // e: KingfisherError
-                            print("failure: \(e)")
+                            print("JDERR: failure: \(e)")
                         }
                         .placeholder {
                             // Placeholder while downloading.

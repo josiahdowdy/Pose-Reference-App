@@ -504,7 +504,6 @@
 				2C614DBB273337930037BFA1 /* Old */,
 				2C663A20271CC8490097AEFE /* SettingsMac */,
 				2CAA8BD52593833600B39793 /* Stats */,
-				2CDF0979274D209900C284D6 /* FolderRowsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -672,6 +671,7 @@
 				2CAC6636271CA435005066B5 /* ContentView.swift */,
 				2C614DA62731CE8A0037BFA1 /* HomeScreenButtonsView.swift */,
 				2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */,
+				2CDF0979274D209900C284D6 /* FolderRowsView.swift */,
 				2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */,
 				2C0DF7552742CF580090E5EF /* StartButton.swift */,
 			);

@@ -9,15 +9,10 @@ struct LoadFoldersButton: View {
     // MARK: - Properties
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
-   // @ObservedObject var storedUserData: StoredUserData
-   // @EnvironmentObject var storedUserData: StoredUserData //= StoredUserData()   //@AppStorage
-    @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
 
-    @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
-    @AppStorage("fileName") var fileName: [[String]] = [[]]
-
-   // @ObservedObject var dataProvider = DataProvider.shared
-    //@AppStorage(storedUserData.arrayOfFolderNames)
+ //   @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
+ //   @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
+//    @AppStorage("fileName") var fileName: [[String]] = [[]]
 
     @State var isImporting: Bool = false
     @Binding var totalPhotosLoaded: Int
@@ -53,21 +48,28 @@ struct LoadFoldersButton: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - FUNCTIONS
     func importImage(_ result: Result<[URL], Error>) {
-        isloadingPhotos = true
+        //isloadingPhotos = true
         do{
             let selectedFiles = try result.get()//let selectedFiles = try res.get()
 
             for i in 0...(selectedFiles.count-1) {
+                print("JD451: LOADFOLDERSBUTTON --> ", Folder.documents!)
+                print("JD451: LOADFOLDERSBUTTON --> ", Folder.home)
+                print("JD451: LOADFOLDERSBUTTON --> ", Folder.current)
+                print("JD451: LOADFOLDERSBUTTON --> ", Folder.root)
+               // let folder = try Folder(path: Folder.home)
+
+
                 let originFolder = try Folder(path: selectedFiles[i].path)
                 let targetFolder = try Folder(path: Folder.documents!.path)
                 try originFolder.copy(to: targetFolder)
             }
-            //   try? self.context.save()
+            try? self.context.save()
 
         } catch{
             print ("JD82: ", error.localizedDescription)
         }
-        isloadingPhotos = false
+     //   isloadingPhotos = false
     }
 
     func saveFile (url: URL) {

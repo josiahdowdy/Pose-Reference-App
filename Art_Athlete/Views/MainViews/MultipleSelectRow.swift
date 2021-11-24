@@ -21,7 +21,7 @@ struct MultipleSelectRow : View {
     //@ObservedObject var dataProvider = DataProvider.shared
     
     @State private var alertShowing = false
-    @State private var editMode: EditMode = .inactive
+    @State private var editMode: EditMode = .active
 
     //@State var rowSelection = Set<FoldersEntity>()
     @Binding var rowSelection: Set<String>
@@ -40,13 +40,8 @@ struct MultipleSelectRow : View {
     @FetchRequest(entity: PhotosEntity.entity(), sortDescriptors:[])
     var fetchPhotos: FetchedResults<PhotosEntity>
 
-   // @State var folderArray = [FoldersModel].String
+    @ObservedObject var folderArrayModel: FoldersArrayModel
 
-  //  @ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: folderArray)
-
-
-  //  @State var foldersModel = FoldersModel(name: "folder")
-    @ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: [FoldersModel(name: "")]) //<#[FoldersModel]#>
     //@FetchRequest(entity: FoldersEntity.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \FoldersEntity.folderName, ascending: false)]) var fetchFolderNameOnce : FetchedResults<FoldersEntity>
 
     // @State var cdEditMode = EditMode.active
@@ -73,10 +68,10 @@ struct MultipleSelectRow : View {
             Text("Photos").font(.title)
         }
 
-        FolderRowsView(folderArrayModel: folderArrayModel)
+
 
         VStack {
-            Text("Rows")
+            FolderRowsView(folderArrayModel: folderArrayModel, rowSelection: $rowSelection)
             //      List(cdFolders, id: \.self, selection: $rowSelection){ name in //*this works*
 
            //TODO: - Working list.
@@ -125,10 +120,8 @@ struct MultipleSelectRow : View {
                 }
             }
             */
-        }.onAppear(perform: scanAllFolders)
+        }
         .environment(\.editMode, .constant(EditMode.active)) // *IMPORTANT* Allows checkbox to appear.
-       // .navigationBarTitle(Text("#: \(rowSelection.count)"))
-        //.navigationBarItems( leading: cdArraySave )
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 HStack {
