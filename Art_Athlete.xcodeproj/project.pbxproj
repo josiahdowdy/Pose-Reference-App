@@ -115,6 +115,12 @@
 		2C943EE025B797BB0010FA24 /* MenuPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943EDF25B797BB0010FA24 /* MenuPicker.swift */; };
 		2C943EEA25B9F4790010FA24 /* CollectionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943EE925B9F4790010FA24 /* CollectionButtons.swift */; };
 		2C98427F258C04E40008AD1C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C98427E258C04E40008AD1C /* ImagePicker.swift */; };
+		2CA99D632753FD4400D5CD15 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA99D622753FD4400D5CD15 /* Product.swift */; };
+		2CA99D642753FD4400D5CD15 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA99D622753FD4400D5CD15 /* Product.swift */; };
+		2CA99D662753FDFD00D5CD15 /* SharedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA99D652753FDFD00D5CD15 /* SharedViewModel.swift */; };
+		2CA99D672753FDFD00D5CD15 /* SharedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA99D652753FDFD00D5CD15 /* SharedViewModel.swift */; };
+		2CA99D692754025F00D5CD15 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA99D682754025F00D5CD15 /* HomeViewModel.swift */; };
+		2CA99D6A2754025F00D5CD15 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA99D682754025F00D5CD15 /* HomeViewModel.swift */; };
 		2CAA8BCE259382B500B39793 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA8BCD259382B500B39793 /* PersistenceController.swift */; };
 		2CAA8BD22593830200B39793 /* saveUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAA8BD12593830200B39793 /* saveUserData.swift */; };
 		2CAC6637271CA435005066B5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAC6636271CA435005066B5 /* ContentView.swift */; };
@@ -328,6 +334,9 @@
 		2C943EDF25B797BB0010FA24 /* MenuPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPicker.swift; sourceTree = "<group>"; };
 		2C943EE925B9F4790010FA24 /* CollectionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionButtons.swift; sourceTree = "<group>"; };
 		2C98427E258C04E40008AD1C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		2CA99D622753FD4400D5CD15 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		2CA99D652753FDFD00D5CD15 /* SharedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViewModel.swift; sourceTree = "<group>"; };
+		2CA99D682754025F00D5CD15 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2CAA8BCD259382B500B39793 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		2CAA8BD12593830200B39793 /* saveUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveUserData.swift; sourceTree = "<group>"; };
 		2CAC6636271CA435005066B5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -489,6 +498,8 @@
 				2CF9E375274AEE4F009F77E1 /* SceneDelegate.swift */,
 				2CF9E389274B01A5009F77E1 /* PersistenceControllerCoreData.swift */,
 				2CDF0976274C814300C284D6 /* FoldersArrayModel.swift */,
+				2CA99D622753FD4400D5CD15 /* Product.swift */,
+				2CA99D682754025F00D5CD15 /* HomeViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -674,6 +685,7 @@
 				2CDF0979274D209900C284D6 /* FolderRowsView.swift */,
 				2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */,
 				2C0DF7552742CF580090E5EF /* StartButton.swift */,
+				2CA99D652753FDFD00D5CD15 /* SharedViewModel.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -980,6 +992,7 @@
 				2C663A78272097500097AEFE /* UserObjectView.swift in Sources */,
 				2C614DB82733372E0037BFA1 /* SideMenu.swift in Sources */,
 				2CF9E380274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift in Sources */,
+				2CA99D662753FDFD00D5CD15 /* SharedViewModel.swift in Sources */,
 				2C663A24271DAEFA0097AEFE /* MenuView.swift in Sources */,
 				2C663A6B271F6B810097AEFE /* CheckBoxView.swift in Sources */,
 				2C614DB12732125A0037BFA1 /* Tab.swift in Sources */,
@@ -1049,11 +1062,13 @@
 				2C663A91272327010097AEFE /* UserSessionStats.swift in Sources */,
 				2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */,
 				2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */,
+				2CA99D632753FD4400D5CD15 /* Product.swift in Sources */,
 				2C20982D2737921900D5B5FC /* MultipleSelectRow.swift in Sources */,
 				2C614DA72731CE8A0037BFA1 /* HomeScreenButtonsView.swift in Sources */,
 				2C663A67271F00370097AEFE /* SessionStats.swift in Sources */,
 				2C147D1C272DA15600AF1E71 /* FoldersView.swift in Sources */,
 				2C943EE025B797BB0010FA24 /* MenuPicker.swift in Sources */,
+				2CA99D692754025F00D5CD15 /* HomeViewModel.swift in Sources */,
 				2C663A1D271CC7A80097AEFE /* GeneralSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1084,6 +1099,7 @@
 				2C663A68271F00370097AEFE /* SessionStats.swift in Sources */,
 				2CEB6EDC273371A4001C6FEB /* SideMenu.swift in Sources */,
 				2CF9E381274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift in Sources */,
+				2CA99D672753FDFD00D5CD15 /* SharedViewModel.swift in Sources */,
 				2C663A79272097500097AEFE /* UserObjectView.swift in Sources */,
 				2C614DB22732125A0037BFA1 /* Tab.swift in Sources */,
 				2CB6249D27277C50001AFA85 /* SettingsMacView.swift in Sources */,
@@ -1153,11 +1169,13 @@
 				2C663A7627205B460097AEFE /* CardView.swift in Sources */,
 				2C064304272B9806001DF985 /* ListRowsView.swift in Sources */,
 				2C614DA82731CE8A0037BFA1 /* HomeScreenButtonsView.swift in Sources */,
+				2CA99D642753FD4400D5CD15 /* Product.swift in Sources */,
 				2C20982E2737921900D5B5FC /* MultipleSelectRow.swift in Sources */,
 				2C663A6C271F6B810097AEFE /* CheckBoxView.swift in Sources */,
 				2C663A7C27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2CED7E152727534100B99CAD /* Color.swift in Sources */,
 				2C06430B272C4579001DF985 /* iOSSettingsBarView.swift in Sources */,
+				2CA99D6A2754025F00D5CD15 /* HomeViewModel.swift in Sources */,
 				2CEB6EDD273371A7001C6FEB /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

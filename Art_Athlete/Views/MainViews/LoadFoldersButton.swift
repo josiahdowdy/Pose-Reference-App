@@ -11,6 +11,9 @@ struct LoadFoldersButton: View {
     @EnvironmentObject var prefs: GlobalVariables
     @ObservedObject var folderArrayModel: FoldersArrayModel
 
+    
+    @EnvironmentObject var homeData: HomeViewModel
+
  //   @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
  //   @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
 //    @AppStorage("fileName") var fileName: [[String]] = [[]]
@@ -54,13 +57,6 @@ struct LoadFoldersButton: View {
             let selectedFiles = try result.get()//let selectedFiles = try res.get()
 
             for i in 0...(selectedFiles.count-1) {
-                print("JD451: LOADFOLDERSBUTTON --> ", Folder.documents!)
-                print("JD451: LOADFOLDERSBUTTON --> ", Folder.home)
-                print("JD451: LOADFOLDERSBUTTON --> ", Folder.current)
-                print("JD451: LOADFOLDERSBUTTON --> ", Folder.root)
-               // let folder = try Folder(path: Folder.home)
-
-
                 let originFolder = try Folder(path: selectedFiles[i].path)
                 let targetFolder = try Folder(path: Folder.documents!.path)
                 try originFolder.copy(to: targetFolder)
@@ -70,18 +66,20 @@ struct LoadFoldersButton: View {
         } catch{
             print ("JD82: ", error.localizedDescription)
         }
-     //   isloadingPhotos = false
-        //HomeScreenButtonsView().scanAllFolders()
+
         scanAllFolders()
     }
 
+    
     public func scanAllFolders() {
-        folderArrayModel.folderArray.removeAll()
+        //folderArrayModel.folderArray.removeAll()
+        homeData.folders.removeAll()
         if (UIDevice.current.userInterfaceIdiom == .mac) {
             print("JD451: mac")
             Folder.documents!.subfolders.recursive.forEach { folder in
-                let newFolder = FoldersModel(name: folder.name)
-                folderArrayModel.folderArray.append(newFolder)
+                //let newFolder = homeData.folders //FoldersModel(name: folder.name)
+                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "Ballerina", count: folder.files.count(), productImage: "AppleWatch6"))
+                //folderArrayModel.folderArray.append(newFolder)
                 //MARK: Different on mac --> folder.files vs Folder.documents!.files
             }
         }
@@ -89,10 +87,13 @@ struct LoadFoldersButton: View {
         //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
         if !(UIDevice.current.userInterfaceIdiom == .mac) {
             Folder.documents!.subfolders.recursive.forEach { folder in
-                let newFolder = FoldersModel(name: folder.name)
-                folderArrayModel.folderArray.append(newFolder)
+                //let newFolder = FoldersModel(name: folder.name)
+                //folderArrayModel.folderArray.append(newFolder)
+                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "Ballerina", count: folder.files.count(), productImage: "AppleWatch6"))
             }
         }
+        //homeData.folders.removeDuplicates()
+        print("JD451 - \(homeData.folders.debugDescription)")
     } //End func.
 
     func saveFile (url: URL) {

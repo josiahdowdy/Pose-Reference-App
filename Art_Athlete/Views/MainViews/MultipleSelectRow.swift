@@ -12,16 +12,19 @@ struct MultipleSelectRow : View {
     // MARK: - VARIABLES
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
+    @EnvironmentObject var sharedData: SharedViewModel
     //@EnvironmentObject var storedUserData: StoredUserData
     @ObservedObject var storedUserData = StoredUserData()
     //@AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
     @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
     //@AppStorage("fileName") var fileName: [[String]] = [[]]
+
+    @EnvironmentObject var homeData: HomeViewModel
     
     //@ObservedObject var dataProvider = DataProvider.shared
     
     @State private var alertShowing = false
-    @State private var editMode: EditMode = .active
+    @State private var editMode: EditMode = .inactive
 
     //@State var rowSelection = Set<FoldersEntity>()
     @Binding var rowSelection: Set<String>
@@ -69,16 +72,19 @@ struct MultipleSelectRow : View {
         }
 
         VStack {
-            FolderRowsView(folderArrayModel: folderArrayModel, rowSelection: $rowSelection)
+           // FolderRowsView(folderArrayModel: folderArrayModel, rowSelection: $rowSelection)
+              //  .environmentObject(homeData)
+            ShowAllFolders()
         }
         .onAppear(perform: scanAllFolders)
         //.environment(\.editMode, .constant(EditMode.active)) // *IMPORTANT* Allows checkbox to appear.
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 HStack {
+                 //   EditButton()
                     //self.cdArraySave
                     self.cdDeleteButton
-                    StatsButton()
+                 //   StatsButton()
                 }
             }
         }
@@ -90,25 +96,164 @@ struct MultipleSelectRow : View {
      -(((---(((-----*/
 
     /*•••••••••START FUNCTIONS•••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*/
-    public func scanAllFolders() {
-        folderArrayModel.folderArray.removeAll()
+    //MARK: - VIEWBUILDER. •••••••••••••••••••••
+    @ViewBuilder
+    func ShowAllFolders()->some View{
+        List {
+            ForEach(homeData.folders) { product in
+                Text("\(product.title) - \(product.count)")
+            }
+            .onDelete(perform: removeFolders)
+        }
+        //                List(selection: $rowSelection) {
+        //                    ForEach(homeData.folders, id: \.self) { product in
+        //                        Text("\(product.title) - \(product.count)")
+        //                    }
+        //                    .onDelete(perform: removeRows)
+        //                    //.onDelete(perform: self.deleteItem)
+        //                }
+
+    }
+
+
+    func removeFolders(at offsets: IndexSet) {
+        homeData.folders = homeData.folders.enumerated().filter { (i, item) -> Bool in
+            let removed = offsets.contains(i)
+            if removed {
+                testPoopDelFolder(folder: item)
+                //AdjustProfileRemove(period: item)
+            }
+            return !removed
+        }.map { $0.1 }
+    }
+
+    private func testPoopDelFolder(folder: Product) {
+        print("JD460: \(folder.title)")
+        let folderName = folder.title
+        let url = Folder.documents!.path
+
+        if (Folder.documents!.containsSubfolder(named: folderName)) {
+            do {
+                let folder = try Folder(path: url.appending(folderName))
+                try folder.delete()
+            } catch {
+
+            }
+        }
+    }
+
+    private func scanAllFolders() {
+        homeData.folders.removeAll()
         if (UIDevice.current.userInterfaceIdiom == .mac) {
             print("JD451: mac")
             Folder.documents!.subfolders.recursive.forEach { folder in
-                let newFolder = FoldersModel(name: folder.name)
-                folderArrayModel.folderArray.append(newFolder)
+                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "Ballerina", count: folder.files.count(), productImage: "AppleWatch6"))
+//                let newFolder = FoldersModel(name: folder.name)
+//                folderArrayModel.folderArray.append(newFolder)
                 //MARK: Different on mac --> folder.files vs Folder.documents!.files
             }
         }
 
         //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
         if !(UIDevice.current.userInterfaceIdiom == .mac) {
+            print("JD451: NOT mac")
             Folder.documents!.subfolders.recursive.forEach { folder in
-                let newFolder = FoldersModel(name: folder.name)
-                folderArrayModel.folderArray.append(newFolder)
+                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "Ballerina", count: folder.files.count(), productImage: "AppleWatch6"))
+//                let newFolder = FoldersModel(name: folder.name)
+//                folderArrayModel.folderArray.append(newFolder)
             }
         }
     } //End func.
+
+    ////(selection: $rowSelection) { //homeData, id: \.self, selection: $rowSelection
+
+
+
+    func removeRows(at offsets: IndexSet) {
+        homeData.folders.remove(atOffsets: offsets)
+       // homeData.folders.contains(where: Product)
+
+        for i in offsets {
+            print("JD460: \(i)")
+        }
+
+
+      //  var arrOfStoredFolders = Folder.documents!.subfolders
+     //   var arrOfListFolders = homeData.folders
+       // homeData.folders.
+
+       // var arrayOfFolderNamesInList: Array<String>
+
+
+
+        //
+       // print("JD460: \(arrayOfFolderNamesInList)")
+
+        /*
+         For each photo folder in finder,
+         1. Check in each of the homeData names
+         2. if there is a match, a the folder name exists,
+         3. we do NOT want to delete that folder.
+         4. But, if there is NO match
+         5. Then delete that folder.
+         */
+        for fol in homeData.folders {
+          //  var array1 = arrOfStoredFolders.filter { !arrayOfFolderNamesInList.contains($0) }
+
+            var isFolderFound = false
+//
+//            if (Folder.documents!.containsFile(named: fol.title)) {
+//                isFolderFound = true
+//            } else {
+//                Folder.documents!.subfolders.recursive.contains(where: (Folder.documents!.containsFile(named: fol.title)))
+//            }
+
+            print("JD451: array")
+
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                print("JD451: \(folder.name) = \(fol.title)")
+
+              //  if folder.
+                if (folder.name == fol.title) {
+                    print("JD451: Match.")
+                    isFolderFound = true
+
+                }
+
+//                do {
+//                    if !(isFolderFound) {
+//                        print("JD451: No matching folder name.")
+//                        try folder.delete()
+//                    }
+//                } catch {
+//                    print("error in delete sandbox")
+//                }
+            }
+
+        }
+        deleteFolderData()
+    }
+
+    private func deleteFolderData() {
+        Folder.documents!.subfolders.recursive.forEach { folder in
+            print("JD451: Name : \(folder.name), parent: \(String(describing: folder.parent))")
+            do {
+                try folder.delete()
+            } catch {
+                print("error in delete sandbox")
+            }
+        }
+    }
+
+    //homeData.products.contains($0)
+    private func deleteNumbers() {
+//        for id in rowSelection {
+//            if let index = homeData.folders.lastIndex(where: { $0 == id  }) { //{ $0 == id })  {
+//                homeData.folders.remove(at: index)
+//            }
+//        }
+        rowSelection = Set<String>()
+    }
 
     private func deleteAllPhotosInSandbox() {
         Folder.documents!.subfolders.recursive.forEach { folder in
@@ -129,18 +274,48 @@ struct MultipleSelectRow : View {
 
     private var cdDeleteButton: some View {
         //print("JD33: cdDeleteButton - Why is this getting called each time a button is pressed?")
-        return Button(action: cdDeleteFolders) {
-            Image(systemName: "trash")
-            //            if cdEditMode == .active {
-            //                Image(systemName: "trash")
-            //            }
-            // #####################################################################
-            // Even with a commented .disable rule, the trash can deletes nothing
-            // #####################################################################
-        }.disabled(rowSelection.count <= 0)
+        if editMode == .inactive {
+            return  Button(action: {}) {
+                Image(systemName: "")
+            }
+        } else {
+            return Button(action: cdDeleteFolders) { //cdDeleteFolders
+                Image(systemName: "trash")
+                //            if cdEditMode == .active {
+                //                Image(systemName: "trash")
+                //            }
+                // #####################################################################
+                // Even with a commented .disable rule, the trash can deletes nothing
+                // #####################################################################
+            }//.disabled(rowSelection.count <= 0)
+        }
     }
 
     private func cdDeleteFolders() {
+//        for selectedItem in self.rowSelection{
+//            if homeData.folders.contains(Product.ID.contains(selectedItem)) {
+//                let index = homeData.folders.firstIndex(of: selectedItem)
+//
+//                homeData.folders.remove(at: index!)
+//                // storedFileURLs.remove(at: index!)
+//                //print("JD401: ", storedUserData.arrayOfFolderNames)
+//            }
+//        }
+
+       // deleteFolder(at: rowSelection)
+
+      //  homeData.folders.remove(at: rowSelection)
+
+//        for selectedItem in self.rowSelection{
+//            if homeData.folders.contains(Product(selectedItem)) {
+//                let index = homeData.folders.firstIndex(of: selectedItem)
+//
+//                homeData.folders.remove(at: index!)
+//                // storedFileURLs.remove(at: index!)
+//                //print("JD401: ", storedUserData.arrayOfFolderNames)
+//            }
+//        }
+
         //Remove selected items from the array.
         //        for selectedItem in self.rowSelection{
         //            if storedUserData.arrayOfFolderNames.contains(selectedItem) {
@@ -152,28 +327,13 @@ struct MultipleSelectRow : View {
         //            }
         //        }
         // deleteBookmarkURLs()
-        try? self.context.save()
+        //try? self.context.save()
         rowSelection = Set<String>()
         //        rowSelection = Set<FoldersEntity>()
-        deleteAllPhotosInSandbox()
-
-        loadCurrentFileURLs()
-
+        //deleteAllPhotosInSandbox()
 
         print("JD404: ", storedFileURLs)
     }
-
-    private func loadCurrentFileURLs() {
-        prefs.isBookmarkDeletePending = true
-        prefs.arrayOfURLStringsTEMP.removeAll()
-
-        //Do I fetchrequest the photosURLs that are saved?
-
-        // prefs.arrayOfURLStringsTEMP.append()
-    }
-
-
-
 
     private func deleteAllRows() {
         //storedUserData.arrayOfFolderNames.removeAll()
@@ -190,7 +350,6 @@ struct MultipleSelectRow : View {
     // this functuion is referenced by ForEach{}.onDelete()
     // #####################################################################
     private func cdOnSwipeDelete(with indexSet: IndexSet) {
-
         indexSet.forEach { index in
             let number = fetchFolders[index]
             self.context.delete(number)

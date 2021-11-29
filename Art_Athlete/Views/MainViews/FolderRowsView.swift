@@ -33,11 +33,12 @@ struct SimpleRowView: View {
 
 }
 
+
 struct FolderRowsView: View {
     @ObservedObject var folderArrayModel: FoldersArrayModel
+    @EnvironmentObject var homeData: HomeViewModel
     @State private var editMode: EditMode = .active
     @Binding var rowSelection: Set<String>
-
 
     var body: some View {
 //        let summary_binding = Binding<String>(
@@ -47,12 +48,16 @@ struct FolderRowsView: View {
 
         return VStack() {
             //TextField("summary", text: summary_binding)
-            List(selection: $rowSelection) {
-                ForEach(folderArrayModel.folderArray) { simple in
-                    SimpleRowView(simple: simple).onReceive(simple.objectWillChange) {_ in self.folderArrayModel.objectWillChange.send()}
-//                    SimpleRowView(simple: simple) { folder in
-//                        folderArrayModel}
-                }
+//            List(selection: $rowSelection) {
+//                ForEach(folderArrayModel.folderArray) { simple in
+//                    SimpleRowView(simple: simple).onReceive(simple.objectWillChange) {_ in self.folderArrayModel.objectWillChange.send()}
+////                    SimpleRowView(simple: simple) { folder in
+////                        folderArrayModel}
+//                }
+//            }
+
+            ForEach(homeData.filteredProducts) { product in
+                Text("\(product.title) - \(product.type.rawValue)")
             }
 
            // .onDelete(perform: )
@@ -71,7 +76,7 @@ struct FolderRowsView: View {
         }//.onAppear(perform: scanAllFolders)
        // .environment(\.editMode, .constant(EditMode.active))
         
-    }
+    } //End body view.
 
 
     //MARK: FUNCTIONS

@@ -17,7 +17,6 @@ import SwiftUI
 import UIKit
 import CoreData
 
-
 @main
 struct pose_referenceApp: App {
     @ObservedObject var storedUserData = StoredUserData()

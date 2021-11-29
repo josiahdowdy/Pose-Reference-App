@@ -11,7 +11,9 @@ import Laden
 struct HomeScreenButtonsView: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
+    @EnvironmentObject var sharedData: SharedViewModel
     @Environment(\.managedObjectContext) var context
+    @StateObject var homeData: HomeViewModel = HomeViewModel()
 
     @ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: [FoldersModel(name: "")])
     //@ObservedObject var location: LocationManager = LocationManager()
@@ -56,6 +58,7 @@ struct HomeScreenButtonsView: View {
 
                 HStack {
                     LoadFoldersButton(folderArrayModel: folderArrayModel, totalPhotosLoaded: $totalPhotosLoaded, isloadingPhotos: $isloadingPhotos)
+                        .environmentObject(homeData)
                         //.onReceive(publisher:  folderArrayModel.folderArray.$name, perform: scanAllFolders)
                     // scanAllFolders
 
@@ -68,6 +71,7 @@ struct HomeScreenButtonsView: View {
 
                 //LoadFoldersButton(isImporting: true)
                 MultipleSelectRow(rowSelection: $rowSelection, totalPhotosLoaded: $totalPhotosLoaded, folderArrayModel: folderArrayModel)
+                    .environmentObject(homeData)
 
                 if UIDevice.current.userInterfaceIdiom == (.phone) {
                     countPickerView()
@@ -78,7 +82,11 @@ struct HomeScreenButtonsView: View {
 
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    settingsButton()
+                    HStack {
+                        EditButton()
+                        settingsButton()
+                    }
+
                 }
                 
                 //ToolbarItem(placement: .navigationBarTrailing) { HStack{ } }

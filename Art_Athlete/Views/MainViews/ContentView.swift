@@ -20,6 +20,8 @@ struct ContentView: View {
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var storedUserData: StoredUserData
 
+    @StateObject var sharedData: SharedViewModel = SharedViewModel()
+
 
     @State private var position = CardPosition.top
     @State private var background = BackgroundStyle.blur
@@ -64,6 +66,7 @@ struct ContentView: View {
             if (prefs.introIsFinished) {
                 if (!prefs.startSession) {
                     HomeScreenButtonsView()
+                        .environmentObject(sharedData)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .transition(AnyTransition.move(edge: .leading)).animation(.default)
                 }
