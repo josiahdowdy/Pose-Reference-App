@@ -3,14 +3,16 @@
 import SwiftUI
 
 struct Product: Identifiable,Hashable {
+    var numberInLine: Int
     var id = UUID().uuidString
+    var isSelected: Bool = false
     var type: ProductType
     var title: String
     //var folderName: String
     var subtitle: String
     var description: String = ""
     var count: Int
-    var productImage: String = ""
+    //var productImage: String = ""
     var quantity: Int = 1
 }
 

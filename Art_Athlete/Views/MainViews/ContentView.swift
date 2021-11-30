@@ -3,17 +3,9 @@
 
 import SwiftUI
 import CoreData
-//import CheckDevice
 import Files
 import SlideOverCard
 import UniformTypeIdentifiers
-//import CoreLocation
-
-//TODO: - Selected down form the dropdown.
-
-
-//FIXME: - CAN ADD these lines to view.
-
 
 struct ContentView: View {
     @EnvironmentObject var prefs: GlobalVariables
@@ -21,8 +13,6 @@ struct ContentView: View {
     @EnvironmentObject var storedUserData: StoredUserData
 
     @StateObject var sharedData: SharedViewModel = SharedViewModel()
-
-
     @State private var position = CardPosition.top
     @State private var background = BackgroundStyle.blur
 
@@ -42,20 +32,10 @@ struct ContentView: View {
 
     @Environment(\.managedObjectContext) var context
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var testData: FetchedResults<UserData>
-        //sortDescriptors: [NSSortDescriptor(keyPath: \UserData.countPoses, ascending: true)]
-     //Memory
-    
-    //@FetchRequest(entity: UserEntity.entity(), sortDescriptors: [])
-    //var userObject: FetchedResults<UserEntity>
-    //, predicate: NSPredicate(format: "status != %@", Status.completed.rawValue)
-    
-    
 
-    //@State private var startSession = false
     @State var startSession = false
-
-    //private let locationManager = CLLocationManager()
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
+
     //MARK: - UI
     var body: some View {
         if !(prefs.introIsFinished) {
@@ -89,67 +69,10 @@ struct ContentView: View {
                 }
             }
         }
-       // .onAppear(perform: loadBookmarkedPhotos())
     }
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 
     //MARK: - FUNCTIONS
-
-
-    @available(iOS 15.0.0, *)
-    private func loadBookmarkedPhotos() {
-        //for photo in storedUserData.arrayWorkingDirectoryBookmark {
-        //prefs.arrayOfURLStringsTEMP = restoreFileAccessArray(with: (storedUserData.arrayWorkingDirectoryBookmark))!
-
-        prefs.arrayOfURLStringsTEMP.removeAll()
-
-        ///I can store about 5,000 photos safely, that will equal about 512kb of data. Assuming this is stored locally?
-        print("JD1000: arrayWorkingDirectoryBookmark SIZE --> ", storedUserData.arrayWorkingDirectoryBookmark)
-
-        //MARK: - Loads in array of photos.
-        for i in 0..<storedUserData.arrayWorkingDirectoryBookmark.count {
-            url = restoreFileAccess(with: storedUserData.arrayWorkingDirectoryBookmark[i])!
-
-            //FIXME: BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
-            if (url.startAccessingSecurityScopedResource()) {
-//                prefs.arrayOfURLStringsTEMP.append(url)
-//            //    prefs.arrayOfURLStrings.append(String(describing: url))
-//                //print("JD68: LOADING BOOKMARK. \(prefs.arrayOfURLStrings)")
-            } else {
-                print("JD67: False")
-           }
-        }
-        url.stopAccessingSecurityScopedResource()
-        
-        print("\nLOADING BOOKMARK DONE ------------------------------------")
-    } //End func.
-
-    @available(iOS 15.0.0, *)
-    private func restoreFileAccess(with bookmarkData: Data) -> URL? {
-        do {
-            var isStale = false
-            let url = try URL(resolvingBookmarkData: bookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
-
-            if isStale {
-                // bookmarks could become stale as the OS changes
-                print("Bookmark is stale, need to save a new one... ")
-                saveBookmarkData(for: url)
-            }
-            return url
-        } catch {
-            print("Error resolving bookmark:", error)
-            return nil
-        }
-    }
-
-    private func saveBookmarkData(for workDir: URL) {
-        do {
-            let bookmarkData = try workDir.bookmarkData(includingResourceValuesForKeys: testUrlResourceKey, relativeTo: nil)
-            storedUserData.arrayWorkingDirectoryBookmark.append(bookmarkData)
-        } catch {
-            print("Failed to save bookmark data for \(workDir)", error)
-        }
-    }
 } //End Struct.
 
 

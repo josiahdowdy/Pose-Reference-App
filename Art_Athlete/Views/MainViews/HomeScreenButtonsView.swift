@@ -15,8 +15,9 @@ struct HomeScreenButtonsView: View {
     @Environment(\.managedObjectContext) var context
     @StateObject var homeData: HomeViewModel = HomeViewModel()
 
-    @ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: [FoldersModel(name: "")])
-    //@ObservedObject var location: LocationManager = LocationManager()
+    //@ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: [FoldersModel(name: "")])
+
+    //@ObservedObject var folderArrayModel: FoldersArrayModel
 
     @State var isAddingPhotos: Bool = false
     @State var showPhotos: Bool = false
@@ -25,16 +26,9 @@ struct HomeScreenButtonsView: View {
     @State public var totalPhotosLoaded = 0
     @State var rowSelection = Set<String>()
 
-
-    //@State var isImporting: Bool = false
-    // @Binding var startSession: Bool
     @State var error = ""
     @State var url : URL = URL(fileURLWithPath: "nil")
-    //@State var cdSelection = Set<PhotoFolders>()
     @State var cdSelection = Set<FoldersEntity>()
-
-    //@State private var editMode: EditMode = .inactive
-    //@State var cdEditMode = EditMode.inactive
 
     @State private var shouldLoadingView = true
 
@@ -56,29 +50,14 @@ struct HomeScreenButtonsView: View {
             VStack {
                 //FileImporterView() //This loads in photos MARK: [BLUE BOX]
 
-                HStack {
-                    LoadFoldersButton(folderArrayModel: folderArrayModel, totalPhotosLoaded: $totalPhotosLoaded, isloadingPhotos: $isloadingPhotos)
-                        .environmentObject(homeData)
-                        //.onReceive(publisher:  folderArrayModel.folderArray.$name, perform: scanAllFolders)
-                    // scanAllFolders
-
-                    //                    Button(action: {
-                    //                        storedUserData.arrayWorkingDirectoryBookmark.removeAll()
-                    //                    }, label: {
-                    //                        Image(systemName: "folder.fill.badge.minus")
-                    //                    })
-                }
-
-                //LoadFoldersButton(isImporting: true)
-                MultipleSelectRow(rowSelection: $rowSelection, totalPhotosLoaded: $totalPhotosLoaded, folderArrayModel: folderArrayModel)
+                MultipleSelectRow(rowSelection: $rowSelection, isloadingPhotos: $isloadingPhotos)
                     .environmentObject(homeData)
 
                 if UIDevice.current.userInterfaceIdiom == (.phone) {
                     countPickerView()
                     timePickerView()
-                    StartButton(folderArrayModel: folderArrayModel, rowSelection: $rowSelection) }
+                    StartButton(rowSelection: $rowSelection) }
             }.onAppear(perform: scanAllFolders)
-           // .environment(\.editMode, .constant(EditMode.active))
 
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -86,29 +65,20 @@ struct HomeScreenButtonsView: View {
                         EditButton()
                         settingsButton()
                     }
-
                 }
-                
-                //ToolbarItem(placement: .navigationBarTrailing) { HStack{ } }
             }
 
             VStack {  // MARK: - Shows the main screen (right side).
                 VStack {
-                    //  FileImporterView()
                     if !(isloadingPhotos) {
-                        // laden.hidden()
                         Text(prefs.error)
-                        // Text(String("Array Bookmarks: \(storedUserData.arrayWorkingDirectoryBookmark.count)"))
 
                         Spacer().frame(maxWidth: .infinity)
 
                         countPickerView()
                         timePickerView()
-                        StartButton(folderArrayModel: folderArrayModel, rowSelection: $rowSelection)
-
-
+                        StartButton(rowSelection: $rowSelection)
                     } else {
-                        // laden
                         Text("Loading Photos...please wait...")
                     }
                 } //End VStack.
@@ -124,12 +94,13 @@ struct HomeScreenButtonsView: View {
 
     //MARK: - FUNCTIONS
     public func scanAllFolders() {
-        folderArrayModel.folderArray.removeAll()
+      //  folderArrayModel.folderArray.removeAll()
+       // folderArrayModel.removeAll()
         if (UIDevice.current.userInterfaceIdiom == .mac) {
             print("JD451: mac")
             Folder.documents!.subfolders.recursive.forEach { folder in
-                let newFolder = FoldersModel(name: folder.name)
-                folderArrayModel.folderArray.append(newFolder)
+             //   let newFolder = FoldersModel(name: folder.name)
+            //    folderArrayModel.folderArray.append(newFolder)
                 //MARK: Different on mac --> folder.files vs Folder.documents!.files
             }
         }
@@ -137,8 +108,8 @@ struct HomeScreenButtonsView: View {
         //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
         if !(UIDevice.current.userInterfaceIdiom == .mac) {
             Folder.documents!.subfolders.recursive.forEach { folder in
-                let newFolder = FoldersModel(name: folder.name)
-                folderArrayModel.folderArray.append(newFolder)
+              //  let newFolder = FoldersModel(name: folder.name)
+              //  folderArrayModel.folderArray.append(newFolder)
             }
         }
     } //End func.
@@ -152,290 +123,3 @@ extension View {
         else { self }
     }
 }
-
-/* IMPORTANT - WORKS. HEART BUTTON. FUNCTIONS TO LOAD PHOTO.
- //- AsyncImage. UI.
- if (showPhotos) {
- // Image(uiImage: UIImage(data: storedUserData.photo) ?? UIImage(named: "/Users/josiahdowdy/Library/Mobile Documents/com~apple~CloudDocs/Screenshots") ?? UIImage())
- Text("Enjoy!")
- if #available(iOS 15.0, *) {
- AsyncImage(url: url)
- .frame(width: 100, height: 100)
- if !(prefs.arrayOfURLStrings.isEmpty) {
- AsyncImage(url: URL(string: prefs.arrayOfURLStrings[0]))
- .frame(width: 100, height: 100)
- }
- } else {
- // Fallback on earlier versions
- }
- } //
-
- private var showPhotoButton: some View {
- return Button(action: showPhotoFunction) {
- Image(systemName: "heart")
- }
- }
-
-
- private func showPhotoFunction() {
- //- Show Photo Here.
- url = restoreFileAccess(with: storedUserData.workingDirectoryBookmark)!
-
- //BOOKMARK URL IS WORKING. NOW, ADD IT TO AN ARRAY.
- if (url.startAccessingSecurityScopedResource()) {
- print("JD67: TRUE")
- prefs.arrayOfURLStrings.append(String(describing: url))
- print("JD68: prefs.arrayOfURLStrings \(prefs.arrayOfURLStrings[0])")
- } else {
- print("JD67: False")
- }
-
- if !(showPhotos) {
- showPhotos = true
- } else {
- showPhotos = false
- }
-
- print("JD69: showPhoto - ", showPhotos)
- }
-
-
- private func restoreFileAccess(with bookmarkData: Data) -> URL? { //[URL: Data]) -> URL? {
- do {
- var isStale = false
-
- //            for url in bookmarkData {
- //                let url2 = try URL(resolvingBookmarkData: bookmarkData[url], relativeTo: nil, bookmarkDataIsStale: &isStale)
- //
- //            }
- let url = try URL(resolvingBookmarkData: bookmarkData, relativeTo: nil, bookmarkDataIsStale: &isStale)
-
- if isStale {
- // bookmarks could become stale as the OS changes
- print("Bookmark is stale, need to save a new one... ")
- //    saveBookmarkData(for: url)
- }
- return url
- } catch {
- print("Error resolving bookmark:", error)
- return nil
- }
- } */
-
-
-/*
-
- //           let bookmarkedData = storedUserData.workingDirectoryBookmark//URL(string: storedUserData.workingDirectoryBookmark)
- // let imageData = UIImage(data: bookmarkedData)// try Data(contentsOf: bookmarkedData) //storedUserData.recoveredURL.downloadURL)//cdFolders[0].wrappedFolderURL)
-
- //      print("JD44: bookmarkedData \(bookmarkedData)")
-
- // let img = UIImage(data: try bookmarkedData.toData())
- //    print("JD45: img \(String(describing: img))")
-
-
- //   storedUserData.photo = (img?.pngData())!
- //let imageData = try Data(contentsOf: bookmarkedData ) //storedUserData.recoveredURL
- //            print("JD44: imageData \(String(describing: imageData))")
- //       let img = UIImage(data: bookmarkedData)
- //        print("JD45: img \(String(describing: img))")
- //
- //       storedUserData.photo = (img?.jpegData(compressionQuality: 1.0))! //img?.pngData()
-
- */
-//
-//struct HomeScreenButtonsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeScreenButtonsView()
-//    }
-//}
-
-
-
-
-//  trailing:
-//EditButton()
-//                    Button(action: {
-//                        withAnimation {
-//                            isImporting = false
-//
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//                                isImporting = true
-//                            }
-//                        }
-//                    }, label: {
-//                        Image(systemName: "folder.badge.plus")
-//                    })
-
-//AddButton(editMode: $editMode, isImporting: isImporting)
-//                        NavigationLink(destination: Text("Stats View")) {
-//                            Label("Settings", systemImage: "chart.bar.xaxis")//Text("Stats")
-//                        }
-//                    )
-//                .toolbar {
-//                    Button(action: showSettings) {
-//                        Label("Settings", systemImage: "gearshape.fill")
-//                    }
-//                }
-
-
-
-//            List(selection: $cdSelection) {
-//                //ForEach(cdNumbers, id: \.id) { number in
-//                ForEach(cdNumbers, id: \.self) { data in
-//                    //  ForEach(items) { data in
-//                    // Text("Row \(data)")  #IMPORTANT# Shows all the data in the row.
-//                    // Text(data.wrappedFolderName)
-//                    Text(data.name ?? "POOP")
-//                }
-//                .onDelete(perform: cdOnSwipeDelete)
-//                //                        .onDelete(perform: onDelete)
-//                //                        .onMove(perform: onMove)
-//                //                        .onMove(perform: relocate)
-//            }
-//
-//            .navigationBarTitle("P2: \(cdSelection.count)")
-//            .environment(\.editMode, self.$cdEditMode)
-//            .navigationBarItems(leading: cdDeleteButton, trailing: EditButton())
-//
-//
-
-/*
- .fileImporter(
- isPresented: $isImporting, allowedContentTypes: [UTType.folder], //, UTType.png, UTType.image, UTType.jpeg, UTType.pdf],
- allowsMultipleSelection: false,
- onCompletion: { result in
- do {
- guard let selectedFolder: URL = try result.get().first else { return }
- //
- //                        let name = selectedFolder.lastPathComponent
- //                        let url = selectedFolder
- //                        let note = Note(name: name, isFolderSelected: false, url: url)
-
- //  DataProvider.shared.create(note: note)
-
- //                    storedUserData.storedFolderURL = selectedFolder
-
- //                    storedUserData.arrayOfFolderURLs.append(selectedFolder.path)
- //  storedUserData.workingDirectoryBookmark = selectedFolder
-
- //Store photo urls in array.
- var arrayFiles = [String]()
- for i in try Folder(path: selectedFolder.path).files {
- arrayFiles.append(i.path) //Save the photo urls into the array.
- }
-
- //  for file in try Folder(path: selectedFolder.path).files {
- //storedUserData.arrayPhotoURLs = [file]
- //                        storedUserData.arrayOfFolderNames.append(file.name)
- //                        storedUserData.arrayOfFolderURLs.append(file.path)
- //                        storedUserData.arrayPhotoDownloadPath.append(file.url.downloadURL)
- //     }
- } catch { print("failed") }
- })
-
-
-
-
-
-
- //--------END VIEW-------------
-
-
- //        if (UIDevice.current.userInterfaceIdiom == .phone) {
- //            //  print("Not phone")
- //            Text("Only shows on iPhone.")
- //        }
-
- /*
-  func saveFile (url: URL) {
-  var actualPath: URL
-
-  if (CFURLStartAccessingSecurityScopedResource(url as CFURL)) { // <- here
-
-  let fileData = try? Data.init(contentsOf: url)
-  let fileName = url.lastPathComponent
-
-  actualPath = getDocumentsDirectory().appendingPathComponent(fileName)
-
-  // print("\nactualPath = \(actualPath)\n") //Prints out the actual path.
-  do {
-  try fileData?.write(to: actualPath)
-  prefs.arrayOfURLStrings.append(String(describing: actualPath))
-  //print("\nString: arrayOfURLStrings: \n\(prefs.arrayOfURLStrings)\n")
-  if(fileData == nil){
-  print("Permission error!")
-  }
-  else {
-  //print("Success.")
-  }
-  } catch {
-  print("Josiah1: \(error.localizedDescription)")
-  }
-  CFURLStopAccessingSecurityScopedResource(url as CFURL) // <- and here
-
-  }
-  else {
-  print("Permission error!")
-  }
-
-  func getDocumentsDirectory() -> URL {
-  return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-  }
-  */
-
-
-
-
-
- /*
-  ToolbarItem(placement: .navigationBarLeading) {
-  Button(action: {
-  //   iOSSettingsBarView()
-
-  }) {
-  //Image(systemName: "gearshape.fill") }
-  Text("Settings") }
-  }
-
-  ToolbarItem(placement: .navigationBarTrailing) {
-  Button(action: {
-  self.isAddingPhotos = true }) {
-  Image(systemName: "plus") }
-  */
-
-
- //  }
-
-
-
-
- //-----END VARIABLES------
- //    init() {
- //        let coloredAppearance = UINavigationBarAppearance()
- //        coloredAppearance.configureWithOpaqueBackground()
- //        coloredAppearance.backgroundColor = .systemBrown
- //        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
- //        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
- //
- //        UINavigationBar.appearance().standardAppearance = coloredAppearance
- //        UINavigationBar.appearance().compactAppearance = coloredAppearance
- //        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
- //
- //        UINavigationBar.appearance().tintColor = .white
- //    }
- //-----END VARIABLES------
- //    init() {
- //        let coloredAppearance = UINavigationBarAppearance()
- //        coloredAppearance.configureWithOpaqueBackground()
- //        coloredAppearance.backgroundColor = .systemBrown
- //        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
- //        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
- //
- //        UINavigationBar.appearance().standardAppearance = coloredAppearance
- //        UINavigationBar.appearance().compactAppearance = coloredAppearance
- //        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
- //
- //        UINavigationBar.appearance().tintColor = .white
- //    }
- */

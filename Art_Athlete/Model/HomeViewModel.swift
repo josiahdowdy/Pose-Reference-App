@@ -16,9 +16,9 @@ class HomeViewModel: ObservableObject {
 
     // Sample Products...
     @Published var products: [Product] = [
-        Product(type: .Wearable, title: "Apple Watch", subtitle: "Series 6: Red", count: 2,productImage: "AppleWatch6"),
-        Product(type: .Phones, title: "iPhone 13", subtitle: "A15 - Pink", count: 3, productImage: "iPhone13"),
-        Product(type: .Folders, title: "iPhone 12", subtitle: "A14 - Blue", count: 4, productImage: "iPhone12"),
+        Product(numberInLine: 0, type: .Wearable, title: "Apple Watch", subtitle: "Series 6: Red", count: 2),
+       // Product(type: .Phones, title: "iPhone 13", subtitle: "A15 - Pink", count: 3, productImage: "iPhone13"),
+       // Product(type: .Folders, title: "iPhone 12", subtitle: "A14 - Blue", count: 4, productImage: "iPhone12"),
     ]
 
     @Published var filteredProducts: [Product] = []

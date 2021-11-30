@@ -35,7 +35,7 @@ struct SimpleRowView: View {
 
 
 struct FolderRowsView: View {
-    @ObservedObject var folderArrayModel: FoldersArrayModel
+  //  @ObservedObject var folderArrayModel: FoldersArrayModel
     @EnvironmentObject var homeData: HomeViewModel
     @State private var editMode: EditMode = .active
     @Binding var rowSelection: Set<String>
@@ -67,7 +67,6 @@ struct FolderRowsView: View {
               //  }
 
             Button(action: {
-                self.folderArrayModel.folderArray.append(FoldersModel(name: "Refresh"))
                 scanAllFolders()
             }) {
                 Text("Add text")
@@ -81,12 +80,12 @@ struct FolderRowsView: View {
 
     //MARK: FUNCTIONS
     private func scanAllFolders() {
-        folderArrayModel.folderArray.removeAll()
+        //folderArrayModel.folderArray.removeAll()
         if (UIDevice.current.userInterfaceIdiom == .mac) {
             print("JD451: mac")
             Folder.documents!.subfolders.recursive.forEach { folder in
-                let newFolder = FoldersModel(name: folder.name)
-                folderArrayModel.folderArray.append(newFolder)
+//                let newFolder = FoldersModel(name: folder.name)
+//                folderArrayModel.folderArray.append(newFolder)
             }
         }
 
@@ -94,8 +93,8 @@ struct FolderRowsView: View {
         if !(UIDevice.current.userInterfaceIdiom == .mac) {
             print("JD451: NOT MAC")
             Folder.documents!.subfolders.recursive.forEach { folder in
-                let newFolder = FoldersModel(name: folder.name)
-                folderArrayModel.folderArray.append(newFolder)
+//                let newFolder = FoldersModel(name: folder.name)
+//                folderArrayModel.folderArray.append(newFolder)
             }
         }
     } //End func.
