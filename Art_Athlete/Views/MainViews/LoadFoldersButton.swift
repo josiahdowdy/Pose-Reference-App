@@ -11,6 +11,8 @@ struct LoadFoldersButton: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var homeData: HomeViewModel
 
+    
+
     @State var isImporting: Bool = false
     @Binding var isloadingPhotos: Bool
 
@@ -55,6 +57,10 @@ struct LoadFoldersButton: View {
                 let originFolder = try Folder(path: selectedFiles[i].path)
                 let targetFolder = try Folder(path: Folder.documents!.path)
                 try originFolder.copy(to: targetFolder)
+
+                //Now add it to homedata.folders.
+                //scanNewFolders(selectedFiles: URL)
+                homeData.folders.append(Product(type: .Poses, title: originFolder.name, subtitle: "xx", count: originFolder.files.count()))
             }
             try? self.context.save()
 
@@ -62,8 +68,36 @@ struct LoadFoldersButton: View {
             print ("JD82: ", error.localizedDescription)
         }
 
-        scanAllFoldersB()
+       // scanAllFoldersB()
+       // scanNewFolders(selectedFiles: URL)
     }
+
+    //Func
+    public func scanNewFolders(url: URL) {
+        //homeData.folders.removeAll()
+        if (UIDevice.current.userInterfaceIdiom == .mac) {
+            print("JD451: mac")
+            var i = 0 //numberInLine: i,
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+                i += 1
+                /// Different on mac --> folder.files vs Folder.documents!.files
+            }
+        }
+
+        ///important --> when running "My Mac (designed for ipad)", this if statement is used.
+        if !(UIDevice.current.userInterfaceIdiom == .mac) {
+            print("JD451: NOT mac")
+            var i = 0 //numberInLine: i,
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+                i += 1
+            }
+        }
+
+        print("JD460: \(homeData.folders)")
+
+    } //End func.
 } //END STRUCT
 
 //MARK: - extensions.
@@ -78,6 +112,16 @@ extension Array where Element: Equatable {
             }
         }
         self = result
+    }
+
+}
+
+extension Array where Element: Hashable {
+    func duplicates() -> Array {
+        let groups = Dictionary(grouping: self, by: {$0})
+        let duplicateGroups = groups.filter {$1.count > 1}
+        let duplicates = Array(duplicateGroups.keys)
+        return duplicates
     }
 }
 

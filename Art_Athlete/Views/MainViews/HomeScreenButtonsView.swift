@@ -9,22 +9,20 @@ import Laden
 
 
 struct HomeScreenButtonsView: View {
+    @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var sharedData: SharedViewModel
     @Environment(\.managedObjectContext) var context
     @StateObject var homeData: HomeViewModel = HomeViewModel()
-
-    //@ObservedObject var folderArrayModel = FoldersArrayModel(folderArray: [FoldersModel(name: "")])
-
-    //@ObservedObject var folderArrayModel: FoldersArrayModel
-
     @State var isAddingPhotos: Bool = false
     @State var showPhotos: Bool = false
     @State private var isLoading = true
     @State private var isloadingPhotos = false
     @State public var totalPhotosLoaded = 0
     @State var rowSelection = Set<String>()
+
+    //@EnvironmentObject var rowSelection: Set<String>()
 
     @State var error = ""
     @State var url : URL = URL(fileURLWithPath: "nil")
@@ -57,12 +55,13 @@ struct HomeScreenButtonsView: View {
                     countPickerView()
                     timePickerView()
                     StartButton(rowSelection: $rowSelection) }
-            }.onAppear(perform: scanAllFolders)
+            } //.onAppear(perform: scanAllFolders)
 
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     HStack {
                         EditButton()
+                            .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                         settingsButton()
                     }
                 }
@@ -75,6 +74,7 @@ struct HomeScreenButtonsView: View {
 
                         Spacer().frame(maxWidth: .infinity)
 
+                        MainImageView()
                         countPickerView()
                         timePickerView()
                         StartButton(rowSelection: $rowSelection)
@@ -85,34 +85,28 @@ struct HomeScreenButtonsView: View {
             }
             .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
         } //NavigationView
-        .onAppear(perform: scanAllFolders)
+       // .onAppear(perform: scanAllFolders)
     } //End UI.
 
-    /*__/,|   (`\
+       /*__/,|   (`\
      _.|o o  |_   ) )
      -(((---(((-----*/
 
     //MARK: - FUNCTIONS
-    public func scanAllFolders() {
-      //  folderArrayModel.folderArray.removeAll()
-       // folderArrayModel.removeAll()
-        if (UIDevice.current.userInterfaceIdiom == .mac) {
-            print("JD451: mac")
-            Folder.documents!.subfolders.recursive.forEach { folder in
-             //   let newFolder = FoldersModel(name: folder.name)
-            //    folderArrayModel.folderArray.append(newFolder)
-                //MARK: Different on mac --> folder.files vs Folder.documents!.files
-            }
-        }
-
-        //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
-        if !(UIDevice.current.userInterfaceIdiom == .mac) {
-            Folder.documents!.subfolders.recursive.forEach { folder in
-              //  let newFolder = FoldersModel(name: folder.name)
-              //  folderArrayModel.folderArray.append(newFolder)
-            }
-        }
-    } //End func.
+//    public func scanAllFolders() {
+//        if (UIDevice.current.userInterfaceIdiom == .mac) {
+//            print("JD451: mac")
+//            Folder.documents!.subfolders.recursive.forEach { folder in
+//                //MARK: Different on mac --> folder.files vs Folder.documents!.files
+//            }
+//        }
+//
+//        //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
+//        if !(UIDevice.current.userInterfaceIdiom == .mac) {
+//            Folder.documents!.subfolders.recursive.forEach { folder in
+//            }
+//        }
+//    } //End func.
 } //End struct.
 
 //MARK: - Extension

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct settingsButton: View {
     //@Binding var prefs: GlobalVariables
+    @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
 
     var body: some View {
@@ -18,6 +19,7 @@ struct settingsButton: View {
             // showSheet = false
         }, label: {
             Image(systemName: "gearshape")
+                .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
         })
     }
 

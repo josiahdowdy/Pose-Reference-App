@@ -99,29 +99,25 @@ struct TimerView: View{
                             prefs.currentIndex += 1
                             prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
                             
-                            posesCount += 1
-                            testData[testData.count - 1].countPoses += 1
-                            updateSession()
+
+                            updateSession() //Only done at end of session. And called when quit.
                         } else {
                             testData[testData.count - 1].countPoses += 1 //Add 1 more pose count if the user finishees. DO NOT put this in endSession function, otherwise it'll get called when that function is called in other areas like quit.
                             endSession()
                         }
                     }
                 }
-                .onAppear() {
-                    // no need for UI updates at startup
-                    //self.stopTimer()
-                }
         }.padding()
     }//------------------END OF VIEW------------------------------------------------------
-    
     
     //-------------------FUNCTIONS-----------------------------------------------
     //Update data in future.
     func updateSession(){
+        posesCount += 1
+        testData[testData.count - 1].countPoses += 1
+
         do{
             try context.save()
-            //close.toggle()
         }
         catch{
             alertMsg = error.localizedDescription

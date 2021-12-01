@@ -8,6 +8,7 @@ import SlideOverCard
 import UniformTypeIdentifiers
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var storedUserData: StoredUserData
@@ -69,6 +70,7 @@ struct ContentView: View {
                 }
             }
         }
+        .onAppear(perform: scanAllFolders)
     }
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 

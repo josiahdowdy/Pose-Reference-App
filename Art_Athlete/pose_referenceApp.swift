@@ -41,7 +41,7 @@ struct pose_referenceApp: App {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     var body: some Scene {
         WindowGroup {
-            ContentView() //isPresented: $prefs.showMainScreen
+            ContentView() //.preferredColorScheme(.dark) //isPresented: $prefs.showMainScreen
                 .environmentObject(prefs)
                 .environmentObject(timeObject)
                 .environmentObject(storedUserData)

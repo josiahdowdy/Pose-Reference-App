@@ -9,6 +9,7 @@ import SwiftUI
 import Files
 
 struct StartButton: View {
+    @Environment(\.colorScheme) var currentDarkLightMode
     @ObservedObject var storedUserData = StoredUserData()
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
@@ -26,13 +27,23 @@ struct StartButton: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: VIEW
     var body: some View {
-            Button("Start \(Image(systemName: "play.rectangle.fill"))") {
-                loadFolderFiles()
-                startSession()
-            }
-            .keyboardShortcut(.defaultAction)
-            .padding(20)
-            .padding(.bottom, 20) //.buttonStyle(ButtonOnOffStyle())
+        Button {
+            loadFolderFiles()
+            startSession()
+        } label: {
+            Text("\(Image(systemName: "play.rectangle.fill")) Start ")
+                .frame(width: 100, height: 40)
+                .foregroundColor(currentDarkLightMode == .dark ? Color.black : Color.white)
+                .background(currentDarkLightMode == .dark ? Color.blue : Color.blue)
+               // .foregroundColor(Color.black)
+              //  .background(Color.blue)
+                .clipShape(Rectangle())
+                .cornerRadius(8)
+                .padding(.bottom, 20)
+
+        }.buttonStyle(PlainButtonStyle())
+
+
     } //END UI View.
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/

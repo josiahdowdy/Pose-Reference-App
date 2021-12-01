@@ -3,7 +3,7 @@
 import SwiftUI
 
 struct Product: Identifiable,Hashable {
-    var numberInLine: Int
+   // var numberInLine: Int
     var id = UUID().uuidString
     var isSelected: Bool = false
     var type: ProductType

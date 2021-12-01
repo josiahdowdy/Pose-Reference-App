@@ -38,8 +38,6 @@ struct StatsView: View {
 
     var sumTimeDrawn: Int16 {
         fetchTotalTimeDrawn.reduce(0) { $0 + $1.timeDrawn }
-        
-
     }
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
@@ -59,14 +57,14 @@ struct StatsView: View {
                 //Text("\(Image(systemName: "pencil.and.outline"))   Poses drawn: \(userObject.totalPosesDrawn)").padding(.top, 10)
                 //Text("\(Image(systemName: "clock"))   Avg time per pose: ").padding(.top, 10)
 
-                DisclosureGroup("Certificates", isExpanded: $topExpanded) {
-                    CertificateView()
-                    Toggle("Toggle 1", isOn: $toggleStates.oneIsOn)
-                    Toggle("Toggle 2", isOn: $toggleStates.twoIsOn)
-                    DisclosureGroup("Sub-items") {
-                        Text("Sub-item 1")
-                    }
-                }
+//                DisclosureGroup("Certificates", isExpanded: $topExpanded) {
+//                    CertificateView()
+//                    Toggle("Toggle 1", isOn: $toggleStates.oneIsOn)
+//                    Toggle("Toggle 2", isOn: $toggleStates.twoIsOn)
+//                    DisclosureGroup("Sub-items") {
+//                        Text("Sub-item 1")
+//                    }
+//                }
 
             }.padding(.horizontal, 20)
 
