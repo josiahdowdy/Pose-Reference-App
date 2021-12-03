@@ -18,19 +18,21 @@ extension Image {
 struct MainImageView: View {
 
     var body: some View {
-        HStack {
+        ZStack {
             GeometryReader { geo in
                 Image(path: "Pic4.png")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: geo.size.width * 0.8)
+                    .frame(width: geo.size.width * 0.8) //0.8 is it fills the width 80% of the screen.
                     .frame(width: geo.size.width, height: geo.size.height) //This line makes image fill the container.
 
                 //So I need to put this in a container that will fill the screen.
             }
 
         }
-        .background(Color.pink)
+        .ignoresSafeArea() // 1
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.gray)
 
 
     }

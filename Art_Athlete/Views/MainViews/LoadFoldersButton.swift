@@ -16,7 +16,7 @@ struct LoadFoldersButton: View {
     @State var isImporting: Bool = false
     @Binding var isloadingPhotos: Bool
 
-    let scanAllFoldersB: () -> () //Passed in function.
+    //let scanAllFoldersB: () -> () //Passed in function.
 
     //MARK: END VARIABLES
 

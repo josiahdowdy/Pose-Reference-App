@@ -14,7 +14,8 @@ struct HomeScreenButtonsView: View {
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var sharedData: SharedViewModel
     @Environment(\.managedObjectContext) var context
-    @StateObject var homeData: HomeViewModel = HomeViewModel()
+    //@StateObject var homeData: HomeViewModel = HomeViewModel()
+    @EnvironmentObject var homeData: HomeViewModel
     @State var isAddingPhotos: Bool = false
     @State var showPhotos: Bool = false
     @State private var isLoading = true
@@ -72,7 +73,7 @@ struct HomeScreenButtonsView: View {
                     if !(isloadingPhotos) {
                         Text(prefs.error)
 
-                        Spacer().frame(maxWidth: .infinity)
+                       // Spacer().frame(maxWidth: .infinity)
 
                         MainImageView()
                         countPickerView()

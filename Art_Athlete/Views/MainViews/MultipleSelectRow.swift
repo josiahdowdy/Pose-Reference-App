@@ -60,7 +60,7 @@ struct MultipleSelectRow: View {
         HStack {
             Text("Photos").font(.title3)
                 .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-            LoadFoldersButton(isloadingPhotos: $isloadingPhotos, scanAllFoldersB: scanAllFolders)
+            LoadFoldersButton(isloadingPhotos: $isloadingPhotos)
                 .environmentObject(homeData)
             Spacer()
             Text("Files").font(.title3)
@@ -72,28 +72,45 @@ struct MultipleSelectRow: View {
             }
             .onDelete(perform: removeFolders)
         }
+    } //End func.
+
+    private func deleteAllFolders() {
+        homeData.folders.removeAll()
     }
 
-    private func folderIsSelected(product: Product) {
-        //self.selectedBtn = product
-        self.isSelected.toggle()
-    }
+//    public func scanAllFolders() {
+//        if (UIDevice.current.userInterfaceIdiom == .mac) {
+//            print("JD451: mac")
+//            Folder.documents!.subfolders.recursive.forEach { folder in
+//                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+//                /// Different on mac --> folder.files vs Folder.documents!.files
+//            }
+//        }
+//
+//        ///important --> when running "My Mac (designed for ipad)", this if statement is used.
+//        if !(UIDevice.current.userInterfaceIdiom == .mac) {
+//            print("JD451: NOT mac")
+//            Folder.documents!.subfolders.recursive.forEach { folder in
+//                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+//            }
+//        }
+//    } //End func.
 
-    func appendFolders(at offsets: IndexSet) {
-        homeData.folders = homeData.folders.enumerated().filter { (i, item) -> Bool in
-            let added = offsets.contains(i)
-            if added {
-                addFolderToDrawList(folder: item)
-            }
-            return !added
-        }.map { $0.1 }
-    }
+//    func appendFolders(at offsets: IndexSet) {
+//        homeData.folders = homeData.folders.enumerated().filter { (i, item) -> Bool in
+//            let added = offsets.contains(i)
+//            if added {
+//                addFolderToDrawList(folder: item)
+//            }
+//            return !added
+//        }.map { $0.1 }
+//    }
 
-    private func addFolderToDrawList(folder: Product) {
-        let folderName = folder.title
-        prefs.arrayOfFolderNames.append(folderName)
-        print("JD460: \(prefs.arrayOfFolderNames)")
-    }
+//    private func addFolderToDrawList(folder: Product) {
+//        let folderName = folder.title
+//        prefs.arrayOfFolderNames.append(folderName)
+//        print("JD460: \(prefs.arrayOfFolderNames)")
+//    }
 
     private func removeFolderFromDrawList(folder: Product) {
         if let index = prefs.arrayOfFolderNames.firstIndex(of: folder.title) {
@@ -101,8 +118,8 @@ struct MultipleSelectRow: View {
         }
         print("JD460: \(prefs.arrayOfFolderNames)")
     }
-
-    //FIXME: After deleting folders, a bug happens with the prefs.arrayOfFolderNames.
+//
+//    //FIXME: After deleting folders, a bug happens with the prefs.arrayOfFolderNames.
     func removeFolders(at offsets: IndexSet) {
         homeData.folders = homeData.folders.enumerated().filter { (i, item) -> Bool in
             let removed = offsets.contains(i)
@@ -129,58 +146,7 @@ struct MultipleSelectRow: View {
         }
     }
 
-    public func scanNewFolders() {
 
-    }
-
-    public func scanAllFolders() {
-        //homeData.folders.removeAll()
-        if (UIDevice.current.userInterfaceIdiom == .mac) {
-            print("JD451: mac")
-            var i = 0 //numberInLine: i,
-            Folder.documents!.subfolders.recursive.forEach { folder in
-                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
-                i += 1
-                /// Different on mac --> folder.files vs Folder.documents!.files
-            }
-        }
-
-        ///important --> when running "My Mac (designed for ipad)", this if statement is used.
-        if !(UIDevice.current.userInterfaceIdiom == .mac) {
-            print("JD451: NOT mac")
-            var i = 0 //numberInLine: i, 
-            Folder.documents!.subfolders.recursive.forEach { folder in
-                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
-                i += 1
-            }
-        }
-
-        print("JD460: \(homeData.folders)")
-
-        ///1. Get all of the titles of the foldes.
-        ///2. Then save them in an array.
-        ///3. Detect which numbers in new array are duplicates.
-        ///4. Now delete those numbers in the original array.
-        ///Probably more efficient way to do this, but this ought to work.
-        //var x = 0
-
-//        var arrA = [String]()//= [String]
-//        for i in homeData.folders {
-//            arrA.append(i.title)
-//            //homeData.folders.removeDuplicatesFolders(titleFolder: homeData.folders[Product(title)])
-//        }
-//
-//        print("JD460: arrA --> \n\n \(arrA)")
-//
-//        ///Now, detect which numbers are duplicates in arrA.
-//        let crossReference = Dictionary(grouping: homeData.folders, by: \.title)
-//        print("JD460: crossReference --> \n\n \(crossReference)")
-//        let duplicates = crossReference
-//            .filter { $1.count > 1 }                 // filter down to only those with multiple contacts
-//            .sorted { $0.1.count > $1.1.count }
-//        print("JD460: Duplicates --> \n\n \(duplicates)")
-//        print("JD460: AFTER DUPLICATES \(homeData.folders)")
-    } //End func.
 
     private func deleteAllPhotosInSandbox() {
         Folder.documents!.subfolders.recursive.forEach { folder in

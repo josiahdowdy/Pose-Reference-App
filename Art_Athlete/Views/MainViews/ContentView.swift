@@ -34,6 +34,8 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var context
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var testData: FetchedResults<UserData>
 
+    @StateObject var homeData: HomeViewModel = HomeViewModel()
+
     @State var startSession = false
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 
@@ -47,6 +49,7 @@ struct ContentView: View {
             if (prefs.introIsFinished) {
                 if (!prefs.startSession) {
                     HomeScreenButtonsView()
+                        .environmentObject(homeData)
                         .environmentObject(sharedData)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .transition(AnyTransition.move(edge: .leading)).animation(.default)
@@ -75,6 +78,23 @@ struct ContentView: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 
     //MARK: - FUNCTIONS
+    public func scanAllFolders() {
+        if (UIDevice.current.userInterfaceIdiom == .mac) {
+            print("JD451: mac")
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+                /// Different on mac --> folder.files vs Folder.documents!.files
+            }
+        }
+
+        ///important --> when running "My Mac (designed for ipad)", this if statement is used.
+        if !(UIDevice.current.userInterfaceIdiom == .mac) {
+            print("JD451: NOT mac")
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+            }
+        }
+    } //End func.
 } //End Struct.
 
 
