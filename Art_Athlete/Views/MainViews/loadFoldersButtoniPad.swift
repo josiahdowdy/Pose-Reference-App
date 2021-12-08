@@ -55,7 +55,9 @@ struct LoadFoldersButtoniPad: View {
                 let folderName = filePathArray[0]
                 let firstFileSelected = filePathArray[1]
 
-                let originFolder = selectedFiles[0].downloadURL.deletingLastPathComponent()
+               //let originFolder = selectedFiles[0].downloadURL.deletingLastPathComponent()
+                let dataPath = getPathForImage(name: folderName)
+                createNewFolder(dataPath: dataPath!.path)
 
                 if selectedFiles[0].startAccessingSecurityScopedResource() {
                     print("JD451: Acess granted to startAccessingSecurityScopedResource. \(selectedFiles[0].path)")
@@ -64,15 +66,15 @@ struct LoadFoldersButtoniPad: View {
 
                     guard
                         let data = imagesArray[0].jpegData(compressionQuality: 1.0),
-                        let path = getPathForImage(name: firstFileSelected)
-
+                        let path = getPathForImage(name: folderName),
+                        let folderPath = getFolderPath(folderName: folderName, fileName: firstFileSelected)
                     else {
                             print("JD451: error getting data.")
                             return
                         }
 
                     do {
-                        try data.write(to: path)
+                        try data.write(to: folderPath) //path
                         print("JD451: Success saving!")
                     } catch let error {
                         print("JD451: Error saving. \(error)")
@@ -115,11 +117,36 @@ struct LoadFoldersButtoniPad: View {
                 .default
                 .urls(for: .documentDirectory, in: .userDomainMask)
                 .first?
-                .appendingPathComponent("\(name).jpg") else {
+                .appendingPathComponent("\(name)") else {   //.jpg
             print("error getting path.")
             return nil
         }
 
         return path
+    }
+
+    func getFolderPath(folderName: String, fileName: String) -> URL? {
+        guard
+            let path = FileManager
+                .default
+                .urls(for: .documentDirectory, in: .userDomainMask)
+                .first?
+                .appendingPathComponent("\(folderName)/\(fileName)")
+            else {
+                    print("error getting path.")
+                    return nil
+                }
+
+        return path
+    }
+
+    func createNewFolder(dataPath: String) {
+        if !FileManager.default.fileExists(atPath: dataPath) {
+            do {
+                try FileManager.default.createDirectory(atPath: dataPath, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 } //END STRUCT

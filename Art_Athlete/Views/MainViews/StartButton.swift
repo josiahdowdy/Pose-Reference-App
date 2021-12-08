@@ -126,13 +126,12 @@ struct StartButton: View {
         let loadFiles = Folder.documents?.files
         let subFolders = Folder.documents?.subfolders
 
-        print("JD451: ••••••••• \(loadFiles) -\n subfolders:  \(subFolders)")
+        print("JD451: loadfiles ••••••••• \(String(describing: loadFiles.debugDescription))")
+        print("JD451: subfolders ••••••••• \(String(describing: subFolders))")
 
         for file in loadFiles!  { //
             prefs.arrayOfURLStrings.append(file.url.absoluteString)
         }
-
-        
 
         print("JD451: path DIRECTORY is --> \(path)")
        // print("JD451: path DIRECTORY is --> \(path)")
