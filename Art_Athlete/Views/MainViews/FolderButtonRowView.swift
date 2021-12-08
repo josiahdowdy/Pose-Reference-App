@@ -78,7 +78,7 @@ struct FolderButtonRowView: View {
     private func addFolderToDrawList(folder: Product) {
         print("JD460: \(folder.title)")
         let folderName = folder.title
-        let url = Folder.documents!.path
+       // let url = Folder.documents!.path
 
         prefs.arrayOfFolderNames.append(folderName)
     }

@@ -88,8 +88,17 @@ struct ContentView: View {
         }
 
         ///important --> when running "My Mac (designed for ipad)", this if statement is used.
-        if !(UIDevice.current.userInterfaceIdiom == .mac) {
-            print("JD451: NOT mac")
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+            print("JD451: iPad")
+            Folder.documents!.subfolders.recursive.forEach { folder in
+                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+            }
+        }
+
+        if (UIDevice.current.userInterfaceIdiom == .phone) {
+            print("JD451: PHONE")
+            print("JD451: phone - Folder.documents! \(Folder.documents!) ")
+            // Its NOT library - current - documents - home - root -
             Folder.documents!.subfolders.recursive.forEach { folder in
                 homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
             }

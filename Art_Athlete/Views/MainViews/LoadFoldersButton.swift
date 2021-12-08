@@ -50,26 +50,26 @@ struct LoadFoldersButton: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - FUNCTIONS
     func importImage(_ result: Result<[URL], Error>) {
-        do{
-            let selectedFiles = try result.get()//let selectedFiles = try res.get()
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+            print("JD451: iPad")
+            do{
+                let selectedFiles = try result.get()//let selectedFiles = try res.get()
 
-            for i in 0...(selectedFiles.count-1) {
-                let originFolder = try Folder(path: selectedFiles[i].path)
-                let targetFolder = try Folder(path: Folder.documents!.path)
-                try originFolder.copy(to: targetFolder)
+                for i in 0...(selectedFiles.count-1) {
+                    let originFolder = try Folder(path: selectedFiles[i].path)
+                    let targetFolder = try Folder(path: Folder.documents!.path)
 
-                //Now add it to homedata.folders.
-                //scanNewFolders(selectedFiles: URL)
-                homeData.folders.append(Product(type: .Poses, title: originFolder.name, subtitle: "xx", count: originFolder.files.count()))
+                    try originFolder.copy(to: targetFolder)
+
+                    homeData.folders.append(Product(type: .Poses, title: originFolder.name, subtitle: "xx", count: originFolder.files.count()))
+                }
+                // try? self.context.save()
+            } catch{
+                print ("JD82: ", error.localizedDescription)
             }
-            try? self.context.save()
-
-        } catch{
-            print ("JD82: ", error.localizedDescription)
         }
-
-       // scanAllFoldersB()
-       // scanNewFolders(selectedFiles: URL)
+        // scanAllFoldersB()
+        // scanNewFolders(selectedFiles: URL)
     }
 
     //Func
@@ -94,9 +94,7 @@ struct LoadFoldersButton: View {
                 i += 1
             }
         }
-
-        print("JD460: \(homeData.folders)")
-
+        print("JD451: homeData.folders \(homeData.folders)")
     } //End func.
 } //END STRUCT
 
@@ -113,35 +111,4 @@ extension Array where Element: Equatable {
         }
         self = result
     }
-
 }
-
-extension Array where Element: Hashable {
-    func duplicates() -> Array {
-        let groups = Dictionary(grouping: self, by: {$0})
-        let duplicateGroups = groups.filter {$1.count > 1}
-        let duplicates = Array(duplicateGroups.keys)
-        return duplicates
-    }
-}
-
-extension Array: RawRepresentable where Element: Codable {
-    public init?(rawValue: String) {
-        guard let data = rawValue.data(using: .utf8),
-              let result = try? JSONDecoder().decode([Element].self, from: data)
-        else {
-            return nil
-        }
-        self = result
-    }
-
-    public var rawValue: String {
-        guard let data = try? JSONEncoder().encode(self),
-              let result = String(data: data, encoding: .utf8)
-        else {
-            return "[]"
-        }
-        return result
-    }
-}
-

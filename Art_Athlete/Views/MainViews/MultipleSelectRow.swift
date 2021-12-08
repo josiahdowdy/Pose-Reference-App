@@ -10,7 +10,7 @@ struct MultipleSelectRow: View {
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var sharedData: SharedViewModel
-    @AppStorage("selectedFolders") var selectedFolders: [String] = [] //Store the last selected photos here.
+   // @AppStorage("selectedFolders") var selectedFolders: [String] = [] //Store the last selected photos here.
 
     @EnvironmentObject var homeData: HomeViewModel
 
@@ -61,6 +61,9 @@ struct MultipleSelectRow: View {
             Text("Photos").font(.title3)
                 .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
             LoadFoldersButton(isloadingPhotos: $isloadingPhotos)
+                .environmentObject(homeData)
+            Text("iPad -->")
+            LoadFoldersButtoniPad(isloadingPhotos: $isloadingPhotos)
                 .environmentObject(homeData)
             Spacer()
             Text("Files").font(.title3)

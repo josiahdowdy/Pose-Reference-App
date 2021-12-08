@@ -42,11 +42,17 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
-    <key>UIFileSharingEnabled</key>
-    <true/>
-    <key>LSSupportsOpeningDocumentsInPlace</key>
-    <true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>Save photos from downloads folder.</string>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>Save photos from documents folder.</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>Save photos from removable drive.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save photos from photo library.</string>
 </dict>
 </plist>
-
-

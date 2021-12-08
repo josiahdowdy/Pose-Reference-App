@@ -173,6 +173,8 @@
 		2CED7E112727531B00B99CAD /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED7E0F2727531B00B99CAD /* SettingsRow.swift */; };
 		2CED7E142727534100B99CAD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED7E132727534100B99CAD /* Color.swift */; };
 		2CED7E152727534100B99CAD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED7E132727534100B99CAD /* Color.swift */; };
+		2CF998472760112C00541BB0 /* loadFoldersButtoniPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF998462760112C00541BB0 /* loadFoldersButtoniPad.swift */; };
+		2CF998482760112C00541BB0 /* loadFoldersButtoniPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF998462760112C00541BB0 /* loadFoldersButtoniPad.swift */; };
 		2CF9E3652747BBF8009F77E1 /* StatsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3642747BBF8009F77E1 /* StatsButton.swift */; };
 		2CF9E3662747BBF8009F77E1 /* StatsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3642747BBF8009F77E1 /* StatsButton.swift */; };
 		2CF9E3682747BEDC009F77E1 /* settingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3672747BEDC009F77E1 /* settingsButton.swift */; };
@@ -356,6 +358,7 @@
 		2CEB6EDA27336E12001C6FEB /* macOS.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		2CED7E0F2727531B00B99CAD /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
 		2CED7E132727534100B99CAD /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		2CF998462760112C00541BB0 /* loadFoldersButtoniPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadFoldersButtoniPad.swift; sourceTree = "<group>"; };
 		2CF9E3642747BBF8009F77E1 /* StatsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsButton.swift; sourceTree = "<group>"; };
 		2CF9E3672747BEDC009F77E1 /* settingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsButton.swift; sourceTree = "<group>"; };
 		2CF9E36B2748641D009F77E1 /* CircleGradual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGradual.swift; sourceTree = "<group>"; };
@@ -425,13 +428,13 @@
 		2C02D879253A2C5700D5F960 = {
 			isa = PBXGroup;
 			children = (
+				2C02D884253A2C5700D5F960 /* Art_Athlete */,
 				2C13157227339A15001019BA /* watchOS */,
 				2C131565273386D9001019BA /* macOS */,
 				2C131564273386D3001019BA /* iOS */,
 				2C663A9327234FCF0097AEFE /* Supporting Files */,
 				2C663A5C271DC98E0097AEFE /* Shared */,
 				2CED7E0D27272A3000B99CAD /* Entity DB */,
-				2C02D884253A2C5700D5F960 /* Art_Athlete */,
 				2C02D896253A2C5A00D5F960 /* tests */,
 				2C02D8A1253A2C5A00D5F960 /* UI_tests */,
 				2C663A60271E1D720097AEFE /* Frameworks */,
@@ -447,12 +450,12 @@
 		2C02D884253A2C5700D5F960 /* Art_Athlete */ = {
 			isa = PBXGroup;
 			children = (
+				2C02D8C2253A50D200D5F960 /* Views */,
+				2C02D8B3253A2C8B00D5F960 /* Model */,
 				2C614DA9273210E20037BFA1 /* Animations */,
 				2C06430C272C6521001DF985 /* PrivateSync */,
 				2CED7E0E272752E700B99CAD /* Extensions */,
 				2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */,
-				2C02D8C2253A50D200D5F960 /* Views */,
-				2C02D8B3253A2C8B00D5F960 /* Model */,
 				2C02D88B253A2C5900D5F960 /* Preview Content */,
 				2CC05E8E2540D393007C733D /* Config.xcconfig */,
 			);
@@ -688,12 +691,13 @@
 				2CAC6636271CA435005066B5 /* ContentView.swift */,
 				2C614DA62731CE8A0037BFA1 /* HomeScreenButtonsView.swift */,
 				2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */,
-				2CDF0979274D209900C284D6 /* FolderRowsView.swift */,
 				2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */,
+				2CA8BC222756A831007BF111 /* FolderButtonRowView.swift */,
 				2C0DF7552742CF580090E5EF /* StartButton.swift */,
 				2CA99D652753FDFD00D5CD15 /* SharedViewModel.swift */,
-				2CA8BC222756A831007BF111 /* FolderButtonRowView.swift */,
 				2C5FA54E2757F40C00227368 /* MainImageView.swift */,
+				2CDF0979274D209900C284D6 /* FolderRowsView.swift */,
+				2CF998462760112C00541BB0 /* loadFoldersButtoniPad.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -1036,6 +1040,7 @@
 				2C614DAB273211010037BFA1 /* DotInversion.swift in Sources */,
 				2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */,
 				2C28F3F727400F0800BB7405 /* DataProvider.swift in Sources */,
+				2CF998472760112C00541BB0 /* loadFoldersButtoniPad.swift in Sources */,
 				2C663A7B27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2C663A9627238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
 				2CF9E38A274B01A5009F77E1 /* PersistenceControllerCoreData.swift in Sources */,
@@ -1145,6 +1150,7 @@
 				2C28F3F827400F0800BB7405 /* DataProvider.swift in Sources */,
 				2CB6248E27277C11001AFA85 /* NavBar.swift in Sources */,
 				2CB6249A27277C45001AFA85 /* DotMenuView.swift in Sources */,
+				2CF998482760112C00541BB0 /* loadFoldersButtoniPad.swift in Sources */,
 				2CB6249F27277C54001AFA85 /* MenuView.swift in Sources */,
 				2CEB6EDB273371A2001C6FEB /* Home.swift in Sources */,
 				2CF9E38B274B01A5009F77E1 /* PersistenceControllerCoreData.swift in Sources */,

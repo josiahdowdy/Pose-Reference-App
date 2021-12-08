@@ -14,9 +14,9 @@ struct StartButton: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
-   // @ObservedObject var folderArrayModel: FoldersArrayModel
-    @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
-    @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
+   /// @ObservedObject var folderArrayModel: FoldersArrayModel
+   // @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
+  //  @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
 
     @State var url : URL = URL(fileURLWithPath: "nil")
     @State var isRandom: Bool = true
@@ -28,7 +28,13 @@ struct StartButton: View {
     //MARK: VIEW
     var body: some View {
         Button {
-            loadFolderFiles()
+            if !(UIDevice.current.userInterfaceIdiom == .phone) {
+                loadFolderFiles()
+            }
+            if (UIDevice.current.userInterfaceIdiom == .phone) {
+                loadFolderFilesiPad()
+            }
+
             startSession()
         } label: {
             Text("\(Image(systemName: "play.rectangle.fill")) Start ")
@@ -92,39 +98,62 @@ struct StartButton: View {
     func loadFolderFiles() {
         print(prefs.arrayOfFolderNames)
         do {
-            //    for i in folderArrayModel.folderArray {
             for i in prefs.arrayOfFolderNames {
-            //    print("JD452: ", i.isToggle)
-
-             //   if (i.isToggle) {
                     let loadFolderURL = try Folder.documents!.subfolder(named: i)
 
                     for file in try Folder(path: loadFolderURL.path).files {
                         prefs.arrayOfURLStrings.append(file.url.absoluteString)
                     }
-               // }
             }
         } catch {
             print("JD452: error loading files from download folder.", error)
         }
     } //End Func.
 
-   /* func loadFolderFiles() {
+    //IPHONE and iPad load files.
+    func loadFolderFilesiPad() {
+        ///1. Print the files in the directory.
+        guard
+            let path = FileManager
+                .default
+                .urls(for: .documentDirectory, in: .userDomainMask)
+                .first
+        else { //.appendingPathComponent("\(name).jpg")
+            print("error getting path.")
+            return
+        }
+
+        let loadFiles = Folder.documents?.files
+        let subFolders = Folder.documents?.subfolders
+
+        print("JD451: ••••••••• \(loadFiles) -\n subfolders:  \(subFolders)")
+
+        for file in loadFiles!  { //
+            prefs.arrayOfURLStrings.append(file.url.absoluteString)
+        }
+
+        
+
+        print("JD451: path DIRECTORY is --> \(path)")
+       // print("JD451: path DIRECTORY is --> \(path)")
+
+
+
+        print(prefs.arrayOfFolderNames)
         do {
-        //    for i in folderArrayModel.folderArray {
-                for i in folderArrayModel {
-                print("JD452: ", i.isToggle)
+            for i in prefs.arrayOfFolderNames {
+                let loadFolderURL = try Folder.documents!.subfolder(named: i)
 
-                if (i.isToggle) {
-                    let loadFolderURL = try Folder.documents!.subfolder(named: i.name)
-
-                    for file in try Folder(path: loadFolderURL.path).files {
-                        prefs.arrayOfURLStrings.append(file.url.absoluteString)
-                    }
+                for file in try Folder(path: loadFolderURL.path).files {
+                    prefs.arrayOfURLStrings.append(file.url.absoluteString)
                 }
             }
         } catch {
             print("JD452: error loading files from download folder.", error)
         }
-    } *///End Func.
+    } //End Func.
+
+    func getImageFromFileManager() {
+      //  image = manager.getImage(name: imageName)
+    }
 } //End struct.

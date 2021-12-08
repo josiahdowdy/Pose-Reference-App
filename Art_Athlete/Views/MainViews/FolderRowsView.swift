@@ -70,7 +70,6 @@ struct FolderRowsView: View {
                 scanAllFolders()
             }) {
                 Text("Add text")
-
             }.padding()
         }//.onAppear(perform: scanAllFolders)
        // .environment(\.editMode, .constant(EditMode.active))
