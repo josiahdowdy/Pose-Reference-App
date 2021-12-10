@@ -66,6 +66,53 @@ struct MultipleSelectRow: View {
             LoadFoldersButtoniPad(isloadingPhotos: $isloadingPhotos)
                 .environmentObject(homeData)
             Spacer()
+            Button {
+                print("JD451: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none")
+                guard
+                    let path = FileManager
+                        .default
+                        .urls(for: .documentDirectory, in: .userDomainMask)
+
+                        .first?
+                        .appendingPathComponent("Birds")
+                else {
+                    print("error getting path.")
+                    return//return nil
+                }
+
+                let path2 = FileManager
+                    .default
+                    .urls(for: .documentDirectory, in: .userDomainMask)
+                    .description
+
+                print("JD451: path2 ---> \(path2)")
+
+
+
+                do {
+                    let newFolder = try Folder(path: path.path)
+                    print("JD451: files of birds: ", newFolder.files)
+
+
+//                    let directory = try Folder(path: path2.path)
+//                    print("JD451: directory: ", directory.files)
+
+                } catch {
+                    print(error)
+                }
+
+
+                print("JD451: path is -->", path)
+
+            } label: {
+                Image(systemName: "pencil")
+            }
+
+            Button {
+                deleteFilesInDirectory()
+            } label: {
+                Image(systemName: "trash.circle")
+            }
             Text("Files").font(.title3)
         }.padding()
 
@@ -77,43 +124,31 @@ struct MultipleSelectRow: View {
         }
     } //End func.
 
+    func deleteFilesInDirectory() {
+        guard
+            let path = FileManager
+                .default
+                .urls(for: .documentDirectory, in: .userDomainMask)
+                .first
+               // .appendingPathComponent("\(name)")
+            else {
+                    print("error getting path.")
+                    return//return nil
+                }
+
+        do {
+            try FileManager.default.removeItem(atPath: path.path)
+        } catch {
+            print("JD451: THIS WORKS, but it does NOT delete the document directory. Just everything inside of it. ••••••\n", error)
+        }
+
+        print("JD451: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
+      //  return path
+    }
+
     private func deleteAllFolders() {
         homeData.folders.removeAll()
     }
-
-//    public func scanAllFolders() {
-//        if (UIDevice.current.userInterfaceIdiom == .mac) {
-//            print("JD451: mac")
-//            Folder.documents!.subfolders.recursive.forEach { folder in
-//                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
-//                /// Different on mac --> folder.files vs Folder.documents!.files
-//            }
-//        }
-//
-//        ///important --> when running "My Mac (designed for ipad)", this if statement is used.
-//        if !(UIDevice.current.userInterfaceIdiom == .mac) {
-//            print("JD451: NOT mac")
-//            Folder.documents!.subfolders.recursive.forEach { folder in
-//                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
-//            }
-//        }
-//    } //End func.
-
-//    func appendFolders(at offsets: IndexSet) {
-//        homeData.folders = homeData.folders.enumerated().filter { (i, item) -> Bool in
-//            let added = offsets.contains(i)
-//            if added {
-//                addFolderToDrawList(folder: item)
-//            }
-//            return !added
-//        }.map { $0.1 }
-//    }
-
-//    private func addFolderToDrawList(folder: Product) {
-//        let folderName = folder.title
-//        prefs.arrayOfFolderNames.append(folderName)
-//        print("JD460: \(prefs.arrayOfFolderNames)")
-//    }
 
     private func removeFolderFromDrawList(folder: Product) {
         if let index = prefs.arrayOfFolderNames.firstIndex(of: folder.title) {
@@ -149,8 +184,6 @@ struct MultipleSelectRow: View {
         }
     }
 
-
-
     private func deleteAllPhotosInSandbox() {
         Folder.documents!.subfolders.recursive.forEach { folder in
             print("JD451: Name : \(folder.name), parent: \(String(describing: folder.parent))")
@@ -169,8 +202,6 @@ struct MultipleSelectRow: View {
     }
 } //End Struct.
 
-
-
 /*
  private func deleteAllRows() {
     storedFileURLs.removeAll()
@@ -179,9 +210,46 @@ struct MultipleSelectRow: View {
     rowSelection = Set<String>()
  }
 
-
-
-
-
  //.environment(\.editMode, .constant(EditMode.active)) // *IMPORTANT* Allows checkbox to appear.
+ */
+
+
+/*
+     public func scanAllFolders() {
+         if (UIDevice.current.userInterfaceIdiom == .mac) {
+             print("JD451: mac")
+             Folder.documents!.subfolders.recursive.forEach { folder in
+                 homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+                 /// Different on mac --> folder.files vs Folder.documents!.files
+             }
+         }
+
+         ///important --> when running "My Mac (designed for ipad)", this if statement is used.
+         if !(UIDevice.current.userInterfaceIdiom == .mac) {
+             print("JD451: NOT mac")
+             Folder.documents!.subfolders.recursive.forEach { folder in
+                 homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+             }
+         }
+     } //End func.
+
+     func appendFolders(at offsets: IndexSet) {
+         homeData.folders = homeData.folders.enumerated().filter { (i, item) -> Bool in
+             let added = offsets.contains(i)
+             if added {
+                 addFolderToDrawList(folder: item)
+             }
+             return !added
+         }.map { $0.1 }
+     }
+
+     private func addFolderToDrawList(folder: Product) {
+         let folderName = folder.title
+         prefs.arrayOfFolderNames.append(folderName)
+         print("JD460: \(prefs.arrayOfFolderNames)")
+     }
+
+
+
+
  */

@@ -28,12 +28,12 @@ struct StartButton: View {
     //MARK: VIEW
     var body: some View {
         Button {
-            if !(UIDevice.current.userInterfaceIdiom == .phone) {
+          //  if !(UIDevice.current.userInterfaceIdiom == .phone) {
                 loadFolderFiles()
-            }
-            if (UIDevice.current.userInterfaceIdiom == .phone) {
-                loadFolderFilesiPad()
-            }
+          //  }
+//            if (UIDevice.current.userInterfaceIdiom == .phone) {
+//                loadFolderFilesiPad()
+//            }
 
             startSession()
         } label: {

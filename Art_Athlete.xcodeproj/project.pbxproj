@@ -157,6 +157,7 @@
 		2CB6249E27277C52001AFA85 /* AdvancedSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A21271CC9410097AEFE /* AdvancedSettingsView.swift */; };
 		2CB6249F27277C54001AFA85 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A23271DAEFA0097AEFE /* MenuView.swift */; };
 		2CC05E8A25406DE8007C733D /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC05E8925406DE8007C733D /* Cache.swift */; };
+		2CC1889C2762702900E599E4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC1889B2762702900E599E4 /* Extensions.swift */; };
 		2CDF0977274C814300C284D6 /* FoldersArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0976274C814300C284D6 /* FoldersArrayModel.swift */; };
 		2CDF0978274C814300C284D6 /* FoldersArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0976274C814300C284D6 /* FoldersArrayModel.swift */; };
 		2CDF097A274D209900C284D6 /* FolderRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0979274D209900C284D6 /* FolderRowsView.swift */; };
@@ -350,6 +351,7 @@
 		2CAC6636271CA435005066B5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2CC05E8925406DE8007C733D /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		2CC05E8E2540D393007C733D /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		2CC1889B2762702900E599E4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2CDF0976274C814300C284D6 /* FoldersArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersArrayModel.swift; sourceTree = "<group>"; };
 		2CDF0979274D209900C284D6 /* FolderRowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRowsView.swift; sourceTree = "<group>"; };
 		2CEB2EF3253F7A590087D696 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -450,13 +452,13 @@
 		2C02D884253A2C5700D5F960 /* Art_Athlete */ = {
 			isa = PBXGroup;
 			children = (
+				2C02D88B253A2C5900D5F960 /* Preview Content */,
+				2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */,
 				2C02D8C2253A50D200D5F960 /* Views */,
 				2C02D8B3253A2C8B00D5F960 /* Model */,
 				2C614DA9273210E20037BFA1 /* Animations */,
 				2C06430C272C6521001DF985 /* PrivateSync */,
 				2CED7E0E272752E700B99CAD /* Extensions */,
-				2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */,
-				2C02D88B253A2C5900D5F960 /* Preview Content */,
 				2CC05E8E2540D393007C733D /* Config.xcconfig */,
 			);
 			path = Art_Athlete;
@@ -524,6 +526,7 @@
 				2C614DBB273337930037BFA1 /* Old */,
 				2C663A20271CC8490097AEFE /* SettingsMac */,
 				2CAA8BD52593833600B39793 /* Stats */,
+				2CC1889A27626FF500E599E4 /* Extensions */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -692,14 +695,22 @@
 				2C614DA62731CE8A0037BFA1 /* HomeScreenButtonsView.swift */,
 				2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */,
 				2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */,
+				2CF998462760112C00541BB0 /* loadFoldersButtoniPad.swift */,
 				2CA8BC222756A831007BF111 /* FolderButtonRowView.swift */,
 				2C0DF7552742CF580090E5EF /* StartButton.swift */,
 				2CA99D652753FDFD00D5CD15 /* SharedViewModel.swift */,
 				2C5FA54E2757F40C00227368 /* MainImageView.swift */,
 				2CDF0979274D209900C284D6 /* FolderRowsView.swift */,
-				2CF998462760112C00541BB0 /* loadFoldersButtoniPad.swift */,
 			);
 			path = MainViews;
+			sourceTree = "<group>";
+		};
+		2CC1889A27626FF500E599E4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2CC1889B2762702900E599E4 /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2CED7E0D27272A3000B99CAD /* Entity DB */ = {
@@ -1006,6 +1017,7 @@
 				2C614DB82733372E0037BFA1 /* SideMenu.swift in Sources */,
 				2CF9E380274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift in Sources */,
 				2CA99D662753FDFD00D5CD15 /* SharedViewModel.swift in Sources */,
+				2CC1889C2762702900E599E4 /* Extensions.swift in Sources */,
 				2C663A24271DAEFA0097AEFE /* MenuView.swift in Sources */,
 				2C663A6B271F6B810097AEFE /* CheckBoxView.swift in Sources */,
 				2C614DB12732125A0037BFA1 /* Tab.swift in Sources */,

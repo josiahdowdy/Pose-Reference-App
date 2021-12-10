@@ -46,58 +46,71 @@ struct LoadFoldersButtoniPad: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - FUNCTIONS
     func importImage(_ result: Result<[URL], Error>) {
-            print("JD451: iPad")
-            do{
-                let selectedFiles = try result.get()//let selectedFiles = try res.get()
+        print("JD451: iPad")
+        //  deleteFiles()
+        do{
+            let selectedFiles = try result.get()//let selectedFiles = try res.get()
 
-                let folderNameArray = selectedFiles[0].pathComponents.suffix(2) //Get the folder and photo name.
-                let filePathArray = Array(folderNameArray) //Convert it so you can just grab the folder name.
-                let folderName = filePathArray[0]
-                let firstFileSelected = filePathArray[1]
+            let folderNameArray = selectedFiles[0].pathComponents.suffix(2) //Get the folder and photo name.
+            let filePathArray = Array(folderNameArray) //Convert it so you can just grab the folder name.
+            let folderName = filePathArray[0]
+         //   let folderA = getFolderPath(folderName: folderName)
 
-               //let originFolder = selectedFiles[0].downloadURL.deletingLastPathComponent()
-                let dataPath = getPathForImage(name: folderName)
+            let dataPath = getPathForImage(name: folderName)
+           // createNewFolder(dataPath: dataPath!.path)
+
+            if !FileManager.default.fileExists(atPath: dataPath!.path) {
                 createNewFolder(dataPath: dataPath!.path)
+                homeData.folders.append(Product(type: .Poses, title: folderName, subtitle: "blank", count: selectedFiles.count))
+            }
 
-                if selectedFiles[0].startAccessingSecurityScopedResource() {
-                    print("JD451: Acess granted to startAccessingSecurityScopedResource. \(selectedFiles[0].path)")
+            //homeData.folders.first(where: Product(type: .Poses, title: folderName, subtitle: "blank", count: 1) == true)
 
-                    imagesArray.append(UIImage(contentsOfFile: selectedFiles[0].path)!) //UIImage(id: UUID().uuidString, url: selectedFiles[0])
+            
+            for i in 0...(selectedFiles.count-1) {
+                if selectedFiles[i].startAccessingSecurityScopedResource() {
+                    print("JD451: Acess granted to startAccessingSecurityScopedResource. \(selectedFiles[i].path)")
+
+                    let folderNameArray = selectedFiles[i].pathComponents.suffix(2) //Get the folder and photo name.
+                    let filePathArray = Array(folderNameArray) //Convert it so you can just grab the folder name.
+                    let folderName = filePathArray[0]
+                    let fileName = filePathArray[1]
+                    let folderPath = getFolderAndFilePath(folderName: folderName, fileName: fileName)
+
+                    imagesArray.append(UIImage(contentsOfFile: selectedFiles[i].path)!) //UIImage(id: UUID().uuidString, url: selectedFiles[0])
 
                     guard
-                        let data = imagesArray[0].jpegData(compressionQuality: 1.0),
-                        let path = getPathForImage(name: folderName),
-                        let folderPath = getFolderPath(folderName: folderName, fileName: firstFileSelected)
+                        //MARK: Need to fix for png and other data types.
+                        let data = imagesArray[i].jpegData(compressionQuality: 1.0)//,
+                            //  let path = getPathForImage(name: folderName),
                     else {
-                            print("JD451: error getting data.")
-                            return
-                        }
-
-                    do {
-                        try data.write(to: folderPath) //path
-                        print("JD451: Success saving!")
-                    } catch let error {
-                        print("JD451: Error saving. \(error)")
+                        print("JD451: error getting data.")
+                        return
                     }
-                }
-                selectedFiles[0].stopAccessingSecurityScopedResource()
-                print("JD451: imagesArray --> \(imagesArray.debugDescription)")
-                //print("JD451: path --> \(path)")
 
-
-               // let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-                //print("JD451: directory \(directory)")
-
-                for i in 0...(selectedFiles.count-1) {
+                    ///First check if file already exists in folder.
+                    if !FileManager.default.fileExists(atPath: folderPath!.path) {
+                        do {
+                            try data.write(to: folderPath!) //path
+                            print("JD451: Success saving!")
+                        } catch let error {
+                            print("JD451: Error saving. \(error)")
+                        }
+                    }
                     let photoName = selectedFiles[i].lastPathComponent
-                   // let targetFolderiPad = try Folder(path: Folder.documents!.path)
-                    homeData.folders.append(Product(type: .Poses, title: photoName, subtitle: folderName, count: selectedFiles.count))
+                    // let targetFolderiPad = try Folder(path: Folder.documents!.path)
+
                 }
-            } catch{
-                print ("JD82: ", error.localizedDescription)
+                selectedFiles[i].stopAccessingSecurityScopedResource()
             }
-        print("JD451: homeData.folders \(homeData.folders)")
+
+            //Now look at the files and remove any duplicates.
+            //let newFolder = try Folder(path: folderA!.path)
+        } catch{
+            print ("JD82: ", error.localizedDescription)
+        }
     }
+
 
     func getImage(name: String) -> UIImage? {
         //Minute 26:00
@@ -118,6 +131,21 @@ struct LoadFoldersButtoniPad: View {
                 .urls(for: .documentDirectory, in: .userDomainMask)
                 .first?
                 .appendingPathComponent("\(name)") else {   //.jpg
+                    print("error getting path.")
+                    return nil
+                }
+
+        return path
+    }
+
+    func getFolderPath(folderName: String) -> URL? {
+        guard
+            let path = FileManager
+                .default
+                .urls(for: .documentDirectory, in: .userDomainMask)
+                .first?
+                .appendingPathComponent("\(folderName)")
+        else {
             print("error getting path.")
             return nil
         }
@@ -125,19 +153,43 @@ struct LoadFoldersButtoniPad: View {
         return path
     }
 
-    func getFolderPath(folderName: String, fileName: String) -> URL? {
+    func getFolderAndFilePath(folderName: String, fileName: String) -> URL? {
         guard
             let path = FileManager
                 .default
                 .urls(for: .documentDirectory, in: .userDomainMask)
                 .first?
                 .appendingPathComponent("\(folderName)/\(fileName)")
-            else {
-                    print("error getting path.")
-                    return nil
-                }
+        else {
+            print("error getting path.")
+            return nil
+        }
 
         return path
+    }
+
+    func deleteFiles() {
+        // start with a file path, for example:
+        let fileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        // fileUrl.path
+
+        //            .deletingPathExtension()
+        //            .appendingPathComponent(
+        //                "someDir/customFile.txt",
+        //                isDirectory: false
+        //            )
+
+        // check if file exists
+        // fileUrl.path converts file path object to String by stripping out `file://`
+        if FileManager.default.fileExists(atPath: fileUrl!.path) {
+            // delete file
+            do {
+                try FileManager.default.removeItem(atPath: fileUrl!.path)
+            } catch {
+                print("Could not delete file, probably read-only filesystem")
+            }
+            print("JD451: files have been deleted.")
+        }
     }
 
     func createNewFolder(dataPath: String) {

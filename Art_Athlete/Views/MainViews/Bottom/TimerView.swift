@@ -159,8 +159,8 @@ struct TimerView: View{
     
     func endSession() {
         //self.startSession = false //Josiah: might need to enable later. Makes timer stop to fix bug.
- 
         prefs.arrayOfURLStrings.removeAll()
+        prefs.arrayOfFolderNames.removeAll()
         //timeObject.timeDouble = 0.0
         //timeObject.progressValue = 0.0
         timeObject.isTimerRunning = false
@@ -170,10 +170,6 @@ struct TimerView: View{
         prefs.startSession = false
 
         persistenceController.save()
-        //persistenceControllerCoreData.saveCoreData()
-        
-       // ContentView().endSession()
-      //  NavBar(timeObject: _timeObject, prefs: _prefs, testData: testData, startSession: $startSession, photoData: photoData, folderData: folderData).endSession()
     }
     
     func stopTimer() {
@@ -181,14 +177,7 @@ struct TimerView: View{
         print("\nSTOP TIMER\n")
         print(timeObject.timer)
     }
-    
-    func pauseTimer() {
-        print("\nPAUSE TIMER\n")
-        //self.timeObject.isTimerRunning = false
-        
-        
-    }
-    
+
     func startTimer() {
         self.timeObject.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         print("\nSTART TIMER\n")

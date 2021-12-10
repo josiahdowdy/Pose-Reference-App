@@ -158,6 +158,7 @@ struct NavBar: View {
 
         prefs.localPhotos = false
         prefs.arrayOfURLStrings.removeAll()
+        prefs.arrayOfFolderNames.removeAll()
         
         prefs.startSession = false
         persistenceController.save()
