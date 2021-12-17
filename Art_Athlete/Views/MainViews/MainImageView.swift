@@ -20,14 +20,12 @@ struct MainImageView: View {
                     .frame(width: geo.size.width, height: geo.size.height) //This line makes image fill the container.
                 //So I need to put this in a container that will fill the screen.
             }
-
         }
         .ignoresSafeArea() // 1
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         //.background(Color.gray)
     }
 }
-
 
 //
 //struct MainImageView_Previews: PreviewProvider {

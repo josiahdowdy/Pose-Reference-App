@@ -30,16 +30,11 @@
 		2C06431A272C66CE001DF985 /* PrivateSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C064318272C66CE001DF985 /* PrivateSyncTests.swift */; };
 		2C0DF7562742CF580090E5EF /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DF7552742CF580090E5EF /* StartButton.swift */; };
 		2C0DF7572742CF580090E5EF /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DF7552742CF580090E5EF /* StartButton.swift */; };
-		2C131571273391B7001019BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C131570273391B7001019BA /* Kingfisher */; };
-		2C13157527339B41001019BA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13157427339B41001019BA /* Kingfisher */; };
 		2C13157B27346941001019BA /* SettingsSlideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13157A27346941001019BA /* SettingsSlideCard.swift */; };
 		2C13157C27346941001019BA /* SettingsSlideCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C13157A27346941001019BA /* SettingsSlideCard.swift */; };
-		2C13158227346ECF001019BA /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 2C13158127346ECF001019BA /* SlideOverCard */; };
-		2C1315842735A2B0001019BA /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 2C1315832735A2B0001019BA /* SlideOverCard */; };
 		2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C142B902593D71A00A7DC54 /* ArtAthlete.xcdatamodeld */; };
 		2C147D10272C985500AF1E71 /* LoadFoldersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */; };
 		2C147D11272C985500AF1E71 /* LoadFoldersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D0F272C985500AF1E71 /* LoadFoldersButton.swift */; };
-		2C147D14272C9A0600AF1E71 /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 2C147D13272C9A0600AF1E71 /* Files */; };
 		2C147D1C272DA15600AF1E71 /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D1B272DA15600AF1E71 /* FoldersView.swift */; };
 		2C147D1D272DA15600AF1E71 /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C147D1B272DA15600AF1E71 /* FoldersView.swift */; };
 		2C15680F273F3CD8001D5ED9 /* StoredUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */; };
@@ -51,7 +46,6 @@
 		2C2097D82737543A00D5B5FC /* SelectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097D62737543A00D5B5FC /* SelectionHandler.swift */; };
 		2C20982D2737921900D5B5FC /* MultipleSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */; };
 		2C20982E2737921900D5B5FC /* MultipleSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */; };
-		2C209830273C8F7100D5B5FC /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 2C20982F273C8F7100D5B5FC /* Files */; };
 		2C209832273CD9D100D5B5FC /* countPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C209831273CD9D100D5B5FC /* countPickerView.swift */; };
 		2C209833273CD9D100D5B5FC /* countPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C209831273CD9D100D5B5FC /* countPickerView.swift */; };
 		2C214149271B5DCC00493E4E /* FileImporterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C214148271B5DCC00493E4E /* FileImporterView.swift */; };
@@ -162,6 +156,9 @@
 		2CDF0978274C814300C284D6 /* FoldersArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0976274C814300C284D6 /* FoldersArrayModel.swift */; };
 		2CDF097A274D209900C284D6 /* FolderRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0979274D209900C284D6 /* FolderRowsView.swift */; };
 		2CDF097B274D209900C284D6 /* FolderRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0979274D209900C284D6 /* FolderRowsView.swift */; };
+		2CE863CC276D01C500A73317 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE863CB276D01C500A73317 /* Kingfisher */; };
+		2CE863CF276D01D300A73317 /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE863CE276D01D300A73317 /* Files */; };
+		2CE863D2276D01F100A73317 /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE863D1276D01F100A73317 /* SlideOverCard */; };
 		2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB2EF3253F7A590087D696 /* TimerView.swift */; };
 		2CEB2EF9253F86DD0087D696 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB2EF8253F86DD0087D696 /* GlobalVariables.swift */; };
 		2CEB6ED3273368C2001C6FEB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEB6ED2273368C2001C6FEB /* CloudKit.framework */; };
@@ -182,7 +179,6 @@
 		2CF9E3692747BEDC009F77E1 /* settingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E3672747BEDC009F77E1 /* settingsButton.swift */; };
 		2CF9E36C2748641D009F77E1 /* CircleGradual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E36B2748641D009F77E1 /* CircleGradual.swift */; };
 		2CF9E36D2748641D009F77E1 /* CircleGradual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E36B2748641D009F77E1 /* CircleGradual.swift */; };
-		2CF9E3702748660C009F77E1 /* Laden in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF9E36F2748660C009F77E1 /* Laden */; };
 		2CF9E376274AEE4F009F77E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E375274AEE4F009F77E1 /* SceneDelegate.swift */; };
 		2CF9E377274AEE4F009F77E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E375274AEE4F009F77E1 /* SceneDelegate.swift */; };
 		2CF9E380274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF9E37C274AF9A8009F77E1 /* FoldersEntity+CoreDataClass.swift */; };
@@ -377,10 +373,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C13158227346ECF001019BA /* SlideOverCard in Frameworks */,
-				2C131571273391B7001019BA /* Kingfisher in Frameworks */,
-				2CF9E3702748660C009F77E1 /* Laden in Frameworks */,
-				2C209830273C8F7100D5B5FC /* Files in Frameworks */,
+				2CE863D2276D01F100A73317 /* SlideOverCard in Frameworks */,
+				2CE863CC276D01C500A73317 /* Kingfisher in Frameworks */,
+				2CE863CF276D01D300A73317 /* Files in Frameworks */,
 				2C663A64271E20130097AEFE /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,9 +398,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C1315842735A2B0001019BA /* SlideOverCard in Frameworks */,
-				2C13157527339B41001019BA /* Kingfisher in Frameworks */,
-				2C147D14272C9A0600AF1E71 /* Files in Frameworks */,
 				2CEB6ED3273368C2001C6FEB /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -790,10 +782,9 @@
 			);
 			name = "ArtAthlete (iOS)";
 			packageProductDependencies = (
-				2C131570273391B7001019BA /* Kingfisher */,
-				2C13158127346ECF001019BA /* SlideOverCard */,
-				2C20982F273C8F7100D5B5FC /* Files */,
-				2CF9E36F2748660C009F77E1 /* Laden */,
+				2CE863CB276D01C500A73317 /* Kingfisher */,
+				2CE863CE276D01D300A73317 /* Files */,
+				2CE863D1276D01F100A73317 /* SlideOverCard */,
 			);
 			productName = "pose-reference";
 			productReference = 2C614D9A272DE7100037BFA1 /* ArtAthlete (iOS).app */;
@@ -850,9 +841,6 @@
 			);
 			name = "ArtAthlete (macOS)";
 			packageProductDependencies = (
-				2C147D13272C9A0600AF1E71 /* Files */,
-				2C13157427339B41001019BA /* Kingfisher */,
-				2C1315832735A2B0001019BA /* SlideOverCard */,
 			);
 			productName = "Art Athlete";
 			productReference = 2C614D9D272DE7100037BFA1 /* ArtAthlete (macOS).app */;
@@ -939,10 +927,9 @@
 			);
 			mainGroup = 2C02D879253A2C5700D5F960;
 			packageReferences = (
-				2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */,
-				2C13156F273391B7001019BA /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */,
-				2CF9E36E2748660C009F77E1 /* XCRemoteSwiftPackageReference "Laden" */,
+				2CE863CA276D01C500A73317 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				2CE863CD276D01D300A73317 /* XCRemoteSwiftPackageReference "Files" */,
+				2CE863D0276D01F100A73317 /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */,
 			);
 			productRefGroup = 2C02D879253A2C5700D5F960;
 			projectDirPath = "";
@@ -1778,7 +1765,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2C13156F273391B7001019BA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		2CE863CA276D01C500A73317 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -1786,15 +1773,7 @@
 				kind = branch;
 			};
 		};
-		2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/moifort/swiftUI-slide-over-card.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */ = {
+		2CE863CD276D01D300A73317 /* XCRemoteSwiftPackageReference "Files" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Files";
 			requirement = {
@@ -1802,51 +1781,31 @@
 				kind = branch;
 			};
 		};
-		2CF9E36E2748660C009F77E1 /* XCRemoteSwiftPackageReference "Laden" */ = {
+		2CE863D0276D01F100A73317 /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/vinhnx/Laden";
+			repositoryURL = "https://github.com/moifort/swiftUI-slide-over-card.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2C131570273391B7001019BA /* Kingfisher */ = {
+		2CE863CB276D01C500A73317 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2C13156F273391B7001019BA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 2CE863CA276D01C500A73317 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		2C13157427339B41001019BA /* Kingfisher */ = {
+		2CE863CE276D01D300A73317 /* Files */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2C13156F273391B7001019BA /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		2C13158127346ECF001019BA /* SlideOverCard */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */;
-			productName = SlideOverCard;
-		};
-		2C1315832735A2B0001019BA /* SlideOverCard */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2C13158027346ECF001019BA /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */;
-			productName = SlideOverCard;
-		};
-		2C147D13272C9A0600AF1E71 /* Files */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */;
+			package = 2CE863CD276D01D300A73317 /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
 		};
-		2C20982F273C8F7100D5B5FC /* Files */ = {
+		2CE863D1276D01F100A73317 /* SlideOverCard */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2C147D12272C9A0600AF1E71 /* XCRemoteSwiftPackageReference "Files" */;
-			productName = Files;
-		};
-		2CF9E36F2748660C009F77E1 /* Laden */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2CF9E36E2748660C009F77E1 /* XCRemoteSwiftPackageReference "Laden" */;
-			productName = Laden;
+			package = 2CE863D0276D01F100A73317 /* XCRemoteSwiftPackageReference "swiftUI-slide-over-card" */;
+			productName = SlideOverCard;
 		};
 /* End XCSwiftPackageProductDependency section */
 

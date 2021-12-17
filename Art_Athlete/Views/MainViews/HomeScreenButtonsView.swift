@@ -2,10 +2,10 @@
 //  Created by josiah on 2021-11-02.
 
 import SwiftUI
-import UniformTypeIdentifiers
+//import UniformTypeIdentifiers
 import Files
 import SlideOverCard
-import Laden
+//import Laden
 
 
 struct HomeScreenButtonsView: View {
@@ -32,11 +32,11 @@ struct HomeScreenButtonsView: View {
     @State private var shouldLoadingView = true
 
     //MARK: - VIEW FOR ANIMATION
-    var laden: some View {
-        Laden.CircleLoadingView(
-            color: .white, size: CGSize(width: 30, height: 30), strokeLineWidth: 3
-        )
-    }
+//    var laden: some View {
+//        Laden.CircleLoadingView(
+//            color: .white, size: CGSize(width: 30, height: 30), strokeLineWidth: 3
+//        )
+//    }
 
     /*\___/\ ((
      \`@_@'/  ))
@@ -53,9 +53,11 @@ struct HomeScreenButtonsView: View {
                     .environmentObject(homeData)
 
                 if UIDevice.current.userInterfaceIdiom == (.phone) {
+                    Text(prefs.error)
                     countPickerView()
                     timePickerView()
-                    StartButton(rowSelection: $rowSelection) }
+                    StartButton(rowSelection: $rowSelection)
+                }
             } //.onAppear(perform: scanAllFolders)
 
             .toolbar {
@@ -68,23 +70,23 @@ struct HomeScreenButtonsView: View {
                 }
             }
 
-            VStack {  // MARK: - Shows the main screen (right side).
-                VStack {
-                    if !(isloadingPhotos) {
-                        Text(prefs.error)
-
-                       // Spacer().frame(maxWidth: .infinity)
-
-                        MainImageView()
-                        countPickerView()
-                        timePickerView()
-                        StartButton(rowSelection: $rowSelection)
-                    } else {
-                        Text("Loading Photos...please wait...")
-                    }
-                } //End VStack.
+            if UIDevice.current.userInterfaceIdiom != (.phone) {
+                VStack {  // MARK: - Shows the main screen (right side).
+                    VStack {
+                        if !(isloadingPhotos) {
+                            Text(prefs.error)
+                            // Spacer().frame(maxWidth: .infinity)
+                            MainImageView()
+                            countPickerView()
+                            timePickerView()
+                            StartButton(rowSelection: $rowSelection)
+                        } else {
+                            Text("Loading Photos...please wait...")
+                        }
+                    } //End VStack.
+                }
+                .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
             }
-            .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
         } //NavigationView
        // .onAppear(perform: scanAllFolders)
     } //End UI.

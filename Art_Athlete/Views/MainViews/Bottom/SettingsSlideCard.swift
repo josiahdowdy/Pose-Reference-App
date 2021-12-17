@@ -62,9 +62,42 @@ struct ArtAthleteSettings : View {
                     Text("Medium")//.tag(ProfileImageSize.medium)
                     Text("Small")//.tag(ProfileImageSize.small)
                 }
-                Button("Clear Image Cache") {}
+                Button {
+                    deleteFilesInDirectory()
+                } label: {
+                    HStack {
+                        Image(systemName: "trash.circle")
+                        Text("Delete All Photos")
+                    }
+
+                }
+                Text("Files").font(.title3)
             }
         }
+    }
+    //End view
+
+    //Functions
+    func deleteFilesInDirectory() {
+        guard
+            let path = FileManager
+                .default
+                .urls(for: .documentDirectory, in: .userDomainMask)
+                .first
+                // .appendingPathComponent("\(name)")
+        else {
+            print("error getting path.")
+            return//return nil
+        }
+
+        do {
+            try FileManager.default.removeItem(atPath: path.path)
+        } catch {
+            print("JD451: THIS WORKS, but it does NOT delete the document directory. Just everything inside of it. ••••••\n", error)
+        }
+
+        print("JD451: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
+        //  return path
     }
 }
 

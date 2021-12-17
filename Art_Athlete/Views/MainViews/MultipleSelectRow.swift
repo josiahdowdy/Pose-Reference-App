@@ -1,11 +1,9 @@
-//  MultipleSelectRow.swift  - Art_Athlete
-//  Created by josiah on 2021-11-06.
+//  MultipleSelectRow.swift  - Art_Athlete - Created by josiah on 2021-11-06.
 
 import SwiftUI
 import Files
 
 struct MultipleSelectRow: View {
-    // MARK: - VARIABLES
     @Environment(\.colorScheme) var currentDarkLightMode
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
@@ -60,60 +58,19 @@ struct MultipleSelectRow: View {
         HStack {
             Text("Photos").font(.title3)
                 .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-            LoadFoldersButton(isloadingPhotos: $isloadingPhotos)
-                .environmentObject(homeData)
-            Text("iPad -->")
-            LoadFoldersButtoniPad(isloadingPhotos: $isloadingPhotos)
-                .environmentObject(homeData)
+            if (UIDevice.current.userInterfaceIdiom == .mac) {
+                LoadFoldersButton(isloadingPhotos: $isloadingPhotos)
+                    .environmentObject(homeData)
+            }
+
+            if !(UIDevice.current.userInterfaceIdiom == .mac) {
+                LoadFoldersButtoniPad(isloadingPhotos: $isloadingPhotos).environmentObject(homeData)
+            }
+
             Spacer()
-            Button {
-                print("JD451: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none")
-                guard
-                    let path = FileManager
-                        .default
-                        .urls(for: .documentDirectory, in: .userDomainMask)
-
-                        .first?
-                        .appendingPathComponent("Birds")
-                else {
-                    print("error getting path.")
-                    return//return nil
-                }
-
-                let path2 = FileManager
-                    .default
-                    .urls(for: .documentDirectory, in: .userDomainMask)
-                    .description
-
-                print("JD451: path2 ---> \(path2)")
 
 
-
-                do {
-                    let newFolder = try Folder(path: path.path)
-                    print("JD451: files of birds: ", newFolder.files)
-
-
-//                    let directory = try Folder(path: path2.path)
-//                    print("JD451: directory: ", directory.files)
-
-                } catch {
-                    print(error)
-                }
-
-
-                print("JD451: path is -->", path)
-
-            } label: {
-                Image(systemName: "pencil")
-            }
-
-            Button {
-                deleteFilesInDirectory()
-            } label: {
-                Image(systemName: "trash.circle")
-            }
-            Text("Files").font(.title3)
+           // Text("Files").font(.title3)
         }.padding()
 
         List {
@@ -124,27 +81,7 @@ struct MultipleSelectRow: View {
         }
     } //End func.
 
-    func deleteFilesInDirectory() {
-        guard
-            let path = FileManager
-                .default
-                .urls(for: .documentDirectory, in: .userDomainMask)
-                .first
-               // .appendingPathComponent("\(name)")
-            else {
-                    print("error getting path.")
-                    return//return nil
-                }
 
-        do {
-            try FileManager.default.removeItem(atPath: path.path)
-        } catch {
-            print("JD451: THIS WORKS, but it does NOT delete the document directory. Just everything inside of it. ••••••\n", error)
-        }
-
-        print("JD451: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
-      //  return path
-    }
 
     private func deleteAllFolders() {
         homeData.folders.removeAll()
@@ -250,6 +187,46 @@ struct MultipleSelectRow: View {
      }
 
 
+ Button {
+ print("JD451: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none")
+ guard
+ let path = FileManager
+ .default
+ .urls(for: .documentDirectory, in: .userDomainMask)
 
+ .first?
+ .appendingPathComponent("Birds")
+ else {
+ print("error getting path.")
+ return//return nil
+ }
+
+ let path2 = FileManager
+ .default
+ .urls(for: .documentDirectory, in: .userDomainMask)
+ .description
+
+ print("JD451: path2 ---> \(path2)")
+
+
+
+ do {
+ let newFolder = try Folder(path: path.path)
+ print("JD451: files of birds: ", newFolder.files)
+
+
+ //                    let directory = try Folder(path: path2.path)
+ //                    print("JD451: directory: ", directory.files)
+
+ } catch {
+ print(error)
+ }
+
+
+ print("JD451: path is -->", path)
+
+ } label: {
+ Image(systemName: "pencil")
+ }
 
  */

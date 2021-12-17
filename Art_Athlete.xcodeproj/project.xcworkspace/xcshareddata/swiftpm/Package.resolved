@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "Laden",
-        "repositoryURL": "https://github.com/vinhnx/Laden",
-        "state": {
-          "branch": null,
-          "revision": "50b02e73c657ee8a9868b9ab7d5ac84c5c7e32f2",
-          "version": "0.1.0"
-        }
-      },
-      {
         "package": "SlideOverCard",
         "repositoryURL": "https://github.com/moifort/swiftUI-slide-over-card.git",
         "state": {

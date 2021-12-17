@@ -23,8 +23,7 @@ struct FolderButtonRowView: View {
                 CircularCheckBoxView(checked: $checked, trimVal: $trimVal)
                 Text(product.title)
                 Spacer()
-                Text(product.count.description)
-                    .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+                //Text(product.count.description).foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                   //  .foregroundColor(.white)
             }
         }
