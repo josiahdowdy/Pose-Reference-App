@@ -16,6 +16,8 @@ struct HomeScreenButtonsView: View {
     @Environment(\.managedObjectContext) var context
     //@StateObject var homeData: HomeViewModel = HomeViewModel()
     @EnvironmentObject var homeData: HomeViewModel
+    //@ObservedObject var homeData: HomeViewModel
+    
     @State var isAddingPhotos: Bool = false
     @State var showPhotos: Bool = false
     @State private var isLoading = true
@@ -58,8 +60,12 @@ struct HomeScreenButtonsView: View {
                 //FileImporterView() //This loads in photos MARK: [BLUE BOX]
 
 
-                MultipleSelectRow(rowSelection: $rowSelection, isloadingPhotos: $isloadingPhotos)
-                    .environmentObject(homeData)
+                if #available(macCatalyst 15.0, *) {
+                    MultipleSelectRow(rowSelection: $rowSelection, isloadingPhotos: $isloadingPhotos)
+                        .environmentObject(homeData)
+                } else {
+                    // Fallback on earlier versions
+                }
 
                 if UIDevice.current.userInterfaceIdiom == (.phone) {
 

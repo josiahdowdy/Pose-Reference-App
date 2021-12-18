@@ -7,10 +7,12 @@ struct LoadFoldersButtoniPad: View {
     // MARK: - Properties
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
+    //@EnvironmentObject var homeData: HomeViewModel
     @EnvironmentObject var homeData: HomeViewModel
 
     @State var imagesArray: Array<UIImage> = Array<UIImage>()
 
+    @Binding var needRefresh: Bool
     @State var isImporting: Bool = false
     @Binding var isloadingPhotos: Bool
     //MARK: END VARIABLES
@@ -61,7 +63,14 @@ struct LoadFoldersButtoniPad: View {
 
             if !FileManager.default.fileExists(atPath: dataPath!.path) {
                 createNewFolder(dataPath: dataPath!.path)
-                homeData.folders.append(Product(type: .Poses, title: folderName, subtitle: "blank", count: selectedFiles.count))
+                homeData.folders.append(Product(title: folderName, count: selectedFiles.count))
+                homeData.nameOfFolder = folderName
+                homeData.numberOfPhotos = selectedFiles.count
+
+                //homeData.foldersB.append(FoldersB(nameOfFolder: folderName, numberOfPhotos: selectedFiles.count))
+            } else {
+            //    homeData.folders.contains(where: <#T##(Product) throws -> Bool#>)
+              //  homeData.folders.first(where: Product)
             }
 
             //homeData.folders.first(where: Product(type: .Poses, title: folderName, subtitle: "blank", count: 1) == true)
@@ -97,7 +106,7 @@ struct LoadFoldersButtoniPad: View {
                             print("JD451: Error saving. \(error)")
                         }
                     }
-                    let photoName = selectedFiles[i].lastPathComponent
+                   // let photoName = selectedFiles[i].lastPathComponent
                     // let targetFolderiPad = try Folder(path: Folder.documents!.path)
 
                 }
@@ -108,6 +117,16 @@ struct LoadFoldersButtoniPad: View {
             //let newFolder = try Folder(path: folderA!.path)
         } catch{
             print ("JD82: ", error.localizedDescription)
+        }
+        self.needRefresh = true
+
+        scanAllFolders()
+    } //end ImportImage func.
+
+    public func scanAllFolders() {
+
+        Folder.documents!.subfolders.recursive.forEach { folder in
+            homeData.folders.append(Product(title: folder.name, count: folder.files.count()))
         }
     }
 

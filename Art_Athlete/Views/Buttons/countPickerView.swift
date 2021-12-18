@@ -15,6 +15,7 @@
 import SwiftUI
 
 struct countPickerView: View {
+    @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
 
     var body: some View {
@@ -22,10 +23,12 @@ struct countPickerView: View {
 
         HStack {
             Text("Count:").padding(10)
+                .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
             // Length time of pose
             Picker("Numbers", selection: $prefs.selectorCountTime) {
                 ForEach(0 ..< prefs.homeManyPhotosToDraw.count) { index in
                     Text(String(self.prefs.homeManyPhotosToDraw[index])).tag(index)
+                        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StatsButton: View {
     //@Binding var prefs: GlobalVariables
+    @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
 
 
@@ -17,8 +18,10 @@ struct StatsButton: View {
         VStack(alignment: .trailing) {
             Button(action: {
                 prefs.showStats.toggle()
+                prefs.showSettings = false
             }, label: {
                 Label("Stats", systemImage: "chart.bar.xaxis")
+                    .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
             })
             //  if (prefs.localPhotosView) { }
         }

@@ -3,7 +3,11 @@
 import SwiftUI
 import Files
 
+
+@available(macCatalyst 15.0, *)
 struct MultipleSelectRow: View {
+    @Environment(\.refresh) var refreshAction: RefreshAction?
+
     @Environment(\.colorScheme) var currentDarkLightMode
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
@@ -14,6 +18,7 @@ struct MultipleSelectRow: View {
 
     @State var trimVal : CGFloat = 0
 
+    @State var needRefresh: Bool = false
     @State private var alertShowing = false
     @State private var editMode: EditMode = .inactive
 
@@ -24,6 +29,9 @@ struct MultipleSelectRow: View {
     @Binding var isloadingPhotos: Bool
 
     @State var selectedBtn: Int = 1
+    @State var checked: Bool = false
+
+
 
     //@State var selected = 0    // 1
 
@@ -64,7 +72,8 @@ struct MultipleSelectRow: View {
 //            }
 
             ///if !(UIDevice.current.userInterfaceIdiom == .mac) {
-                LoadFoldersButtoniPad(isloadingPhotos: $isloadingPhotos).environmentObject(homeData)
+            LoadFoldersButtoniPad(needRefresh: $needRefresh, isloadingPhotos: $isloadingPhotos).environmentObject(homeData)
+                .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
             //}
 
             Spacer()
@@ -77,9 +86,33 @@ struct MultipleSelectRow: View {
         List {
             ForEach(homeData.folders, id: \.self) { product in
                 FolderButtonRowView(product: product, selectedBtn: self.$selectedBtn) //2
+                    .environmentObject(homeData)
             }
             .onDelete(perform: removeFolders)
         }
+       // .refreshable { //await refreshListAsync()  }
+
+//        Button {
+//            if let action = refreshAction {
+//                Task {
+//                    await action()
+//                }
+//            }
+//        } label: {
+//            Image(systemName: "arrow.counterclockwise")
+//        }
+//
+//
+//        List {
+//            ForEach(homeData.foldersB) { folder in
+//                HStack{
+//                    CircularCheckBoxView(checked: $checked, trimVal: $trimVal)
+//                    Text(folder.nameOfFolder)
+//                    Spacer()
+//                    Text(folder.numberOfPhotos.description)
+//                }
+//            }
+//        }
     } //End func.
 
     private func deleteAllFolders() {

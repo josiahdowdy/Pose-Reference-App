@@ -7,17 +7,21 @@
 
 import SwiftUI
 import SlideOverCard
+import Files
 
 struct ArtAthleteSettings : View {
-
+    @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
+    @EnvironmentObject var homeData: HomeViewModel
+    let persistenceController = PersistenceController.shared
+
 
     @Binding var notifyMeAbout : Bool
     @Binding var playNotificationSounds : Bool
     @Binding var profileImageSize : Bool
     @Binding var sendReadReceipts : Bool
 
-
+    
 
     var body: some View {
         VStack {
@@ -30,9 +34,20 @@ struct ArtAthleteSettings : View {
                 }
                 HStack {
                     Spacer()
-                    Button("Done") {
+
+                    Button(action: {
                         prefs.showSettings = false
-                    }.padding(.trailing, 10).foregroundColor(.blue)//.alignmentGuide(.trailing, computeValue: { _ in 90 } )
+                    }, label: {
+                        HStack {
+                            Image(systemName: "x.circle.fill")
+                                .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+                            Text("Done").foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+                        }
+                    }).padding(.trailing, 10)
+                    
+//                    Button("Done") {
+//                        prefs.showSettings = false
+//                    }.padding(.trailing, 10).foregroundColor(.blue)//.alignmentGuide(.trailing, computeValue: { _ in 90 } )
                 }
             }
 
@@ -57,6 +72,7 @@ struct ArtAthleteSettings : View {
 //                }
                 Button {
                     deleteFilesInDirectory()
+                    scanAllFolders()
                 } label: {
                     HStack {
                         Image(systemName: "trash.circle")
@@ -65,7 +81,7 @@ struct ArtAthleteSettings : View {
                 }
 
                 Button {
-                    //deleteFilesInDirectory()
+                    resetUserStats()
                 } label: {
                     HStack {
                         Image(systemName: "0.circle.fill")
@@ -84,7 +100,41 @@ struct ArtAthleteSettings : View {
     //End view
 
     //Functions
+    public func scanAllFolders() {
+        homeData.folders.removeAll()
+        Folder.documents?.subfolders.recursive.forEach { folder in
+            homeData.folders.append(Product(title: folder.name, count: folder.files.count()))
+        }
+    }
+
+    func resetUserStats() {
+        persistenceController.clearDatabase() //.delete()
+    }
+
     func deleteFilesInDirectory() {
+        print("JD500: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
+        let array:[URL] = FileManager.default.urls(for: .documentDirectory)!  //?? "none"
+
+
+        //for i in 0...(FileManager.default.urls(for: .documentDirectory))!.count {
+        for i in 0...(array.count-1) {
+            do {
+                try FileManager.default.removeItem(atPath: array[i].path)
+            } catch {
+                print("JD500: Failed.")
+            }
+        }
+
+//        do {
+//            ForEach(FileManager.default.urls(for: .documentDirectory)) { folder in
+//                try FileManager.default.removeItem(atPath: folder)
+//            }
+//     //       try FileManager.default.removeItem(atPath: FileManager.default.urls(for: .documentDirectory))
+//        } catch {
+//            print("JD451: THIS WORKS, but it does NOT delete the document directory. Just everything inside of it. ••••••\n", error)
+//        }
+
+
         guard
             let path = FileManager
                 .default
@@ -96,49 +146,50 @@ struct ArtAthleteSettings : View {
             return//return nil
         }
 
-        do {
-            try FileManager.default.removeItem(atPath: path.path)
-        } catch {
-            print("JD451: THIS WORKS, but it does NOT delete the document directory. Just everything inside of it. ••••••\n", error)
-        }
+        print("JD500: path  → ", path)
 
-        let documentsFolder = try Folder(path: "/users/john/folder")
-        
+//        do {
+//            try FileManager.default.removeItem(atPath: path.path)
+//        } catch {
+//            print("JD451: THIS WORKS, but it does NOT delete the document directory. Just everything inside of it. ••••••\n", error)
+//        }
 
-        print("JD451: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
+
+
+        print("JD500: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
         //  return path
     }
 }
 
 
-struct SettingsSlideCard : View {
-    @State private var position = CardPosition.top
-    @State private var background = BackgroundStyle.blur
-
-
-    var body: some View {
-        ZStack(alignment: Alignment.top) {
-            VStack {
-                Picker(selection: self.$position, label: Text("Position")) {
-                    Text("Bottom").tag(CardPosition.bottom)
-                    Text("Middle").tag(CardPosition.middle)
-                    Text("Top").tag(CardPosition.top)
-                }.pickerStyle(SegmentedPickerStyle())
-                Picker(selection: self.$background, label: Text("Background")) {
-                    Text("Blur").tag(BackgroundStyle.blur)
-                    Text("Clear").tag(BackgroundStyle.clear)
-                    Text("Solid").tag(BackgroundStyle.solid)
-                }.pickerStyle(SegmentedPickerStyle())
-            }.padding().padding(.top, 25)
-            SlideOverCard($position, backgroundStyle: $background) {
-                VStack {
-                    Text("Slide Over Card").font(.title)
-                    Spacer()
-                }
-            }
-        }
-        .edgesIgnoringSafeArea(.vertical)
-    }
-
-}
+//struct SettingsSlideCard : View {
+//    @State private var position = CardPosition.top
+//    @State private var background = BackgroundStyle.blur
+//
+//
+//    var body: some View {
+//        ZStack(alignment: Alignment.top) {
+//            VStack {
+//                Picker(selection: self.$position, label: Text("Position")) {
+//                    Text("Bottom").tag(CardPosition.bottom)
+//                    Text("Middle").tag(CardPosition.middle)
+//                    Text("Top").tag(CardPosition.top)
+//                }.pickerStyle(SegmentedPickerStyle())
+//                Picker(selection: self.$background, label: Text("Background")) {
+//                    Text("Blur").tag(BackgroundStyle.blur)
+//                    Text("Clear").tag(BackgroundStyle.clear)
+//                    Text("Solid").tag(BackgroundStyle.solid)
+//                }.pickerStyle(SegmentedPickerStyle())
+//            }.padding().padding(.top, 25)
+//            SlideOverCard($position, backgroundStyle: $background) {
+//                VStack {
+//                    Text("Slide Over Card").font(.title)
+//                    Spacer()
+//                }
+//            }
+//        }
+//        .edgesIgnoringSafeArea(.vertical)
+//    }
+//
+//}
 

@@ -61,7 +61,7 @@ struct LoadFoldersButton: View {
 
                     try originFolder.copy(to: targetFolder)
 
-                    homeData.folders.append(Product(type: .Poses, title: originFolder.name, subtitle: "xx", count: originFolder.files.count()))
+                    homeData.folders.append(Product(title: originFolder.name, count: originFolder.files.count()))
                 }
                 // try? self.context.save()
             } catch{
@@ -79,7 +79,7 @@ struct LoadFoldersButton: View {
             print("JD451: mac")
             var i = 0 //numberInLine: i,
             Folder.documents!.subfolders.recursive.forEach { folder in
-                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+                homeData.folders.append(Product(title: folder.name, count: folder.files.count()))
                 i += 1
                 /// Different on mac --> folder.files vs Folder.documents!.files
             }
@@ -90,7 +90,7 @@ struct LoadFoldersButton: View {
             print("JD451: NOT mac")
             var i = 0 //numberInLine: i,
             Folder.documents!.subfolders.recursive.forEach { folder in
-                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+                homeData.folders.append(Product(title: folder.name, count: folder.files.count()))
                 i += 1
             }
         }

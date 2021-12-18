@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "SwiftUICharts",
+        "repositoryURL": "https://github.com/AppPear/ChartView.git",
+        "state": {
+          "branch": null,
+          "revision": "9115a992c91fa19cbb4f2241084240d38654a1fc",
+          "version": "1.5.5"
+        }
+      },
+      {
         "package": "Files",
         "repositoryURL": "https://github.com/JohnSundell/Files",
         "state": {
@@ -21,11 +30,11 @@
       },
       {
         "package": "SlideOverCard",
-        "repositoryURL": "https://github.com/moifort/swiftUI-slide-over-card.git",
+        "repositoryURL": "https://github.com/joogps/SlideOverCard.git",
         "state": {
-          "branch": "master",
-          "revision": "8ef209792c080bc1852074f91289ba46339367bb",
-          "version": null
+          "branch": null,
+          "revision": "ddafedae02dc5423aa872b274d9011412dc4837f",
+          "version": "2.0.0"
         }
       }
     ]

@@ -23,6 +23,7 @@ struct pose_referenceApp: App {
     @ObservedObject var prefs = GlobalVariables()
     @ObservedObject var timeObject = TimerObject()
     @ObservedObject var userObject = UserObject()
+    @ObservedObject var homeData = HomeViewModel()
 
     @State var url : URL = URL(fileURLWithPath: "nil")
 
@@ -45,6 +46,7 @@ struct pose_referenceApp: App {
                 .environmentObject(prefs)
                 .environmentObject(timeObject)
                 .environmentObject(storedUserData)
+                .environmentObject(homeData)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext) //Shares data in WHOLE project.
               //  .environment(\.managedObjectContext, persistenceControllerCoreData.container.viewContext)
             //Storing data.

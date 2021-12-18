@@ -5,6 +5,7 @@ import Files
 
 struct FolderButtonRowView: View {
     @Environment(\.colorScheme) var currentDarkLightMode
+    //@EnvironmentObject var homeData: HomeViewModel
     @EnvironmentObject var homeData: HomeViewModel
     @EnvironmentObject var prefs: GlobalVariables
 
@@ -23,9 +24,12 @@ struct FolderButtonRowView: View {
                 CircularCheckBoxView(checked: $checked, trimVal: $trimVal)
                 Text(product.title)
                 Spacer()
-                //Text(product.count.description).foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+                if (UIDevice.current.userInterfaceIdiom == .mac) {
+                Text(product.count.description).foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                   //  .foregroundColor(.white)
+                }
             }
+            
         }
         .onTapGesture {
             if !self.checked {

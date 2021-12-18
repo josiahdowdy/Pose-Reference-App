@@ -55,10 +55,10 @@ struct FolderRowsView: View {
 ////                        folderArrayModel}
 //                }
 //            }
-
-            ForEach(homeData.filteredProducts) { product in
-                Text("\(product.title) - \(product.type.rawValue)")
-            }
+//
+//            ForEach(homeData.filteredProducts) { product in
+//                Text("\(product.title) - \(product.type.rawValue)")
+//            }
 
            // .onDelete(perform: )
             //.listStyle(InsetListStyle())

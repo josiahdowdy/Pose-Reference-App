@@ -23,7 +23,7 @@ class SharedViewModel: ObservableObject {
             let countString = String(product.count)
             let priceStr = countString.replacingOccurrences(of: "$", with: "") as NSString
 
-            let quantity = product.quantity
+            let quantity = 0//product.quantity
             let priceWithQuantity = quantity * priceStr.integerValue
 
             total += priceWithQuantity

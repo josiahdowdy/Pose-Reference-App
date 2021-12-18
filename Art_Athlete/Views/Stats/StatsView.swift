@@ -14,10 +14,12 @@ struct ToggleStates {
 
 
 struct StatsView: View {
+    @Environment(\.colorScheme) var currentDarkLightMode
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var userObject: UserObject
+    
 
     @State private var showingSheet = false
     @State private var showingMainMenu = false
@@ -43,6 +45,27 @@ struct StatsView: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     var body: some View {
         VStack(alignment: .center) {
+            ZStack {
+                HStack{
+                    Spacer()
+                    Text("Stats")//.font(.title)
+                        .font(.title3)
+                    Spacer()
+                }
+                HStack {
+                    Spacer()
+
+                    Button(action: {
+                        prefs.showStats = false
+                    }, label: {
+                        HStack {
+                            Image(systemName: "x.circle.fill")
+                                .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+                            Text("Done").foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+                        }
+                    }).padding(.trailing, 10)
+                }
+            }
             Group {
                 Text("Drawing Summary").font(.largeTitle)
                 //Text("\(userObject.userName)").font(.headline).padding(.top, 10)

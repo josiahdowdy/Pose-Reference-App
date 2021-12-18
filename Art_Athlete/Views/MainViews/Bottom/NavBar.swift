@@ -10,6 +10,7 @@ import SwiftUI
 
 struct NavBar: View {
     //@Environment(\.presentationMode) var presentationMode //Oct17
+    @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
 
@@ -25,6 +26,7 @@ struct NavBar: View {
     @State var quit = false
     @State var rotation = 0.0
     @State var timeLeft = 0.0
+
     
     //@State var changeTimer = false
     //@Binding var startSession: Bool
@@ -49,6 +51,7 @@ struct NavBar: View {
                 print("\n\(showNavBar)\n")
             } label: {
                 Image(systemName: showNavBar ? "menubar.rectangle" : "menubar.dock.rectangle.badge.record")
+                    .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
             }
 
             if(showNavBar) {
@@ -78,6 +81,7 @@ struct NavBar: View {
                     }
                 }) {
                     Image(systemName: "arrowshape.turn.up.right")
+                        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                 }.disabled(prefs.disableSkip)
                     .keyboardShortcut(.rightArrow)
                     .buttonStyle(BorderlessButtonStyle())
@@ -98,6 +102,7 @@ struct NavBar: View {
                     timeObject.isTimerRunning.toggle()
                 }) {
                     Image(systemName: pause ? "playpause.fill" : "playpause") //Text("Pause")
+                        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                 }.keyboardShortcut(.space)
                     .buttonStyle(BorderlessButtonStyle())
                 //.buttonStyle(bounceButtonStyle())
@@ -110,6 +115,7 @@ struct NavBar: View {
                         prefs.processorBlack.toggle()
                     }) {
                         Image(systemName: "camera.filters") //Text("Grayscale")
+                            .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                     }.buttonStyle(BorderlessButtonStyle())
 
                     //Upside Down
@@ -118,6 +124,7 @@ struct NavBar: View {
                         prefs.flippedVertically.toggle()
                     }) {
                         Image(systemName: prefs.flippedVertically ? "rotate.left.fill" : "rotate.left") //Text("Grayscale")
+                            .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                     }.buttonStyle(BorderlessButtonStyle())
 
                     //Flip.
@@ -126,6 +133,7 @@ struct NavBar: View {
                         prefs.flippedHorizontally.toggle()
                     }) {
                         Image(systemName: prefs.flippedHorizontally ? "arrow.left.and.right.righttriangle.left.righttriangle.right.fill" : "arrow.left.and.right.righttriangle.left.righttriangle.right") //Text("Grayscale")
+                            .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                     }.buttonStyle(BorderlessButtonStyle())
                 }
                 //QUIT
@@ -136,14 +144,22 @@ struct NavBar: View {
                     //ContentView()
                 }) {
                     Image(systemName: "multiply.circle.fill") //Text("Grayscale")
+                        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                 }.buttonStyle(BorderlessButtonStyle())
             }
 
             //  Spacer()
         } //End HStack.
-        .padding()
-        .background(Color.black)
-        .cornerRadius(15)
+        .cornerRadius(15.0)
+        .padding(10)
+        .opacity(5)
+
+        .background(currentDarkLightMode == .dark ? Color.black : Color.white)
+
+        //.cornerRadius(15.0)
+        //.opacity(90)
+
+       // .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
     } //End View.
 
     //MARK: - FUNCTIONS

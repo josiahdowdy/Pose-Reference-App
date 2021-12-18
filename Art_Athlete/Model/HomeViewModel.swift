@@ -2,6 +2,17 @@
 import SwiftUI
 import Combine
 
+struct FoldersB: Identifiable,Codable {//Identifiable { //, Hashable
+    //class Product: ObservableObject {
+    // var numberInLine: Int
+    var id = UUID().uuidString
+    var isSelected: Bool = false
+    var nameOfFolder: String
+    var numberOfPhotos: Int = 0
+    var dateCreated: Date = Date()
+
+}
+
 class HomeViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var searchActivated: Bool = false
@@ -12,6 +23,8 @@ class HomeViewModel: ObservableObject {
 
     // Show More Products in CurrentType
     @Published var showMoreCurrentType: Bool = false
+    @Published var nameOfFolder: String = ""
+    @Published var numberOfPhotos: Int = 0
 
 
     // Sample Products...
@@ -24,9 +37,11 @@ class HomeViewModel: ObservableObject {
     @Published var filteredProducts: [Product] = []
 
     @Published var folders: [Product] = []
+    @Published var foldersB: [FoldersB] = []
+
 
     init(){
-        filterProductByType()
+     //   filterProductByType()
 
         searchCancellable = $searchText.removeDuplicates()
             .debounce(for: 0.5, scheduler: RunLoop.main)
@@ -41,6 +56,7 @@ class HomeViewModel: ObservableObject {
     }
 
     // Filtering Products based on Product Type...
+    /*
     func filterProductByType(showAll: Bool = false){
         DispatchQueue.global(qos: .userInteractive).async {
 
@@ -54,7 +70,7 @@ class HomeViewModel: ObservableObject {
                 })
             }
         }
-    }
+    } */
 
     // Filter By Text
     func filterProductBySearch(text: String){

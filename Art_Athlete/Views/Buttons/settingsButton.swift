@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+//import SlideOverCard
 
 struct settingsButton: View {
     //@Binding var prefs: GlobalVariables
@@ -15,7 +16,9 @@ struct settingsButton: View {
     var body: some View {
         Button(action: {
             // imageData[current].description = description
+
             showSettings()
+
             // showSheet = false
         }, label: {
             Image(systemName: "gearshape")
@@ -24,7 +27,11 @@ struct settingsButton: View {
     }
 
     private func showSettings() {
+       // ContentView().position = CardPosition.top
+       // ContentView().isSettingsPresented = true
+        prefs.showStats = false
         prefs.showSettings.toggle()
+
     }
 }
 
