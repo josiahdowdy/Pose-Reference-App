@@ -79,13 +79,13 @@ struct ContentView: View {
 
     //MARK: - FUNCTIONS
     public func scanAllFolders() {
-        if (UIDevice.current.userInterfaceIdiom == .mac) {
-            print("JD451: mac")
-            Folder.documents!.subfolders.recursive.forEach { folder in
-                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
-                /// Different on mac --> folder.files vs Folder.documents!.files
-            }
-        }
+//        if (UIDevice.current.userInterfaceIdiom == .mac) {
+//            print("JD451: mac")
+//            Folder.documents!.subfolders.recursive.forEach { folder in
+//                homeData.folders.append(Product(type: .Poses, title: folder.name, subtitle: "xx", count: folder.files.count()))
+//                /// Different on mac --> folder.files vs Folder.documents!.files
+//            }
+//        }
 
         ///important --> when running "My Mac (designed for ipad)", this if statement is used.
        // if (UIDevice.current.userInterfaceIdiom == .pad) {

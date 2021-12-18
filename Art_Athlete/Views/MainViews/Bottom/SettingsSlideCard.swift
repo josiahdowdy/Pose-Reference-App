@@ -21,47 +21,40 @@ struct ArtAthleteSettings : View {
 
     var body: some View {
         VStack {
-            HStack {
-                Text("Settings")//.font(.title)
-                    .bold()
-                    .foregroundColor(Color("ColorAccentWhite"))
-                    .background(Color("ColorGrayTwo"))
-                    .cornerRadius(2)
-                    .font(.subheadline)
-                //    .alignmentGuide(.center, computeValue: { _ in 90 } )
-                Button("Done") {
-                    prefs.showSettings = false
-                }.alignmentGuide(.trailing, computeValue: { _ in 90 } )
-
-//                Button(action: {
-//                    self.locationManager.requestAlwaysAuthorization()
-//                    // self.locationManager.requestWhenInUseAuthorization()
-//                }) {
-//                    Text("Request authorization")
-//                }
+            ZStack {
+                HStack{
+                    Spacer()
+                    Text("Settings")//.font(.title)
+                        .font(.title3)
+                    Spacer()
+                }
+                HStack {
+                    Spacer()
+                    Button("Done") {
+                        prefs.showSettings = false
+                    }.padding(.trailing, 10).foregroundColor(.blue)//.alignmentGuide(.trailing, computeValue: { _ in 90 } )
+                }
             }
 
-            toggleSwitch()
 
-            Spacer()
-        }
-        
+            // Spacer()
+
+
         Form {
-            Section(header: Text("Notifications")) {
-                Picker("Notify Me About", selection: $notifyMeAbout) {
-                    Text("Direct Messages")//.tag(NotifyMeAboutType.directMessages)
-                    Text("Mentions")//.tag(NotifyMeAboutType.mentions)
-                    Text("Anything")//.tag(NotifyMeAboutType.anything)
-                }
-                Toggle("Play notification sounds", isOn: $playNotificationSounds)
-                Toggle("Send read receipts", isOn: $sendReadReceipts)
+
+            Section() {
+                Toggle("Show Timer", isOn: $playNotificationSounds)
+                Toggle("Show Session Options", isOn: $sendReadReceipts)
+                toggleSwitch()
+
             }
-            Section(header: Text("User Profiles")) {
-                Picker("Profile Image Size", selection: $profileImageSize) {
-                    Text("Large")//.tag(ProfileImageSize.large)
-                    Text("Medium")//.tag(ProfileImageSize.medium)
-                    Text("Small")//.tag(ProfileImageSize.small)
-                }
+
+            Section(header: Text("Reset")) {
+//                Picker("Profile Image Size", selection: $profileImageSize) {
+//                    Text("Large")//.tag(ProfileImageSize.large)
+//                    Text("Medium")//.tag(ProfileImageSize.medium)
+//                    Text("Small")//.tag(ProfileImageSize.small)
+//                }
                 Button {
                     deleteFilesInDirectory()
                 } label: {
@@ -69,10 +62,23 @@ struct ArtAthleteSettings : View {
                         Image(systemName: "trash.circle")
                         Text("Delete All Photos")
                     }
-
                 }
-                Text("Files").font(.title3)
+
+                Button {
+                    //deleteFilesInDirectory()
+                } label: {
+                    HStack {
+                        Image(systemName: "0.circle.fill")
+                        Text("Reset All User Stats")
+                    }
+                }
+
+                //Text("Please email me with any bugs or features you'd like to see added :)")
+                Text("Support: artathlete@pm.me")
             }
+
+        }
+
         }
     }
     //End view
@@ -95,6 +101,9 @@ struct ArtAthleteSettings : View {
         } catch {
             print("JD451: THIS WORKS, but it does NOT delete the document directory. Just everything inside of it. ••••••\n", error)
         }
+
+        let documentsFolder = try Folder(path: "/users/john/folder")
+        
 
         print("JD451: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
         //  return path

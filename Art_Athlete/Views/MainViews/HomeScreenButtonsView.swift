@@ -46,13 +46,23 @@ struct HomeScreenButtonsView: View {
     //MARK: - VIEW
     var body: some View {
         NavigationView {
+
             VStack {
+//                if UIDevice.current.userInterfaceIdiom == (.phone) {
+//                    HStack() {
+//                        Text("Art Athlete").font(.title3).padding(.leading)
+//                        Text("Photo Timer").font(.caption)
+//                        Spacer()
+//                    }
+//                }
                 //FileImporterView() //This loads in photos MARK: [BLUE BOX]
+
 
                 MultipleSelectRow(rowSelection: $rowSelection, isloadingPhotos: $isloadingPhotos)
                     .environmentObject(homeData)
 
                 if UIDevice.current.userInterfaceIdiom == (.phone) {
+
                     Text(prefs.error)
                     countPickerView()
                     timePickerView()
@@ -72,7 +82,10 @@ struct HomeScreenButtonsView: View {
 
             if UIDevice.current.userInterfaceIdiom != (.phone) {
                 VStack {  // MARK: - Shows the main screen (right side).
+                    Text("Art Athlete").font(.title)
+                    Text("Photo Timer").font(.caption)
                     VStack {
+
                         if !(isloadingPhotos) {
                             Text(prefs.error)
                             // Spacer().frame(maxWidth: .infinity)

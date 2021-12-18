@@ -58,19 +58,20 @@ struct MultipleSelectRow: View {
         HStack {
             Text("Photos").font(.title3)
                 .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-            if (UIDevice.current.userInterfaceIdiom == .mac) {
-                LoadFoldersButton(isloadingPhotos: $isloadingPhotos)
-                    .environmentObject(homeData)
-            }
+//            if (UIDevice.current.userInterfaceIdiom == .mac) {
+//                LoadFoldersButton(isloadingPhotos: $isloadingPhotos)
+//                    .environmentObject(homeData)
+//            }
 
-            if !(UIDevice.current.userInterfaceIdiom == .mac) {
+            ///if !(UIDevice.current.userInterfaceIdiom == .mac) {
                 LoadFoldersButtoniPad(isloadingPhotos: $isloadingPhotos).environmentObject(homeData)
-            }
+            //}
 
             Spacer()
 
-
-           // Text("Files").font(.title3)
+            if (UIDevice.current.userInterfaceIdiom == .mac) {
+                Text("Files").font(.title3)
+            }
         }.padding()
 
         List {
@@ -80,8 +81,6 @@ struct MultipleSelectRow: View {
             .onDelete(perform: removeFolders)
         }
     } //End func.
-
-
 
     private func deleteAllFolders() {
         homeData.folders.removeAll()

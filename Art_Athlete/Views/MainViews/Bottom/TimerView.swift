@@ -32,7 +32,7 @@ struct TimerView: View{
         entity: UserData.entity(), sortDescriptors: []
         //sortDescriptors: [NSSortDescriptor(keyPath: \UserData.countPoses, ascending: true)]
     )
-    var testData : FetchedResults<UserData>
+    var userData : FetchedResults<UserData>
     
    // @Binding var startSession: Bool
     /*
@@ -86,8 +86,7 @@ struct TimerView: View{
                     //If the time is less than
                     if self.timeObject.currentTime < timeObject.timeChosen {
                         self.timeObject.currentTime += 1
-                        print("Time:  \(self.timeObject.currentTime)")
-                        
+                        userData[0].timeDrawn += 1
                         self.timeObject.progressValue += Float(1 / timeObject.timeChosen)
                     
                     } else if (timeObject.currentTime == timeObject.timeChosen) {
@@ -98,11 +97,11 @@ struct TimerView: View{
                         if (prefs.currentIndex + 1 < prefs.sPoseCount) {
                             prefs.currentIndex += 1
                             prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
-                            
 
                             updateSession() //Only done at end of session. And called when quit.
                         } else {
-                            testData[testData.count - 1].countPoses += 1 //Add 1 more pose count if the user finishees. DO NOT put this in endSession function, otherwise it'll get called when that function is called in other areas like quit.
+                            userData[0].timeDrawn += 1 //Is this needed?
+                            userData[userData.count - 1].countPoses += 1 //Add 1 more pose count if the user finishees. DO NOT put this in endSession function, otherwise it'll get called when that function is called in other areas like quit.
                             endSession()
                         }
                     }
@@ -114,7 +113,7 @@ struct TimerView: View{
     //Update data in future.
     func updateSession(){
         posesCount += 1
-        testData[testData.count - 1].countPoses += 1
+        userData[userData.count - 1].countPoses += 1
 
         do{
             try context.save()
