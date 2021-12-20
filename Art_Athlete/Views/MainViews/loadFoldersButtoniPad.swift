@@ -121,6 +121,7 @@ struct LoadFoldersButtoniPad: View {
         self.needRefresh = true
 
       //  scanAllFolders()
+        imagesArray.removeAll()
     } //end ImportImage func.
 
     public func scanAllFolders() {

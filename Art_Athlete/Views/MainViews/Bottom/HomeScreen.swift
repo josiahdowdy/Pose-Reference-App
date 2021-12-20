@@ -53,9 +53,6 @@ struct HomeScreen: View {
         entity: UserData.entity(), sortDescriptors: []
     ) var testData : FetchedResults<UserData>
     
-
-    
-    
     //    @FetchRequest(
     //        entity: UserData.entity(), sortDescriptors: [NSSortDescriptor(key: "momentTimeStamp", ascending: false)]
     //    ) var mostRecentSession : FetchedResults<UserData>

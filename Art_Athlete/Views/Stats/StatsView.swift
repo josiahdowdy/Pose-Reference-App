@@ -12,7 +12,6 @@ struct ToggleStates {
     var twoIsOn: Bool = true
 }
 
-
 struct StatsView: View {
     @Environment(\.colorScheme) var currentDarkLightMode
     @Environment(\.presentationMode) var presentationMode

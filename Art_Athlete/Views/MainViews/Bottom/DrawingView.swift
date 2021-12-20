@@ -21,10 +21,10 @@ struct DrawingView: View {
     @Binding var startSession: Bool
 
     //Access the apps document directory.
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for:.documentDirectory, in : .userDomainMask)
-        return paths[0]
-    }
+//    func getDocumentsDirectory() -> URL {
+//        let paths = FileManager.default.urls(for:.documentDirectory, in : .userDomainMask)
+//        return paths[0]
+//    }
     
     //Begin view.
     var body: some View {

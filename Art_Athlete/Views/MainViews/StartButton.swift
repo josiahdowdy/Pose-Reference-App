@@ -19,7 +19,7 @@ struct StartButton: View {
   //  @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
 
     @State var url : URL = URL(fileURLWithPath: "nil")
-    @State var isRandom: Bool = true
+   // @State var isRandom: Bool = true
 
     @State var testUrlResourceKey = Set<URLResourceKey>()
     @Binding var rowSelection: Set<String>
@@ -29,12 +29,13 @@ struct StartButton: View {
     var body: some View {
         Button {
           //  if !(UIDevice.current.userInterfaceIdiom == .phone) {
-                loadFolderFiles()
+
           //  }
 //            if (UIDevice.current.userInterfaceIdiom == .phone) {
 //                loadFolderFilesiPad()
 //            }
 
+            loadFolderFiles()
             startSession()
         } label: {
             Text("\(Image(systemName: "play.rectangle.fill")) Start ")
@@ -66,8 +67,7 @@ struct StartButton: View {
     }
 
     func startSession(){
-        print("JD01 : loadLocalPhotos() : \(prefs.arrayOfURLStrings)")
-        print("JD20: \(prefs.arrayOfURLStrings.count)")
+        print("JD460 : loadLocalPhotos() : \(prefs.arrayOfURLStrings)")
 
         if (prefs.arrayOfURLStrings.count < prefs.homeManyPhotosToDraw[prefs.selectorCountTime]) {
             prefs.sPoseCount = prefs.arrayOfURLStrings.count
@@ -75,7 +75,7 @@ struct StartButton: View {
             prefs.sPoseCount = prefs.homeManyPhotosToDraw[prefs.selectorCountTime]
         }
 
-        if (isRandom) {
+        if (prefs.isRandom) {
             prefs.arrayOfURLStrings.shuffle()
         }
 
@@ -93,6 +93,8 @@ struct StartButton: View {
             startTimer()
             prefs.startSession = true
         }
+
+        print("JD460 : prefs.arrayOfURLStrings : \(prefs.arrayOfURLStrings)")
     }
 
     func loadFolderFiles() {
@@ -108,6 +110,7 @@ struct StartButton: View {
         } catch {
             print("JD452: error loading files from download folder.", error)
         }
+        print("JD460: prefs.arrayOfURLStrings → \(prefs.arrayOfURLStrings)")
     } //End Func.
 
     //IPHONE and iPad load files.

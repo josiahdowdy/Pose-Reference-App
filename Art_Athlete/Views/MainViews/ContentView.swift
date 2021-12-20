@@ -18,7 +18,6 @@ struct ContentView: View {
     @State var isImporting: Bool = false
     @State var isSettingsPresented = false
 
-    
     @State var pause = false
 
     @State var url : URL = URL(fileURLWithPath: "nil")

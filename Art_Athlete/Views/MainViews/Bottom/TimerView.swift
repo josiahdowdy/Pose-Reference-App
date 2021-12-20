@@ -97,6 +97,7 @@ struct TimerView: View{
                         if (prefs.currentIndex + 1 < prefs.sPoseCount) {
                             prefs.currentIndex += 1
                             prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
+                            print("JD500 in TimerView prefs.sURL → \(prefs.sURL)")
 
                             updateSession() //Only done at end of session. And called when quit.
                         } else {

@@ -15,7 +15,7 @@ struct FolderButtonRowView: View {
     @State var trimVal : CGFloat = 0
 
     //View.
-    var body: some View{
+    var body: some View {
         Button(action: {
             // self.checked.toggle()
             //   self.selectedBtn = self.product.numberInLine//self.product.id
