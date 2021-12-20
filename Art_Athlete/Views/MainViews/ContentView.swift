@@ -14,8 +14,6 @@ struct ContentView: View {
     @EnvironmentObject var storedUserData: StoredUserData
 
     @StateObject var sharedData: SharedViewModel = SharedViewModel()
-    @State private var position = CardPosition.top
-    @State private var background = BackgroundStyle.blur
 
     @State var isImporting: Bool = false
     @State var isSettingsPresented = false

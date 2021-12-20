@@ -46,6 +46,8 @@ class GlobalVariables: ObservableObject {
     @Published var showLoadingAnimation = false
     @Published var isBookmarkDeletePending = false
     @Published var doesFolderAlreadyExist = false
+    @Published var showNavBar = false
+
 
     //@Published var localPhotosView = true
     @Published var disableSkip = true

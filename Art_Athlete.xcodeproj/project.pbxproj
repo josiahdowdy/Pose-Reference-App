@@ -55,6 +55,8 @@
 		2C28F3FB2740112000BB7405 /* NoteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28F3F92740112000BB7405 /* NoteListCell.swift */; };
 		2C28F3FD2740151800BB7405 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28F3FC2740151800BB7405 /* AddButton.swift */; };
 		2C28F3FE2740151800BB7405 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C28F3FC2740151800BB7405 /* AddButton.swift */; };
+		2C29F86C2770FB54001445A6 /* MailComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29F86B2770FB54001445A6 /* MailComposeViewController.swift */; };
+		2C29F86D2770FB54001445A6 /* MailComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C29F86B2770FB54001445A6 /* MailComposeViewController.swift */; };
 		2C2BDF432543225400D2434E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF422543225400D2434E /* StatsView.swift */; };
 		2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF4625432AC000D2434E /* CertificateView.swift */; };
 		2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */; };
@@ -160,8 +162,6 @@
 		2CE69CD8276E5E6E00DE3436 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE69CD7276E5E6E00DE3436 /* SwiftUICharts */; };
 		2CE863CC276D01C500A73317 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE863CB276D01C500A73317 /* Kingfisher */; };
 		2CE863CF276D01D300A73317 /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE863CE276D01D300A73317 /* Files */; };
-		2CE863D4276E5A6100A73317 /* SlideOverCardCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE863D3276E5A6100A73317 /* SlideOverCardCustom.swift */; };
-		2CE863D5276E5A6100A73317 /* SlideOverCardCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE863D3276E5A6100A73317 /* SlideOverCardCustom.swift */; };
 		2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB2EF3253F7A590087D696 /* TimerView.swift */; };
 		2CEB2EF9253F86DD0087D696 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB2EF8253F86DD0087D696 /* GlobalVariables.swift */; };
 		2CEB6ED3273368C2001C6FEB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEB6ED2273368C2001C6FEB /* CloudKit.framework */; };
@@ -297,6 +297,7 @@
 		2C28F3F627400F0800BB7405 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		2C28F3F92740112000BB7405 /* NoteListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCell.swift; sourceTree = "<group>"; };
 		2C28F3FC2740151800BB7405 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		2C29F86B2770FB54001445A6 /* MailComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailComposeViewController.swift; sourceTree = "<group>"; };
 		2C2BDF422543225400D2434E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		2C2BDF4625432AC000D2434E /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
 		2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
@@ -353,7 +354,6 @@
 		2CC1889B2762702900E599E4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2CDF0976274C814300C284D6 /* FoldersArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersArrayModel.swift; sourceTree = "<group>"; };
 		2CDF0979274D209900C284D6 /* FolderRowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRowsView.swift; sourceTree = "<group>"; };
-		2CE863D3276E5A6100A73317 /* SlideOverCardCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverCardCustom.swift; sourceTree = "<group>"; };
 		2CEB2EF3253F7A590087D696 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		2CEB2EF8253F86DD0087D696 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		2CEB6ED2273368C2001C6FEB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -611,6 +611,7 @@
 				2C663A1E271CC7DC0097AEFE /* SettingsMacView.swift */,
 				2C663A21271CC9410097AEFE /* AdvancedSettingsView.swift */,
 				2C663A23271DAEFA0097AEFE /* MenuView.swift */,
+				2C29F86B2770FB54001445A6 /* MailComposeViewController.swift */,
 			);
 			path = SettingsMac;
 			sourceTree = "<group>";
@@ -735,7 +736,6 @@
 			isa = PBXGroup;
 			children = (
 				2CF9E36B2748641D009F77E1 /* CircleGradual.swift */,
-				2CE863D3276E5A6100A73317 /* SlideOverCardCustom.swift */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -1059,7 +1059,6 @@
 				2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */,
 				2C704F69254BA86200C5805B /* TimerObject.swift in Sources */,
 				2C02D8DE253ABB7100D5F960 /* ProgressBarView.swift in Sources */,
-				2CE863D4276E5A6100A73317 /* SlideOverCardCustom.swift in Sources */,
 				2C13157B27346941001019BA /* SettingsSlideCard.swift in Sources */,
 				2C663A1F271CC7DC0097AEFE /* SettingsMacView.swift in Sources */,
 				2CF9E376274AEE4F009F77E1 /* SceneDelegate.swift in Sources */,
@@ -1083,6 +1082,7 @@
 				2C614DB62733370E0037BFA1 /* BaseView.swift in Sources */,
 				2C06430A272C4579001DF985 /* iOSSettingsBarView.swift in Sources */,
 				2C663A91272327010097AEFE /* UserSessionStats.swift in Sources */,
+				2C29F86C2770FB54001445A6 /* MailComposeViewController.swift in Sources */,
 				2C142B922593D71A00A7DC54 /* ArtAthlete.xcdatamodeld in Sources */,
 				2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */,
 				2CA99D632753FD4400D5CD15 /* Product.swift in Sources */,
@@ -1175,6 +1175,7 @@
 				2CB6248327277287001AFA85 /* GlobalVariables.swift in Sources */,
 				2CB6249B27277C47001AFA85 /* MenuPicker.swift in Sources */,
 				2C663A5F271DCB550097AEFE /* pose_referenceApp.swift in Sources */,
+				2C29F86D2770FB54001445A6 /* MailComposeViewController.swift in Sources */,
 				2CF9E36D2748641D009F77E1 /* CircleGradual.swift in Sources */,
 				2C614DAF2732118F0037BFA1 /* IntroScreen.swift in Sources */,
 				2CB6249827277C3F001AFA85 /* PhotoView.swift in Sources */,
@@ -1198,7 +1199,6 @@
 				2CA99D642753FD4400D5CD15 /* Product.swift in Sources */,
 				2C20982E2737921900D5B5FC /* MultipleSelectRow.swift in Sources */,
 				2C663A6C271F6B810097AEFE /* CheckBoxView.swift in Sources */,
-				2CE863D5276E5A6100A73317 /* SlideOverCardCustom.swift in Sources */,
 				2C663A7C27209ABF0097AEFE /* UserDataEntity.swift in Sources */,
 				2CED7E152727534100B99CAD /* Color.swift in Sources */,
 				2C06430B272C4579001DF985 /* iOSSettingsBarView.swift in Sources */,
@@ -1386,12 +1386,12 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = josiahdowdy.artathlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1417,12 +1417,12 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = josiahdowdy.artathlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

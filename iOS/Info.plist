@@ -24,6 +24,16 @@
 	<string>public.app-category.education</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>Save photos from documents folder.</string>
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>Save photos from downloads folder.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save photos from photo library.</string>
+	<key>NSRemovableVolumesUsageDescription</key>
+	<string>Save photos from removable drive.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -33,6 +43,8 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UISupportedInterfaceOrientations</key>
@@ -42,17 +54,5 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
-	<key>UIFileSharingEnabled</key>
-	<true/>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<true/>
-	<key>NSDownloadsFolderUsageDescription</key>
-	<string>Save photos from downloads folder.</string>
-	<key>NSDocumentsFolderUsageDescription</key>
-	<string>Save photos from documents folder.</string>
-	<key>NSRemovableVolumesUsageDescription</key>
-	<string>Save photos from removable drive.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Save photos from photo library.</string>
 </dict>
 </plist>

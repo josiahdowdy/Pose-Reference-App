@@ -30,7 +30,7 @@ struct NavBar: View {
     
     //@State var changeTimer = false
     //@Binding var startSession: Bool
-    @State var showNavBar = true
+    //@State var showNavBar = true
     
     var body: some View {
         //Spacer()
@@ -47,14 +47,14 @@ struct NavBar: View {
         HStack(alignment: .bottom, spacing: 50) { //alignment: .bottom,
             //Show/Hide NavBar
             Button {
-                showNavBar.toggle()
-                print("\n\(showNavBar)\n")
+                prefs.showNavBar.toggle()
+                print("\n\(prefs.showNavBar)\n")
             } label: {
-                Image(systemName: showNavBar ? "menubar.rectangle" : "menubar.dock.rectangle.badge.record")
+                Image(systemName: prefs.showNavBar ? "menubar.rectangle" : "menubar.dock.rectangle.badge.record")
                     .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
             }
 
-            if(showNavBar) {
+            if(prefs.showNavBar) {
                 //SKIP
                 Button(action: {
                     //changeTimer = false
@@ -150,11 +150,12 @@ struct NavBar: View {
 
             //  Spacer()
         } //End HStack.
-        .cornerRadius(15.0)
+        //.cornerRadius(15.0)
         .padding(10)
-        .opacity(5)
-
-        .background(currentDarkLightMode == .dark ? Color.black : Color.white)
+        //.opacity(5)
+        .background(RoundedRectangle(cornerRadius: 50).fill(currentDarkLightMode == .dark ? Color.black : Color.white))
+        .opacity(0.6)
+       // .background(currentDarkLightMode == .dark ? Color.black : Color.white)
 
         //.cornerRadius(15.0)
         //.opacity(90)

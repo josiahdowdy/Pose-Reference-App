@@ -120,7 +120,7 @@ struct LoadFoldersButtoniPad: View {
         }
         self.needRefresh = true
 
-        scanAllFolders()
+      //  scanAllFolders()
     } //end ImportImage func.
 
     public func scanAllFolders() {

@@ -21,6 +21,9 @@ struct ArtAthleteSettings : View {
     @Binding var profileImageSize : Bool
     @Binding var sendReadReceipts : Bool
 
+    @State private var showingMail = false
+    
+
     
 
     var body: some View {
@@ -58,8 +61,8 @@ struct ArtAthleteSettings : View {
         Form {
 
             Section() {
-                Toggle("Show Timer", isOn: $playNotificationSounds)
-                Toggle("Show Session Options", isOn: $sendReadReceipts)
+               // Toggle("Show Timer", isOn: $playNotificationSounds)
+               // Toggle("Show Session Options", isOn: $sendReadReceipts)
                 toggleSwitch()
 
             }
@@ -89,8 +92,17 @@ struct ArtAthleteSettings : View {
                     }
                 }
 
-                //Text("Please email me with any bugs or features you'd like to see added :)")
-                Text("Support: artathlete@pm.me")
+                VStack {
+                    Button("\(Image(systemName: "mail")) Email support: artathlete@icloud.com") {
+                        self.showingMail.toggle()
+                    }
+                }
+                .sheet(isPresented: $showingMail) {
+                    MailComposeViewController(toRecipients: ["artathlete@icloud.com"], mailBody: "Art Athlete App Support") {
+                        // Did finish action
+                    }
+                }
+
             }
 
         }

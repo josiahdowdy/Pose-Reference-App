@@ -5,6 +5,7 @@ import CoreData
 
 struct DrawingView: View {
     //@Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var userObject: UserObject
@@ -34,11 +35,16 @@ struct DrawingView: View {
               //  }
                 VStack {
                     Spacer().frame(maxWidth: .infinity)
-                    
-                    Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
-                        .font(.caption)
-                        .background(Color.black)
-                        .foregroundColor(.white)
+
+                    if (prefs.showNavBar) {
+                        Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
+                            .font(.caption)
+                            .padding(4)
+                            .background(RoundedRectangle(cornerRadius: 50).fill(currentDarkLightMode == .dark ? Color.black : Color.white))
+                        // .background(Color.black)
+                            .opacity(0.6)
+                            .foregroundColor(.white)
+                    }
 
 
                     NavBar(prefs: _prefs, testData: testData) //.padding(.bottom, 5)

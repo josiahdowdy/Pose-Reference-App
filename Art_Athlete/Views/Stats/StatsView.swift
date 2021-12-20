@@ -119,10 +119,6 @@ struct StatsView: View {
               //  Text("\(Image(systemName: "asterisk.circle")) Only 1 hr max a day is applied toward certificate time to help build a daily drawing habit.\n").font(.footnote).padding(.top, 10)
                 
                 Text("\(Image(systemName: "text.quote")) \"Amateurs sit and wait for inspiration. \nThe rest of us just get up and go to work.\n - Stephen King").font(.footnote).padding(.top, 10)//.font(.caption).padding(.top, 50)
- 
-                    Button("Main Menu") {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }.padding(.top, 20)
             }.padding(.horizontal, 20)
         }
     } //End UI
