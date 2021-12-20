@@ -82,6 +82,7 @@ struct HomeScreenButtonsView: View {
                         EditButton()
                             .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                         settingsButton()
+                            .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                     }
                 }
             }
@@ -106,7 +107,9 @@ struct HomeScreenButtonsView: View {
                 }
                 .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
             }
+
         } //NavigationView
+        .onAppear(perform: scanAllFolders)
        // .onAppear(perform: scanAllFolders)
     } //End UI.
 
@@ -115,6 +118,12 @@ struct HomeScreenButtonsView: View {
      -(((---(((-----*/
 
     //MARK: - FUNCTIONS
+    public func scanAllFolders() {
+        homeData.folders.removeAll()
+        Folder.documents!.subfolders.recursive.forEach { folder in
+            homeData.folders.append(Product(title: folder.name, count: folder.files.count()))
+        }
+    }
 //    public func scanAllFolders() {
 //        if (UIDevice.current.userInterfaceIdiom == .mac) {
 //            print("JD451: mac")

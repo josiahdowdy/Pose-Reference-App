@@ -46,7 +46,7 @@ class GlobalVariables: ObservableObject {
     @Published var showLoadingAnimation = false
     @Published var isBookmarkDeletePending = false
     @Published var doesFolderAlreadyExist = false
-    @Published var showNavBar = false
+   // @Published var showNavBar = false
 
 
     //@Published var localPhotosView = true
@@ -56,7 +56,7 @@ class GlobalVariables: ObservableObject {
     @Published var localPhotos = false
     @Published var hideTimer = false
     @Published var numberTimer = false
-    @Published var isRandom = true
+    //@Published var isRandom = true
     @Published var sessionFirstStarted = false
     @Published var introIsFinished = true
     @Published var showSettings = false

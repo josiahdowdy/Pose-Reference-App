@@ -23,7 +23,6 @@ struct ContentView: View {
     @State var url : URL = URL(fileURLWithPath: "nil")
     @State var testUrlResourceKey = Set<URLResourceKey>() //FIXME: Not sure how to use this yet...
 
-
     //Settings vars.
     @State var notifyMeAbout : Bool = true
     @State var playNotificationSounds : Bool = false
@@ -61,18 +60,19 @@ struct ContentView: View {
             }
         }
         .slideOverCard(isPresented: $prefs.showSettings, options: [.hideExitButton]) { //$isSettingsPresented
-            ArtAthleteSettings(notifyMeAbout: $notifyMeAbout, playNotificationSounds: $playNotificationSounds, profileImageSize: $profileImageSize, sendReadReceipts: $sendReadReceipts)
+            ArtAthleteSettings() //(notifyMeAbout: $notifyMeAbout, playNotificationSounds: $playNotificationSounds, profileImageSize: $profileImageSize, sendReadReceipts: $sendReadReceipts)
                 .environmentObject(homeData)
         }
         .slideOverCard(isPresented: $prefs.showStats, options: [.hideExitButton]) {
             StatsView(userStats: testData)
         }
-        .onAppear(perform: scanAllFolders)
+        //.onAppear(perform: scanAllFolders)
     }
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 
     //MARK: - FUNCTIONS
     public func scanAllFolders() {
+        homeData.folders.removeAll()
         Folder.documents!.subfolders.recursive.forEach { folder in
             homeData.folders.append(Product(title: folder.name, count: folder.files.count()))
         }

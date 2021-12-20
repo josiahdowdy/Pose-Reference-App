@@ -65,6 +65,12 @@ struct FolderButtonRowView: View {
         //.cornerRadius(25)
         //.shadow(radius: 10)
         //  .padding(10)
+        .toolbar {
+            HStack {
+               // self.cdDeleteButton
+            }
+
+        }
     }
 
     //Functions
@@ -85,4 +91,36 @@ struct FolderButtonRowView: View {
 
         prefs.arrayOfFolderNames.append(folderName)
     }
+
+    func removeFolders(at offsets: IndexSet) {
+        homeData.folders = homeData.folders.enumerated().filter { (i, item) -> Bool in
+            let removed = offsets.contains(i)
+            if removed {
+              //  deleteFolderFromComputer(folder: item)
+              //  removeFolderFromDrawList(folder: item) //Remove from prefs array.
+            }
+            return !removed
+        }.map { $0.1 }
+    }
+
+//    private var cdDeleteButton: some View {
+//        return Button(action: deleteFolderFromComputer(folder: product)) { //cdDeleteFolders
+//            Image(systemName: "trash")
+//        }.disabled(rowSelection.count <= 0)
+//    }
+
+//    private func deleteFolderFromComputer(folder: Product) {
+//        print("JD460: \(folder.title)")
+//        let folderName = folder.title
+//        let url = Folder.documents!.path
+//
+//        if (Folder.documents!.containsSubfolder(named: folderName)) {
+//            do {
+//                let folder = try Folder(path: url.appending(folderName))
+//                try folder.delete()
+//            } catch {
+//                print("JD460: error.")
+//            }
+//        }
+//    }
 }

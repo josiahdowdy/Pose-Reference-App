@@ -7,7 +7,6 @@ struct LoadFoldersButtoniPad: View {
     // MARK: - Properties
     @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
-    //@EnvironmentObject var homeData: HomeViewModel
     @EnvironmentObject var homeData: HomeViewModel
 
     @State var imagesArray: Array<UIImage> = Array<UIImage>()

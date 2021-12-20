@@ -9,14 +9,13 @@ import SwiftUI
 //import Kingfisher
 
 struct NavBar: View {
-    //@Environment(\.presentationMode) var presentationMode //Oct17
     @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
-
     let persistenceController = PersistenceController.shared
-
     var testData : FetchedResults<UserData>
+
+    @AppStorage("showNavBar") var showNavBar = true
     
     @State private var showingSheet = false
 
@@ -27,7 +26,6 @@ struct NavBar: View {
     @State var rotation = 0.0
     @State var timeLeft = 0.0
 
-    
     //@State var changeTimer = false
     //@Binding var startSession: Bool
     //@State var showNavBar = true
@@ -44,17 +42,28 @@ struct NavBar: View {
                 }
         }
 
+        if(showNavBar) {
+            Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
+                .font(.caption)
+                .padding(4)
+                .background(RoundedRectangle(cornerRadius: 50).fill(currentDarkLightMode == .dark ? Color.black : Color.white))
+            // .background(Color.black)
+                .opacity(0.6)
+                .foregroundColor(.white)
+        }
+
         HStack(alignment: .bottom, spacing: 50) { //alignment: .bottom,
             //Show/Hide NavBar
             Button {
-                prefs.showNavBar.toggle()
-                print("\n\(prefs.showNavBar)\n")
+                showNavBar.toggle()
+                print("\n\(showNavBar)\n")
             } label: {
-                Image(systemName: prefs.showNavBar ? "menubar.rectangle" : "menubar.dock.rectangle.badge.record")
+                Image(systemName: showNavBar ? "menubar.rectangle" : "menubar.dock.rectangle.badge.record")
                     .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
             }
 
-            if(prefs.showNavBar) {
+            //if(prefs.showNavBar) {
+            if(showNavBar) {
                 //SKIP
                 Button(action: {
                     //changeTimer = false

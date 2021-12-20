@@ -1,9 +1,4 @@
-//
-//  SlideOverCard.swift
-//  Art_Athlete
-//
-//  Created by josiah on 2021-11-04.
-//
+//SlideOverCard.swift -  Art_Athlete - Created by josiah on 2021-11-04.
 
 import SwiftUI
 import SlideOverCard
@@ -15,16 +10,12 @@ struct ArtAthleteSettings : View {
     @EnvironmentObject var homeData: HomeViewModel
     let persistenceController = PersistenceController.shared
 
-
-    @Binding var notifyMeAbout : Bool
-    @Binding var playNotificationSounds : Bool
-    @Binding var profileImageSize : Bool
-    @Binding var sendReadReceipts : Bool
+    //@Binding var notifyMeAbout : Bool
+    //@Binding var playNotificationSounds : Bool
+    //@Binding var profileImageSize : Bool
+    //@Binding var sendReadReceipts : Bool
 
     @State private var showingMail = false
-    
-
-    
 
     var body: some View {
         VStack {
@@ -42,37 +33,23 @@ struct ArtAthleteSettings : View {
                         prefs.showSettings = false
                     }, label: {
                         HStack {
+                            Text("Done")
                             Image(systemName: "x.circle.fill")
-                                .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-                            Text("Done").foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                         }
                     }).padding(.trailing, 10)
-                    
-//                    Button("Done") {
-//                        prefs.showSettings = false
-//                    }.padding(.trailing, 10).foregroundColor(.blue)//.alignmentGuide(.trailing, computeValue: { _ in 90 } )
                 }
             }
-
-
             // Spacer()
+        } //End VStack 1.
+        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
 
-
-        Form {
-
-            Section() {
-               // Toggle("Show Timer", isOn: $playNotificationSounds)
-               // Toggle("Show Session Options", isOn: $sendReadReceipts)
+        Form() {
+            Section(header: Text("Options")) {
                 toggleSwitch()
-
             }
 
-            Section(header: Text("Reset")) {
-//                Picker("Profile Image Size", selection: $profileImageSize) {
-//                    Text("Large")//.tag(ProfileImageSize.large)
-//                    Text("Medium")//.tag(ProfileImageSize.medium)
-//                    Text("Small")//.tag(ProfileImageSize.small)
-//                }
+
+            Section(header: Text("Delete")) {
                 Button {
                     deleteFilesInDirectory()
                     scanAllFolders()
@@ -91,25 +68,29 @@ struct ArtAthleteSettings : View {
                         Text("Reset All User Stats")
                     }
                 }
+            }//.foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
 
-                VStack {
-                    Button("\(Image(systemName: "mail")) Email support: artathlete@icloud.com") {
-                        self.showingMail.toggle()
-                    }
+            Section(header: Text("ABOUT")) {
+                HStack {
+                    Text("Version")
+                    Spacer()
+                    Text("1.0.0")
+                }
+
+                Button("\(Image(systemName: "mail")) Email support: artathlete@icloud.com") {
+                    self.showingMail.toggle()
                 }
                 .sheet(isPresented: $showingMail) {
                     MailComposeViewController(toRecipients: ["artathlete@icloud.com"], mailBody: "Art Athlete App Support") {
                         // Did finish action
                     }
                 }
-
-            }
-
-        }
-
-        }
-    }
-    //End view
+            } //.foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+        } //End form
+        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+        //.frame(maxWidth: .infinity)
+       // .background(RoundedRectangle(cornerRadius: 50).fill(currentDarkLightMode == .dark ? Color.yellow : Color.white))
+    }//End view
 
     //Functions
     public func scanAllFolders() {
@@ -127,8 +108,6 @@ struct ArtAthleteSettings : View {
         print("JD500: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
         let array:[URL] = FileManager.default.urls(for: .documentDirectory)!  //?? "none"
 
-
-        //for i in 0...(FileManager.default.urls(for: .documentDirectory))!.count {
         for i in 0...(array.count-1) {
             do {
                 try FileManager.default.removeItem(atPath: array[i].path)
@@ -137,36 +116,17 @@ struct ArtAthleteSettings : View {
             }
         }
 
-//        do {
-//            ForEach(FileManager.default.urls(for: .documentDirectory)) { folder in
-//                try FileManager.default.removeItem(atPath: folder)
-//            }
-//     //       try FileManager.default.removeItem(atPath: FileManager.default.urls(for: .documentDirectory))
-//        } catch {
-//            print("JD451: THIS WORKS, but it does NOT delete the document directory. Just everything inside of it. ••••••\n", error)
-//        }
-
-
         guard
             let path = FileManager
                 .default
                 .urls(for: .documentDirectory, in: .userDomainMask)
                 .first
-                // .appendingPathComponent("\(name)")
         else {
             print("error getting path.")
             return//return nil
         }
 
         print("JD500: path  → ", path)
-
-//        do {
-//            try FileManager.default.removeItem(atPath: path.path)
-//        } catch {
-//            print("JD451: THIS WORKS, but it does NOT delete the document directory. Just everything inside of it. ••••••\n", error)
-//        }
-
-
 
         print("JD500: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
         //  return path
@@ -205,3 +165,20 @@ struct ArtAthleteSettings : View {
 //
 //}
 
+
+
+//            Form {
+//                Section() {
+//                    // Toggle("Show Timer", isOn: $playNotificationSounds)
+//                    // Toggle("Show Session Options", isOn: $sendReadReceipts)
+//                    toggleSwitch()
+//                }
+//
+//                Section(header: Text("Reset")) {
+//                    //                Picker("Profile Image Size", selection: $profileImageSize) {
+//                    //                    Text("Large")//.tag(ProfileImageSize.large)
+//                    //                    Text("Medium")//.tag(ProfileImageSize.medium)
+//                    //                    Text("Small")//.tag(ProfileImageSize.small)
+//                    //                }
+//                }
+//            }

@@ -125,9 +125,8 @@ struct MultipleSelectRow: View {
         }
         print("JD460: \(prefs.arrayOfFolderNames)")
     }
-//
-//    //FIXME: After deleting folders, a bug happens with the prefs.arrayOfFolderNames.
-    func removeFolders(at offsets: IndexSet) {
+
+    private func removeFolders(at offsets: IndexSet) {
         homeData.folders = homeData.folders.enumerated().filter { (i, item) -> Bool in
             let removed = offsets.contains(i)
             if removed {

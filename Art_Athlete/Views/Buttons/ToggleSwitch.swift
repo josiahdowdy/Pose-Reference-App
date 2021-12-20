@@ -9,21 +9,30 @@ import SwiftUI
 
 struct toggleSwitch: View {
     @EnvironmentObject var prefs: GlobalVariables
-    
-    var body: some View {
-        Toggle("Random Order", isOn: $prefs.isRandom)
-//        HStack{
-//            Text("Random Order")
-//                .foregroundColor(prefs.isRandom ? .green : .gray)
-//            Toggle("Random", isOn: $prefs.isRandom)
-//                .labelsHidden()
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 15)
-//                        .stroke(lineWidth: 2)
-//                        .foregroundColor(prefs.isRandom ? .green : .gray)
-//                )
-//        }
+    @AppStorage("isRandom") var isRandom = true
 
+    var body: some View {
+        Toggle("Random Order", isOn: $isRandom)
+        /*
+        if !(UIDevice.current.userInterfaceIdiom == .mac) {
+            Toggle("Random Order", isOn: $isRandom)
+        } else {
+            HStack{
+                Toggle("Random Order", isOn: $isRandom)
+                    .toggleStyle(DefaultToggleStyle())
+//                Text("Random Order")
+//                    .foregroundColor(isRandom ? .green : .gray)
+
+                    //.labelsHidden()
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 15)
+//                            .stroke(lineWidth: 2)
+//                            .foregroundColor(isRandom ? .green : .gray)
+//                    )
+            }
+        }
+        //$prefs.isRandom)
+*/
     }
 }
 

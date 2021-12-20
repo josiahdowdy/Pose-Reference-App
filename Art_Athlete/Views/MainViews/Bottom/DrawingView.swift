@@ -36,17 +36,6 @@ struct DrawingView: View {
                 VStack {
                     Spacer().frame(maxWidth: .infinity)
 
-                    if (prefs.showNavBar) {
-                        Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
-                            .font(.caption)
-                            .padding(4)
-                            .background(RoundedRectangle(cornerRadius: 50).fill(currentDarkLightMode == .dark ? Color.black : Color.white))
-                        // .background(Color.black)
-                            .opacity(0.6)
-                            .foregroundColor(.white)
-                    }
-
-
                     NavBar(prefs: _prefs, testData: testData) //.padding(.bottom, 5)
 
                     HStack {

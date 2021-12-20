@@ -14,13 +14,9 @@ struct StartButton: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
-   /// @ObservedObject var folderArrayModel: FoldersArrayModel
-   // @AppStorage("storedFileURLs") var storedFileURLs: [[URL]] = [[]]
-  //  @AppStorage("arrayOfFolderNames") var arrayOfFolderNames: [String] = []
 
     @State var url : URL = URL(fileURLWithPath: "nil")
-   // @State var isRandom: Bool = true
-
+ 
     @State var testUrlResourceKey = Set<URLResourceKey>()
     @Binding var rowSelection: Set<String>
     
@@ -75,7 +71,8 @@ struct StartButton: View {
             prefs.sPoseCount = prefs.homeManyPhotosToDraw[prefs.selectorCountTime]
         }
 
-        if (prefs.isRandom) {
+        //if (prefs.isRandom) {
+        if (toggleSwitch().isRandom) {
             prefs.arrayOfURLStrings.shuffle()
         }
 
