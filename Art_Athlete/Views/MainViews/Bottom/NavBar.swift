@@ -13,7 +13,7 @@ struct NavBar: View {
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     let persistenceController = PersistenceController.shared
-    var testData : FetchedResults<UserData>
+    //var testData : FetchedResults<UserData>
 
     @AppStorage("showNavBar") var showNavBar = true
     

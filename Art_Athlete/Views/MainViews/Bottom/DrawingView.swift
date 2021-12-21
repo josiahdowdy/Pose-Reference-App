@@ -4,20 +4,18 @@ import SwiftUI
 import CoreData
 
 struct DrawingView: View {
-    //@Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var userObject: UserObject
 
     var testData : FetchedResults<UserData>
+    @State var userData = UserData()
     
     @State var isImporting: Bool = false
     
     @State private var showingSheet = false
-    
-    //@State private var startSession = false
-    
+
     @Binding var startSession: Bool
 
     //Access the apps document directory.
@@ -36,7 +34,7 @@ struct DrawingView: View {
                 VStack {
                     Spacer().frame(maxWidth: .infinity)
 
-                    NavBar(prefs: _prefs, testData: testData) //.padding(.bottom, 5)
+                    NavBar(prefs: _prefs) //.padding(.bottom, 5)
 
                     HStack {
                         if !(prefs.hideTimer) {

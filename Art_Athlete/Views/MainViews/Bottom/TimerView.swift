@@ -11,7 +11,9 @@ struct TimerView: View{
         entity: UserData.entity(), sortDescriptors: []
         //sortDescriptors: [NSSortDescriptor(keyPath: \UserData.countPoses, ascending: true)]
     )
-    var userData : FetchedResults<UserData>
+    var userDataFetched : FetchedResults<UserData>
+
+    //@State var userData = UserData()
 
     @State private var date: Date = Date()
     @State private var alertMsg = ""
@@ -19,7 +21,7 @@ struct TimerView: View{
     @State private var posesCount = 0
     @State private var isActive = true
 
-   // @State var newUserData: UserData
+    //@State var userDataObject = UserData() //(context: context)
 
     //@State var userDataObject = UserData()//UserData(context: context)
     //-------------END VARIABLES------------------------------------------------------------
@@ -27,6 +29,9 @@ struct TimerView: View{
     
     //-------------START VIEW------------------------------------------------------------
     var body: some View {
+        //let userData = UserData(context: context)
+       // newSession(userData: userData)
+
         VStack {
             ProgressBar(value: $timeObject.progressValue)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
@@ -47,20 +52,21 @@ struct TimerView: View{
                     //if self.timeObject.progressValue < timeObject.timeChosen {
                         self.timeObject.currentTime += 1
                         self.timeObject.progressValue += Float(1 / timeObject.timeChosen)
-                       // userDataObject.timeDrawn += 1
+
                         //userData[0].timeDrawn += 1
 
                     } else if (timeObject.currentTime == timeObject.timeChosen) {
                    // else if (timeObject.progressValue == timeObject.timeChosen) {
                         timeObject.currentTime = 0
                         timeObject.progressValue = 0.0
-                        
                         //If you are not on the final image, then load the next image.
                         if (prefs.currentIndex + 1 < prefs.sPoseCount) {
                             prefs.currentIndex += 1
                             prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
+                        //    userData.countPoses += 1
+                        //    userData.timeDrawn += Int16(timeObject.timeChosen)
 
-
+                        //Final image finished, end session.
                         } else {
                            // updateUserData(userData: userDataObject)
                             updateAtEndOfSession() //Only done at end of session. And called when quit.
@@ -115,7 +121,7 @@ struct TimerView: View{
     //Update data in future.
     private func updateAtEndOfSession(){
         posesCount += 1
-        userData[userData.count - 1].countPoses += 1
+        userDataFetched[userDataFetched.count - 1].countPoses += 1
 
         do{
             try context.save()
@@ -126,9 +132,10 @@ struct TimerView: View{
         }
     }
     
-    func newSession(){
-        let test = UserData(context: context)
-        test.countPoses = 4
+    func newSession(userData: UserData){
+       // let test = UserData(context: context)
+        userData.date = date
+        //test.countPoses = 4
         
         //let newUserData = UserData(context: context)
         //newUserData.userPoseCount = Int16(prefs.userSessionPoseCount)

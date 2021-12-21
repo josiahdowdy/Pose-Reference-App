@@ -9,9 +9,9 @@ struct ContentView: View {
     @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
-    @EnvironmentObject var storedUserData: StoredUserData
+    //@EnvironmentObject var storedUserData: StoredUserData
 
-    @StateObject var sharedData: SharedViewModel = SharedViewModel()
+   // @StateObject var sharedData: SharedViewModel = SharedViewModel()
 
     @State var isImporting: Bool = false
     @State var isSettingsPresented = false
@@ -47,7 +47,7 @@ struct ContentView: View {
                 if (!prefs.startSession) {
                     HomeScreenButtonsView() //homeData: homeData
                         .environmentObject(homeData)
-                        .environmentObject(sharedData)
+                        //.environmentObject(sharedData)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .transition(AnyTransition.move(edge: .leading)).animation(.default)
                 }

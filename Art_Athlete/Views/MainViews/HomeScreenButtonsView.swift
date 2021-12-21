@@ -12,7 +12,7 @@ struct HomeScreenButtonsView: View {
     @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
-    @EnvironmentObject var sharedData: SharedViewModel
+    //@EnvironmentObject var sharedData: SharedViewModel
     @Environment(\.managedObjectContext) var context
     //@StateObject var homeData: HomeViewModel = HomeViewModel()
     @EnvironmentObject var homeData: HomeViewModel

@@ -71,40 +71,7 @@ struct PersistenceController {
         }
     }
 
-//    func deleteData() {
-//        let appDel:AppDelegate = (UIApplication.shared.delegate as! AppDelegate)
-//        let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "myEntity")
-//        fetchRequest.returnsObjectsAsFaults = false
-//        do {
-//            let results = try context.fetch(fetchRequest)
-//            for managedObject in results {
-//                if let managedObjectData: NSManagedObject = managedObject as? NSManagedObject {
-//                    context.delete(managedObjectData)
-//                }
-//            }
-//        } catch let error as NSError {
-//            print("Deleted all my data in myEntity error : \(error) \(error.userInfo)")
-//        }
-//
-//        context.save()
-//    }
-
-//    public func deleteBatch() {
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Car")
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//        let persistentStoreCoordinator = container.persistentStoreCoordinator
-//       // let context = persistentStoreCoordinator.viewContext
-//
-//        do {
-//            try persistentStoreCoordinator.execute(deleteRequest, with: context)
-//        } catch let error as NSError {
-//            // TODO: handle the error
-//        }
-//    }
-
     func deleteAll(entityName: String) {
-
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         deleteRequest.resultType = .resultTypeObjectIDs
@@ -123,36 +90,7 @@ struct PersistenceController {
         }
     }
 
-    public func deleteAllData() {
-        guard let url = container?.persistentStoreDescriptions.first?.url else { return }
-        let persistentStoreCoordinator = container?.persistentStoreCoordinator
-        do {
-            try persistentStoreCoordinator?.destroyPersistentStore(at:url, ofType: NSSQLiteStoreType, options: nil)
-            try persistentStoreCoordinator?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
-            print("JD500: DELETED DATA.")
-        } catch let error {
-            print("JD500: Attempted to clear persistent store: " + error.localizedDescription)
-        }
-
-      //  persistentStoreCoordinator.NSBatchDeleteResult
-/*
-        // Re-create the persistent container
-        container.persistentStoreCoordinator = NSPersistentContainer(
-       // persistentContainer = NSPersistentContainer(
-            name: "UserData" // the name of "CoreDataModelFile"
-            // a .xcdatamodeld file
-        )
-
-        // Calling loadPersistentStores will re-create the
-        // persistent stores
-        container.persistentStoreCoordinator.loadPersistentStores {
-       // persistentContainer.loadPersistentStores {
-            (store, error) in
-            // Handle errors
-            print("JD500: Error loading new stores.")
-        }
- */
-    }
+}
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 
     /*
