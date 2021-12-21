@@ -9,6 +9,8 @@ import SwiftUI
 //import Kingfisher
 
 struct NavBar: View {
+    @Environment(\.managedObjectContext) var context
+
     @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
@@ -85,6 +87,7 @@ struct NavBar: View {
                         } else { ///Only use if using Unsplash photos.
                             // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
                         }
+                        timeObject.currentTime = 0
                         timeObject.timeDouble = 0.0
                         timeObject.progressValue = 0.0
                         timeObject.startTime = Date()
@@ -150,8 +153,6 @@ struct NavBar: View {
                 Button(action: {
                     print("quit")
                     endSession()
-                    //self.startSession = false
-                    //ContentView()
                 }) {
                     Image(systemName: "multiply.circle.fill") //Text("Grayscale")
                         .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
@@ -160,54 +161,53 @@ struct NavBar: View {
 
             //  Spacer()
         } //End HStack.
-        //.cornerRadius(15.0)
         .padding(10)
-        //.opacity(5)
         .background(RoundedRectangle(cornerRadius: 50).fill(currentDarkLightMode == .dark ? Color.black : Color.white))
         .opacity(0.6)
-       // .background(currentDarkLightMode == .dark ? Color.black : Color.white)
 
-        //.cornerRadius(15.0)
-        //.opacity(90)
-
-       // .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+        
     } //End View.
 
     //MARK: - FUNCTIONS
     func endSession(){
-        //  self.startSession = false
+        TimerView(timeObject: _timeObject, prefs: _prefs).updateAtEndOfSession(timeChosen: timeObject.timeChosen, context: context) // timeObject: _timeObject, 
         pause = false
         self.timeObject.endSessionBool.toggle()
         prefs.disableSkip.toggle()
         TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
         prefs.randomImages.photoArray.removeAll()
         prefs.currentIndex = 0
+        prefs.poseCount = 0
+        prefs.timeDrawn = 0
 
         prefs.localPhotos = false
         prefs.arrayOfURLStrings.removeAll()
         prefs.arrayOfFolderNames.removeAll()
         
         prefs.startSession = false
-        persistenceController.save()
+       // persistenceController.save()
     }
+
+//    func updateAtEndOfSession2(timeChosen: Double){
+//        countPoses += 1
+//        timeDrawn += Int16(timeChosen)//Int16(timeObject.timeChosen)
+//
+//        let userData = UserData(context: context)
+//        userData.date = Date()
+//        userData.id = UUID()
+//        userData.countPoses = countPoses
+//        userData.timeDrawn = timeDrawn
+//
+//        // userDataFetched[userDataFetched.count - 1].countPoses += 1
+//
+//        do{
+//            try context.save()
+//        }
+//        catch{
+//            alertMsg = error.localizedDescription
+//            showAlert.toggle()
+//        }
+//    }
 }
-
-
-
-/*
- .sheet(isPresented: $showingSheet) {
- HomeScreen(prefs: _prefs, name: "Artist!", startSession: $startSession) //, isPresented: $showingSheet Josiah Oct16
- }.buttonStyle(BorderlessButtonStyle())
- */
-//.buttonStyle(bounceButtonStyle())
-//.keyboardShortcut(.escape)
-//Photo counter x /30
-/*
- Button(action: {
- //action open all photos
- }) {
- Text("\(self.prefs.currentIndex + 1)/\(prefs.sPoseCount)").padding(.bottom, 5)
- }.buttonStyle(BorderlessButtonStyle())
- */
 
 

@@ -1,5 +1,8 @@
 /* TimerView - Josiah - Oct 29, 2020  */
 import SwiftUI
+//import Foundation
+//import UIKit
+
 
 struct TimerView: View{
     @EnvironmentObject var timeObject: TimerObject
@@ -18,7 +21,8 @@ struct TimerView: View{
     @State private var date: Date = Date()
     @State private var alertMsg = ""
     @State private var showAlert = false
-    @State private var posesCount = 0
+    @State private var countPoses: Int16 = 0
+    @State private var timeDrawn: Int16 = 0
     @State private var isActive = true
 
     //@State var userDataObject = UserData() //(context: context)
@@ -29,9 +33,6 @@ struct TimerView: View{
     
     //-------------START VIEW------------------------------------------------------------
     var body: some View {
-        //let userData = UserData(context: context)
-       // newSession(userData: userData)
-
         VStack {
             ProgressBar(value: $timeObject.progressValue)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
@@ -49,47 +50,54 @@ struct TimerView: View{
 
                     //If the time is less than
                     if self.timeObject.currentTime < timeObject.timeChosen {
-                    //if self.timeObject.progressValue < timeObject.timeChosen {
-                        self.timeObject.currentTime += 1
-                        self.timeObject.progressValue += Float(1 / timeObject.timeChosen)
-
+                        addTime()
                         //userData[0].timeDrawn += 1
-
                     } else if (timeObject.currentTime == timeObject.timeChosen) {
-                   // else if (timeObject.progressValue == timeObject.timeChosen) {
-                        timeObject.currentTime = 0
-                        timeObject.progressValue = 0.0
+                        firstImageUpdate()
                         //If you are not on the final image, then load the next image.
                         if (prefs.currentIndex + 1 < prefs.sPoseCount) {
-                            prefs.currentIndex += 1
-                            prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
-                        //    userData.countPoses += 1
-                        //    userData.timeDrawn += Int16(timeObject.timeChosen)
-
+                            nextImage()  //    userData.timeDrawn += Int16(timeObject.timeChosen)
                         //Final image finished, end session.
                         } else {
-                           // updateUserData(userData: userDataObject)
-                            updateAtEndOfSession() //Only done at end of session. And called when quit.
+                            prefs.poseCount += 1
+                            prefs.timeDrawn += Int16(timeObject.timeChosen)
+                            updateAtEndOfSession(timeChosen: timeObject.timeChosen, context: context) //Only done at end of session. And called when quit.
                             endSession()
                         } //End else
                     } //End else if
                 } //End onReceive.
         }.padding() //End VStack
+
     }//------------------END OF VIEW------------------------------------------------------
     
     //-------------------FUNCTIONS-----------------------------------------------
-    func updateUserData(userData: UserData) {
-        userData.timeDrawn += 1
-        userData.countPoses += 1
-
-        //userData[0].timeDrawn += 1 //Is this needed?
-        //userData[userData.count - 1].countPoses += 1 //Add 1 more pose count if the user finishees. DO NOT put this in endSession function, otherwise it'll get called when that function is called in other areas like quit.
+    private func addTime() {
+        self.timeObject.currentTime += 1
+        self.timeObject.progressValue += Float(1 / timeObject.timeChosen)
     }
+
+    private func firstImageUpdate() {
+        timeObject.currentTime = 0
+        timeObject.progressValue = 0.0
+    }
+
+    private func nextImage() {
+        prefs.currentIndex += 1
+        prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
+        prefs.poseCount += 1
+        prefs.timeDrawn += Int16(timeObject.timeChosen)
+        //self.countPoses += 1
+        //self.timeDrawn += Int16(timeObject.timeChosen)
+    }
+
     func endSession() {
+        prefs.startSession = false
+        prefs.poseCount = 0
+        prefs.timeDrawn = 0
+        prefs.currentIndex = 0 
         timeObject.isTimerRunning = false
         timeObject.endSessionBool.toggle()
         prefs.disableSkip.toggle()
-        prefs.startSession = false
         prefs.arrayOfURLStrings.removeAll()
         prefs.arrayOfFolderNames.removeAll()
         persistenceController.save()
@@ -103,25 +111,17 @@ struct TimerView: View{
         self.timeObject.timer.upstream.connect().cancel()
     }
 
-    private func createUserData() {
-        //userData : UserData
+    func updateAtEndOfSession(timeChosen: Double, context: NSManagedObjectContext){ //NSManagedObjectContext
+        //self.countPoses += 1
+        //self.timeDrawn += Int16(timeChosen)
+
         let userData = UserData(context: context)
-
-        if (userData.countPoses == 0) {
-            userData.date = Date()
-        }
-        userData.countPoses += 1
-        //userData.userName = "John"
-
-        //let updateCount = userData.countPoses  // = UserData(context: context)
-        userData.countPoses = Int16(prefs.userSessionPoseCount)
+        userData.date = Date()
         userData.id = UUID()
-    }
+        userData.countPoses = prefs.poseCount
+        userData.timeDrawn = prefs.timeDrawn
 
-    //Update data in future.
-    private func updateAtEndOfSession(){
-        posesCount += 1
-        userDataFetched[userDataFetched.count - 1].countPoses += 1
+       // userDataFetched[userDataFetched.count - 1].countPoses += 1
 
         do{
             try context.save()
@@ -129,20 +129,25 @@ struct TimerView: View{
         catch{
             alertMsg = error.localizedDescription
             showAlert.toggle()
+            print("JD500 error")
         }
+        print("JD500: Saved user data.")
     }
-    
-    func newSession(userData: UserData){
-       // let test = UserData(context: context)
-        userData.date = date
-        //test.countPoses = 4
-        
-        //let newUserData = UserData(context: context)
-        //newUserData.userPoseCount = Int16(prefs.userSessionPoseCount)
-        //newUserData.id = UUID()
-        
-        //print(newUserData.id as Any)
-    }
+
+//    private func createUserData() {
+//        //userData : UserData
+//        let userData = UserData(context: context)
+//
+//        if (userData.countPoses == 0) {
+//            userData.date = Date()
+//        }
+//        userData.countPoses += 1
+//        //userData.userName = "John"
+//
+//        //let updateCount = userData.countPoses  // = UserData(context: context)
+//        userData.countPoses = Int16(prefs.userSessionPoseCount)
+//        userData.id = UUID()
+//    }
 }
 
 

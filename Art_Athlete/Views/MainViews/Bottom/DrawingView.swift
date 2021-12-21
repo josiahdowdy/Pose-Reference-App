@@ -45,6 +45,7 @@ struct DrawingView: View {
                             }
                         }
                     } //End HStack
+                    
                 } //End VStack.
             } //End ZStack
         } //End Group

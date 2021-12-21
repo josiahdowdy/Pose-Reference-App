@@ -50,10 +50,9 @@ struct StartButton: View {
         timeObject.startTime = Date()
         timeObject.progressValue = 0.0
         timeObject.timeDouble = 0.0
-        let userData = UserData(context: context)
-        userData.date = Date()
+//        let userDataStart = UserData(context: context)
+//        userDataStart.date = Date()
         TimerView(timeObject: _timeObject, prefs: _prefs).startTimer() //, startSession: $startSession
-
     }
 
     func startSession(){

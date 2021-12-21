@@ -18,6 +18,11 @@ struct StatsView: View {
     @EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var userObject: UserObject
+
+    @FetchRequest(
+        entity: UserData.entity(), sortDescriptors: []
+    ) var userDataFetch : FetchedResults<UserData>
+
     
 
     @State private var showingSheet = false
@@ -89,8 +94,40 @@ struct StatsView: View {
 //                }
 
             }.padding(.horizontal, 20)
+            Group {
+                //  Text("\(Image(systemName: "asterisk.circle")) Only 1 hr max a day is applied toward certificate time to help build a daily drawing habit.\n").font(.footnote).padding(.top, 10)
 
+                Text("\(Image(systemName: "text.quote")) \"Amateurs sit and wait for inspiration. \nThe rest of us just get up and go to work.\n - Stephen King").font(.footnote).padding(.top, 10)//.font(.caption).padding(.top, 50)
+            }.padding(.horizontal, 20)
 
+            Divider()
+                .padding(.bottom)
+
+            Collapsible(
+                label: { Text("Drawing Sessions: \(userDataFetch.count)").font(.title3) },
+                content: {
+                    HStack {
+                        List {
+                            ForEach(userDataFetch) { user in
+                                HStack {
+                                    Text(user.date?.formatted(.dateTime.day().month().hour().minute()) ?? "xx/xx/xxxx")
+                                    Text(": \(user.countPoses) poses drawn. Time:")
+                                    let (h,m,s) = secondsToHoursMinutesSeconds(Int(user.timeDrawn))
+                                    Text("\(h):\(m):\(s)")
+                                }
+
+                            }
+                        }
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.secondary)
+                }
+            )
+                .padding([.leading, .trailing])
+                .frame(maxWidth: .infinity)
+                .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
 
             /*
                 HStack {
@@ -114,15 +151,14 @@ struct StatsView: View {
                     .padding(.top, 50)
                 }.padding(.horizontal, 20)
             */
-            Group {
-              //  Text("\(Image(systemName: "asterisk.circle")) Only 1 hr max a day is applied toward certificate time to help build a daily drawing habit.\n").font(.footnote).padding(.top, 10)
-                
-                Text("\(Image(systemName: "text.quote")) \"Amateurs sit and wait for inspiration. \nThe rest of us just get up and go to work.\n - Stephen King").font(.footnote).padding(.top, 10)//.font(.caption).padding(.top, 50)
-            }.padding(.horizontal, 20)
+
         }
     } //End UI
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - FUNCTIONS
+    func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
 }
 

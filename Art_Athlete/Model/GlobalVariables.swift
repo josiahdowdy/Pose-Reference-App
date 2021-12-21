@@ -37,6 +37,9 @@ class GlobalVariables: ObservableObject {
     @Published var totalFilesSelected = 0
     @Published var sPoseCount = 30
     @Published var totalPhotosLoaded = 0
+    @Published var poseCount: Int16 = 0
+    @Published var timeDrawn: Int16 = 0
+
     
     //----------BOOLS----------------------------------------------------------------
     @Published var startSession = false
