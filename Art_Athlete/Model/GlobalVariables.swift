@@ -25,7 +25,7 @@ class GlobalVariables: ObservableObject {
    // @Published var nsarrayURLS: CFArray = ["hi"]
 
     @Published var randomImages = UnsplashData() //Still needed till I update...
-    @Published var time = [30, 60, 120, 300]
+    @Published var time = [5, 60, 120, 300]
     @Published var homeManyPhotosToDraw = [5, 10, 20, 60]
     @Published var arrayOfFolders = [String]()
 

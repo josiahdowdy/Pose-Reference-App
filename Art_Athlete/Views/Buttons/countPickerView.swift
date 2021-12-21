@@ -1,16 +1,4 @@
-//
-//  countPickerView.swift
-//  Art_Athlete
-//
-//  Created by josiah on 2021-11-10.
-//
-
-//
-//  timePickerView.swift
-//  pose-reference
-//
-//  Created by josiah on 2021-10-19.
-//
+//countPickerView.swift - Art_Athlete - Created by josiah on 2021-11-10.
 
 import SwiftUI
 
@@ -19,8 +7,6 @@ struct countPickerView: View {
     @EnvironmentObject var prefs: GlobalVariables
 
     var body: some View {
-
-
         HStack {
             Text("Count:").padding(10)
                 .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
@@ -36,7 +22,6 @@ struct countPickerView: View {
         }
         .padding(.leading, 50)
         .padding(.trailing, 50)
-
     }
 }
 

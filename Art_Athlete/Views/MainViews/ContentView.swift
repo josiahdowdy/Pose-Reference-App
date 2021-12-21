@@ -1,9 +1,7 @@
-//  ContentView.swift - Art Athlete
-//  Created by josiah on 2021-10-17.
-
+//  ContentView.swift - Art Athlete - Created by josiah on 2021-10-17.
 import SwiftUI
 import CoreData
-import Files
+//import Files
 import UniformTypeIdentifiers
 import SlideOverCard
 
@@ -66,17 +64,10 @@ struct ContentView: View {
         .slideOverCard(isPresented: $prefs.showStats, options: [.hideExitButton]) {
             StatsView(userStats: testData)
         }
-        //.onAppear(perform: scanAllFolders)
-    }
+    } //End View
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
+    //MARK: FUNCTIONS
 
-    //MARK: - FUNCTIONS
-    public func scanAllFolders() {
-        homeData.folders.removeAll()
-        Folder.documents!.subfolders.recursive.forEach { folder in
-            homeData.folders.append(Product(title: folder.name, count: folder.files.count()))
-        }
-    }
 } //End Struct.
 
 

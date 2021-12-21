@@ -10,7 +10,7 @@ import Files
 
 struct StartButton: View {
     @Environment(\.colorScheme) var currentDarkLightMode
-    @ObservedObject var storedUserData = StoredUserData()
+    //@ObservedObject var storedUserData = StoredUserData()
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
@@ -24,13 +24,6 @@ struct StartButton: View {
     //MARK: VIEW
     var body: some View {
         Button {
-          //  if !(UIDevice.current.userInterfaceIdiom == .phone) {
-
-          //  }
-//            if (UIDevice.current.userInterfaceIdiom == .phone) {
-//                loadFolderFilesiPad()
-//            }
-
             loadFolderFiles()
             startSession()
         } label: {
@@ -57,23 +50,21 @@ struct StartButton: View {
         timeObject.startTime = Date()
         timeObject.progressValue = 0.0
         timeObject.timeDouble = 0.0
+//        let newUserData = UserData()//UserData(context: context)
+//        newUserData.date = Date()
         TimerView(timeObject: _timeObject, prefs: _prefs).startTimer() //, startSession: $startSession
-        let newSession = UserData(context: context)
-        newSession.date = Date()
+
     }
 
     func startSession(){
-        print("JD460 : loadLocalPhotos() : \(prefs.arrayOfURLStrings)")
+        if (toggleSwitch().isRandom) {
+            prefs.arrayOfURLStrings.shuffle()
+        }
 
         if (prefs.arrayOfURLStrings.count < prefs.homeManyPhotosToDraw[prefs.selectorCountTime]) {
             prefs.sPoseCount = prefs.arrayOfURLStrings.count
         } else {
             prefs.sPoseCount = prefs.homeManyPhotosToDraw[prefs.selectorCountTime]
-        }
-
-        //if (prefs.isRandom) {
-        if (toggleSwitch().isRandom) {
-            prefs.arrayOfURLStrings.shuffle()
         }
 
         if (prefs.arrayOfURLStrings.isEmpty) {
@@ -82,16 +73,15 @@ struct StartButton: View {
             //prefs.startBoolean.toggle()
             prefs.error = ""
             prefs.sURL = prefs.arrayOfURLStrings[0]
-            print("JD500: prefs.sURL --> ", prefs.sURL)
             prefs.localPhotos = true
             prefs.disableSkip = false
-            timeObject.timeChosen = Double(prefs.time[prefs.selectorIndexTime]) //Double(prefs.time[prefs.selectorIndexTime])!
+            //timeObject.timeChosen = Double(prefs.time[prefs.selectorIndexTime])
+            timeObject.timeChosen = Double((prefs.time[prefs.selectorIndexTime]))
+            //Double(prefs.time[prefs.selectorIndexTime])!
 
             startTimer()
             prefs.startSession = true
         }
-
-        print("JD460 : prefs.arrayOfURLStrings : \(prefs.arrayOfURLStrings)")
     }
 
     func loadFolderFiles() {

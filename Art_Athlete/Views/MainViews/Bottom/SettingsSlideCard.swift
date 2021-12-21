@@ -5,10 +5,20 @@ import SlideOverCard
 import Files
 
 struct ArtAthleteSettings : View {
+    @Environment(\.managedObjectContext) var context
     @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var homeData: HomeViewModel
     let persistenceController = PersistenceController.shared
+    
+
+    @State private var userData = UserData()
+
+    @FetchRequest(
+        entity: UserData.entity(), sortDescriptors: []
+    ) var userDataFetch : FetchedResults<UserData>
+
+
 
     //@Binding var notifyMeAbout : Bool
     //@Binding var playNotificationSounds : Bool
@@ -61,6 +71,7 @@ struct ArtAthleteSettings : View {
                 }
 
                 Button {
+                    //TODO: Create pop-up warning. "ARE YOU SURE?"
                     resetUserStats()
                 } label: {
                     HStack {
@@ -87,9 +98,23 @@ struct ArtAthleteSettings : View {
                 }
             } //.foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
         } //End form
+        .frame(maxWidth: .infinity)
+        
         .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-        //.frame(maxWidth: .infinity)
+
        // .background(RoundedRectangle(cornerRadius: 50).fill(currentDarkLightMode == .dark ? Color.yellow : Color.white))
+        Text("Total: \(userDataFetch.count)")
+        List {
+            ForEach(userDataFetch) { user in
+                HStack {
+                    //let date = user.date?.formatted(date: <#T##Date.FormatStyle.DateStyle#>, time: <#T##Date.FormatStyle.TimeStyle#>)
+                    Text(user.date?.formatted(.dateTime.day().month().hour().minute()) ?? "xx/xx/xxxx")
+                    Text(" - \(user.countPoses)")
+                    Text(" - \(user.timeDrawn)")
+                }
+
+            }
+        }
     }//End view
 
     //Functions
@@ -101,7 +126,40 @@ struct ArtAthleteSettings : View {
     }
 
     func resetUserStats() {
-        persistenceController.clearDatabase() //.delete()
+       // iCloudDelete(cloudDB: UserData)
+       // persistenceController.deleteData()
+
+        //UserData.removeAllObjectsInContext(self.persistenceController.context)
+
+       // UserData.executeBatchDelete(in: context)
+
+        persistenceController.deleteAll(entityName: "UserData")
+
+       // self.refreshingID = UUID() // < force refresh
+
+       // persistenceController.delete(userData)
+        //persistenceController.deleteAllData() //.delete()
+        //userData[0].removeAll()
+        //userData.
+        // List of multiple objects to delete
+        //let objects: [NSManagedObject] = UserData() // A list of objects
+
+        // Get a reference to a managed object context
+        //let context = //persistentContainer.viewContext
+
+        // Delete multiple objects
+//        for object in objects {
+//            context.delete(object)
+//        }
+
+        // Save the deletions to the persistent store
+        do {
+            try context.save()
+        } catch {
+            print("JD500: \(error)")
+        }
+
+       // persistenceController.save()
     }
 
     func deleteFilesInDirectory() {
@@ -116,20 +174,15 @@ struct ArtAthleteSettings : View {
             }
         }
 
-        guard
-            let path = FileManager
-                .default
-                .urls(for: .documentDirectory, in: .userDomainMask)
-                .first
-        else {
-            print("error getting path.")
-            return//return nil
-        }
-
-        print("JD500: path  → ", path)
-
-        print("JD500: Files in Documents -->", FileManager.default.urls(for: .documentDirectory) ?? "none") //Extension upgraded this to show directory folders.
-        //  return path
+//        guard
+//            let path = FileManager
+//                .default
+//                .urls(for: .documentDirectory, in: .userDomainMask)
+//                .first
+//        else {
+//            print("error getting path.")
+//            return//return nil
+//        }
     }
 }
 

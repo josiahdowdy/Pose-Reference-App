@@ -17,7 +17,7 @@ struct ListRowsView: View {
             ForEach(testData, id:\.self) { user in
                 //let mydate = 1 // convertDateFormatter(date: String(user.date))
                 if #available(iOS 15.0, *) {
-                    Text("\(user.date!.formatted(.dateTime.day().month().hour().minute())) - \(user.countPoses) - \(user.userName ?? "unknown")") //\(mydate) -
+                    Text("\(user.date!.formatted(.dateTime.day().month().hour().minute())) - \(user.countPoses)") //\(mydate) -
                         .contextMenu {
                             Button("Delete"){
                                 context.delete(user)
@@ -26,7 +26,7 @@ struct ListRowsView: View {
                         }
                 } else {
                     // Fallback on earlier versions
-                    Text("\(user.countPoses) - \(user.userName ?? "unknown")") //\(mydate) -
+                    Text("\(user.countPoses)") //\(mydate) -
                         .contextMenu {
                             Button("Delete"){
                                 context.delete(user)

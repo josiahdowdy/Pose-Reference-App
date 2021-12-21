@@ -40,6 +40,8 @@
 		2C15680F273F3CD8001D5ED9 /* StoredUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */; };
 		2C156810273F3CD8001D5ED9 /* StoredUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */; };
 		2C16EDAC25775EEE00ABF18D /* ImportExportBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */; };
+		2C2047522772655F00B5E54F /* iCloudDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2047512772655F00B5E54F /* iCloudDelete.swift */; };
+		2C2047532772655F00B5E54F /* iCloudDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2047512772655F00B5E54F /* iCloudDelete.swift */; };
 		2C2097C82735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */; };
 		2C2097C92735D8C100D5B5FC /* CircularCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */; };
 		2C2097D72737543A00D5B5FC /* SelectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2097D62737543A00D5B5FC /* SelectionHandler.swift */; };
@@ -277,6 +279,7 @@
 		2C15680E273F3CD8001D5ED9 /* StoredUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredUserData.swift; sourceTree = "<group>"; };
 		2C16EDA02575E9EB00ABF18D /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
 		2C16EDAB25775EEE00ABF18D /* ImportExportBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportBackup.swift; sourceTree = "<group>"; };
+		2C2047512772655F00B5E54F /* iCloudDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudDelete.swift; sourceTree = "<group>"; };
 		2C2097C72735D8C100D5B5FC /* CircularCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCheckBoxView.swift; sourceTree = "<group>"; };
 		2C2097D62737543A00D5B5FC /* SelectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionHandler.swift; sourceTree = "<group>"; };
 		2C20982C2737921900D5B5FC /* MultipleSelectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectRow.swift; sourceTree = "<group>"; };
@@ -496,6 +499,7 @@
 				2CDF0976274C814300C284D6 /* FoldersArrayModel.swift */,
 				2CA99D622753FD4400D5CD15 /* Product.swift */,
 				2CA99D682754025F00D5CD15 /* HomeViewModel.swift */,
+				2C2047512772655F00B5E54F /* iCloudDelete.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1030,6 +1034,7 @@
 				2CDF097A274D209900C284D6 /* FolderRowsView.swift in Sources */,
 				2C663A6F271F71300097AEFE /* ToggleSwitch.swift in Sources */,
 				2C614DAB273211010037BFA1 /* DotInversion.swift in Sources */,
+				2C2047522772655F00B5E54F /* iCloudDelete.swift in Sources */,
 				2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */,
 				2C28F3F727400F0800BB7405 /* DataProvider.swift in Sources */,
 				2CF998472760112C00541BB0 /* loadFoldersButtoniPad.swift in Sources */,
@@ -1171,6 +1176,7 @@
 				2C663A9727238C820097AEFE /* UserData+CoreDataClass.swift in Sources */,
 				2C663A7627205B460097AEFE /* CardView.swift in Sources */,
 				2C064304272B9806001DF985 /* ListRowsView.swift in Sources */,
+				2C2047532772655F00B5E54F /* iCloudDelete.swift in Sources */,
 				2C614DA82731CE8A0037BFA1 /* HomeScreenButtonsView.swift in Sources */,
 				2CA99D642753FD4400D5CD15 /* Product.swift in Sources */,
 				2C20982E2737921900D5B5FC /* MultipleSelectRow.swift in Sources */,

@@ -16,7 +16,6 @@ extension UserData {
         return NSFetchRequest<UserData>(entityName: "UserData")
     }
     
-    
     @NSManaged public var date: Date?
     //@NSManaged public var sessionTimerLength: Int16?
     @NSManaged public var userName: String?
@@ -45,8 +44,18 @@ extension UserData {
 }
 
 extension UserData : Identifiable {
-    
+
 }
+
+//extension UserData {
+//    static func executeBatchDelete(in context: NSManagedObjectContext) {
+//        let predicate = NSPredicate(format: "\(#keyPath(UserData.userName)) == %@)", "abc")
+//        let deleteRequest: NSFetchRequest<NSFetchRequestResult> = UserData.fetchRequest(with: predicate)
+//        UserData.batchDelete(with: deleteRequest, in: context)
+//        print("JD500: Done deleting.")
+//    }
+//
+//}
 
 
 //enum artStatus: String {
