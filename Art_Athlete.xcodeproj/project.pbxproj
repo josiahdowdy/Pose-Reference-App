@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C02D886253A2C5700D5F960 /* pose_referenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */; };
-		2C02D88D253A2C5900D5F960 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C02D88C253A2C5900D5F960 /* Preview Assets.xcassets */; };
 		2C02D898253A2C5A00D5F960 /* pose_referenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D897253A2C5A00D5F960 /* pose_referenceTests.swift */; };
 		2C02D8A3253A2C5A00D5F960 /* pose_referenceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D8A2253A2C5A00D5F960 /* pose_referenceUITests.swift */; };
 		2C02D8B5253A2CA100D5F960 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02D8B4253A2CA100D5F960 /* Model.swift */; };
@@ -104,6 +103,8 @@
 		2C663A9927238C820097AEFE /* UserData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A9527238C820097AEFE /* UserData+CoreDataProperties.swift */; };
 		2C704F69254BA86200C5805B /* TimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F68254BA86200C5805B /* TimerObject.swift */; };
 		2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F6C254BA93D00C5805B /* UserObject.swift */; };
+		2C73F8FA277D1B0F0024BA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0D141B277D168A0097EADF /* Assets.xcassets */; };
+		2C73F8FB277D1B100024BA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0D141B277D168A0097EADF /* Assets.xcassets */; };
 		2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C83DE255B888B00CC4096 /* MessageDocument.swift */; };
 		2C943ED425B78F460010FA24 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943ED325B78F460010FA24 /* SignIn.swift */; };
 		2C943ED825B7910C0010FA24 /* DotMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943ED725B7910C0010FA24 /* DotMenuView.swift */; };
@@ -150,7 +151,7 @@
 		2CDF097A274D209900C284D6 /* FolderRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0979274D209900C284D6 /* FolderRowsView.swift */; };
 		2CDF097B274D209900C284D6 /* FolderRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDF0979274D209900C284D6 /* FolderRowsView.swift */; };
 		2CE69CD8276E5E6E00DE3436 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE69CD7276E5E6E00DE3436 /* SwiftUICharts */; };
-		2CE863CC276D01C500A73317 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE863CB276D01C500A73317 /* Kingfisher */; };
+		2CE863CC276D01C500A73317 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE863CB276D01C500A73317 /* Kingfisher */; settings = {ATTRIBUTES = (Required, ); }; };
 		2CE863CF276D01D300A73317 /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE863CE276D01D300A73317 /* Files */; };
 		2CEB2EF4253F7A590087D696 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB2EF3253F7A590087D696 /* TimerView.swift */; };
 		2CEB2EF9253F86DD0087D696 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB2EF8253F86DD0087D696 /* GlobalVariables.swift */; };
@@ -253,7 +254,6 @@
 
 /* Begin PBXFileReference section */
 		2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pose_referenceApp.swift; sourceTree = "<group>"; };
-		2C02D88C253A2C5900D5F960 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C02D88E253A2C5900D5F960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C02D897253A2C5A00D5F960 /* pose_referenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pose_referenceTests.swift; sourceTree = "<group>"; };
 		2C02D899253A2C5A00D5F960 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -270,6 +270,7 @@
 		2C064313272C6612001DF985 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2C064316272C66CD001DF985 /* Art AthleteTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Art AthleteTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C064318272C66CE001DF985 /* PrivateSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateSyncTests.swift; sourceTree = "<group>"; };
+		2C0D141B277D168A0097EADF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C0DF7552742CF580090E5EF /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
 		2C131566273387B3001019BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C13157A27346941001019BA /* SettingsSlideCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSlideCard.swift; sourceTree = "<group>"; };
@@ -439,8 +440,9 @@
 		2C02D884253A2C5700D5F960 /* Art_Athlete */ = {
 			isa = PBXGroup;
 			children = (
+				2C0D141B277D168A0097EADF /* Assets.xcassets */,
+				2C0D141C277D16F70097EADF /* Assets */,
 				2CED7E0D27272A3000B99CAD /* Entity DB */,
-				2C02D88B253A2C5900D5F960 /* Preview Content */,
 				2C02D885253A2C5700D5F960 /* pose_referenceApp.swift */,
 				2C02D8C2253A50D200D5F960 /* Views */,
 				2C02D8B3253A2C8B00D5F960 /* Model */,
@@ -450,14 +452,6 @@
 				2CC05E8E2540D393007C733D /* Config.xcconfig */,
 			);
 			path = Art_Athlete;
-			sourceTree = "<group>";
-		};
-		2C02D88B253A2C5900D5F960 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				2C02D88C253A2C5900D5F960 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		2C02D896253A2C5A00D5F960 /* tests */ = {
@@ -535,6 +529,13 @@
 				2C064313272C6612001DF985 /* ViewModel.swift */,
 			);
 			path = PrivateSync;
+			sourceTree = "<group>";
+		};
+		2C0D141C277D16F70097EADF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		2C131564273386D3001019BA /* iOS */ = {
@@ -950,7 +951,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C02D88D253A2C5900D5F960 /* Preview Assets.xcassets in Resources */,
+				2C73F8FA277D1B0F0024BA0B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -972,6 +973,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C73F8FB277D1B100024BA0B /* Assets.xcassets in Resources */,
 				2CEB6EDE273371C1001C6FEB /* ArtAthlete (macOS).app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1358,13 +1360,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Art_Athlete/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_ASSET_PATHS = Art_Athlete/Assets;
 				DEVELOPMENT_TEAM = NEFG8858W8;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1374,7 +1376,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.05;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = josiahdowdy.artathlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1390,13 +1392,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Art_Athlete/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_ASSET_PATHS = Art_Athlete/Assets;
 				DEVELOPMENT_TEAM = NEFG8858W8;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1406,7 +1408,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.05;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = josiahdowdy.artathlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

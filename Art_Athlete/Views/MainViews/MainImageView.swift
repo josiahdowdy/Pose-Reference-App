@@ -3,11 +3,7 @@
 import SwiftUI
 import Kingfisher
 
-extension Image {
-    init(path: String) {
-        self.init(uiImage: UIImage(named: path)!)
-    }
-}
+
 
 struct MainImageView: View {
     var body: some View {
@@ -24,6 +20,12 @@ struct MainImageView: View {
         .ignoresSafeArea() // 1
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         //.background(Color.gray)
+    }
+}
+
+extension Image {
+    init(path: String) {
+        self.init(uiImage: UIImage(named: path)!) // ?? UIImage(named: "/PoseBG2")
     }
 }
 
