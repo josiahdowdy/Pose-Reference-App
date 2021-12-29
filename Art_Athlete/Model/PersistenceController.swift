@@ -1,7 +1,7 @@
 /* PersistenceController -  Josiah - Save local data. */
 import CoreData
-import Foundation
-import UIKit
+//import Foundation
+//import UIKit
 
 struct PersistenceController {
     static let shared = PersistenceController()

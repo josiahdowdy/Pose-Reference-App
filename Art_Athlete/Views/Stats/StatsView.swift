@@ -48,6 +48,7 @@ struct StatsView: View {
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     var body: some View {
+
         VStack(alignment: .center) {
             ZStack {
                 HStack{
@@ -77,7 +78,9 @@ struct StatsView: View {
               //  Text("\(Image(systemName: "clock"))   Draw time: \(userObject.totalTimeDrawn ?? 999)").padding(.top, 10)
 
 
-                Text("\(Image(systemName: "clock"))   Total Draw time: \((sumTimeDrawn/60)) minutes").padding(.top, 10)
+                let (h,m,s) = secondsToHoursMinutesSeconds(Int(sumTimeDrawn))
+                //Text("\(h):\(m):\(s)")
+                Text("\(Image(systemName: "clock"))   Total Draw time: \(h):\(m):\(s)").padding(.top, 10)
 
                 Text("\(Image(systemName: "pencil.and.outline"))   Poses drawn: \(sumPoses)").padding(.top, 10)
 
