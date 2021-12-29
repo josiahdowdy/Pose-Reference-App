@@ -295,7 +295,7 @@
 		2C2EA837253CEC6500D9A8C7 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2C55F914253FC86E000B6AFC /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		2C5FA54E2757F40C00227368 /* MainImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainImageView.swift; sourceTree = "<group>"; };
-		2C614D9A272DE7100037BFA1 /* ArtAthlete (iOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArtAthlete (iOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C614D9A272DE7100037BFA1 /* ArtAthlete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtAthlete.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C614D9B272DE7100037BFA1 /* pose-referenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pose-referenceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C614D9C272DE7100037BFA1 /* pose-referenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pose-referenceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C614D9D272DE7100037BFA1 /* ArtAthlete (macOS).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ArtAthlete (macOS).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -427,7 +427,7 @@
 				2C02D896253A2C5A00D5F960 /* tests */,
 				2C02D8A1253A2C5A00D5F960 /* UI_tests */,
 				2C663A60271E1D720097AEFE /* Frameworks */,
-				2C614D9A272DE7100037BFA1 /* ArtAthlete (iOS).app */,
+				2C614D9A272DE7100037BFA1 /* ArtAthlete.app */,
 				2C614D9B272DE7100037BFA1 /* pose-referenceTests.xctest */,
 				2C614D9C272DE7100037BFA1 /* pose-referenceUITests.xctest */,
 				2C614D9D272DE7100037BFA1 /* ArtAthlete (macOS).app */,
@@ -765,9 +765,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C02D881253A2C5700D5F960 /* ArtAthlete (iOS) */ = {
+		2C02D881253A2C5700D5F960 /* ArtAthlete */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C02D8A7253A2C5A00D5F960 /* Build configuration list for PBXNativeTarget "ArtAthlete (iOS)" */;
+			buildConfigurationList = 2C02D8A7253A2C5A00D5F960 /* Build configuration list for PBXNativeTarget "ArtAthlete" */;
 			buildPhases = (
 				2C02D87E253A2C5700D5F960 /* Sources */,
 				2C02D87F253A2C5700D5F960 /* Frameworks */,
@@ -778,7 +778,7 @@
 			);
 			dependencies = (
 			);
-			name = "ArtAthlete (iOS)";
+			name = ArtAthlete;
 			packageProductDependencies = (
 				2CE863CB276D01C500A73317 /* Kingfisher */,
 				2CE863CE276D01D300A73317 /* Files */,
@@ -786,7 +786,7 @@
 				2C3D3DD3276E9C44001CA7E8 /* SlideOverCard */,
 			);
 			productName = "pose-reference";
-			productReference = 2C614D9A272DE7100037BFA1 /* ArtAthlete (iOS).app */;
+			productReference = 2C614D9A272DE7100037BFA1 /* ArtAthlete.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2C02D892253A2C5A00D5F960 /* pose-referenceTests */ = {
@@ -935,7 +935,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C02D881253A2C5700D5F960 /* ArtAthlete (iOS) */,
+				2C02D881253A2C5700D5F960 /* ArtAthlete */,
 				2C02D892253A2C5A00D5F960 /* pose-referenceTests */,
 				2C02D89D253A2C5A00D5F960 /* pose-referenceUITests */,
 				2C663A2B271DB9DC0097AEFE /* ArtAthlete (macOS) */,
@@ -1209,17 +1209,17 @@
 /* Begin PBXTargetDependency section */
 		2C02D895253A2C5A00D5F960 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C02D881253A2C5700D5F960 /* ArtAthlete (iOS) */;
+			target = 2C02D881253A2C5700D5F960 /* ArtAthlete */;
 			targetProxy = 2C02D894253A2C5A00D5F960 /* PBXContainerItemProxy */;
 		};
 		2C02D8A0253A2C5A00D5F960 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C02D881253A2C5700D5F960 /* ArtAthlete (iOS) */;
+			target = 2C02D881253A2C5700D5F960 /* ArtAthlete */;
 			targetProxy = 2C02D89F253A2C5A00D5F960 /* PBXContainerItemProxy */;
 		};
 		2C06431D272C6763001DF985 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C02D881253A2C5700D5F960 /* ArtAthlete (iOS) */;
+			target = 2C02D881253A2C5700D5F960 /* ArtAthlete */;
 			targetProxy = 2C06431C272C6763001DF985 /* PBXContainerItemProxy */;
 		};
 		2C663A43271DB9DE0097AEFE /* PBXTargetDependency */ = {
@@ -1358,6 +1358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -1373,7 +1374,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.05;
 				PRODUCT_BUNDLE_IDENTIFIER = josiahdowdy.artathlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1389,6 +1390,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iOS/iOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -1404,7 +1406,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.05;
 				PRODUCT_BUNDLE_IDENTIFIER = josiahdowdy.artathlete;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1700,7 +1702,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C02D8A7253A2C5A00D5F960 /* Build configuration list for PBXNativeTarget "ArtAthlete (iOS)" */ = {
+		2C02D8A7253A2C5A00D5F960 /* Build configuration list for PBXNativeTarget "ArtAthlete" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C02D8A8253A2C5A00D5F960 /* Debug */,
