@@ -23,7 +23,7 @@ struct LoadFoldersButtoniPad: View {
             Button(action: {
                 //prefs.showLoadingAnimation = true
                 isImporting = false
-                if #available(iOS 15.0, *) {
+                if #available(iOS 15, *) {
                     Task {
                         isImporting = true
                     }
@@ -71,9 +71,6 @@ struct LoadFoldersButtoniPad: View {
             //    homeData.folders.contains(where: <#T##(Product) throws -> Bool#>)
               //  homeData.folders.first(where: Product)
             }
-
-            //homeData.folders.first(where: Product(type: .Poses, title: folderName, subtitle: "blank", count: 1) == true)
-
             
             for i in 0...(selectedFiles.count-1) {
                 if selectedFiles[i].startAccessingSecurityScopedResource() {

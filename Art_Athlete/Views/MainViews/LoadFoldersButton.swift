@@ -23,9 +23,11 @@ struct LoadFoldersButton: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._*/
     //MARK: VIEW
     var body: some View {
-
-        VStack(alignment: .trailing) {
+        ZStack {
             
+        }
+        VStack(alignment: .trailing) {
+
             Button(action: {
                 //prefs.showLoadingAnimation = true
                 isImporting = false
@@ -44,6 +46,11 @@ struct LoadFoldersButton: View {
             })
         }
         .fileImporter(isPresented: $isImporting, allowedContentTypes: [UTType.folder], allowsMultipleSelection: true, onCompletion: importImage)
+
+        Text("Now you see me")
+            .padding()
+            .background(Color.red)
+            .opacity(0.3)
         //UTType.folder, //UTType.png, UTType.image, UTType.jpeg, UTType.pdf, UTType.tiff
     } //------------------------END VIEW---------------------------
 
