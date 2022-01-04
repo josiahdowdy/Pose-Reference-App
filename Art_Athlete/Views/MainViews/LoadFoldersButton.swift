@@ -14,7 +14,7 @@ struct LoadFoldersButton: View {
     
 
     @State var isImporting: Bool = false
-    @Binding var isloadingPhotos: Bool
+    //@Binding var isloadingPhotos: Bool
 
     //let scanAllFoldersB: () -> () //Passed in function.
 
@@ -23,9 +23,7 @@ struct LoadFoldersButton: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._*/
     //MARK: VIEW
     var body: some View {
-        ZStack {
-            
-        }
+        
         VStack(alignment: .trailing) {
 
             Button(action: {

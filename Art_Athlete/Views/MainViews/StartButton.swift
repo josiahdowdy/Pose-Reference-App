@@ -67,7 +67,8 @@ struct StartButton: View {
         }
 
         if (prefs.arrayOfURLStrings.isEmpty) {
-            prefs.error = "Error loading images..." //Error Oct16 HomeView().error
+            prefs.error = "Please make sure you've imported and selected photos."
+            
         } else {
             //prefs.startBoolean.toggle()
             prefs.error = ""

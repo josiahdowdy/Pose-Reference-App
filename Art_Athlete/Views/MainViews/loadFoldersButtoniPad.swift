@@ -13,7 +13,7 @@ struct LoadFoldersButtoniPad: View {
 
     @Binding var needRefresh: Bool
     @State var isImporting: Bool = false
-    @Binding var isloadingPhotos: Bool
+    //@Binding var isloadingPhotos: Bool
     //MARK: END VARIABLES
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._*/

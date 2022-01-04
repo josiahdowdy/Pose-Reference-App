@@ -60,6 +60,8 @@
 		2C2BDF432543225400D2434E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF422543225400D2434E /* StatsView.swift */; };
 		2C2BDF4725432AC100D2434E /* CertificateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2BDF4625432AC000D2434E /* CertificateView.swift */; };
 		2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */; };
+		2C360DF8278509A500D84565 /* StartTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360DF7278509A500D84565 /* StartTutorial.swift */; };
+		2C360DF9278509A500D84565 /* StartTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360DF7278509A500D84565 /* StartTutorial.swift */; };
 		2C3D3DD4276E9C44001CA7E8 /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3D3DD3276E9C44001CA7E8 /* SlideOverCard */; };
 		2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F914253FC86E000B6AFC /* NavBar.swift */; };
 		2C5FA54F2757F40C00227368 /* MainImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FA54E2757F40C00227368 /* MainImageView.swift */; };
@@ -294,6 +296,7 @@
 		2C2BDF4625432AC000D2434E /* CertificateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateView.swift; sourceTree = "<group>"; };
 		2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		2C2EA837253CEC6500D9A8C7 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		2C360DF7278509A500D84565 /* StartTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTutorial.swift; sourceTree = "<group>"; };
 		2C55F914253FC86E000B6AFC /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		2C5FA54E2757F40C00227368 /* MainImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainImageView.swift; sourceTree = "<group>"; };
 		2C614D9A272DE7100037BFA1 /* ArtAthlete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtAthlete.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -653,6 +656,7 @@
 				2C209831273CD9D100D5B5FC /* countPickerView.swift */,
 				2CF9E3642747BBF8009F77E1 /* StatsButton.swift */,
 				2CF9E3672747BEDC009F77E1 /* settingsButton.swift */,
+				2C360DF7278509A500D84565 /* StartTutorial.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -1051,6 +1055,7 @@
 				2C704F69254BA86200C5805B /* TimerObject.swift in Sources */,
 				2C02D8DE253ABB7100D5F960 /* ProgressBarView.swift in Sources */,
 				2C13157B27346941001019BA /* SettingsSlideCard.swift in Sources */,
+				2C360DF8278509A500D84565 /* StartTutorial.swift in Sources */,
 				2CF9E376274AEE4F009F77E1 /* SceneDelegate.swift in Sources */,
 				2CAC6637271CA435005066B5 /* ContentView.swift in Sources */,
 				2C2BDF432543225400D2434E /* StatsView.swift in Sources */,
@@ -1156,6 +1161,7 @@
 				2CB6248D27277C0F001AFA85 /* ProgressBarView.swift in Sources */,
 				2C13157C27346941001019BA /* SettingsSlideCard.swift in Sources */,
 				2C663A70271F71300097AEFE /* ToggleSwitch.swift in Sources */,
+				2C360DF9278509A500D84565 /* StartTutorial.swift in Sources */,
 				2CF9E377274AEE4F009F77E1 /* SceneDelegate.swift in Sources */,
 				2CB6248327277287001AFA85 /* GlobalVariables.swift in Sources */,
 				2CB6249B27277C47001AFA85 /* MenuPicker.swift in Sources */,

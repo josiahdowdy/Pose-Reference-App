@@ -35,19 +35,12 @@ struct FileImporterView: View {
                         .font(.system(size: 20))
                     Text("Files: \(prefs.sPoseCount)")
                         .font(.headline)
-
-
                 }
                 .cornerRadius(40)
                 .padding(2)
                 .background(Color.blue)
                 .foregroundColor(.white)
-
-
             })
-
-            // Import local photos
-          //  if (prefs.localPhotosView) {}
         } //End of Vstack
         //.padding()
         .fileImporter(

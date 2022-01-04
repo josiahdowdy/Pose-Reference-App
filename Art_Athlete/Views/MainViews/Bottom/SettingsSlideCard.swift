@@ -53,6 +53,7 @@ struct ArtAthleteSettings : View {
         Form() {
             Section(header: Text("Options")) {
                 toggleSwitch()
+                startTutorial()
             }
 
 

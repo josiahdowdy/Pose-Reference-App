@@ -26,10 +26,14 @@ struct MultipleSelectRow: View {
     @State var url : URL = URL(fileURLWithPath: "nil")
     @State var selectAll = false
     @State var isSelected : Bool = false
-    @Binding var isloadingPhotos: Bool
+    //@Binding var isloadingPhotos: Bool
 
     @State var selectedBtn: Int = 1
     @State var checked: Bool = false
+
+    @State var imageSize: CGSize = .zero // << or initial from NSImage
+    @State private var animationAmount = 1.0
+
 
 
 
@@ -66,22 +70,39 @@ struct MultipleSelectRow: View {
         HStack {
             Text("Photos").font(.title3)
                 .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-//            if (UIDevice.current.userInterfaceIdiom == .mac) {
-//                LoadFoldersButton(isloadingPhotos: $isloadingPhotos)
-//                    .environmentObject(homeData)
-//            }
 
-            ///if !(UIDevice.current.userInterfaceIdiom == .mac) {
-            LoadFoldersButtoniPad(needRefresh: $needRefresh, isloadingPhotos: $isloadingPhotos).environmentObject(homeData)
+            ZStack {
+
+
+            LoadFoldersButtoniPad(needRefresh: $needRefresh)
+                .environmentObject(homeData)
                 .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-            //}
-
+                //.background(rectReader())
+                .padding(20)
+                .clipShape(Circle())
+                .overlay(
+                    Circle()
+                        .stroke(.green)
+                        .scaleEffect(animationAmount)
+                        .opacity(2 - animationAmount)
+                        .animation(
+                            .easeInOut(duration: 1)
+                                .repeatForever(autoreverses: false),
+                            value: animationAmount
+                        )
+                )
+                .onAppear {
+                    animationAmount = 2
+                }
+            }
             Spacer()
 
             if (UIDevice.current.userInterfaceIdiom == .mac) {
                 Text("Files").font(.title3)
             }
-        }.padding()
+
+        }
+        .padding()
 
         List {
             ForEach(homeData.folders, id: \.self) { product in
@@ -90,30 +111,26 @@ struct MultipleSelectRow: View {
             }
             .onDelete(perform: removeFolders)
         }
-       // .refreshable { //await refreshListAsync()  }
-
-//        Button {
-//            if let action = refreshAction {
-//                Task {
-//                    await action()
-//                }
-//            }
-//        } label: {
-//            Image(systemName: "arrow.counterclockwise")
-//        }
-//
-//
-//        List {
-//            ForEach(homeData.foldersB) { folder in
-//                HStack{
-//                    CircularCheckBoxView(checked: $checked, trimVal: $trimVal)
-//                    Text(folder.nameOfFolder)
-//                    Spacer()
-//                    Text(folder.numberOfPhotos.description)
-//                }
-//            }
-//        }
     } //End func.
+
+    private func rectReader() -> some View {
+        return GeometryReader { (geometry) -> AnyView in
+            let imageSize = geometry.size
+            DispatchQueue.main.async {
+                print(">> \(imageSize)") // use image actual size in your calculations
+                self.imageSize = imageSize
+            }
+            return AnyView(
+
+                    Circle().stroke(Color.green, lineWidth: 4)
+                        .padding(20)
+
+
+                //    .padding(20)
+               // Rectangle().fill(Color.green)
+            )
+        }
+    }
 
     private func deleteAllFolders() {
         homeData.folders.removeAll()

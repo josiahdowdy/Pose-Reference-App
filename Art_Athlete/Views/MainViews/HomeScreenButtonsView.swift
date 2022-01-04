@@ -21,7 +21,7 @@ struct HomeScreenButtonsView: View {
     @State var isAddingPhotos: Bool = false
     @State var showPhotos: Bool = false
     @State private var isLoading = true
-    @State private var isloadingPhotos = false
+    //@State private var isloadingPhotos = false
     @State public var totalPhotosLoaded = 0
     @State var rowSelection = Set<String>()
 
@@ -32,6 +32,15 @@ struct HomeScreenButtonsView: View {
     @State var cdSelection = Set<FoldersEntity>()
 
     @State private var shouldLoadingView = true
+
+    @State var showAlert = false
+
+    func notificationReminder() -> Alert {
+        Alert(
+            title: Text("Notifications Required"),
+            message: Text("Please authorize notifications by going to Settings > Notifications > Remindr"),
+            dismissButton: .default(Text("Okay")))
+    }
 
     //MARK: - VIEW FOR ANIMATION
 //    var laden: some View {
@@ -48,24 +57,12 @@ struct HomeScreenButtonsView: View {
     //MARK: - VIEW
     var body: some View {
         NavigationView {
-
             VStack {
-//                if UIDevice.current.userInterfaceIdiom == (.phone) {
-//                    HStack() {
-//                        Text("Art Athlete").font(.title3).padding(.leading)
-//                        Text("Photo Timer").font(.caption)
-//                        Spacer()
-//                    }
-//                }
                 //FileImporterView() //This loads in photos MARK: [BLUE BOX]
-
-
-                if #available(macCatalyst 15.0, *) {
-                    MultipleSelectRow(rowSelection: $rowSelection, isloadingPhotos: $isloadingPhotos)
+            //    if #available(macCatalyst 15, *) {
+                    MultipleSelectRow(rowSelection: $rowSelection)
                         .environmentObject(homeData)
-                } else {
-                    // Fallback on earlier versions
-                }
+             //   } else { // Fallback on earlier versions }
 
                 if UIDevice.current.userInterfaceIdiom == (.phone) {
 
@@ -75,6 +72,8 @@ struct HomeScreenButtonsView: View {
                     StartButton(rowSelection: $rowSelection)
                 }
             } //.onAppear(perform: scanAllFolders)
+            .alert(isPresented: self.$showAlert,
+                   content: { self.notificationReminder() })
 
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -85,32 +84,30 @@ struct HomeScreenButtonsView: View {
                             .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                     }
                 }
-            }
+            } //End toolbar
 
             if UIDevice.current.userInterfaceIdiom != (.phone) {
                 VStack {  // MARK: - Shows the main screen (right side).
                     Text("Art Athlete").font(.title)
                     Text("Photo Timer").font(.caption)
                     VStack {
-
-                        if !(isloadingPhotos) {
+                    //    if !(isloadingPhotos) {
                             Text(prefs.error)
                             // Spacer().frame(maxWidth: .infinity)
                             MainImageView()
                             countPickerView()
                             timePickerView()
                             StartButton(rowSelection: $rowSelection)
-                        } else {
-                            Text("Loading Photos...please wait...")
-                        }
+                       // } else { Text("Loading Photos...please wait...")  }
                     } //End VStack.
                 }
-                .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
-            }
+                .alert(isPresented: self.$showAlert,
+                       content: { self.notificationReminder() })
 
+              //  .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
+            } // End if.
         } //NavigationView
         .onAppear(perform: scanAllFolders)
-       // .onAppear(perform: scanAllFolders)
     } //End UI.
 
        /*__/,|   (`\
@@ -124,20 +121,6 @@ struct HomeScreenButtonsView: View {
             homeData.folders.append(Product(title: folder.name, count: folder.files.count()))
         }
     }
-//    public func scanAllFolders() {
-//        if (UIDevice.current.userInterfaceIdiom == .mac) {
-//            print("JD451: mac")
-//            Folder.documents!.subfolders.recursive.forEach { folder in
-//                //MARK: Different on mac --> folder.files vs Folder.documents!.files
-//            }
-//        }
-//
-//        //MARK: important --> when running "My Mac (designed for ipad)", this if statement is used.
-//        if !(UIDevice.current.userInterfaceIdiom == .mac) {
-//            Folder.documents!.subfolders.recursive.forEach { folder in
-//            }
-//        }
-//    } //End func.
 } //End struct.
 
 //MARK: - Extension
