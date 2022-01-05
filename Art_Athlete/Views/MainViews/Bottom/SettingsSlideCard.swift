@@ -10,12 +10,8 @@ struct ArtAthleteSettings : View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var homeData: HomeViewModel
     let persistenceController = PersistenceController.shared
-    
 
     @State private var userData = UserData()
-
-    
-
 
     //@Binding var notifyMeAbout : Bool
     //@Binding var playNotificationSounds : Bool
@@ -55,7 +51,6 @@ struct ArtAthleteSettings : View {
                 toggleSwitch()
                 startTutorial()
             }
-
 
             Section(header: Text("Delete")) {
                 Button {

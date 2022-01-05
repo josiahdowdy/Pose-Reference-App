@@ -10,6 +10,7 @@ struct ContentView: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     //@EnvironmentObject var storedUserData: StoredUserData
+    @AppStorage("isFirstLaunch") var isFirstLaunch = true
 
    // @StateObject var sharedData: SharedViewModel = SharedViewModel()
 

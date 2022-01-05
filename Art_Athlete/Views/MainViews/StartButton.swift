@@ -68,7 +68,7 @@ struct StartButton: View {
 
         if (prefs.arrayOfURLStrings.isEmpty) {
             prefs.error = "Please make sure you've imported and selected photos."
-            
+
         } else {
             //prefs.startBoolean.toggle()
             prefs.error = ""

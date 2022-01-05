@@ -9,10 +9,15 @@ import SwiftUI
 
 struct startTutorial: View {
     @EnvironmentObject var prefs: GlobalVariables
-    @AppStorage("isRandom") var isRandom = true
+    @AppStorage("startTutorial") var startTutorial = false
 
     var body: some View {
-        Toggle("Random Order", isOn: $isRandom)
+        Button {
+            startTutorial = true
+            prefs.showSettings = false
+        } label: {
+            Text("Start Tutorial")
+        }
     }
 }
 

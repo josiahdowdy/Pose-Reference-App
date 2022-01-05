@@ -34,9 +34,6 @@ struct MultipleSelectRow: View {
     @State var imageSize: CGSize = .zero // << or initial from NSImage
     @State private var animationAmount = 1.0
 
-
-
-
     //@State var selected = 0    // 1
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
