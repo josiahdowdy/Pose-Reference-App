@@ -16,6 +16,7 @@
 import SwiftUI
 //import UIKit
 //import CoreData
+import Files
 
 @main
 struct pose_referenceApp: App {
@@ -24,19 +25,25 @@ struct pose_referenceApp: App {
     @ObservedObject var userObject = UserObject()
     @ObservedObject var homeData = HomeViewModel()
     
-    @State var url : URL = URL(fileURLWithPath: "nil")
+    //@State var url : URL = URL(fileURLWithPath: "nil")
+    
     
     let persistenceController = PersistenceController.shared
 
     @Environment(\.scenePhase) var scenePhase
+
+    @AppStorage("isFirstLaunch") var isFirstLaunch = true
+
+    init() {
+        isFirstLaunch = true //For debugging.
+        print("JD00 → isFirstLaunch \(isFirstLaunch)")
+        if (isFirstLaunch) {
+            saveImage() //imageName: <#T##String#>, image: <#T##Data#>
+            // isFirstLaunch = false
+        }
+    }
     
-    //@NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
-    /*\___/\ ((
-     \`@_@'/  ))
-     {_:Y:.}_//
-     ----------{_}^-'{_}----------*/
-    
+
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     var body: some Scene {
         WindowGroup {
@@ -66,17 +73,42 @@ struct pose_referenceApp: App {
                 print("Apple must have changed something")
             }
         }
-        //
-        //        .commands {
-        //            SidebarCommands()
-        //        }
-        //        #if os(macOS)
-        //            Settings {
-        //                SettingsMacView()
-        //            }
-        //        #endif
+    }
+
+    //Start funcs.
+    func saveImage() { //imageName: String, image: Data
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+
+        //print("1. JD00 → documentsDirectory \(documentsDirectory)")
+
+        let bundlePath = Bundle.main.bundlePath
+        print("4. JD00 → bundlePath \(bundlePath)")
+
+        if let fileURL = Bundle.main.url(forResource: "Dancer3", withExtension: "jpeg") {
+            print("2. JD00 → fileURL \(fileURL)")
+            // we found the file in our bundle!
+            let imageName = fileURL.lastPathComponent
+            let image = fileURL.dataRepresentation
+            let fileName = "Poses"//imageName
+            let fileURL = documentsDirectory.appendingPathComponent(fileName)
+
+            do {
+                let folder = try Folder(path: fileURL.path)
+                //try image.write(to: URL(string: folder.path)!) //fileURL
+            } catch let error {
+                print("3. JD00: error saving file with error", error)
+            }
+
+        } else {
+            print("2. JD00: NOT FOUND")
+        }
+
+
+
+
     }
     
+}
     
     // MARK: - Core Data Saving support
     
@@ -94,7 +126,7 @@ struct pose_referenceApp: App {
     //        }
     //    }
     
-}
+
 
 
 //MARK: - Run functions for when app first launches.

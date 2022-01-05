@@ -10,8 +10,7 @@ struct ContentView: View {
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var timeObject: TimerObject
     //@EnvironmentObject var storedUserData: StoredUserData
-    @AppStorage("isFirstLaunch") var isFirstLaunch = true
-
+    
    // @StateObject var sharedData: SharedViewModel = SharedViewModel()
 
     @State var isImporting: Bool = false
@@ -28,6 +27,8 @@ struct ContentView: View {
     @State var profileImageSize : Bool = true
     @State var sendReadReceipts : Bool = true
 
+
+
     @Environment(\.managedObjectContext) var context
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var testData: FetchedResults<UserData>
 
@@ -35,6 +36,8 @@ struct ContentView: View {
     @EnvironmentObject var homeData: HomeViewModel// = HomeViewModel()
 
     @State var startSession = false
+
+    
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
 
     //MARK: - UI
@@ -68,6 +71,7 @@ struct ContentView: View {
     } //End View
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: FUNCTIONS
+    
 
 } //End Struct.
 

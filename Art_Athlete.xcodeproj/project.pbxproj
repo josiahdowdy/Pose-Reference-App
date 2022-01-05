@@ -62,6 +62,16 @@
 		2C2EA7FE253BF3B000D9A8C7 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */; };
 		2C360DF8278509A500D84565 /* StartTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360DF7278509A500D84565 /* StartTutorial.swift */; };
 		2C360DF9278509A500D84565 /* StartTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360DF7278509A500D84565 /* StartTutorial.swift */; };
+		2C360DFA2786554900D84565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0D141B277D168A0097EADF /* Assets.xcassets */; };
+		2C360DFE2786557F00D84565 /* jump.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C360DFC2786556F00D84565 /* jump.png */; };
+		2C360E03278655BD00D84565 /* DancerCouple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360DFF278655BD00D84565 /* DancerCouple.jpeg */; };
+		2C360E04278655BD00D84565 /* DancerCouple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360DFF278655BD00D84565 /* DancerCouple.jpeg */; };
+		2C360E05278655BD00D84565 /* DancerMale.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E00278655BD00D84565 /* DancerMale.jpeg */; };
+		2C360E06278655BD00D84565 /* DancerMale.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E00278655BD00D84565 /* DancerMale.jpeg */; };
+		2C360E07278655BD00D84565 /* Dancer3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E01278655BD00D84565 /* Dancer3.jpeg */; };
+		2C360E08278655BD00D84565 /* Dancer3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E01278655BD00D84565 /* Dancer3.jpeg */; };
+		2C360E09278655BD00D84565 /* Dancer.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E02278655BD00D84565 /* Dancer.jpeg */; };
+		2C360E0A278655BD00D84565 /* Dancer.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E02278655BD00D84565 /* Dancer.jpeg */; };
 		2C3D3DD4276E9C44001CA7E8 /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3D3DD3276E9C44001CA7E8 /* SlideOverCard */; };
 		2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F914253FC86E000B6AFC /* NavBar.swift */; };
 		2C5FA54F2757F40C00227368 /* MainImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FA54E2757F40C00227368 /* MainImageView.swift */; };
@@ -105,7 +115,6 @@
 		2C663A9927238C820097AEFE /* UserData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C663A9527238C820097AEFE /* UserData+CoreDataProperties.swift */; };
 		2C704F69254BA86200C5805B /* TimerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F68254BA86200C5805B /* TimerObject.swift */; };
 		2C704F6D254BA93D00C5805B /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C704F6C254BA93D00C5805B /* UserObject.swift */; };
-		2C73F8FA277D1B0F0024BA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0D141B277D168A0097EADF /* Assets.xcassets */; };
 		2C73F8FB277D1B100024BA0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0D141B277D168A0097EADF /* Assets.xcassets */; };
 		2C8C83DF255B888B00CC4096 /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8C83DE255B888B00CC4096 /* MessageDocument.swift */; };
 		2C943ED425B78F460010FA24 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C943ED325B78F460010FA24 /* SignIn.swift */; };
@@ -297,6 +306,12 @@
 		2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		2C2EA837253CEC6500D9A8C7 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2C360DF7278509A500D84565 /* StartTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTutorial.swift; sourceTree = "<group>"; };
+		2C360DFC2786556F00D84565 /* jump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump.png; sourceTree = "<group>"; };
+		2C360DFD2786556F00D84565 /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		2C360DFF278655BD00D84565 /* DancerCouple.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DancerCouple.jpeg; sourceTree = "<group>"; };
+		2C360E00278655BD00D84565 /* DancerMale.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DancerMale.jpeg; sourceTree = "<group>"; };
+		2C360E01278655BD00D84565 /* Dancer3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dancer3.jpeg; sourceTree = "<group>"; };
+		2C360E02278655BD00D84565 /* Dancer.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dancer.jpeg; sourceTree = "<group>"; };
 		2C55F914253FC86E000B6AFC /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		2C5FA54E2757F40C00227368 /* MainImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainImageView.swift; sourceTree = "<group>"; };
 		2C614D9A272DE7100037BFA1 /* ArtAthlete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtAthlete.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -422,6 +437,7 @@
 		2C02D879253A2C5700D5F960 = {
 			isa = PBXGroup;
 			children = (
+				2C360DFB2786556F00D84565 /* jump.imageset */,
 				2C02D884253A2C5700D5F960 /* Art_Athlete */,
 				2C13157227339A15001019BA /* watchOS */,
 				2C131565273386D9001019BA /* macOS */,
@@ -564,6 +580,20 @@
 			children = (
 			);
 			path = watchOS;
+			sourceTree = "<group>";
+		};
+		2C360DFB2786556F00D84565 /* jump.imageset */ = {
+			isa = PBXGroup;
+			children = (
+				2C360DFC2786556F00D84565 /* jump.png */,
+				2C360DFD2786556F00D84565 /* Contents.json */,
+				2C360E01278655BD00D84565 /* Dancer3.jpeg */,
+				2C360DFF278655BD00D84565 /* DancerCouple.jpeg */,
+				2C360E00278655BD00D84565 /* DancerMale.jpeg */,
+				2C360E02278655BD00D84565 /* Dancer.jpeg */,
+			);
+			name = jump.imageset;
+			path = Art_Athlete/Assets.xcassets/jump.imageset;
 			sourceTree = "<group>";
 		};
 		2C614DA9273210E20037BFA1 /* Animations */ = {
@@ -955,7 +985,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C73F8FA277D1B0F0024BA0B /* Assets.xcassets in Resources */,
+				2C360E05278655BD00D84565 /* DancerMale.jpeg in Resources */,
+				2C360E07278655BD00D84565 /* Dancer3.jpeg in Resources */,
+				2C360E09278655BD00D84565 /* Dancer.jpeg in Resources */,
+				2C360DFE2786557F00D84565 /* jump.png in Resources */,
+				2C360E03278655BD00D84565 /* DancerCouple.jpeg in Resources */,
+				2C360DFA2786554900D84565 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,7 +1012,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C360E06278655BD00D84565 /* DancerMale.jpeg in Resources */,
+				2C360E08278655BD00D84565 /* Dancer3.jpeg in Resources */,
+				2C360E0A278655BD00D84565 /* Dancer.jpeg in Resources */,
 				2C73F8FB277D1B100024BA0B /* Assets.xcassets in Resources */,
+				2C360E04278655BD00D84565 /* DancerCouple.jpeg in Resources */,
 				2CEB6EDE273371C1001C6FEB /* ArtAthlete (macOS).app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
