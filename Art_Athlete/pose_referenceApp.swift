@@ -81,10 +81,10 @@ struct pose_referenceApp: App {
 
         //print("1. JD00 → documentsDirectory \(documentsDirectory)")
 
-        let bundlePath = Bundle.main.bundlePath
-        print("4. JD00 → bundlePath \(bundlePath)")
+//        let bundlePath = Bundle.main.bundlePath
+//        print("4. JD00 → bundlePath \(bundlePath)")
 
-        if let fileURL = Bundle.main.url(forResource: "Dancer3", withExtension: "jpeg") {
+        if let fileURL = Bundle.main.url(forResource: "jump", withExtension: "png") {
             print("2. JD00 → fileURL \(fileURL)")
             // we found the file in our bundle!
             let imageName = fileURL.lastPathComponent
@@ -92,12 +92,28 @@ struct pose_referenceApp: App {
             let fileName = "Poses"//imageName
             let fileURL = documentsDirectory.appendingPathComponent(fileName)
 
-            do {
-                let folder = try Folder(path: fileURL.path)
-                //try image.write(to: URL(string: folder.path)!) //fileURL
-            } catch let error {
-                print("3. JD00: error saving file with error", error)
-            }
+           // if !FileManager.default.fileExists(atPath: fileURL.path) {
+                do {
+                    try FileManager.default.createDirectory(atPath: fileURL.path, withIntermediateDirectories: true, attributes: nil)
+                     //URL(string: fileURL.path)!
+                } catch {
+                    print(error.localizedDescription)
+                }
+           // }
+
+            print("3. JD00 → fileURL \(fileURL.path)")
+
+          //  if fileURL.startAccessingSecurityScopedResource() {
+           // print("4. JD00 → Security allowed.")
+                do {
+                    //try image.write(to: fileURL)
+                    let folder = try Folder(path: fileURL.path)
+                    try image.write(to: URL(string: folder.path)!) 
+                } catch let error {
+                    print("3. JD00: error saving file with error", error.localizedDescription)
+                }
+           // }
+           // fileURL.stopAccessingSecurityScopedResource()
 
         } else {
             print("2. JD00: NOT FOUND")

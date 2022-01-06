@@ -47,7 +47,6 @@ struct LoadFoldersButtoniPad: View {
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: - FUNCTIONS
     func importImage(_ result: Result<[URL], Error>) {
-        print("JD451: iPad")
         //  deleteFiles()
         do{
             let selectedFiles = try result.get()//let selectedFiles = try res.get()

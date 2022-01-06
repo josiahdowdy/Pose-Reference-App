@@ -437,7 +437,7 @@
 		2C02D879253A2C5700D5F960 = {
 			isa = PBXGroup;
 			children = (
-				2C360DFB2786556F00D84565 /* jump.imageset */,
+				2C360DFB2786556F00D84565 /* Poses.imageset */,
 				2C02D884253A2C5700D5F960 /* Art_Athlete */,
 				2C13157227339A15001019BA /* watchOS */,
 				2C131565273386D9001019BA /* macOS */,
@@ -582,7 +582,7 @@
 			path = watchOS;
 			sourceTree = "<group>";
 		};
-		2C360DFB2786556F00D84565 /* jump.imageset */ = {
+		2C360DFB2786556F00D84565 /* Poses.imageset */ = {
 			isa = PBXGroup;
 			children = (
 				2C360DFC2786556F00D84565 /* jump.png */,
@@ -592,8 +592,8 @@
 				2C360E00278655BD00D84565 /* DancerMale.jpeg */,
 				2C360E02278655BD00D84565 /* Dancer.jpeg */,
 			);
-			name = jump.imageset;
-			path = Art_Athlete/Assets.xcassets/jump.imageset;
+			name = Poses.imageset;
+			path = Art_Athlete/Assets.xcassets/Poses.imageset;
 			sourceTree = "<group>";
 		};
 		2C614DA9273210E20037BFA1 /* Animations */ = {
