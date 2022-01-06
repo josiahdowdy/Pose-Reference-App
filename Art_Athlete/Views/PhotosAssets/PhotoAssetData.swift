@@ -1,6 +1,30 @@
 //Art_Athlete - Created by josiah on 2022-01-06.
 import SwiftUI
 
+struct PosePhotos:Identifiable {
+    var id = UUID()
+    var title:String
+    var photoName:String {return title }
+}
+
+struct Folders:Identifiable {
+    var id = UUID()
+    var name:String
+}
+
+var folderNames = [
+    Folders(name: "Poses"),
+    Folders(name: "Landscapes")
+]
+
+var posePhotosData =  [
+    PosePhotos(title: "MaleJump"),
+    PosePhotos(title: "MaleStanding"),
+    PosePhotos(title: "DancerMale"),
+    PosePhotos(title: "DancerFemale"),
+    PosePhotos(title: "DancerCouple")
+]
+
 struct Category:Identifiable {
     var id = UUID()
     var title:String
@@ -34,7 +58,6 @@ var CategoriesData =  [
         ]
     )
 ]
-
 
 var landmarksData =  [
     Landmark(title: "Isle Of Skye", country: "Switzerland"),

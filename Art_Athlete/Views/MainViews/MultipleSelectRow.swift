@@ -2,7 +2,7 @@
 
 import SwiftUI
 import Files
-
+import CoreLocation
 
 @available(macCatalyst 15.0, *)
 struct MultipleSelectRow: View {
@@ -33,6 +33,9 @@ struct MultipleSelectRow: View {
 
     @State var imageSize: CGSize = .zero // << or initial from NSImage
     @State private var animationAmount = 1.0
+
+    private let locationManager = CLLocationManager()
+
 
     //@State var selected = 0    // 1
 
@@ -92,6 +95,16 @@ struct MultipleSelectRow: View {
                     animationAmount = 2
                 }
             }
+
+            Button(action: {
+                self.locationManager.requestAlwaysAuthorization()
+                self.locationManager.requestWhenInUseAuthorization()
+
+                
+            }) {
+                Text("AUTH")
+            }
+
             Spacer()
 
             if (UIDevice.current.userInterfaceIdiom == .mac) {
@@ -101,12 +114,12 @@ struct MultipleSelectRow: View {
         }
         .padding()
 
-        LandmarkList()
+        PhotoAssets()
 
         List {
             ForEach(homeData.folders, id: \.self) { product in
                 FolderButtonRowView(product: product, selectedBtn: self.$selectedBtn) //2
-                    .environmentObject(homeData)
+                  //  .environmentObject(homeData)
             }
             .onDelete(perform: removeFolders)
         }

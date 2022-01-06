@@ -60,12 +60,11 @@ struct HomeScreenButtonsView: View {
             VStack {
                 //FileImporterView() //This loads in photos MARK: [BLUE BOX]
             //    if #available(macCatalyst 15, *) {
-                    MultipleSelectRow(rowSelection: $rowSelection)
-                        .environmentObject(homeData)
+                MultipleSelectRow(rowSelection: $rowSelection)
+                    .environmentObject(homeData)
              //   } else { // Fallback on earlier versions }
 
                 if UIDevice.current.userInterfaceIdiom == (.phone) {
-
                     Text(prefs.error)
                     countPickerView()
                     timePickerView()
@@ -74,7 +73,6 @@ struct HomeScreenButtonsView: View {
             } //.onAppear(perform: scanAllFolders)
             .alert(isPresented: self.$showAlert,
                    content: { self.notificationReminder() })
-
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     HStack {
