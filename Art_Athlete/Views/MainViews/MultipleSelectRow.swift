@@ -101,6 +101,8 @@ struct MultipleSelectRow: View {
         }
         .padding()
 
+        LandmarkList()
+
         List {
             ForEach(homeData.folders, id: \.self) { product in
                 FolderButtonRowView(product: product, selectedBtn: self.$selectedBtn) //2

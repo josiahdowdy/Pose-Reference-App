@@ -72,6 +72,10 @@
 		2C360E08278655BD00D84565 /* Dancer3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E01278655BD00D84565 /* Dancer3.jpeg */; };
 		2C360E09278655BD00D84565 /* Dancer.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E02278655BD00D84565 /* Dancer.jpeg */; };
 		2C360E0A278655BD00D84565 /* Dancer.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E02278655BD00D84565 /* Dancer.jpeg */; };
+		2C360E0D2787598A00D84565 /* LandmarkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360E0C2787598A00D84565 /* LandmarkList.swift */; };
+		2C360E0E2787598A00D84565 /* LandmarkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360E0C2787598A00D84565 /* LandmarkList.swift */; };
+		2C360E10278759C000D84565 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360E0F278759C000D84565 /* Landmark.swift */; };
+		2C360E11278759C000D84565 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360E0F278759C000D84565 /* Landmark.swift */; };
 		2C3D3DD4276E9C44001CA7E8 /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3D3DD3276E9C44001CA7E8 /* SlideOverCard */; };
 		2C55F915253FC86E000B6AFC /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C55F914253FC86E000B6AFC /* NavBar.swift */; };
 		2C5FA54F2757F40C00227368 /* MainImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5FA54E2757F40C00227368 /* MainImageView.swift */; };
@@ -312,6 +316,8 @@
 		2C360E00278655BD00D84565 /* DancerMale.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DancerMale.jpeg; sourceTree = "<group>"; };
 		2C360E01278655BD00D84565 /* Dancer3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dancer3.jpeg; sourceTree = "<group>"; };
 		2C360E02278655BD00D84565 /* Dancer.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dancer.jpeg; sourceTree = "<group>"; };
+		2C360E0C2787598A00D84565 /* LandmarkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkList.swift; sourceTree = "<group>"; };
+		2C360E0F278759C000D84565 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		2C55F914253FC86E000B6AFC /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		2C5FA54E2757F40C00227368 /* MainImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainImageView.swift; sourceTree = "<group>"; };
 		2C614D9A272DE7100037BFA1 /* ArtAthlete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtAthlete.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,6 +525,7 @@
 		2C02D8C2253A50D200D5F960 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2C360E0B2787597700D84565 /* PhotosAssets */,
 				2CAA8BD62593835600B39793 /* MainViews */,
 				2CF9E36A27486412009F77E1 /* Animations */,
 				2C614DB4273336EE0037BFA1 /* SideBar */,
@@ -594,6 +601,15 @@
 			);
 			name = Poses.imageset;
 			path = Art_Athlete/Assets.xcassets/Poses.imageset;
+			sourceTree = "<group>";
+		};
+		2C360E0B2787597700D84565 /* PhotosAssets */ = {
+			isa = PBXGroup;
+			children = (
+				2C360E0C2787598A00D84565 /* LandmarkList.swift */,
+				2C360E0F278759C000D84565 /* Landmark.swift */,
+			);
+			path = PhotosAssets;
 			sourceTree = "<group>";
 		};
 		2C614DA9273210E20037BFA1 /* Animations */ = {
@@ -1073,6 +1089,7 @@
 				2C15680F273F3CD8001D5ED9 /* StoredUserData.swift in Sources */,
 				2C064311272C6587001DF985 /* PrivateSyncApp.swift in Sources */,
 				2C663A7527205B460097AEFE /* CardView.swift in Sources */,
+				2C360E10278759C000D84565 /* Landmark.swift in Sources */,
 				2CA8BC232756A831007BF111 /* FolderButtonRowView.swift in Sources */,
 				2CAA8BCE259382B500B39793 /* PersistenceController.swift in Sources */,
 				2C28F3FD2740151800BB7405 /* AddButton.swift in Sources */,
@@ -1096,6 +1113,7 @@
 				2C13157B27346941001019BA /* SettingsSlideCard.swift in Sources */,
 				2C360DF8278509A500D84565 /* StartTutorial.swift in Sources */,
 				2CF9E376274AEE4F009F77E1 /* SceneDelegate.swift in Sources */,
+				2C360E0D2787598A00D84565 /* LandmarkList.swift in Sources */,
 				2CAC6637271CA435005066B5 /* ContentView.swift in Sources */,
 				2C2BDF432543225400D2434E /* StatsView.swift in Sources */,
 				2C2047552772858000B5E54F /* Collapsible.swift in Sources */,
@@ -1164,6 +1182,7 @@
 				2CF9E3692747BEDC009F77E1 /* settingsButton.swift in Sources */,
 				2C663A9927238C820097AEFE /* UserData+CoreDataProperties.swift in Sources */,
 				2CB6249627277C35001AFA85 /* SignIn.swift in Sources */,
+				2C360E11278759C000D84565 /* Landmark.swift in Sources */,
 				2CF9E385274AF9A8009F77E1 /* PhotosEntity+CoreDataClass.swift in Sources */,
 				2CB6248B27277C07001AFA85 /* DrawingView.swift in Sources */,
 				2C2047562772858000B5E54F /* Collapsible.swift in Sources */,
@@ -1181,6 +1200,7 @@
 				2CB6249327277C2B001AFA85 /* StatsView.swift in Sources */,
 				2CA8BC242756A831007BF111 /* FolderButtonRowView.swift in Sources */,
 				2C28F3FE2740151800BB7405 /* AddButton.swift in Sources */,
+				2C360E0E2787598A00D84565 /* LandmarkList.swift in Sources */,
 				2CB6249527277C31001AFA85 /* CertificateView.swift in Sources */,
 				2C614DAC273211010037BFA1 /* DotInversion.swift in Sources */,
 				2CDF097B274D209900C284D6 /* FolderRowsView.swift in Sources */,
