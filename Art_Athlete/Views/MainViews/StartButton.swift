@@ -101,46 +101,46 @@ struct StartButton: View {
     } //End Func.
 
     //IPHONE and iPad load files.
-    func loadFolderFilesiPad() {
-        ///1. Print the files in the directory.
-        guard
-            let path = FileManager
-                .default
-                .urls(for: .documentDirectory, in: .userDomainMask)
-                .first
-        else { //.appendingPathComponent("\(name).jpg")
-            print("error getting path.")
-            return
-        }
-
-        let loadFiles = Folder.documents?.files
-        let subFolders = Folder.documents?.subfolders
-
-        print("JD451: loadfiles ••••••••• \(String(describing: loadFiles.debugDescription))")
-        print("JD451: subfolders ••••••••• \(String(describing: subFolders))")
-
-        for file in loadFiles!  { //
-            prefs.arrayOfURLStrings.append(file.url.absoluteString)
-        }
-
-        print("JD451: path DIRECTORY is --> \(path)")
-       // print("JD451: path DIRECTORY is --> \(path)")
-
-
-
-        print(prefs.arrayOfFolderNames)
-        do {
-            for i in prefs.arrayOfFolderNames {
-                let loadFolderURL = try Folder.documents!.subfolder(named: i)
-
-                for file in try Folder(path: loadFolderURL.path).files {
-                    prefs.arrayOfURLStrings.append(file.url.absoluteString)
-                }
-            }
-        } catch {
-            print("JD452: error loading files from download folder.", error)
-        }
-    } //End Func.
+//    func loadFolderFilesiPad() {
+//        ///1. Print the files in the directory.
+//        guard
+//            let path = FileManager
+//                .default
+//                .urls(for: .documentDirectory, in: .userDomainMask)
+//                .first
+//        else { //.appendingPathComponent("\(name).jpg")
+//            print("error getting path.")
+//            return
+//        }
+//
+//        let loadFiles = Folder.documents?.files
+//        let subFolders = Folder.documents?.subfolders
+//
+//        print("JD451: loadfiles ••••••••• \(String(describing: loadFiles.debugDescription))")
+//        print("JD451: subfolders ••••••••• \(String(describing: subFolders))")
+//
+//        for file in loadFiles!  { //
+//            prefs.arrayOfURLStrings.append(file.url.absoluteString)
+//        }
+//
+//        print("JD451: path DIRECTORY is --> \(path)")
+//       // print("JD451: path DIRECTORY is --> \(path)")
+//
+//
+//
+//        print(prefs.arrayOfFolderNames)
+//        do {
+//            for i in prefs.arrayOfFolderNames {
+//                let loadFolderURL = try Folder.documents!.subfolder(named: i)
+//
+//                for file in try Folder(path: loadFolderURL.path).files {
+//                    prefs.arrayOfURLStrings.append(file.url.absoluteString)
+//                }
+//            }
+//        } catch {
+//            print("JD452: error loading files from download folder.", error)
+//        }
+//    } //End Func.
 
     func getImageFromFileManager() {
       //  image = manager.getImage(name: imageName)

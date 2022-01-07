@@ -34,14 +34,14 @@ struct pose_referenceApp: App {
 
     @AppStorage("isFirstLaunch") var isFirstLaunch = true
 
-    init() {
-        isFirstLaunch = true //For debugging.
-        print("JD00 → isFirstLaunch \(isFirstLaunch)")
-        if (isFirstLaunch) {
-            saveImage() //imageName: <#T##String#>, image: <#T##Data#>
-            // isFirstLaunch = false
-        }
-    }
+//    init() {
+//        isFirstLaunch = true //For debugging.
+//        print("JD00 → isFirstLaunch \(isFirstLaunch)")
+//        if (isFirstLaunch) {
+//            saveImage() //imageName: <#T##String#>, image: <#T##Data#>
+//            // isFirstLaunch = false
+//        }
+//    }
     
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
@@ -118,10 +118,6 @@ struct pose_referenceApp: App {
         } else {
             print("2. JD00: NOT FOUND")
         }
-
-
-
-
     }
     
 }

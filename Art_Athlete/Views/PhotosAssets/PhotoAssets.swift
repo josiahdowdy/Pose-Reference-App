@@ -21,13 +21,13 @@ struct PhotoAssets: View {
                 } // ForEach
             } //List
 
-            List() {
-                ForEach(posePhotos) { photo in
-                    //LandmarkRow(photo:photo)
-                    //   Image(photo.thumbnailName).cornerRadius(8)
-                    Image(photo.photoName)
-                } // ForEach
-            } // List
+//            List() {
+//                ForEach(posePhotos) { photo in
+//                    //LandmarkRow(photo:photo)
+//                    //   Image(photo.thumbnailName).cornerRadius(8)
+//                    Image(photo.photoName)
+//                } // ForEach
+//            } // List
       //  } // NavView
     } // Body
 }

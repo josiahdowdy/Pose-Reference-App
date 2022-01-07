@@ -4,7 +4,19 @@ import SwiftUI
 import Files
 import CoreLocation
 
-@available(macCatalyst 15.0, *)
+public class ImageProvider {
+    // convenient for specific image
+    public static func picture() -> UIImage {
+        return UIImage(named: "picture", in: Bundle(for: self), with: nil) ?? UIImage()
+    }
+
+    // for any image located in bundle where this class has built
+    public static func image(named: String) -> UIImage? {
+        return UIImage(named: named, in: Bundle(for: self), with: nil)
+    }
+}
+
+@available(macCatalyst 15, *)
 struct MultipleSelectRow: View {
     @Environment(\.refresh) var refreshAction: RefreshAction?
 
@@ -17,6 +29,7 @@ struct MultipleSelectRow: View {
     @EnvironmentObject var homeData: HomeViewModel
 
     @State var trimVal : CGFloat = 0
+    @State var imageProvider = ImageProvider()
 
     @State var needRefresh: Bool = false
     @State private var alertShowing = false
@@ -33,8 +46,6 @@ struct MultipleSelectRow: View {
 
     @State var imageSize: CGSize = .zero // << or initial from NSImage
     @State private var animationAmount = 1.0
-
-    private let locationManager = CLLocationManager()
 
 
     //@State var selected = 0    // 1
@@ -68,11 +79,9 @@ struct MultipleSelectRow: View {
     @ViewBuilder
     func ShowAllFolders()->some View{
         HStack {
-            Text("Photos").font(.title3)
-                .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+            Text("Photos").font(.title3).foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
 
             ZStack {
-
 
             LoadFoldersButtoniPad(needRefresh: $needRefresh)
                 .environmentObject(homeData)
@@ -97,10 +106,8 @@ struct MultipleSelectRow: View {
             }
 
             Button(action: {
-                self.locationManager.requestAlwaysAuthorization()
-                self.locationManager.requestWhenInUseAuthorization()
-
-                
+                createFolder()
+                saveImage()
             }) {
                 Text("AUTH")
             }
@@ -124,6 +131,129 @@ struct MultipleSelectRow: View {
             .onDelete(perform: removeFolders)
         }
     } //End func.
+
+    func getAssetImages() {
+        let imageName = ["jump", "dance", "couple", "dance2", "standing"]
+        let img1 = ImageProvider.image(named: "jump")
+        let img2 = ImageProvider.image(named: "dance")
+        let img3 = ImageProvider.image(named: "couple")
+        let img4 = ImageProvider.image(named: "dance2")
+        let img5 = ImageProvider.image(named: "standing")
+
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let docURL = URL(fileURLWithPath: documentsDirectory)//URL(string: documentsDirectory)!
+        let dataPath = docURL.appendingPathComponent("jump")
+
+        do {
+            let data1 = img1!.jpegData(compressionQuality: 1.0)
+
+
+        } catch let error {
+            print("xx. JD00: error saving file with error", error.localizedDescription)
+        }
+    }
+
+    func createFolder() {
+        //create directory
+        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+
+        let logsPath = documentsPath.appendingPathComponent("Poses")
+
+        print(logsPath!)
+        do{
+            try FileManager.default.createDirectory(atPath: logsPath!.path, withIntermediateDirectories: true, attributes: nil)
+        }catch let error as NSError{
+            print(error)
+          //  print(" Unable to create directory \(error)”)
+        }
+    }
+
+    //Start funcs.
+    func saveImage() { //imageName: String, image: Data
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let docURL = URL(fileURLWithPath: documentsDirectory)//URL(string: documentsDirectory)!
+        let dataPath = docURL.appendingPathComponent("Poses")
+
+
+        print("1. JD00 → dataPath → \(dataPath.path)")
+
+        guard let documentsDirectory2 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+
+        //        let bundlePath = Bundle.main.bundlePath
+        //        print("4. JD00 → bundlePath \(bundlePath)")
+
+        if let fileURL = Bundle.main.url(forResource: "jump", withExtension: "png") {
+       // if let fileURL = Bundle.main.url(forResource: "PhotoPack", withExtension: "") {
+            print("2. JD00 → fileURL \(fileURL)")
+            let image = UIImage(contentsOfFile: fileURL.path)
+            let fileName = "Poop"//imageName
+            let folderURL = documentsDirectory2.appendingPathComponent(fileName)
+            let writePath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("Poses")
+            let imageName = fileURL.lastPathComponent
+           // if !FileManager.default.fileExists(atPath: fileURL.path) {
+            let folderAndFileName = "Poses/".appending(imageName)
+
+            let dataPath2 = docURL.appendingPathComponent(folderAndFileName)
+
+
+            print("4. JD00 → writePath \(writePath.path)")
+
+            //if fileURL.startAccessingSecurityScopedResource() {
+           // if folderURL.startAccessingSecurityScopedResource() {
+                // print("4. JD00 → Security allowed.")
+
+                do {
+                    let data = image!.jpegData(compressionQuality: 1.0)
+                    //let data = image2!.pngData()//.pngData()
+                  //  try FileManager.default.createDirectory(atPath: dataPath.absoluteString, withIntermediateDirectories: true, attributes: nil)
+                    //try data!.write(to: folderURL)
+                    //try data!.write(to: folderURL)
+                    try data!.write(to: dataPath2) //writePath)
+
+                    print("\n5. JD00 → ACCESS GRANTED ******************\n")
+                } catch let error {
+                    print("5. JD00: error saving file with error", error.localizedDescription)
+                }
+           // }
+           // folderURL.stopAccessingSecurityScopedResource()
+
+            //Move File
+//            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first{
+//                let oldPath = dir.appendingPathComponent(“jump.png”)
+//                let newPath = dir.appendingPathComponent(“data/fileMove.txt”)
+//                let fileManager = FileManager.default
+//                do{
+//                    try fileManager.moveItem(at: oldPath, to: newPath)
+//                }catch{
+//                    print(“cant move the file…”)
+//                }
+//            }
+
+            do {
+                let data = image!.jpegData(compressionQuality: 1.0)
+                try data!.write(to: writePath)
+//                let originFolder = try Folder(path: dataPath.path)
+//                let targetFolder = try Folder(path: folderURL.path)
+//                try originFolder.files.move(to: targetFolder)
+            } catch let error {
+                print("6. JD00: error saving file:", error.localizedDescription)
+            }
+
+            //            do {
+            //                try FileManager.default.createDirectory(atPath: folderURL.path, withIntermediateDirectories: true, attributes: nil)
+            //                //URL(string: fileURL.path)!
+            //            } catch {
+            //                print("JD00:", error.localizedDescription)
+            //            }
+            //}
+
+
+        } else {
+            print("2. JD00: NOT FOUND")
+        }
+    }
 
     private func rectReader() -> some View {
         return GeometryReader { (geometry) -> AnyView in
