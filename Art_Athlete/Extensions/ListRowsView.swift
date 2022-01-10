@@ -10,11 +10,11 @@ import SwiftUI
 struct ListRowsView: View {
     @Environment(\.managedObjectContext) var context
 
-    var testData : FetchedResults<UserData>
+    var userData : FetchedResults<UserData>
     
     var body: some View {
         List {
-            ForEach(testData, id:\.self) { user in
+            ForEach(userData, id:\.self) { user in
                 //let mydate = 1 // convertDateFormatter(date: String(user.date))
                 if #available(iOS 15.0, *) {
                     Text("\(user.date!.formatted(.dateTime.day().month().hour().minute())) - \(user.countPoses)") //\(mydate) -

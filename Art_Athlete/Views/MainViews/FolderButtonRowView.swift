@@ -6,6 +6,7 @@ import Files
 struct FolderButtonRowView: View {
     @Environment(\.colorScheme) var currentDarkLightMode
    // @EnvironmentObject var homeData: HomeViewModel
+
     @EnvironmentObject var prefs: GlobalVariables
 
     var product: Product
@@ -15,6 +16,9 @@ struct FolderButtonRowView: View {
     @Binding var selectedBtn: Int  // 3
     @State var trimVal : CGFloat = 0
 
+//    init() {
+//        print("JD00 → *****************    4. FolderButtonRowView ")
+//    }
     //View.
     var body: some View {
         Button(action: {

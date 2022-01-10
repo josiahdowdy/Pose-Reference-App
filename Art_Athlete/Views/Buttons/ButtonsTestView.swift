@@ -10,23 +10,23 @@ import SwiftUI
 struct ButtonsTestView: View {
     @Environment(\.managedObjectContext) var context
 
-    var testData : FetchedResults<UserData>
+    var userData : FetchedResults<UserData>
     
     
     var body: some View {
         LazyHStack {
             Button(action: {
-                testData[0].countPoses += 1
+                userData[0].countPoses += 1
             }, label: {
                 Text("Increase poses")
             })
             
             Button(action: {
-                // testData[0].userName = "bob"
-                //testData
+                // userData[0].userName = "bob"
+                //userData
                 let newRow = UserData(context: context)
                 newRow.date = Date()
-                //newRow.userName = ("henry".appending(String(testData[0].countPoses))) //
+                //newRow.userName = ("henry".appending(String(userData[0].countPoses))) //
                 //newRow.countPoses = 0
             }, label: {
                 Text("New row.")
@@ -45,6 +45,6 @@ struct ButtonsTestView: View {
 struct ButtonsTestView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ButtonsTestView(testData: testData)
+        ButtonsTestView(userData: userData)
     }
 } */

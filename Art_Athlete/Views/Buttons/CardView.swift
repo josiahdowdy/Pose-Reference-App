@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     
-    @State var testData: UserData
+    @State var userData: UserData
     @Environment(\.colorScheme) var scheme
     
     var body: some View {
@@ -18,10 +18,10 @@ struct CardView: View {
             
             VStack(alignment: .leading,spacing: 10){
                 
-                Text(testData.date ?? Date(),style: .date)
-                Text("Pose Count: \(testData.countPoses)")
+                Text(userData.date ?? Date(),style: .date)
+                Text("Pose Count: \(userData.countPoses)")
                 
-                Text("Oct. 29, 2021") //testData.) // ?? ""
+                Text("Oct. 29, 2021") //userData.) // ?? ""
                     .font(.title3)
                     .fontWeight(.bold)
                 

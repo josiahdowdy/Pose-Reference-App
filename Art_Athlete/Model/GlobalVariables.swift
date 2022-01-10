@@ -4,17 +4,25 @@
 import Foundation
 
 class GlobalVariables: ObservableObject {
-    init() {
-        sPose = "hi"
-    }
+//    init() {
+//        sPose = "hi"
+//    }
+    //
+    //    @Published var selectedItems: Set<String> //Set<PhotoFolders>
+    //    @Published var items: Array<String>
+    //
+    //    init() {
+    //        self.items = ["A","B","C"]
+    //        self.selectedItems = ["A"]
+    //    }
+    //
 
     //----------STRINGS---------------------------------------------------------------
     @Published var sPose = ""
-
     @Published var tag = ""
     @Published var sURL = ""
     @Published var error = ""
-    @Published var portfolioURL :String = ""  //"https://www.unsplash.com/@"
+    //@Published var portfolioURL :String = ""  //"https://www.unsplash.com/@"
 
     //----------ARRAYS---------------------------
     @Published var arrayOfURLStrings = [String]()
@@ -39,10 +47,12 @@ class GlobalVariables: ObservableObject {
     @Published var totalPhotosLoaded = 0
     @Published var poseCount: Int16 = 0
     @Published var timeDrawn: Int16 = 0
+    @Published var countingTest = 0
 
     
     //----------BOOLS----------------------------------------------------------------
     @Published var startSession = false
+    @Published var loadContentView = true
     @Published var showMainScreen = true
     @Published var showHomeView = false
     @Published var falseBool = false
@@ -66,18 +76,7 @@ class GlobalVariables: ObservableObject {
     @Published var showStats = false
 
     @Published var addFolder = false
-//
-//    @Published var selectedItems: Set<String> //Set<PhotoFolders>
-//    @Published var items: Array<String>
-//
-//    init() {
-//        self.items = ["A","B","C"]
-//        self.selectedItems = ["A"]
-//    }
-//
-    
 
-    
     //----------IMAGE EFFECTS-------------------------------------------------
     @Published var processorDefault = true//DefaultImageProcessor.default
     @Published var processorBlack = false//BlackWhiteProcessor()
@@ -89,7 +88,16 @@ class GlobalVariables: ObservableObject {
     @Published var myURL: URL = URL(string: "https://unsplash.com/")!
    
     
-    
+    //-----------TIMER VARIABLES----------
+    @Published var isTimerRunning = false
+    @Published var startTime =  Date()
+    //@Published var timerString = "0.00"
+    @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @Published var timeDouble = 1.0
+    @Published var timeChosen = 30.0
+    @Published var currentTime = 0.0
+    @Published var progressValue: Float = 0.0
+    @Published var endSessionBool: Bool = false
     
     
     

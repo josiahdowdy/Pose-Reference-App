@@ -12,12 +12,15 @@ struct StatsButton: View {
     @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
 
+    @Binding var showStats: Bool
+
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     var body: some View {
         VStack(alignment: .trailing) {
             Button(action: {
-                prefs.showStats.toggle()
+                showStats.toggle()
+                //prefs.showStats.toggle()
                 prefs.showSettings = false
             }, label: {
                 Label("Stats", systemImage: "chart.bar.xaxis")
@@ -35,9 +38,9 @@ struct StatsButton: View {
     }
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
-    private func showStats() {
-        prefs.showStats.toggle()
-    }
+//    private func showStats() {
+//        prefs.showStats.toggle()
+//    }
 }
 
 //struct StatsButton_Previews: PreviewProvider {

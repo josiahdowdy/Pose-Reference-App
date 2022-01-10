@@ -18,10 +18,10 @@ public class ImageProvider {
 
 @available(macCatalyst 15, *)
 struct MultipleSelectRow: View {
-    @Environment(\.refresh) var refreshAction: RefreshAction?
+    //@Environment(\.refresh) var refreshAction: RefreshAction?
 
     @Environment(\.colorScheme) var currentDarkLightMode
-    @Environment(\.managedObjectContext) var context
+   // @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var sharedData: SharedViewModel
    // @AppStorage("selectedFolders") var selectedFolders: [String] = [] //Store the last selected photos here.
@@ -29,7 +29,7 @@ struct MultipleSelectRow: View {
     @EnvironmentObject var homeData: HomeViewModel
 
     @State var trimVal : CGFloat = 0
-    @State var imageProvider = ImageProvider()
+   // @State var imageProvider = ImageProvider()
 
     @State var needRefresh: Bool = false
     @State private var alertShowing = false
@@ -49,6 +49,9 @@ struct MultipleSelectRow: View {
 
 
     //@State var selected = 0    // 1
+//    init() {
+//        print("JD00 → *****************    3. MultipleSelectRow ")
+//    }
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     // MARK: - UI
@@ -58,15 +61,15 @@ struct MultipleSelectRow: View {
             ShowAllFolders()
         }
        // .onAppear(perform: scanAllFolders)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                HStack {
-                  //  self.cdDeleteButton
-                    StatsButton()
-                        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarLeading) {
+//                HStack {
+//                  //  self.cdDeleteButton
+//                    StatsButton(showStats: showStats)
+//                        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+//                }
+//            }
+//        }
     } //End view.
     /*•••••••••••••END VIEW••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••*/
 
@@ -88,29 +91,22 @@ struct MultipleSelectRow: View {
                 .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
                 //.background(rectReader())
                 .padding(20)
-                .clipShape(Circle())
-                .overlay(
-                    Circle()
-                        .stroke(.green)
-                        .scaleEffect(animationAmount)
-                        .opacity(2 - animationAmount)
-                        .animation(
-                            .easeInOut(duration: 1)
-                                .repeatForever(autoreverses: false),
-                            value: animationAmount
-                        )
-                )
-                .onAppear {
-                    animationAmount = 2
-                }
+//                .clipShape(Circle())
+//                .overlay(
+//                    Circle()
+//                        .stroke(.green)
+//                        .scaleEffect(animationAmount)
+//                        .opacity(2 - animationAmount)
+//                        .animation(
+//                            .easeInOut(duration: 1)
+//                                .repeatForever(autoreverses: false),
+//                            value: animationAmount
+//                        )
+//                )
+//                .onAppear {
+//                    animationAmount = 2
+//                }
             }
-
-//            Button(action: {
-//                createFolder()
-//                saveImage()
-//            }) {
-//                Text("AUTH")
-//            }
 
             Spacer()
 
@@ -121,7 +117,7 @@ struct MultipleSelectRow: View {
         }
         .padding()
 
-        PhotoAssets()
+  //      PhotoAssets()
 
         List {
             ForEach(homeData.folders, id: \.self) { product in
@@ -132,33 +128,8 @@ struct MultipleSelectRow: View {
         }
     } //End func.
 
-    func getAssetImages() {
-        let imageName = ["jump", "dance", "couple", "dance2", "standing"]
-        let img1 = ImageProvider.image(named: "jump")
-        let img2 = ImageProvider.image(named: "dance")
-        let img3 = ImageProvider.image(named: "couple")
-        let img4 = ImageProvider.image(named: "dance2")
-        let img5 = ImageProvider.image(named: "standing")
-
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        let docURL = URL(fileURLWithPath: documentsDirectory)//URL(string: documentsDirectory)!
-        let dataPath = docURL.appendingPathComponent("jump")
-
-        do {
-            let data1 = img1!.jpegData(compressionQuality: 1.0)
-
-
-        } catch let error {
-            print("xx. JD00: error saving file with error", error.localizedDescription)
-        }
-    }
-
-    
 
     //Start funcs.
-    
-
     private func rectReader() -> some View {
         return GeometryReader { (geometry) -> AnyView in
             let imageSize = geometry.size
@@ -167,11 +138,8 @@ struct MultipleSelectRow: View {
                 self.imageSize = imageSize
             }
             return AnyView(
-
                     Circle().stroke(Color.green, lineWidth: 4)
                         .padding(20)
-
-
                 //    .padding(20)
                // Rectangle().fill(Color.green)
             )

@@ -12,7 +12,7 @@ struct StartButton: View {
     @Environment(\.colorScheme) var currentDarkLightMode
     //@ObservedObject var storedUserData = StoredUserData()
     @EnvironmentObject var prefs: GlobalVariables
-    @EnvironmentObject var timeObject: TimerObject
+    //@EnvironmentObject var timeObject: TimerObject
     @Environment(\.managedObjectContext) var context
 
     @State var url : URL = URL(fileURLWithPath: "nil")
@@ -46,16 +46,19 @@ struct StartButton: View {
     //MARK: - Functions
     //Don't confuse with start timer in Timer.swift
     private func startTimer() {
-        timeObject.isTimerRunning = true
-        timeObject.startTime = Date()
-        timeObject.progressValue = 0.0
-        timeObject.timeDouble = 0.0
+        prefs.isTimerRunning = true
+        prefs.startTime = Date()
+        prefs.progressValue = 0.0
+        prefs.timeDouble = 0.0
 //        let userDataStart = UserData(context: context)
 //        userDataStart.date = Date()
-        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer() //, startSession: $startSession
+        TimerView(prefs: _prefs).startTimer()
+        //TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+        //, startSession: $startSession
     }
 
     func startSession(){
+        prefs.loadContentView = false
         if (toggleSwitch().isRandom) {
             prefs.arrayOfURLStrings.shuffle()
         }
@@ -68,7 +71,6 @@ struct StartButton: View {
 
         if (prefs.arrayOfURLStrings.isEmpty) {
             prefs.error = "Please make sure you've imported and selected photos."
-
         } else {
             //prefs.startBoolean.toggle()
             prefs.error = ""
@@ -76,7 +78,7 @@ struct StartButton: View {
             prefs.localPhotos = true
             prefs.disableSkip = false
             //timeObject.timeChosen = Double(prefs.time[prefs.selectorIndexTime])
-            timeObject.timeChosen = Double((prefs.time[prefs.selectorIndexTime]))
+            prefs.timeChosen = Double((prefs.time[prefs.selectorIndexTime]))
             //Double(prefs.time[prefs.selectorIndexTime])!
 
             startTimer()

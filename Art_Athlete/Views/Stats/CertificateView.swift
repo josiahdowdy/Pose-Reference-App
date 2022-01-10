@@ -11,7 +11,7 @@ import SwiftUI
 
 struct CertificateView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var timeObject: TimerObject
+    //@EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var userObject: UserObject
  

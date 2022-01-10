@@ -3,7 +3,7 @@ import SwiftUI
 import CoreData
 
 struct TimerView: View{
-    @EnvironmentObject var timeObject: TimerObject
+    //@EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     let persistenceController = PersistenceController.shared
     @Environment(\.managedObjectContext) var context
@@ -33,25 +33,26 @@ struct TimerView: View{
     //-------------START VIEW------------------------------------------------------------
     var body: some View {
         VStack {
-            ProgressBar(value: $timeObject.progressValue)
+            ProgressBar(value: $prefs.progressValue)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
                     print("\nMoving to the BACKGROUND!")
                     self.isActive = false
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                     print("\nMoving back to the FOREGROUND!")
-                    TimerView(timeObject: _timeObject, prefs: _prefs).startTimer() //, startSession: $startSession
+                   // TimerView(timeObject: _timeObject, prefs: _prefs).startTimer()
+                    TimerView(prefs: _prefs).startTimer() //, startSession: $startSession
                     self.isActive = true
                 }
                 .frame(height: 10)
-                .onReceive(self.timeObject.timer) { _ in
+                .onReceive(self.prefs.timer) { _ in
                     guard self.isActive else { return } //Makes sure timer stops right away when app moves to background.
 
                     //If the time is less than
-                    if self.timeObject.currentTime < timeObject.timeChosen {
+                    if self.prefs.currentTime < prefs.timeChosen {
                         addTime()
                         //userData[0].timeDrawn += 1
-                    } else if (timeObject.currentTime == timeObject.timeChosen) {
+                    } else if (prefs.currentTime == prefs.timeChosen) {
                         firstImageUpdate()
                         //If you are not on the final image, then load the next image.
                         if (prefs.currentIndex + 1 < prefs.sPoseCount) {
@@ -59,8 +60,8 @@ struct TimerView: View{
                         //Final image finished, end session.
                         } else {
                             prefs.poseCount += 1
-                            prefs.timeDrawn += Int16(timeObject.timeChosen)
-                            updateAtEndOfSession(timeChosen: timeObject.timeChosen, context: context) //Only done at end of session. And called when quit.
+                            prefs.timeDrawn += Int16(prefs.timeChosen)
+                            updateAtEndOfSession(timeChosen: prefs.timeChosen, context: context) //Only done at end of session. And called when quit.
                             endSession()
                         } //End else
                     } //End else if
@@ -71,20 +72,20 @@ struct TimerView: View{
     
     //-------------------FUNCTIONS-----------------------------------------------
     private func addTime() {
-        self.timeObject.currentTime += 1
-        self.timeObject.progressValue += Float(1 / timeObject.timeChosen)
+        self.prefs.currentTime += 1
+        self.prefs.progressValue += Float(1 / prefs.timeChosen)
     }
 
     private func firstImageUpdate() {
-        timeObject.currentTime = 0
-        timeObject.progressValue = 0.0
+        prefs.currentTime = 0
+        prefs.progressValue = 0.0
     }
 
     private func nextImage() {
         prefs.currentIndex += 1
         prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
         prefs.poseCount += 1
-        prefs.timeDrawn += Int16(timeObject.timeChosen)
+        prefs.timeDrawn += Int16(prefs.timeChosen)
         //self.countPoses += 1
         //self.timeDrawn += Int16(timeObject.timeChosen)
     }
@@ -94,8 +95,8 @@ struct TimerView: View{
         prefs.poseCount = 0
         prefs.timeDrawn = 0
         prefs.currentIndex = 0 
-        timeObject.isTimerRunning = false
-        timeObject.endSessionBool.toggle()
+        prefs.isTimerRunning = false
+        prefs.endSessionBool.toggle()
         prefs.disableSkip.toggle()
         prefs.arrayOfURLStrings.removeAll()
         prefs.arrayOfFolderNames.removeAll()
@@ -103,11 +104,11 @@ struct TimerView: View{
     }
 
     func startTimer() {
-        self.timeObject.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        self.prefs.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     }
 
     func stopTimer() {
-        self.timeObject.timer.upstream.connect().cancel()
+        self.prefs.timer.upstream.connect().cancel()
     }
 
     func updateAtEndOfSession(timeChosen: Double, context: NSManagedObjectContext){ //NSManagedObjectContext

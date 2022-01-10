@@ -51,7 +51,7 @@ struct HomeScreen: View {
     
     @FetchRequest(
         entity: UserData.entity(), sortDescriptors: []
-    ) var testData : FetchedResults<UserData>
+    ) var userData : FetchedResults<UserData>
     
     //    @FetchRequest(
     //        entity: UserData.entity(), sortDescriptors: [NSSortDescriptor(key: "momentTimeStamp", ascending: false)]
@@ -93,8 +93,8 @@ struct HomeScreen: View {
             }
              */
 //
-            //ButtonsTestView(testData: testData)
-//            ListRowsView(testData: testData)
+            //ButtonsTestView(userData: userData)
+//            ListRowsView(userData: userData)
             
            // Spacer().frame(maxWidth: .infinity) //Attach bar to bottom
             
@@ -152,12 +152,12 @@ struct HomeScreen: View {
     
     func setupDate() {
         //let myDate = Date().formatted(.dateTime)
-        testData[0].date = Date()
+        userData[0].date = Date()
         //
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        aDate = dateFormatter.string(from: testData[0].date!)
+        aDate = dateFormatter.string(from: userData[0].date!)
 
     }
 

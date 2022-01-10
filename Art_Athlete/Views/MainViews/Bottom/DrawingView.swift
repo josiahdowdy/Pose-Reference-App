@@ -6,22 +6,31 @@ import CoreData
 struct DrawingView: View {
     @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
-    @EnvironmentObject var timeObject: TimerObject
+    //@EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var userObject: UserObject
 
-    var testData : FetchedResults<UserData>
-    @State var userData = UserData()
+    var userData : FetchedResults<UserData>
+
+    //@State var userData = UserData()
     
     @State var isImporting: Bool = false
     
     @State private var showingSheet = false
 
-    @Binding var startSession: Bool
+    @Binding var startSession: Bool //@Binding 
+
 
     //Access the apps document directory.
 //    func getDocumentsDirectory() -> URL {
 //        let paths = FileManager.default.urls(for:.documentDirectory, in : .userDomainMask)
 //        return paths[0]
+//    }
+  //  @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var userData: FetchedResults<UserData>
+
+
+//    init(userData: UserData, startSession: Bool) {
+//        self.startSession = true
+//        print("JD00 → *****************    3. DrawingView ")
 //    }
     
     //Begin view.

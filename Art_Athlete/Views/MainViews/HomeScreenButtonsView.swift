@@ -11,11 +11,14 @@ import SlideOverCard
 struct HomeScreenButtonsView: View {
     @Environment(\.colorScheme) var currentDarkLightMode
     @EnvironmentObject var prefs: GlobalVariables
-    @EnvironmentObject var timeObject: TimerObject
+    //@EnvironmentObject var timeObject: TimerObject
     //@EnvironmentObject var sharedData: SharedViewModel
-    @Environment(\.managedObjectContext) var context
+
+   // @Environment(\.managedObjectContext) var context
+    
     //@StateObject var homeData: HomeViewModel = HomeViewModel()
-    @EnvironmentObject var homeData: HomeViewModel
+    //@EnvironmentObject var homeData: HomeViewModel
+    @StateObject var homeData = HomeViewModel()
     //@ObservedObject var homeData: HomeViewModel
     
     @State var isAddingPhotos: Bool = false
@@ -28,8 +31,8 @@ struct HomeScreenButtonsView: View {
     //@EnvironmentObject var rowSelection: Set<String>()
 
     @State var error = ""
-    @State var url : URL = URL(fileURLWithPath: "nil")
-    @State var cdSelection = Set<FoldersEntity>()
+   // @State var url : URL = URL(fileURLWithPath: "nil")
+   // @State var cdSelection = Set<FoldersEntity>()
 
     @State private var shouldLoadingView = true
 
@@ -53,6 +56,9 @@ struct HomeScreenButtonsView: View {
      \`@_@'/  ))
      {_:Y:.}_//
      ----------{_}^-'{_}----------*/
+    init() {
+        print("JD00 → *****************    2. HomeScreenButtonsView ")
+    }
 
     //MARK: - VIEW
     var body: some View {
@@ -74,6 +80,13 @@ struct HomeScreenButtonsView: View {
             .alert(isPresented: self.$showAlert,
                    content: { self.notificationReminder() })
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack {
+                        //  self.cdDeleteButton
+                        StatsButton(showStats: $prefs.showStats)
+                            .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+                    }
+                }
                 ToolbarItem(placement: .confirmationAction) {
                     HStack {
                         EditButton()
@@ -83,6 +96,15 @@ struct HomeScreenButtonsView: View {
                     }
                 }
             } //End toolbar
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    HStack {
+//                        //  self.cdDeleteButton
+//                        StatsButton(showStats: $showStats)
+//                            .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+//                    }
+//                }
+//            }
 
             if UIDevice.current.userInterfaceIdiom != (.phone) {
                 VStack {  // MARK: - Shows the main screen (right side).
@@ -105,7 +127,10 @@ struct HomeScreenButtonsView: View {
               //  .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
             } // End if.
         } //NavigationView
-        .onAppear(perform: scanAllFolders)
+        .onAppear(perform:
+                    createFolder
+                    //scanAllFolders
+        )
     } //End UI.
 
        /*__/,|   (`\
@@ -113,6 +138,42 @@ struct HomeScreenButtonsView: View {
      -(((---(((-----*/
 
     //MARK: - FUNCTIONS
+    func createFolder() {
+        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+        let logsPath = documentsPath.appendingPathComponent("Poses")
+        let docURL = URL(fileURLWithPath: documentsPath.path!)
+
+        let poseImages: [UIImage] = [
+            UIImage(named: "dance.jpeg")!,
+            UIImage(named: "jump.jpeg")!,
+            UIImage(named: "standing.jpeg")!,
+            UIImage(named: "dance2.jpeg")!,
+            UIImage(named: "couple.jpeg")!
+        ]
+
+        let poseNames: [String] = [
+            "dance.jpeg",
+            "jump.jpeg",
+            "standing.jpeg",
+            "dance2.jpeg",
+            "couple.jpeg"
+        ]
+
+        do {
+            try FileManager.default.createDirectory(atPath: logsPath!.path, withIntermediateDirectories: true, attributes: nil)
+
+            for i in 0...(poseImages.count-1) {
+                prefs.countingTest += 1
+                print("JD00: \(prefs.countingTest)")
+                let dataPath = docURL.appendingPathComponent("Poses/\(poseNames[i])")
+                let data = poseImages[i].jpegData(compressionQuality: 1.0)
+                try data!.write(to: dataPath)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+
     public func scanAllFolders() {
         homeData.folders.removeAll()
         Folder.documents!.subfolders.recursive.forEach { folder in

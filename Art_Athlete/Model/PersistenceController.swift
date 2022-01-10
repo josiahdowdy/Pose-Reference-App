@@ -8,7 +8,7 @@ struct PersistenceController {
     let container: NSPersistentCloudKitContainer?
 
     //Core Data does not need to be initialized like cloudkit data does.
-   // let coreDataContainer = NSPersistentContainer(name: "CoreData")
+   // let userDataContainer = NSPersistentContainer(name: "CoreData")
     
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "ArtAthlete")

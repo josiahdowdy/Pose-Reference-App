@@ -20,30 +20,91 @@ import Files
 
 @main
 struct pose_referenceApp: App {
-    @ObservedObject var prefs = GlobalVariables()
-    @ObservedObject var timeObject = TimerObject()
-    @ObservedObject var userObject = UserObject()
-    @ObservedObject var homeData = HomeViewModel()
+    @Environment(\.scenePhase) var scenePhase
+    let persistenceController = PersistenceController.shared
+//    @ObservedObject var prefs = GlobalVariables()
+//    @ObservedObject var timeObject = TimerObject() //@ObservedObject
+//    @ObservedObject var userObject = UserObject()
+//    @ObservedObject var homeData = HomeViewModel()
+
+    //@Environment(\.managedObjectContext) var context
+
+   // @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var userData: FetchedResults<UserData>
     
     //@State var url : URL = URL(fileURLWithPath: "nil")
     
-    
-    let persistenceController = PersistenceController.shared
+ //
 
-    @Environment(\.scenePhase) var scenePhase
+
+
+
+    /// ------------------
+ //   @Environment(\.colorScheme) var currentDarkLightMode
+
+//    @EnvironmentObject var prefs: GlobalVariables
+//    @EnvironmentObject var timeObject: TimerObject
+    //@EnvironmentObject var storedUserData: StoredUserData
+
+    // @StateObject var sharedData: SharedViewModel = SharedViewModel()
+
+    //@State var startSession = false
+
+    ///@AppStorage("isFirstLaunch2") var isFirstLaunch2 = true
+//
+
+    init() {
+        print("JD00 → *****************    1 ")
+    }
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     var body: some Scene {
         WindowGroup {
-            ContentView() //.preferredColorScheme(.dark) //isPresented: $prefs.showMainScreen
-                .environmentObject(prefs)
-                .environmentObject(timeObject)
-               // .environmentObject(storedUserData)
-                .environmentObject(homeData)
-                .environment(\.managedObjectContext, persistenceController.container!.viewContext) //Shares data in WHOLE project.
-            //  .environment(\.managedObjectContext, persistenceControllerCoreData.container.viewContext)
-            //Storing data.
-            //.environmentObject(persistenceController.container.viewContext)
+       //     if (prefs.loadContentView) { //@AppStorage("isFirstLaunch") var isFirstLaunch = true
+            
+            ContentView()
+                .environment(\.managedObjectContext, persistenceController.container!.viewContext)
+
+            //.preferredColorScheme(.dark)
+//                .environmentObject(prefs)
+//                .environmentObject(timeObject)
+//                .environmentObject(homeData)
+                 //Shares data in WHOLE project.
+        //    }
+//
+//            ZStack(alignment: Alignment.top) {
+//                if (prefs.introIsFinished) {
+//                    if (!prefs.startSession) {
+//                        HomeScreenButtonsView() //homeData: homeData
+//                            .environmentObject(prefs)
+//                            .environmentObject(timeObject)
+//                            .environmentObject(homeData)
+//                            .environment(\.managedObjectContext, persistenceController.container!.viewContext) //Shares data in WHOLE project.
+//
+//                        //.environmentObject(sharedData)
+//                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                           // .transition(AnyTransition.move(edge: .leading)).animation(.default)
+//                    }
+//                }
+//
+//                if prefs.startSession {
+//                    DrawingView(userData: userData, startSession: $startSession)
+//                        .environmentObject(prefs)
+//                        .environmentObject(timeObject)
+//                        .environmentObject(homeData)
+//                        .environment(\.managedObjectContext, persistenceController.container!.viewContext) //Shares data in WHOLE project.
+//
+//                }
+//            }
+//            .slideOverCard(isPresented: $prefs.showSettings, options: [.hideExitButton]) { //$isSettingsPresented
+//                ArtAthleteSettings() //(notifyMeAbout: $notifyMeAbout, playNotificationSounds: $playNotificationSounds, profileImageSize: $profileImageSize, sendReadReceipts: $sendReadReceipts)
+//                    .environmentObject(homeData)
+//                    .environmentObject(prefs)
+//            }
+//            .slideOverCard(isPresented: $prefs.showStats, options: [.hideExitButton]) {
+//                StatsView(userStats: userData)
+//                    .environmentObject(prefs)
+//            }
+
         }
         .onChange(of: scenePhase) { (newScenePhase) in
             switch newScenePhase {
@@ -64,6 +125,42 @@ struct pose_referenceApp: App {
     }
 
     //Start funcs.
+
+//    func createFolder() {
+//        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+//        let logsPath = documentsPath.appendingPathComponent("Poses")
+//        let docURL = URL(fileURLWithPath: documentsPath.path!)
+//
+//        let assetImages: [UIImage] = [
+//            UIImage(named: "dance.jpeg")!,
+//            UIImage(named: "jump.jpeg")!,
+//            UIImage(named: "standing.jpeg")!,
+//            UIImage(named: "dance2.jpeg")!,
+//            UIImage(named: "couple.jpeg")!
+//        ]
+//
+//        let imageNames: [String] = [
+//            "dance.jpeg",
+//            "jump.jpeg",
+//            "standing.jpeg",
+//            "dance2.jpeg",
+//            "couple.jpeg"
+//        ]
+//
+//        do {
+//            try FileManager.default.createDirectory(atPath: logsPath!.path, withIntermediateDirectories: true, attributes: nil)
+//
+//
+//            for i in 0...(assetImages.count-1) {
+//                print("hi")
+//                let dataPath = docURL.appendingPathComponent("Poses/\(imageNames[i])")
+//               // let data = assetImages[i].jpegData(compressionQuality: 1.0)
+//               // try data!.write(to: dataPath)
+//            }
+//        } catch let error as NSError {
+//            print(error)
+//        }
+//    }
    
     /*
     func createFolder() {

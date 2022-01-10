@@ -15,7 +15,7 @@ struct ToggleStates {
 struct StatsView: View {
     @Environment(\.colorScheme) var currentDarkLightMode
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var timeObject: TimerObject
+    //@EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     @EnvironmentObject var userObject: UserObject
 
@@ -31,6 +31,8 @@ struct StatsView: View {
     @State private var toggleStates = ToggleStates()
     @State private var topExpanded: Bool = false
     @State private var userStatsExpanded: Bool = false
+
+   // @Binding var showStats: Bool
 
     var userStats : FetchedResults<UserData>
 
@@ -61,7 +63,8 @@ struct StatsView: View {
                     Spacer()
 
                     Button(action: {
-                        prefs.showStats = false
+                       prefs.showStats = false
+
                     }, label: {
                         HStack {
                             Image(systemName: "x.circle.fill")

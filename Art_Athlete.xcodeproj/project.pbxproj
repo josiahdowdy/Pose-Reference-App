@@ -63,15 +63,6 @@
 		2C360DF8278509A500D84565 /* StartTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360DF7278509A500D84565 /* StartTutorial.swift */; };
 		2C360DF9278509A500D84565 /* StartTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360DF7278509A500D84565 /* StartTutorial.swift */; };
 		2C360DFA2786554900D84565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0D141B277D168A0097EADF /* Assets.xcassets */; };
-		2C360DFE2786557F00D84565 /* jump.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C360DFC2786556F00D84565 /* jump.png */; };
-		2C360E03278655BD00D84565 /* DancerCouple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360DFF278655BD00D84565 /* DancerCouple.jpeg */; };
-		2C360E04278655BD00D84565 /* DancerCouple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360DFF278655BD00D84565 /* DancerCouple.jpeg */; };
-		2C360E05278655BD00D84565 /* DancerMale.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E00278655BD00D84565 /* DancerMale.jpeg */; };
-		2C360E06278655BD00D84565 /* DancerMale.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E00278655BD00D84565 /* DancerMale.jpeg */; };
-		2C360E07278655BD00D84565 /* Dancer3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E01278655BD00D84565 /* Dancer3.jpeg */; };
-		2C360E08278655BD00D84565 /* Dancer3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E01278655BD00D84565 /* Dancer3.jpeg */; };
-		2C360E09278655BD00D84565 /* Dancer.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E02278655BD00D84565 /* Dancer.jpeg */; };
-		2C360E0A278655BD00D84565 /* Dancer.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2C360E02278655BD00D84565 /* Dancer.jpeg */; };
 		2C360E0D2787598A00D84565 /* PhotoAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360E0C2787598A00D84565 /* PhotoAssets.swift */; };
 		2C360E0E2787598A00D84565 /* PhotoAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360E0C2787598A00D84565 /* PhotoAssets.swift */; };
 		2C360E10278759C000D84565 /* PhotoAssetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C360E0F278759C000D84565 /* PhotoAssetData.swift */; };
@@ -177,7 +168,6 @@
 		2CEB6EDC273371A4001C6FEB /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C614DB72733372E0037BFA1 /* SideMenu.swift */; };
 		2CEB6EDD273371A7001C6FEB /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C614DB52733370E0037BFA1 /* BaseView.swift */; };
 		2CEB6EDE273371C1001C6FEB /* ArtAthlete (macOS).app in Resources */ = {isa = PBXBuildFile; fileRef = 2C614D9D272DE7100037BFA1 /* ArtAthlete (macOS).app */; };
-		2CED7E0B27271C3F00B99CAD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAC6636271CA435005066B5 /* ContentView.swift */; };
 		2CED7E102727531B00B99CAD /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED7E0F2727531B00B99CAD /* SettingsRow.swift */; };
 		2CED7E112727531B00B99CAD /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED7E0F2727531B00B99CAD /* SettingsRow.swift */; };
 		2CED7E142727534100B99CAD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CED7E132727534100B99CAD /* Color.swift */; };
@@ -312,12 +302,6 @@
 		2C2EA7FD253BF3B000D9A8C7 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		2C2EA837253CEC6500D9A8C7 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2C360DF7278509A500D84565 /* StartTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTutorial.swift; sourceTree = "<group>"; };
-		2C360DFC2786556F00D84565 /* jump.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump.png; sourceTree = "<group>"; };
-		2C360DFD2786556F00D84565 /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
-		2C360DFF278655BD00D84565 /* DancerCouple.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DancerCouple.jpeg; sourceTree = "<group>"; };
-		2C360E00278655BD00D84565 /* DancerMale.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DancerMale.jpeg; sourceTree = "<group>"; };
-		2C360E01278655BD00D84565 /* Dancer3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dancer3.jpeg; sourceTree = "<group>"; };
-		2C360E02278655BD00D84565 /* Dancer.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dancer.jpeg; sourceTree = "<group>"; };
 		2C360E0C2787598A00D84565 /* PhotoAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAssets.swift; sourceTree = "<group>"; };
 		2C360E0F278759C000D84565 /* PhotoAssetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAssetData.swift; sourceTree = "<group>"; };
 		2C55F914253FC86E000B6AFC /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
@@ -446,7 +430,6 @@
 		2C02D879253A2C5700D5F960 = {
 			isa = PBXGroup;
 			children = (
-				2C360DFB2786556F00D84565 /* Poses.imageset */,
 				2C02D884253A2C5700D5F960 /* Art_Athlete */,
 				2C13157227339A15001019BA /* watchOS */,
 				2C131565273386D9001019BA /* macOS */,
@@ -590,20 +573,6 @@
 			children = (
 			);
 			path = watchOS;
-			sourceTree = "<group>";
-		};
-		2C360DFB2786556F00D84565 /* Poses.imageset */ = {
-			isa = PBXGroup;
-			children = (
-				2C360DFC2786556F00D84565 /* jump.png */,
-				2C360DFD2786556F00D84565 /* Contents.json */,
-				2C360E01278655BD00D84565 /* Dancer3.jpeg */,
-				2C360DFF278655BD00D84565 /* DancerCouple.jpeg */,
-				2C360E00278655BD00D84565 /* DancerMale.jpeg */,
-				2C360E02278655BD00D84565 /* Dancer.jpeg */,
-			);
-			name = Poses.imageset;
-			path = Art_Athlete/Assets.xcassets/Poses.imageset;
 			sourceTree = "<group>";
 		};
 		2C360E0B2787597700D84565 /* PhotosAssets */ = {
@@ -1005,11 +974,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C360E05278655BD00D84565 /* DancerMale.jpeg in Resources */,
-				2C360E07278655BD00D84565 /* Dancer3.jpeg in Resources */,
-				2C360E09278655BD00D84565 /* Dancer.jpeg in Resources */,
-				2C360DFE2786557F00D84565 /* jump.png in Resources */,
-				2C360E03278655BD00D84565 /* DancerCouple.jpeg in Resources */,
 				2C360DFA2786554900D84565 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1032,11 +996,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C360E06278655BD00D84565 /* DancerMale.jpeg in Resources */,
-				2C360E08278655BD00D84565 /* Dancer3.jpeg in Resources */,
-				2C360E0A278655BD00D84565 /* Dancer.jpeg in Resources */,
 				2C73F8FB277D1B100024BA0B /* Assets.xcassets in Resources */,
-				2C360E04278655BD00D84565 /* DancerCouple.jpeg in Resources */,
 				2CEB6EDE273371C1001C6FEB /* ArtAthlete (macOS).app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1194,7 +1154,6 @@
 				2C8FDA1C2787771A00B09F60 /* FolderAssetsRowView.swift in Sources */,
 				2C064307272C43EC001DF985 /* ButtonsTestView.swift in Sources */,
 				2CDF0978274C814300C284D6 /* FoldersArrayModel.swift in Sources */,
-				2CED7E0B27271C3F00B99CAD /* ContentView.swift in Sources */,
 				2C147D1D272DA15600AF1E71 /* FoldersView.swift in Sources */,
 				2C663A65271E21730097AEFE /* ArtAthlete.xcdatamodeld in Sources */,
 				2CF9E387274AF9A8009F77E1 /* PhotosEntity+CoreDataProperties.swift in Sources */,

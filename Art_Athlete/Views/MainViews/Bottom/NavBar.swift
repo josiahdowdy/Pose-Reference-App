@@ -12,10 +12,10 @@ struct NavBar: View {
     @Environment(\.managedObjectContext) var context
 
     @Environment(\.colorScheme) var currentDarkLightMode
-    @EnvironmentObject var timeObject: TimerObject
+    //@EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     let persistenceController = PersistenceController.shared
-    //var testData : FetchedResults<UserData>
+    //var userData : FetchedResults<UserData>
 
     @AppStorage("showNavBar") var showNavBar = true
     
@@ -39,8 +39,8 @@ struct NavBar: View {
         if (prefs.numberTimer) {
             Text("\(timeLeft, specifier: "%.0f")")
             //Text("\(timeLeft)")
-                .onReceive(timeObject.$timeDouble) { input in
-                    timeLeft = timeObject.timeChosen - timeObject.timeDouble
+                .onReceive(prefs.$timeDouble) { input in
+                    timeLeft = prefs.timeChosen - prefs.timeDouble
                 }
         }
 
@@ -73,9 +73,9 @@ struct NavBar: View {
                     print("\n jo: \(prefs.currentIndex + 1) = \(prefs.sPoseCount) ")
 
                     if ((prefs.currentIndex + 1) == (prefs.sPoseCount)) { ///End session if photos are at end.
-                        timeObject.timeDouble = 0.0
-                        timeObject.progressValue = 0.0
-                        timeObject.isTimerRunning.toggle()
+                        prefs.timeDouble = 0.0
+                        prefs.progressValue = 0.0
+                        prefs.isTimerRunning = false
                         //self.startSession = false
                         endSession()
                     } else { ///Skip photo.
@@ -87,10 +87,10 @@ struct NavBar: View {
                         } else { ///Only use if using Unsplash photos.
                             // PhotoView(prefs: _prefs, userLink: $prefs.portfolioURL).loadPhoto()
                         }
-                        timeObject.currentTime = 0
-                        timeObject.timeDouble = 0.0
-                        timeObject.progressValue = 0.0
-                        timeObject.startTime = Date()
+                        prefs.currentTime = 0
+                        prefs.timeDouble = 0.0
+                        prefs.progressValue = 0.0
+                        prefs.startTime = Date()
                     }
                 }) {
                     Image(systemName: "arrowshape.turn.up.right")
@@ -103,16 +103,17 @@ struct NavBar: View {
                 //PAUSE TIMER
                 Button(action: {
                     print("Pause")
-                    if timeObject.isTimerRunning {
+                    if prefs.isTimerRunning {
                         // stop UI updates
                         pause.toggle()
-                        TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer() //, startSession: $startSession
+                       // TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
+                        TimerView(prefs: _prefs).stopTimer() //, startSession: $startSession
                     } else {
                         pause.toggle()
                         // start UI updates
-                        TimerView(timeObject: _timeObject, prefs: _prefs).startTimer() //, startSession: $startSession
+                        TimerView(prefs: _prefs).startTimer() //, startSession: $startSession
                     }
-                    timeObject.isTimerRunning.toggle()
+                    prefs.isTimerRunning.toggle()
                 }) {
                     Image(systemName: pause ? "playpause.fill" : "playpause") //Text("Pause")
                         .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
@@ -170,11 +171,13 @@ struct NavBar: View {
 
     //MARK: - FUNCTIONS
     func endSession(){
-        TimerView(timeObject: _timeObject, prefs: _prefs).updateAtEndOfSession(timeChosen: timeObject.timeChosen, context: context) // timeObject: _timeObject, 
+        //TimerView(timeObject: _timeObject, prefs: _prefs)
+        TimerView(prefs: _prefs).updateAtEndOfSession(timeChosen: prefs.timeChosen, context: context) // timeObject: _timeObject,
         pause = false
-        self.timeObject.endSessionBool.toggle()
+        self.prefs.endSessionBool.toggle()
         prefs.disableSkip.toggle()
-        TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
+        TimerView(prefs: _prefs).stopTimer()
+        //TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
         prefs.randomImages.photoArray.removeAll()
         prefs.currentIndex = 0
         prefs.poseCount = 0
@@ -186,6 +189,9 @@ struct NavBar: View {
         
         prefs.startSession = false
        // persistenceController.save()
+
+        prefs.isTimerRunning = false
+        persistenceController.save()
     }
 
 //    func updateAtEndOfSession2(timeChosen: Double){
