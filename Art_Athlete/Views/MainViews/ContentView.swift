@@ -27,8 +27,6 @@ struct ContentView: View {
     @State var profileImageSize : Bool = true
     @State var sendReadReceipts : Bool = true
 
-
-
     @Environment(\.managedObjectContext) var context
     @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var testData: FetchedResults<UserData>
 
@@ -36,6 +34,34 @@ struct ContentView: View {
     @EnvironmentObject var homeData: HomeViewModel// = HomeViewModel()
 
     @State var startSession = false
+
+    @AppStorage("isFirstLaunch") var isFirstLaunch = true
+
+    var assetImages: [UIImage] = [
+        UIImage(named: "dance.jpeg")!,
+        UIImage(named: "jump.jpeg")!,
+        UIImage(named: "standing.jpeg")!,
+        UIImage(named: "dance2.jpeg")!,
+        UIImage(named: "couple.jpeg")!
+    ]
+
+    var imageNames: [String] = [
+        "dance.jpeg",
+        "jump.jpeg",
+        "standing.jpeg",
+        "dance2.jpeg",
+        "couple.jpeg",
+    ]
+
+    init() {
+        //isFirstLaunch = true //For debugging.
+        print("JD00 → isFirstLaunch \(isFirstLaunch)")
+        if (isFirstLaunch) {
+            createFolder()
+            //  copyAssetImages() //imageName: <#T##String#>, image: <#T##Data#>
+            isFirstLaunch = false
+        }
+    }
 
     
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
@@ -71,8 +97,23 @@ struct ContentView: View {
     } //End View
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     //MARK: FUNCTIONS
-    
+    func createFolder() {
+        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+        let logsPath = documentsPath.appendingPathComponent("Poses")
+        let docURL = URL(fileURLWithPath: documentsPath.path!)
 
+        do {
+            try FileManager.default.createDirectory(atPath: logsPath!.path, withIntermediateDirectories: true, attributes: nil)
+
+            for i in 0...(assetImages.count-1) {
+                    let dataPath = docURL.appendingPathComponent("Poses/\(imageNames[i])")
+                    let data = assetImages[i].jpegData(compressionQuality: 1.0)
+                    try data!.write(to: dataPath)
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
 } //End Struct.
 
 

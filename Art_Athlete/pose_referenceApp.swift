@@ -32,18 +32,6 @@ struct pose_referenceApp: App {
 
     @Environment(\.scenePhase) var scenePhase
 
-    @AppStorage("isFirstLaunch") var isFirstLaunch = true
-
-//    init() {
-//        isFirstLaunch = true //For debugging.
-//        print("JD00 → isFirstLaunch \(isFirstLaunch)")
-//        if (isFirstLaunch) {
-//            saveImage() //imageName: <#T##String#>, image: <#T##Data#>
-//            // isFirstLaunch = false
-//        }
-//    }
-    
-
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     var body: some Scene {
         WindowGroup {
@@ -76,50 +64,66 @@ struct pose_referenceApp: App {
     }
 
     //Start funcs.
-    func saveImage() { //imageName: String, image: Data
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+   
+    /*
+    func createFolder() {
+        //create directory
+        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+        let logsPath = documentsPath.appendingPathComponent("Poses")
+        let docURL = URL(fileURLWithPath: documentsPath.path!)
+        //let docURL = URL(fileURLWithPath: documentsDirectory)
 
-        //print("1. JD00 → documentsDirectory \(documentsDirectory)")
+        do {
+            try FileManager.default.createDirectory(atPath: logsPath!.path, withIntermediateDirectories: true, attributes: nil)
 
-//        let bundlePath = Bundle.main.bundlePath
-//        print("4. JD00 → bundlePath \(bundlePath)")
+            if let fileURL = Bundle.main.url(forResource: "jump", withExtension: "png") {
+               // let image = UIImage(contentsOfFile: fileURL.path)
+                let dataPath = docURL.appendingPathComponent("Poses/jump")
+
+                let data = img1! //.jpegData(compressionQuality: 1.0)
+               // try data!.write(to: dataPath)
+
+            }
+
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+
+
+
+
+
+    func copyAssetImages() { //imageName: String, image: Data
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let docURL = URL(fileURLWithPath: documentsDirectory)//URL(string: documentsDirectory)!
+        //       let dataPath = docURL.appendingPathComponent("Poses")
+
+        //guard let documentsDirectory2 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
 
         if let fileURL = Bundle.main.url(forResource: "jump", withExtension: "png") {
+            // if let fileURL = Bundle.main.url(forResource: "PhotoPack", withExtension: "") {
             print("2. JD00 → fileURL \(fileURL)")
-            // we found the file in our bundle!
+            let image = UIImage(contentsOfFile: fileURL.path)
             let imageName = fileURL.lastPathComponent
-            let image = fileURL.dataRepresentation
-            let fileName = "Poses"//imageName
-            let fileURL = documentsDirectory.appendingPathComponent(fileName)
+            // if !FileManager.default.fileExists(atPath: fileURL.path) {
+            let folderAndFileName = "Poses/".appending(imageName)
+            let dataPath = docURL.appendingPathComponent(folderAndFileName)
 
-           // if !FileManager.default.fileExists(atPath: fileURL.path) {
-                do {
-                    try FileManager.default.createDirectory(atPath: fileURL.path, withIntermediateDirectories: true, attributes: nil)
-                     //URL(string: fileURL.path)!
-                } catch {
-                    print(error.localizedDescription)
-                }
-           // }
+            do {
+                let data = image!.jpegData(compressionQuality: 1.0)
+                try data!.write(to: dataPath) //writePath)
 
-            print("3. JD00 → fileURL \(fileURL.path)")
-
-          //  if fileURL.startAccessingSecurityScopedResource() {
-           // print("4. JD00 → Security allowed.")
-                do {
-                    //try image.write(to: fileURL)
-                    let folder = try Folder(path: fileURL.path)
-                    try image.write(to: URL(string: folder.path)!) 
-                } catch let error {
-                    print("3. JD00: error saving file with error", error.localizedDescription)
-                }
-           // }
-           // fileURL.stopAccessingSecurityScopedResource()
-
+                print("\n5. JD00 → ACCESS GRANTED ******************\n")
+            } catch let error {
+                print("5. JD00: error saving file with error", error.localizedDescription)
+            }
         } else {
             print("2. JD00: NOT FOUND")
         }
     }
-    
+    */
 }
     
     // MARK: - Core Data Saving support
