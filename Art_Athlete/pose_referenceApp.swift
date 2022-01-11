@@ -1,114 +1,27 @@
-/*
- Josiah - Oct 29, 2020
- 1st file called by program.
- Loads HomeView.
- Initializes the global objects: for GlobalVariables, TimerObject, & UserObject
- */
-
-
-//TODO: 
-///When the app first launches, load all the photos…
-///
-///When the user deletes photos. Delete them from the bookmark array.
-///
-
-/*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
+/* Josiah - Oct 29, 2020 */
 import SwiftUI
-//import UIKit
-//import CoreData
-import Files
 
 @main
 struct pose_referenceApp: App {
     @Environment(\.scenePhase) var scenePhase
+    @ObservedObject var prefs = GlobalVariables()
     let persistenceController = PersistenceController.shared
-//    @ObservedObject var prefs = GlobalVariables()
-//    @ObservedObject var timeObject = TimerObject() //@ObservedObject
-//    @ObservedObject var userObject = UserObject()
-//    @ObservedObject var homeData = HomeViewModel()
+    @AppStorage("isFirstLaunch") public var isFirstLaunch = true
 
-    //@Environment(\.managedObjectContext) var context
-
-   // @FetchRequest(entity: UserData.entity(), sortDescriptors: []) var userData: FetchedResults<UserData>
-    
-    //@State var url : URL = URL(fileURLWithPath: "nil")
-    
- //
-
-
-
-
-    /// ------------------
- //   @Environment(\.colorScheme) var currentDarkLightMode
-
-//    @EnvironmentObject var prefs: GlobalVariables
-//    @EnvironmentObject var timeObject: TimerObject
-    //@EnvironmentObject var storedUserData: StoredUserData
-
-    // @StateObject var sharedData: SharedViewModel = SharedViewModel()
-
-    //@State var startSession = false
-
-    ///@AppStorage("isFirstLaunch2") var isFirstLaunch2 = true
-//
-
-    init() {
-        print("JD00 → *****************    1 ")
-    }
+   // init() { print("JD00 → *****************    1 ") }
 
     /*.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~.*/
     var body: some Scene {
         WindowGroup {
-       //     if (prefs.loadContentView) { //@AppStorage("isFirstLaunch") var isFirstLaunch = true
-            
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container!.viewContext)
+                .onAppear(perform: createFolder)
+                .environmentObject(prefs)
+                .environment(\.managedObjectContext, persistenceController.container!.viewContext)//Shares data in WHOLE project.
 
             //.preferredColorScheme(.dark)
-//                .environmentObject(prefs)
-//                .environmentObject(timeObject)
-//                .environmentObject(homeData)
-                 //Shares data in WHOLE project.
-        //    }
-//
-//            ZStack(alignment: Alignment.top) {
-//                if (prefs.introIsFinished) {
-//                    if (!prefs.startSession) {
-//                        HomeScreenButtonsView() //homeData: homeData
-//                            .environmentObject(prefs)
-//                            .environmentObject(timeObject)
-//                            .environmentObject(homeData)
-//                            .environment(\.managedObjectContext, persistenceController.container!.viewContext) //Shares data in WHOLE project.
-//
-//                        //.environmentObject(sharedData)
-//                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                           // .transition(AnyTransition.move(edge: .leading)).animation(.default)
-//                    }
-//                }
-//
-//                if prefs.startSession {
-//                    DrawingView(userData: userData, startSession: $startSession)
-//                        .environmentObject(prefs)
-//                        .environmentObject(timeObject)
-//                        .environmentObject(homeData)
-//                        .environment(\.managedObjectContext, persistenceController.container!.viewContext) //Shares data in WHOLE project.
-//
-//                }
-//            }
-//            .slideOverCard(isPresented: $prefs.showSettings, options: [.hideExitButton]) { //$isSettingsPresented
-//                ArtAthleteSettings() //(notifyMeAbout: $notifyMeAbout, playNotificationSounds: $playNotificationSounds, profileImageSize: $profileImageSize, sendReadReceipts: $sendReadReceipts)
-//                    .environmentObject(homeData)
-//                    .environmentObject(prefs)
-//            }
-//            .slideOverCard(isPresented: $prefs.showStats, options: [.hideExitButton]) {
-//                StatsView(userStats: userData)
-//                    .environmentObject(prefs)
-//            }
-
         }
         .onChange(of: scenePhase) { (newScenePhase) in
             switch newScenePhase {
-                
             case .background:
                 print("Scene is in background")
                 persistenceController.save()
@@ -125,104 +38,106 @@ struct pose_referenceApp: App {
     }
 
     //Start funcs.
-
-//    func createFolder() {
-//        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
-//        let logsPath = documentsPath.appendingPathComponent("Poses")
-//        let docURL = URL(fileURLWithPath: documentsPath.path!)
-//
-//        let assetImages: [UIImage] = [
-//            UIImage(named: "dance.jpeg")!,
-//            UIImage(named: "jump.jpeg")!,
-//            UIImage(named: "standing.jpeg")!,
-//            UIImage(named: "dance2.jpeg")!,
-//            UIImage(named: "couple.jpeg")!
-//        ]
-//
-//        let imageNames: [String] = [
-//            "dance.jpeg",
-//            "jump.jpeg",
-//            "standing.jpeg",
-//            "dance2.jpeg",
-//            "couple.jpeg"
-//        ]
-//
-//        do {
-//            try FileManager.default.createDirectory(atPath: logsPath!.path, withIntermediateDirectories: true, attributes: nil)
-//
-//
-//            for i in 0...(assetImages.count-1) {
-//                print("hi")
-//                let dataPath = docURL.appendingPathComponent("Poses/\(imageNames[i])")
-//               // let data = assetImages[i].jpegData(compressionQuality: 1.0)
-//               // try data!.write(to: dataPath)
-//            }
-//        } catch let error as NSError {
-//            print(error)
-//        }
-//    }
-   
-    /*
     func createFolder() {
-        //create directory
-        let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
-        let logsPath = documentsPath.appendingPathComponent("Poses")
-        let docURL = URL(fileURLWithPath: documentsPath.path!)
-        //let docURL = URL(fileURLWithPath: documentsDirectory)
+      //  isFirstLaunch = true //MARK: TRUE for testing ONLY.
+        if (isFirstLaunch) {
+            let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
+            let logsPath = documentsPath.appendingPathComponent("Poses")
+            let landscapesPath = documentsPath.appendingPathComponent("Landscapes")
+            let animalPath = documentsPath.appendingPathComponent("Animals")
+            let docURL = URL(fileURLWithPath: documentsPath.path!)
 
-        do {
-            try FileManager.default.createDirectory(atPath: logsPath!.path, withIntermediateDirectories: true, attributes: nil)
+            let poseImages: [UIImage] = [
+                UIImage(named: "dance.jpeg")!,
+                UIImage(named: "jump.jpeg")!,
+                UIImage(named: "standing.jpeg")!,
+                UIImage(named: "dance2.jpeg")!,
+                UIImage(named: "couple.jpeg")!
+            ]
 
-            if let fileURL = Bundle.main.url(forResource: "jump", withExtension: "png") {
-               // let image = UIImage(contentsOfFile: fileURL.path)
-                let dataPath = docURL.appendingPathComponent("Poses/jump")
+            let poseNames: [String] = [
+                "dance.jpeg",
+                "jump.jpeg",
+                "standing.jpeg",
+                "dance2.jpeg",
+                "couple.jpeg"
+            ]
 
-                let data = img1! //.jpegData(compressionQuality: 1.0)
-               // try data!.write(to: dataPath)
+            let landscapeImages: [UIImage] = [
+                UIImage(named: "China.jpeg")!,
+                UIImage(named: "Hawaii.jpeg")!,
+                UIImage(named: "NewZealand.jpeg")!,
+                UIImage(named: "NewZealand2.jpeg")!,
+                UIImage(named: "UK.jpeg")!
+            ]
 
-            }
+            let landscapeNames: [String] = [
+                "China.jpeg",
+                "Hawaii.jpeg",
+                "NewZealand.jpeg",
+                "NewZealand2.jpeg",
+                "UK.jpeg"
+            ]
 
-        } catch let error as NSError {
-            print(error)
-        }
-    }
+            let animalImages: [UIImage] = [
+                UIImage(named: "cat.jpeg")!,
+                UIImage(named: "dog_running.jpeg")!,
+                UIImage(named: "dogs.jpeg")!,
+                UIImage(named: "wolf.jpeg")!,
+                UIImage(named: "wolfpack.jpeg")!
+            ]
 
-
-
-
-
-    func copyAssetImages() { //imageName: String, image: Data
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        let docURL = URL(fileURLWithPath: documentsDirectory)//URL(string: documentsDirectory)!
-        //       let dataPath = docURL.appendingPathComponent("Poses")
-
-        //guard let documentsDirectory2 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-
-        if let fileURL = Bundle.main.url(forResource: "jump", withExtension: "png") {
-            // if let fileURL = Bundle.main.url(forResource: "PhotoPack", withExtension: "") {
-            print("2. JD00 → fileURL \(fileURL)")
-            let image = UIImage(contentsOfFile: fileURL.path)
-            let imageName = fileURL.lastPathComponent
-            // if !FileManager.default.fileExists(atPath: fileURL.path) {
-            let folderAndFileName = "Poses/".appending(imageName)
-            let dataPath = docURL.appendingPathComponent(folderAndFileName)
+            let animalNames: [String] = [
+                "cat.jpeg",
+                "dog_running.jpeg",
+                "dogs.jpeg",
+                "wolf.jpeg",
+                "wolfpack.jpeg"
+            ]
 
             do {
-                let data = image!.jpegData(compressionQuality: 1.0)
-                try data!.write(to: dataPath) //writePath)
+                try FileManager.default.createDirectory(atPath: animalPath!.path, withIntermediateDirectories: true, attributes: nil)
 
-                print("\n5. JD00 → ACCESS GRANTED ******************\n")
-            } catch let error {
-                print("5. JD00: error saving file with error", error.localizedDescription)
+                for i in 0...(animalImages.count-1) {
+                    prefs.countingTest += 1
+                    print("JD00: \(prefs.countingTest)")
+                    let dataPath = docURL.appendingPathComponent("Animals/\(animalNames[i])")
+                    let data = animalImages[i].jpegData(compressionQuality: 1.0)
+                    try data!.write(to: dataPath)
+                }
+
+                try FileManager.default.createDirectory(atPath: landscapesPath!.path, withIntermediateDirectories: true, attributes: nil)
+
+                for i in 0...(landscapeImages.count-1) {
+                    prefs.countingTest += 1
+                    print("JD00: \(prefs.countingTest)")
+                    let dataPath = docURL.appendingPathComponent("Landscapes/\(landscapeNames[i])")
+                    let data = landscapeImages[i].jpegData(compressionQuality: 1.0)
+                    try data!.write(to: dataPath)
+                }
+
+                try FileManager.default.createDirectory(atPath: logsPath!.path, withIntermediateDirectories: true, attributes: nil)
+
+                for i in 0...(poseImages.count-1) {
+                    prefs.countingTest += 1
+                    print("JD00: \(prefs.countingTest)")
+                    let dataPath = docURL.appendingPathComponent("Poses/\(poseNames[i])")
+                    let data = poseImages[i].jpegData(compressionQuality: 1.0)
+                    try data!.write(to: dataPath)
+                }
+
+
+
+
+            } catch let error as NSError {
+                print(error)
             }
-        } else {
-            print("2. JD00: NOT FOUND")
+            isFirstLaunch = false
         }
     }
-    */
 }
     
+
     // MARK: - Core Data Saving support
     
     //    func saveContext () {

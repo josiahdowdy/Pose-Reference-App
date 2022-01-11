@@ -171,13 +171,11 @@ struct NavBar: View {
 
     //MARK: - FUNCTIONS
     func endSession(){
-        //TimerView(timeObject: _timeObject, prefs: _prefs)
         TimerView(prefs: _prefs).updateAtEndOfSession(timeChosen: prefs.timeChosen, context: context) // timeObject: _timeObject,
         pause = false
         self.prefs.endSessionBool.toggle()
         prefs.disableSkip.toggle()
         TimerView(prefs: _prefs).stopTimer()
-        //TimerView(timeObject: _timeObject, prefs: _prefs).stopTimer()
         prefs.randomImages.photoArray.removeAll()
         prefs.currentIndex = 0
         prefs.poseCount = 0
@@ -186,9 +184,13 @@ struct NavBar: View {
         prefs.localPhotos = false
         prefs.arrayOfURLStrings.removeAll()
         prefs.arrayOfFolderNames.removeAll()
-        
         prefs.startSession = false
-       // persistenceController.save()
+
+        ///Time management.
+        prefs.currentTime = 0
+        prefs.timeDouble = 0.0
+        prefs.progressValue = 0.0
+        prefs.startTime = Date()
 
         prefs.isTimerRunning = false
         persistenceController.save()

@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct toggleSwitch: View {
-    @EnvironmentObject var prefs: GlobalVariables
+   
     @AppStorage("isRandom") var isRandom = true
 
     var body: some View {
-        Toggle("Random Order", isOn: $isRandom)
+        if !(UIDevice.current.userInterfaceIdiom == .mac) {
+            Toggle("Random Order", isOn: $isRandom)
+        } else {
+            Button {
+                isRandom.toggle()
+            } label: {
+                HStack {
+                    Image(systemName: isRandom ? "checkmark.square" : "square")
+                    Text("Random Order")
+                }
+
+                
+
+
+            }
+        }
+
+
+
     }
 }
 

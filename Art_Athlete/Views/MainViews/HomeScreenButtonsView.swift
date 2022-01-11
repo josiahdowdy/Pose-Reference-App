@@ -56,9 +56,7 @@ struct HomeScreenButtonsView: View {
      \`@_@'/  ))
      {_:Y:.}_//
      ----------{_}^-'{_}----------*/
-    init() {
-        print("JD00 → *****************    2. HomeScreenButtonsView ")
-    }
+    //init() { print("JD00 → *****************    2. HomeScreenButtonsView ") }
 
     //MARK: - VIEW
     var body: some View {
@@ -128,8 +126,8 @@ struct HomeScreenButtonsView: View {
             } // End if.
         } //NavigationView
         .onAppear(perform:
-                    createFolder
-                    //scanAllFolders
+                   // createFolder
+                    scanAllFolders
         )
     } //End UI.
 

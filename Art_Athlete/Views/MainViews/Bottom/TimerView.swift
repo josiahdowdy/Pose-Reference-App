@@ -3,17 +3,11 @@ import SwiftUI
 import CoreData
 
 struct TimerView: View{
-    //@EnvironmentObject var timeObject: TimerObject
     @EnvironmentObject var prefs: GlobalVariables
     let persistenceController = PersistenceController.shared
     @Environment(\.managedObjectContext) var context
-   // NSManagedObjectContext
 
-    @FetchRequest(
-        entity: UserData.entity(), sortDescriptors: []
-        //sortDescriptors: [NSSortDescriptor(keyPath: \UserData.countPoses, ascending: true)]
-    )
-    var userDataFetched : FetchedResults<UserData>
+    @FetchRequest( entity: UserData.entity(), sortDescriptors: [] ) var userDataFetched : FetchedResults<UserData>
 
     //@State var userData = UserData()
 
@@ -25,8 +19,6 @@ struct TimerView: View{
     @State private var isActive = true
 
     //@State var userDataObject = UserData() //(context: context)
-
-    //@State var userDataObject = UserData()//UserData(context: context)
     //-------------END VARIABLES------------------------------------------------------------
     
     
@@ -61,7 +53,9 @@ struct TimerView: View{
                         } else {
                             prefs.poseCount += 1
                             prefs.timeDrawn += Int16(prefs.timeChosen)
-                            updateAtEndOfSession(timeChosen: prefs.timeChosen, context: context) //Only done at end of session. And called when quit.
+                            updateAtEndOfSession(timeChosen: prefs.timeChosen, context: context)
+
+                             //Only done at end of session. And called when quit.
                             endSession()
                         } //End else
                     } //End else if
@@ -85,7 +79,7 @@ struct TimerView: View{
         prefs.currentIndex += 1
         prefs.sURL = prefs.arrayOfURLStrings[self.prefs.currentIndex]
         prefs.poseCount += 1
-        prefs.timeDrawn += Int16(prefs.timeChosen)
+        prefs.timeDrawn += Int16(prefs.timeChosen) //MARK: *
         //self.countPoses += 1
         //self.timeDrawn += Int16(timeObject.timeChosen)
     }
@@ -114,24 +108,25 @@ struct TimerView: View{
     func updateAtEndOfSession(timeChosen: Double, context: NSManagedObjectContext){ //NSManagedObjectContext
         //self.countPoses += 1
         //self.timeDrawn += Int16(timeChosen)
+        if (prefs.poseCount > 0) {
+            let userData = UserData(context: context)
+            userData.date = Date()
+            userData.id = UUID()
+            userData.countPoses = prefs.poseCount
+            userData.timeDrawn = prefs.timeDrawn
 
-        let userData = UserData(context: context)
-        userData.date = Date()
-        userData.id = UUID()
-        userData.countPoses = prefs.poseCount
-        userData.timeDrawn = prefs.timeDrawn
+            // userDataFetched[userDataFetched.count - 1].countPoses += 1
 
-       // userDataFetched[userDataFetched.count - 1].countPoses += 1
-
-        do{
-            try context.save()
+            do{
+                try context.save()
+            }
+            catch{
+                alertMsg = error.localizedDescription
+                showAlert.toggle()
+                print("JD500 error")
+            }
+            print("JD500: Saved user data.")
         }
-        catch{
-            alertMsg = error.localizedDescription
-            showAlert.toggle()
-            print("JD500 error")
-        }
-        print("JD500: Saved user data.")
     }
 
 //    private func createUserData() {

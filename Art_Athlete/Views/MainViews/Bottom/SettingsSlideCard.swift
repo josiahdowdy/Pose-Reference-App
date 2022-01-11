@@ -49,6 +49,8 @@ struct ArtAthleteSettings : View {
         Form() {
             Section(header: Text("Options")) {
                 toggleSwitch()
+
+
                 startTutorial()
             }
 
@@ -88,6 +90,12 @@ struct ArtAthleteSettings : View {
                     MailComposeViewController(toRecipients: ["artathlete@icloud.com"], mailBody: "Art Athlete App Support") {
                         // Did finish action
                     }
+                }
+
+                Button {
+                    openURL(URL(string: "https://www.apple.com")!)
+                } label: {
+                    Text("Visit Website")
                 }
             } //.foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
         } //End form
