@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CircularCheckBoxView: View {
+    @EnvironmentObject var prefs: GlobalVariables
     @Binding var checked : Bool
 
     @Binding var trimVal : CGFloat
@@ -18,23 +19,39 @@ struct CircularCheckBoxView: View {
     }
     var body: some View {
         ZStack {
-            Circle()
-                .trim(from: 0, to: trimVal)
-                .stroke(style: StrokeStyle(lineWidth: 2))
+            if !(prefs.errorNoPhotosSelected) {
+                Circle()
+                    .trim(from: 0, to: trimVal)
+                    .stroke(style: StrokeStyle(lineWidth: 2))
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(self.checked ? Color.green : Color.gray)
+                    .overlay(
+                        Circle()
+                            .fill(self.checked ? Color.green : Color.gray.opacity(0.2))
+                            .frame(width: 20, height: 20)
+                    )
+            }
+            else {
+                Circle()
+                    .trim(from: 0, to: trimVal)
+                    .stroke(style: StrokeStyle(lineWidth: 2))
                 //.frame(width: 70, height: 70)
-                .frame(width: 50, height: 50)
-                .foregroundColor(self.checked ? Color.green : Color.gray)
-                .overlay(
-                    Circle()
-                        .fill(self.checked ? Color.green : Color.gray.opacity(0.2))
-                        //.frame(width: 60, height: 60))
-                        .frame(width: 40, height: 40))
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(self.checked ? Color.green : Color.gray)
+                //  .foregroundColor(prefs.errorNoPhotosSelected ? Color.red : Color.white)
+                    .overlay(
+                        Circle()
+                           // .fill(Color.red)
+                            .fill(prefs.errorNoPhotosSelected ? Color.red : Color.gray.opacity(0.2))
+                        //.fill(self.checked ? Color.green : Color.gray.opacity(0.2))
+                            .frame(width: 20, height: 20)
+                    )
+            }
+
             if checked {
                 Image(systemName: "checkmark")
                     .foregroundColor(Color.white)
             }
-
-
         }
     }
 }

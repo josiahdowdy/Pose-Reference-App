@@ -1,20 +1,15 @@
-//
-//  timePickerView.swift
-//  pose-reference
-//
-//  Created by josiah on 2021-10-19.
-//
-
+// timePickerView.swift - pose-reference - Created by josiah on 2021-10-19.
+ 
 import SwiftUI
 
 struct timePickerView: View {
     @EnvironmentObject var prefs: GlobalVariables
     
     var body: some View {
-        
-
         HStack {
-            Text("Length:").padding(10)
+            Image(systemName: "clock")
+            Text("Time:")//.padding(10)
+                .padding(.trailing, 8)
             // Length time of pose
             Picker("Numbers", selection: $prefs.selectorIndexTime) {
                 ForEach(0 ..< prefs.time.count) { index in

@@ -23,7 +23,7 @@ struct MultipleSelectRow: View {
     @Environment(\.colorScheme) var currentDarkLightMode
    // @Environment(\.managedObjectContext) var context
     @EnvironmentObject var prefs: GlobalVariables
-    @EnvironmentObject var sharedData: SharedViewModel
+   // @EnvironmentObject var sharedData: SharedViewModel
    // @AppStorage("selectedFolders") var selectedFolders: [String] = [] //Store the last selected photos here.
 
     @EnvironmentObject var homeData: HomeViewModel
@@ -59,6 +59,7 @@ struct MultipleSelectRow: View {
 
         VStack {
             ShowAllFolders()
+                
         }
        // .onAppear(perform: scanAllFolders)
 //        .toolbar {
@@ -85,27 +86,32 @@ struct MultipleSelectRow: View {
             Text("Photos").font(.title3).foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
 
             ZStack {
-
-            LoadFoldersButtoniPad(needRefresh: $needRefresh)
-                .environmentObject(homeData)
-                .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-                //.background(rectReader())
-                .padding(20)
-//                .clipShape(Circle())
-//                .overlay(
-//                    Circle()
-//                        .stroke(.green)
-//                        .scaleEffect(animationAmount)
-//                        .opacity(2 - animationAmount)
-//                        .animation(
-//                            .easeInOut(duration: 1)
-//                                .repeatForever(autoreverses: false),
-//                            value: animationAmount
-//                        )
-//                )
-//                .onAppear {
-//                    animationAmount = 2
-//                }
+                if !(prefs.errorNoPhotosSelected) {
+                    LoadFoldersButtoniPad(needRefresh: $needRefresh)
+                        .environmentObject(homeData)
+                        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+                        .padding(20)
+                } else {
+                    LoadFoldersButtoniPad(needRefresh: $needRefresh)
+                        .environmentObject(homeData)
+                        .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
+                        .padding(20)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle()
+                                            .stroke(.green)
+                                            .scaleEffect(animationAmount)
+                                            .opacity(2 - animationAmount)
+                                            .animation(
+                                                .easeInOut(duration: 1)
+                                                    .repeatForever(autoreverses: false),
+                                                value: animationAmount
+                                            )
+                                    )
+                                    .onAppear {
+                                        animationAmount = 2
+                                    }
+                }
             }
 
             Spacer()

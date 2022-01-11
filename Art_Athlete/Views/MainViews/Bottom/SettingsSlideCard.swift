@@ -19,6 +19,7 @@ struct ArtAthleteSettings : View {
     //@Binding var sendReadReceipts : Bool
 
     @State private var showingMail = false
+    @Environment(\.openURL) var openURL
 
     var body: some View {
         VStack {
@@ -93,7 +94,7 @@ struct ArtAthleteSettings : View {
                 }
 
                 Button {
-                    openURL(URL(string: "https://www.apple.com")!)
+                    openURL(URL(string: "https://josiahdowdy.github.io/Art-Athlete/")!)
                 } label: {
                     Text("Visit Website")
                 }

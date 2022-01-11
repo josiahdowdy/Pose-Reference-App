@@ -1,52 +1,40 @@
 //  FolderButtonRowView.swift - Art_Athlete  - Created by josiah on 2021-11-30.
-
 import SwiftUI
-import Files
 
 struct FolderButtonRowView: View {
     @Environment(\.colorScheme) var currentDarkLightMode
-   // @EnvironmentObject var homeData: HomeViewModel
-
     @EnvironmentObject var prefs: GlobalVariables
 
     var product: Product
-  //  var folder: 
 
     @State var checked: Bool = false
     @Binding var selectedBtn: Int  // 3
     @State var trimVal : CGFloat = 0
 
-//    init() {
-//        print("JD00 → *****************    4. FolderButtonRowView ")
-//    }
     //View.
     var body: some View {
-        Button(action: {
-            // self.checked.toggle()
-            //   self.selectedBtn = self.product.numberInLine//self.product.id
-        }){
+      //  Button(action: { // self.checked.toggle()
+
+      //  }){
             HStack{
                 CircularCheckBoxView(checked: $checked, trimVal: $trimVal)
                 Text(product.title)
                 Spacer()
                 if (UIDevice.current.userInterfaceIdiom == .mac) {
                 Text(product.count.description).foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-                  //  .foregroundColor(.white)
                 }
             }
-            
-        }
+
+        //  }
+        .contentShape(Rectangle())
         .onTapGesture {
             if !self.checked {
                 withAnimation(Animation.easeIn(duration: 0.8)) {
                     self.trimVal = 1
                     self.checked.toggle()
-
+                    prefs.errorNoPhotosSelected = false
+                    prefs.error = ""
                     prefs.arrayOfFolderNames.append(product.title)
-
-                    // foldersModel.isToggle = true
-                    //     foldersArrayModel.isToggle = true
-                    print("JD460: ", prefs.arrayOfFolderNames)
                 }
             } else {
                 withAnimation {
@@ -56,25 +44,8 @@ struct FolderButtonRowView: View {
                     if let index = prefs.arrayOfFolderNames.firstIndex(of: product.title) {
                         prefs.arrayOfFolderNames.remove(at: index)
                     }
-                    print("JD460: ", prefs.arrayOfFolderNames) // ["cats", "dogs", "moose"]
-
-
-                    // prefs.arrayOfFolderNames.removeLast()
-
-                    //     foldersArrayModel.isToggle = false
                 }
             }
-        }
-        // .frame(width: 130, height: 50)
-        //.background(self.checked ? Color.clear : Color.gray)
-        //.cornerRadius(25)
-        //.shadow(radius: 10)
-        //  .padding(10)
-        .toolbar {
-            HStack {
-               // self.cdDeleteButton
-            }
-
         }
     }
 

@@ -14,7 +14,7 @@ struct HomeScreenButtonsView: View {
     //@EnvironmentObject var timeObject: TimerObject
     //@EnvironmentObject var sharedData: SharedViewModel
 
-   // @Environment(\.managedObjectContext) var context
+    // @Environment(\.managedObjectContext) var context
     
     //@StateObject var homeData: HomeViewModel = HomeViewModel()
     //@EnvironmentObject var homeData: HomeViewModel
@@ -31,8 +31,8 @@ struct HomeScreenButtonsView: View {
     //@EnvironmentObject var rowSelection: Set<String>()
 
     @State var error = ""
-   // @State var url : URL = URL(fileURLWithPath: "nil")
-   // @State var cdSelection = Set<FoldersEntity>()
+    // @State var url : URL = URL(fileURLWithPath: "nil")
+    // @State var cdSelection = Set<FoldersEntity>()
 
     @State private var shouldLoadingView = true
 
@@ -40,17 +40,17 @@ struct HomeScreenButtonsView: View {
 
     func notificationReminder() -> Alert {
         Alert(
-            title: Text("Notifications Required"),
+            title: Text("Notifications"),
             message: Text("Please authorize notifications by going to Settings > Notifications > Remindr"),
             dismissButton: .default(Text("Okay")))
     }
 
     //MARK: - VIEW FOR ANIMATION
-//    var laden: some View {
-//        Laden.CircleLoadingView(
-//            color: .white, size: CGSize(width: 30, height: 30), strokeLineWidth: 3
-//        )
-//    }
+    //    var laden: some View {
+    //        Laden.CircleLoadingView(
+    //            color: .white, size: CGSize(width: 30, height: 30), strokeLineWidth: 3
+    //        )
+    //    }
 
     /*\___/\ ((
      \`@_@'/  ))
@@ -63,10 +63,10 @@ struct HomeScreenButtonsView: View {
         NavigationView {
             VStack {
                 //FileImporterView() //This loads in photos MARK: [BLUE BOX]
-            //    if #available(macCatalyst 15, *) {
+                //    if #available(macCatalyst 15, *) {
                 MultipleSelectRow(rowSelection: $rowSelection)
                     .environmentObject(homeData)
-             //   } else { // Fallback on earlier versions }
+                //   } else { // Fallback on earlier versions }
 
                 if UIDevice.current.userInterfaceIdiom == (.phone) {
                     Text(prefs.error)
@@ -75,8 +75,7 @@ struct HomeScreenButtonsView: View {
                     StartButton(rowSelection: $rowSelection)
                 }
             } //.onAppear(perform: scanAllFolders)
-            .alert(isPresented: self.$showAlert,
-                   content: { self.notificationReminder() })
+           // .alert(isPresented: self.$showAlert, content: { self.notificationReminder() })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     HStack {
@@ -94,41 +93,31 @@ struct HomeScreenButtonsView: View {
                     }
                 }
             } //End toolbar
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    HStack {
-//                        //  self.cdDeleteButton
-//                        StatsButton(showStats: $showStats)
-//                            .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
-//                    }
-//                }
-//            }
+            //.disabled(true)
+            //.navigation
 
             if UIDevice.current.userInterfaceIdiom != (.phone) {
                 VStack {  // MARK: - Shows the main screen (right side).
                     Text("Art Athlete").font(.title)
                     Text("Photo Timer").font(.caption)
                     VStack {
-                    //    if !(isloadingPhotos) {
-                            Text(prefs.error)
-                            // Spacer().frame(maxWidth: .infinity)
-                            MainImageView()
-                            countPickerView()
-                            timePickerView()
-                            StartButton(rowSelection: $rowSelection)
-                       // } else { Text("Loading Photos...please wait...")  }
+                        //    if !(isloadingPhotos) {
+                        Text(prefs.error).padding()
+                        // Spacer().frame(maxWidth: .infinity)
+                        MainImageView()
+                        countPickerView()
+                        timePickerView()
+                        StartButton(rowSelection: $rowSelection)
+                        // } else { Text("Loading Photos...please wait...")  }
                     } //End VStack.
                 }
                 .alert(isPresented: self.$showAlert,
                        content: { self.notificationReminder() })
 
-              //  .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
+                //  .if(isloadingPhotos) { $0.foregroundColor(.blue) } //.overlay(Laden.BarLoadingView()) } //.foregroundColor(.red) }
             } // End if.
         } //NavigationView
-        .onAppear(perform:
-                   // createFolder
-                    scanAllFolders
-        )
+        .onAppear(perform: scanAllFolders)
     } //End UI.
 
        /*__/,|   (`\
@@ -180,11 +169,11 @@ struct HomeScreenButtonsView: View {
     }
 } //End struct.
 
-//MARK: - Extension
-extension View {
-    @ViewBuilder
-    func `if`<Transform: View>(_ condition: Bool, transform: (Self) -> Transform) -> some View {
-        if condition { transform(self) }
-        else { self }
-    }
-}
+////MARK: - Extension
+//extension View {
+//    @ViewBuilder
+//    func `if`<Transform: View>(_ condition: Bool, transform: (Self) -> Transform) -> some View {
+//        if condition { transform(self) }
+//        else { self }
+//    }
+//}

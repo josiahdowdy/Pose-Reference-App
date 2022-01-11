@@ -8,7 +8,10 @@ struct countPickerView: View {
 
     var body: some View {
         HStack {
-            Text("Count:").padding(10)
+            Image(systemName: "number.circle")
+            Text("Count:")//.padding(10)
+                .padding(.trailing, 8)
+
                 .foregroundColor(currentDarkLightMode == .dark ? Color.white : Color.black)
             // Length time of pose
             Picker("Numbers", selection: $prefs.selectorCountTime) {
